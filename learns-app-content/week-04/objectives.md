@@ -1,23 +1,28 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- Hooks continued
+- Events and handlers
+- Updating state
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 1: Hooks Continued
 
-#### Objective 2: Topic 2
+- Understand the purpose of commonly used React hooks - <!-- hook 1, hook 2... -->.
+- Demonstrate how to implement React hooks - <!-- hook 1, hook 2... -->.
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 2: Events and Handlers
 
-#### Objective 3: Topic 3
+- Examine the details of passing handler props between components in React.
+- Explain the purpose of the event object and how it relates to DOM events
+- Examine the properties and methods found on a React event object
+- Manage event propagation
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 3: Updating State
+
+- Demonstrate sending and receiving data through props to build dynamic components
+- Gain a deeper understanding about how useState works
+- Explore techniques to use events and the state update function to update state

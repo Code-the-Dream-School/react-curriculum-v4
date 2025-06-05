@@ -1,23 +1,15 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- React-Router
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 1: React-Router
 
-#### Objective 2: Topic 2
-
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-
-#### Objective 3: Topic 3
-
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+- explain the difference in how a browser navigates an SPA compared to a multi-page website
+- describe the purpose of React Router and how client side routing improves a user's experience with the app
+- implement react-router to emulate page navigation and enable client side routing in a React application
+=
