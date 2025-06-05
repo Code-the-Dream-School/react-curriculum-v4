@@ -1,23 +1,26 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- Local state
+- Controlled components
+- Forms
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
+
+#### Objective 1: Local State
 
 <!-- - {{blooms action verb}} sub-topic takeaway -->
 <!-- - {{blooms action verb}} sub-topic takeaway -->
 
-#### Objective 2: Topic 2
+#### Objective 2: Controlled Components
 
+- Explain controlled components and their importance in managing state
 <!-- - {{blooms action verb}} sub-topic takeaway -->
 <!-- - {{blooms action verb}} sub-topic takeaway -->
 
-#### Objective 3: Topic 3
+#### Objective 3: Forms
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+- Explain the management of form data in React and recognize the form's role in collecting and validating user input
+- Use a controlled form to handle form events, validate user input, and share user input back to the application

@@ -1,23 +1,22 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- Course orientation
+- Local environment setup
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 1: Course Orientation
 
-#### Objective 2: Topic 2
+- Explain the objectives of the course
+- Outline the course structure and weekly lesson layout
+- Summarize the project that you'll be building with the weekly lessons
+- Explain the required weekly assignments
+- List where you can find further resources for the week's lesson
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-
-#### Objective 3: Topic 3
+#### Objective 2: Local Environment Setup
 
 <!-- - {{blooms action verb}} sub-topic takeaway -->
 <!-- - {{blooms action verb}} sub-topic takeaway -->

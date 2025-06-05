@@ -1,23 +1,19 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- useMemo
+- useCallback
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
+
+#### Objective 1: useMemo
 
 <!-- - {{blooms action verb}} sub-topic takeaway -->
 <!-- - {{blooms action verb}} sub-topic takeaway -->
 
-#### Objective 2: Topic 2
-
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-
-#### Objective 3: Topic 3
+#### Objective 2: useCallback
 
 <!-- - {{blooms action verb}} sub-topic takeaway -->
 <!-- - {{blooms action verb}} sub-topic takeaway -->
