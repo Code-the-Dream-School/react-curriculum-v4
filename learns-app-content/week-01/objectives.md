@@ -12,7 +12,7 @@ By the end of this lesson, we will:
 #### Objective 1: Intro to React
 
 - Understand React at a high level
-- Explain the advantages React for developing web applications
+- Highlight the key advantages of React in web development.
 - Define key React terms and concepts
 
 #### Objective 2: App Installation
