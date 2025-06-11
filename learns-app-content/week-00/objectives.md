@@ -18,5 +18,5 @@ By the end of this lesson, we will:
 
 #### Objective 2: Local Environment Setup
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+- Outline minimum computer requirements to develop a Vite project
+- Identify VS Code and browser extensions useful for React development
