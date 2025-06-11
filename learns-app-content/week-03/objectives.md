@@ -12,10 +12,16 @@ By the end of this lesson, we will:
 
 #### Objective 1: Component Lifecycle
 
+#### Objective 4: Basic Hooks
+
+- Explain the motivation behind React Hooks and the problems they solve
+- Understand the rules of hooks
+
 #### Objective 2: State
 
 - Explain the importance of state in managing dynamic data within React components
 - Demonstrate the usage of state with the useState hook
+- Handle user interactions and update the UI in response to state changes.
 
 #### Objective 3: Props
 
@@ -23,8 +29,3 @@ By the end of this lesson, we will:
 - Demonstrate how to pass data from parent components to child components using props
 - Describe the importance of props in built-in components
 - Identify common props such as className, handler functions, style, etc and describe their relation to HTML attributes
-
-#### Objective 4: Basic Hooks
-
-- Understand the purpose of commonly used React hooks - <!-- hook 1, hook 2... -->.
-- Demonstrate how to implement React hooks - <!-- hook 1, hook 2... -->.
