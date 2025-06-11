@@ -22,4 +22,5 @@ By the end of this lesson, we will:
 #### Objective 3: Refactoring
 
 - Examine how refactoring out portions of an existing component into re-usable components improves code organization and readability
+- Discuss utility functions and custom hooks
 - Demonstrate the process of extracting logic and elements from components to craft sub-components
