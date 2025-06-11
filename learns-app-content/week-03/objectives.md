@@ -21,11 +21,10 @@ By the end of this lesson, we will:
 
 - Explain the importance of state in managing dynamic data within React components
 - Demonstrate the usage of state with the useState hook
-- Handle user interactions and update the UI in response to state changes.
 
 #### Objective 3: Props
 
 - Understand props in React and how they facilitate parent-child component communication
-- Demonstrate how to pass data from parent components to child components using props
+- Demonstrate sending and receiving data through props to build dynamic components
 - Describe the importance of props in built-in components
 - Identify common props such as className, handler functions, style, etc and describe their relation to HTML attributes
