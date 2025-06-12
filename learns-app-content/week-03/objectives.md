@@ -12,6 +12,9 @@ By the end of this lesson, we will:
 
 #### Objective 1: Component Lifecycle
 
+<!-- - {{blooms action verb}} sub-topic takeaway -->
+<!-- - {{blooms action verb}} sub-topic takeaway -->
+
 #### Objective 4: Basic Hooks
 
 - Explain the motivation behind React Hooks and the problems they solve
