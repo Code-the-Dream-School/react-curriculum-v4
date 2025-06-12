@@ -1,7 +1,7 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- Local state and Controlled components
+- Local state and controlled components
 - Forms
 
 ### Lesson Objectives
@@ -19,3 +19,4 @@ By the end of this lesson, we will:
 - Recognize the form's role in collecting and validating user input
 - Explain the management of form data in React
 - Use a controlled form to handle form events, validate user input, and commit user input back to the application
+- Managing inputs on larger forms
