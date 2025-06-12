@@ -3,6 +3,7 @@
 
 - useMemo
 - useCallback
+- Optimizing a React App
 
 ### Lesson Objectives
 
@@ -10,10 +11,13 @@ By the end of this lesson, we will:
 
 #### Objective 1: useMemo
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+- Explain the purpose of useMemo
 
 #### Objective 2: useCallback
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+- Explain the purpose of useCallback
+
+#### Objective 3: Optimizing a React App
+
+- Differentiate between useMemo and useCallback, including when to use each.
+- Identify scenarios where useMemo or useCallback improves performance and where they may be unnecessary or harmful.
