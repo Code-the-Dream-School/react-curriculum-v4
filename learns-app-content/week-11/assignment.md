@@ -1,4 +1,7 @@
 <!-- h1, h2 already used by CTD Learns -->
+> [!note]
+> this week also includes a coderbyte assessment
+
 ### Expected App Capabilities
 
 After completing this week's assignment, the app should be able to:

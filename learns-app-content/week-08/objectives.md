@@ -1,23 +1,23 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- useMemo
+- useCallback
+- Optimizing a React App
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 1: useMemo
 
-#### Objective 2: Topic 2
+- Explain the purpose of useMemo
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 2: useCallback
 
-#### Objective 3: Topic 3
+- Explain the purpose of useCallback
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 3: Optimizing a React App
+
+- Differentiate between useMemo and useCallback, including when to use each.
+- Identify scenarios where useMemo or useCallback improves performance and where they may be unnecessary or harmful.
