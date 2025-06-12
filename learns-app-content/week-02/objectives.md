@@ -33,4 +33,4 @@ By the end of this lesson, we will:
 
 - Describe how Vite.js compiles JSX to JavaScript so the application renders in a browser
 - Discuss common hurdles in React development and how error messages can be used to help developers troubleshoot their application
-- Use browser debugging tools to pinpoint and resolve bugs in their code
+- Utilize browser developer tools and React Developer Tools extension to pinpoint and resolve bugs in code
