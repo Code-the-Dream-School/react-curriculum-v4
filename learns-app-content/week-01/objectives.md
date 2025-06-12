@@ -3,7 +3,7 @@
 
 - Intro to React
 - App installation
-- Project walk-through
+- Working with Vite
 
 ### Lesson Objectives
 
@@ -21,10 +21,8 @@ By the end of this lesson, we will:
 - List the dependencies and scripts in package.json.
 - Use the CLI to install Vite.js, React, and dependencies
 
-#### Objective 3: Project Walk-Through
+#### Objective 3: Working with Vite
 
 - Demonstrate how to run installed app on a local development server
 - Describe the development workflow using the development server
 - Describe the role of Vite.js as a development server for React projects.
-
-### Learning Objectives
