@@ -1,23 +1,28 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- Intro to React
+- App installation
+- Working with Vite
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 1: Intro to React
 
-#### Objective 2: Topic 2
+- Understand React at a high level
+- Highlight the key advantages of React in web development.
+- Define key React terms and concepts
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 2: App Installation
 
-#### Objective 3: Topic 3
+- Use the CLI to create a new project using Vite.js and its React project template
+- List the dependencies and scripts in package.json.
+- Use the CLI to install Vite.js, React, and dependencies
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 3: Working with Vite
+
+- Demonstrate how to run installed app on a local development server
+- Describe the development workflow using the development server
+- Describe the role of Vite.js as a development server for React projects.

@@ -1,23 +1,19 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- Data fetching
+- UI update strategies
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 1: Data Fetching
 
-#### Objective 2: Topic 2
+- Discuss data fetching in React applications to send and receive data
+- Implement data fetching to retrieve and save data to manage application state
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 2: UI Update Strategies
 
-#### Objective 3: Topic 3
-
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+- Examine pessimistic and optimistic UI update strategies related to how they impact a user's experience
+- Implement an optimistic UI update strategy and handle failure scenarios where we need to revert changes

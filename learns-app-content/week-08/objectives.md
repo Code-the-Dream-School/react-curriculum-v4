@@ -1,23 +1,26 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Topics Covered
 
-- topic 1
-- topic 2
-- topic n
+- Advanced Hooks: useCallback and useMemo
+- Optimizing a React App
+- API-based Sort/Search
 
 ### Lesson Objectives
 
-#### Objective 1: Topic 1
+By the end of this lesson, we will:
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 1: Advanced Hooks: useCallback and useMemo
 
-#### Objective 2: Topic 2
+- Explain the purpose of useMemo
+- Explain the purpose of useCallback
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 2: Optimizing a React App
 
-#### Objective 3: Topic 3
+- Differentiate between useMemo and useCallback, including when to use each.
+- Identify scenarios where useMemo or useCallback improves performance and where they may be unnecessary or harmful.
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+#### Objective 3: API-based Sort/Search
+
+- Contrast sorting data locally vs requesting sorted data from an API
+- Develop a pagination feature to display long lists
+- Utilize API-based search
