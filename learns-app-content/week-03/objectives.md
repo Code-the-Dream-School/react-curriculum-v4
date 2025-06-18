@@ -12,8 +12,8 @@ By the end of this lesson, we will:
 
 #### Objective 1: Component Lifecycle
 
-<!-- - {{blooms action verb}} sub-topic takeaway -->
-<!-- - {{blooms action verb}} sub-topic takeaway -->
+- Explain the phases of a React component’s lifecycle
+- Identify the conditions that trigger React to render a component
 
 #### Objective 2: Basic Hooks
 
@@ -24,10 +24,11 @@ By the end of this lesson, we will:
 
 - Explain the importance of state in managing dynamic data within React components
 - Demonstrate the usage of state with the useState hook
+- Examine the importance of immutability in state values
+- Describe how React batches state updates
 
 #### Objective 4: Props
 
-- Understand props in React and how they facilitate parent-child component communication
-- Demonstrate sending and receiving data through props to build dynamic components
-- Describe the importance of props in built-in components
-- Identify common props such as className, handler functions, style, etc and describe their relation to HTML attributes
+- Define props and explain how they facilitate parent to child component communication
+- Identify special React props and DOM props for built-in components
+- Describe props' relation to HTML attributes
