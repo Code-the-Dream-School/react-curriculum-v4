@@ -16,9 +16,9 @@
 
 ## Week-07: Data Fetching and UI Update Strategies
 
-## Week-08: useCallback, useMemo, and Optimizing a React App
+## Week-08: Advanced Hooks: useCallback and useMemo, Optimizing a React App, and API-based Sort/Search
 
-## Week-09: Advanced State and useReducer, useContext, and API-based Sort/Search
+## Week-09: Advanced State, useReducer, and useContext
 
 ## Week-10: React Router
 
