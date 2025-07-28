@@ -9,7 +9,7 @@ unsure about - few suggestions:
 
 • Incorporate testing principles in Intro to Programming course (if it's not there already), so we can jump straight into how testing
 is done in React from a practical stand point and reduce the theory in the notes
-• Using the same method as the first point but incorporate testing across exisiting materials instead of one only section around it
+• Using the same method as the first point but incorporate testing across existing materials instead of one only section around it
 • Remove it completely on the basis that they could have that as supplemental learning / extra session potentially
 
 rebekahcallkacz on Apr 17

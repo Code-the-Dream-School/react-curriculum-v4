@@ -17,10 +17,11 @@ By the end of this lesson, we will:
 
 #### Objective 2: App and Data Security
 
-- Describe common attack vectors employed against React applications
-- Make use of environmental variables in a project
+- Describe common attack vectors employed against web applications
+- Construct helpful error messages without compromising security
+- Apply validation to user inputs
 - Utilize API keys and tokens securely
-<!-- TODO -->
+- Experiment with secure cookie attributes
 
 #### Objective 3: Deploying a React App
 
