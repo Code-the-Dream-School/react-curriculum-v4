@@ -167,7 +167,7 @@ rules: {
 
 - after installed, go to VS Code's settings and search for "format"
   - find the "Default Formatter" setting and change the option to Prettier - Code formatter.
-  - If you've previously modified VS Code settings, refer to the full installation instructions on the [Prettier's VS Code Extension homepage](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) to to help with troubleshooting.
+  - If you've previously modified VS Code settings, refer to the full installation instructions on the [Prettier's VS Code Extension homepage](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) to help with troubleshooting.
 
 ##### Install Prettier in the Project
 
