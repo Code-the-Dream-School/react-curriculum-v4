@@ -135,7 +135,7 @@ In the browser, you should have a list of 3 todos under the app's title:
 
 ![screen capture of the VS Code extension search results for ESLint](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/eslint.png)
 
-- You need to add another plugin package, eslint-plugin-react, for additional usefulReact linting rules:
+- You need to add another plugin package, eslint-plugin-react, for additional useful React linting rules:
   - In the terminal, install it using `npm install eslint-plugin-react --save-dev`
   - Go to `eslint.config.js` add the import statement `import react from 'eslint-plugin-react';` above the `reactHooks` import.
   - In the second object in the exported array:
