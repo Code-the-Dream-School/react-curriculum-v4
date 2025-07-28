@@ -1,26 +1,7 @@
 <!-- h1, h2 already used by CTD Learns -->
-### Expected App Capabilities
+We are almost done with this week as we prepare to jump into the course. You are encouraged to become familiar with all the material above and the student handbook. A thorough review of all materials will help you set up a routine that will support your learning.
 
-After completing this week's assignment, the app should be able to:
+- [ ] After reading this week's materials you will probably have a few questions. Write down your questions that you have. Bring them to your first group session and share them with the mentor hosting that session.
+- [ ] Finally, complete the quiz using the assignment submission button after finished with all reading materials.
 
-- capability 1
-- capability 2
-- capability n
-
-### Instructions Part 1
-
-1. [ ] step 1
-2. [ ] step 2
-3. [ ] step n
-
-### Instructions Part 2
-
-1. [ ] step 1
-2. [ ] step 2
-3. [ ] step n
-
-### Instructions Part n
-
-1. [ ] step 1
-2. [ ] step 2
-3. [ ] step n
+There is no coding assignment for this week.
