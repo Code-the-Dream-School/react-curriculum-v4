@@ -85,7 +85,7 @@ Refresh the page and you'll end up with something that looks like the screencap 
 
 In App.jsx:
 
-- After App's first line but before the return statement, create an array named `todos`containing 3 empty objects. Each one of those objects will represent a todo.
+- After App's first line but before the return statement, create an array named `todos` containing 3 empty objects. Each one of those objects will represent a todo.
 - Populate each object with a todo using the following object keys: `id` and `title`.
 
 ```jsx
