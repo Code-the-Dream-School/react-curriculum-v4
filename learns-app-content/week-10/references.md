@@ -1,4 +1,4 @@
-## References and Further Reading
+## References and Additional Resources
 
 ### Topic 1
 
