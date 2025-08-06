@@ -3,7 +3,7 @@
 
 - React Router
 
-### Lesson Objectives
+### Learning Objectives
 
 By the end of this lesson, we will:
 

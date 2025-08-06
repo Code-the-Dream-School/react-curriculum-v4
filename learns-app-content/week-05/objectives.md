@@ -4,7 +4,7 @@
 - Local state and controlled components
 - Forms
 
-### Lesson Objectives
+### Learning Objectives
 
 By the end of this lesson, we will:
 

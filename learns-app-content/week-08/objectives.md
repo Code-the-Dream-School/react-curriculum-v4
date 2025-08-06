@@ -5,7 +5,7 @@
 - Optimizing a React App
 - API-based Sort/Search
 
-### Lesson Objectives
+### Learning Objectives
 
 By the end of this lesson, we will:
 

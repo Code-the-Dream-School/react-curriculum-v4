@@ -4,7 +4,7 @@
 - Course orientation
 - Local environment setup
 
-### Lesson Objectives
+### Learning Objectives
 
 By the end of this lesson, we will:
 

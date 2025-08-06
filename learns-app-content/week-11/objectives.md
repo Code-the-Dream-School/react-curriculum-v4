@@ -5,7 +5,7 @@
 - App and data security
 - Deploying a React app
 
-### Lesson Objectives
+### Learning Objectives
 
 By the end of this lesson, we will:
 
