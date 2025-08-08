@@ -2,7 +2,7 @@
 
 ### Introduction
 
-- Connect to previous learning  
+- Connect to previous learning
 - Preview this week’s content
 - Explain real-world applications
 - Overview the week’s coding assignment
