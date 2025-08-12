@@ -4,8 +4,9 @@ Thank you for your interest in contributing! We welcome contributions from every
 
 ## How to Contribute
 
-1. **Fork the repository** and create your branch from `main`.
-2. **Clone your fork** and set up the project locally.
+1. **Choose an existing issue** that is labeled as "help wanted"
+1. **Fork the repository** and create your branch from `main`.[^1]
+2. **Clone your fork** and set up the project locally. 
 3. **Make your changes** with clear, descriptive commit messages.
 4. **Submit a pull request** with a detailed description of your changes.
 
@@ -15,9 +16,10 @@ Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 
 ## Pull Request Guidelines
 
-- Keep PRs focused and small.
-- Reference related issues in your PR description.
-- Ensure your contribution passes lints.
+- Keep each PR focused on a single ticket.
+- Provide a brief description of changes.
+- Link to the related issues in your PR description.
+- Ensure your contribution passes any lints.
 - Update documentation as needed.
 
 ## Reporting Issues
@@ -32,3 +34,5 @@ Join discussions, ask questions, and share feedback in our [GitHub Discussions](
 ---
 
 Thank you for helping us improve the React Curriculum!
+
+[^1]: Curriculum authors and maintainers can clone this repo without having to fork.
