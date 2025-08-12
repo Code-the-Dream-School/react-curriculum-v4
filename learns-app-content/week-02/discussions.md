@@ -7,12 +7,6 @@
 - Explain real-world applications
 - Overview the week’s coding assignment
 
-### Why This Matters
-
-- Industry relevance
-- Common use applications
-- Career applications
-
 ### Topic 1
 
 #### Topic 1 Check-for-understanding Questions
