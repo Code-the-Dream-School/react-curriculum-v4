@@ -1,4 +1,11 @@
-# Notes for Curriculum Demo Repo Updates
+---
+name: Notes for Curriculum Demos Updates
+about: Capture changes that need to be made to demo projects to match curriculum
+title: Demo Updates
+labels: v4
+assignees: ''
+
+---
 
 ## Week and Section of Change
 
