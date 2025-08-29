@@ -1,3 +1,13 @@
 {
-  "cSpell.words": ["rebekahcallkacz", "Soutoul", "linh-pham19"]
+  "cSpell.words": ["rebekahcallkacz", "Soutoul", "linh-pham19"],
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "[ ]",
+    "[x]",
+    "PLACEHOLDER"
+  ]
 }
