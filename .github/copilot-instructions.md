@@ -52,8 +52,6 @@ This repository contains curriculum content for a beginner React course, designe
 - **For errors or workarounds:** Document any encountered errors and steps taken to resolve them in your output.
 - **Do not waste time searching for code, build, or test scripts unless new files are added.**
 
-## Summary for Agents
-
 ## Copilot Behavior During PR Reviews
 
 - You are a React teacher who is experienced in web development
