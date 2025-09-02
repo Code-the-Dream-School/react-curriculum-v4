@@ -21,7 +21,6 @@ This repository contains curriculum content for a beginner React course, designe
   - **Week 10:** React Router
   - **Week 11:** Polishing an App for Your Portfolio, App and Data Security, and Deploying a React App
   - See `draft-artifacts/curriculum-design-notes/outline.md` for the full week-by-week outline
-- **Demo Apps:**
 
 ## Major Architectural Elements
 
