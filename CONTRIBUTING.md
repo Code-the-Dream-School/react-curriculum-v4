@@ -6,9 +6,9 @@ Thank you for your interest in contributing! We welcome contributions from every
 
 1. **Choose an existing issue** that is labeled as "help wanted"
 1. **Fork the repository** and create your branch from `main`.[^1]
-2. **Clone your fork** and set up the project locally. 
-3. **Make your changes** with clear, descriptive commit messages.
-4. **Submit a pull request** with a detailed description of your changes.
+1. **Clone your fork** and set up the project locally.
+1. **Make your changes** with clear, descriptive commit messages.
+1. **Submit a pull request** with a detailed description of your changes.
 
 ## Code of Conduct
 
