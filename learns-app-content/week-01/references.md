@@ -11,7 +11,7 @@
 ### Coding Concepts
 
 - [Inversion of control (Wikipedia)](https://en.wikipedia.org/wiki/Inversion_of_control)
-- [diffWhat is Diffing Algorithm> (Geek for Geeks)](https://www.geeksforgeeks.org/what-is-diffing-algorithm/)
+- [Diffing Algorithm (Geek for Geeks)](https://www.geeksforgeeks.org/what-is-diffing-algorithm/)
 - [Anti-pattern (Wikipedia)](https://en.wikipedia.org/wiki/Anti-pattern)
 - [The Basics of Package.json (NodeSource)](https://nodesource.com/blog/the-basics-of-package-json/)
 
@@ -25,6 +25,7 @@
 - [React + Vite template (GitHub repo)](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react)
 - [@vitejs/plugin-react (GitHub repo)](https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react)
 - [Code-the-Dream-School/ctd-swag: react-based storefront code-along for intro to react v3 (Github repo)](https://github.com/Code-the-Dream-School/ctd-swag)
+- [SWC (Speedy Web Compiler)](https://swc.rs/)
 
 ### Improving the Development Environment
 
@@ -33,7 +34,7 @@
 - [Prettier (Prettier docs)](https://prettier.io/docs/en/)
 - [Prettier Formatter for Visual Studio Code (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Using ESLint and Prettier in Visual Studio Code (Microsoft Learn)](https://learn.microsoft.com/en-us/shows/visual-studio-toolbox/using-eslint-and-prettier-in-visual-studio-code)
-- [Aliasing - Wi(kipedia](https://en.wikipedia.org/wiki/Aliasing_%28computing%29)
+- [Aliasing - (Wikipedia)](https://en.wikipedia.org/wiki/Aliasing_%28computing%29)
 - [ESLint](https://ESLint.org/)
 - [a plugin for VS Code (Visual Studio Marketplace)](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [ESLint (Visual Studio Marketplace)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)

@@ -31,7 +31,7 @@ Another key aspect of React is its use of a [Virtual DOM](https://legacy.reactjs
 
 With React 18, updates are also handled through **concurrent rendering**, which allows React to prioritize urgent updates (like typing in an input) while deferring less urgent ones (like rendering large lists). This makes applications feel more responsive even as they grow in complexity.
 
-### App Installation
+### Starting a new React Project
 
 > [!remember]
 > As mentioned during lesson 00, we will be working on two projects through this course. During the lessons, all coding examples are from CTD Swag, an eCommerce store. This is an optional code-along project that will not be turned in. The repo for [CTD Swag can be found here](https://github.com/Code-the-Dream-School/ctd-swag)
@@ -57,7 +57,7 @@ Let's break that command down to see what it's doing:
 5. `… --template react` tells vite's package to scaffold the project using its React template.
 
 > [!info]
-> If we run the command without any options (`npm create vite@latest`) this will start an interactive prompt in the terminal to help scaffold the Vite project. It will ask for a project name, a template to use, and then finally a template variant. Be careful to choose `JavaScript`, not `JavaScript SWC`. [SWC](https://swc.rs/) is a faster bundler that can be used instead of the default one used by Vite but doesn't have the right options for our project. We will not be using TypeScript in this course so don't choose that either.
+> If we run the command without any options (`npm create vite@latest`) this will start an interactive prompt in the terminal to help scaffold the Vite project. It will ask for a project name, a template to use, and then finally a template variant. Be careful to choose `JavaScript`, not `JavaScript SWC`. [SWC (Speedy Web Compiler)](https://swc.rs/) is a faster bundler that can be used instead of the default one used by Vite but doesn't have the right options for our project. We will not be using TypeScript in this course so don't choose that either.
 
 The scaffolded project includes a starter SPA and a few supporting files. None of the dependencies are installed until we run another command, `npm install`. This installs all the packages listed in the package.json dependencies and can take up to a few minutes to complete. Once it done, we can take a look at the project structure.
 
@@ -116,7 +116,7 @@ You may have noticed a `:5173` in the url. This is the port number that Vite ser
 
 Any time we are working in our codebase, it's _highly recommended_ to have the development server running and our SPA open in a browser window. This gives instant feedback on the code that we are working on. There are plenty of scenarios where our code does not have any errors in a grammatical or technical sense but will crash our SPA or generate other undesirable behaviors.
 
-### Project Walk-Through
+### More about Vite
 
 Now that we have the project scaffolded and we know it runs, we'll dig into some of the details about working with our SPA. Vite incorporates several other tools to be aware of and provides us with features to make UI development a pretty nice experience.
 
