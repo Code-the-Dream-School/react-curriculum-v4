@@ -20,7 +20,7 @@ We then have to install Prettier plugin and configure VS Code to use it as the d
 
 Code before and after saving with Prettier enabled:
 
-![code before and after prettier formatting](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/supplementals/prettier/assets/pretter-before-after.png)
+![code before and after prettier formatting](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/supplementals/prettier/assets/prettier-before-after.png)
 
 - semicolons are consistently used
 - quotes on imports are single quotes instead of double quotes
