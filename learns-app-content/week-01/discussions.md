@@ -11,7 +11,7 @@ React is a frontend library used by developers to build dynamic user interfaces.
 
 That's helpful but what problems does it solve?!
 
-Developing an SPA without libraries (or even with jQuery) is a complicated process for anything but the smallest app. Prior to their rise of libraries like React or frameworks[^libraries-and-frameworks] like Angular and Vue, developers had to take an imperative approach to programming interactivity into an html document. Stated another way, developers have to programmatically describe the processes their SPA needs to use to keep the UI updated.
+Developing an SPA without libraries (or even with jQuery) is a complicated process for anything but the smallest app. Prior to their rise of libraries like React or frameworks[^libraries-and-frameworks] like Angular and Vue, developers had to take an imperative approach to programming interactivity into an HTML document. Stated another way, developers have to programmatically describe the processes their SPA needs to use to keep the UI updated.
 
 - Elements must be created, destroyed or managed.
 - Event listeners have to be added, configured, and managed.
@@ -21,11 +21,15 @@ Often, this includes adding or removing sub-elements that aren't known about ahe
 
 The most of the current front end libraries or frameworks use a declarative approach to programing a UI. Declarative programming allows us to describe the SPA's structure and state. It is then library's/framework's responsibility to accomplish the all the tasks needed to keep the UI updated as state changes. As a consequence, it allows us to create complex SPAs with relative ease compared to approaches that do not use a framework.
 
-React's strength comes from its use of components and the way it keeps the UI updated. Components allow us to divide an SPA into smaller modules consisting of page elements, styling, and state logic. In programming terms, components encourage "separation of concerns". Components allow us to focus on small portions of the application at a time. Each component does one or a few things rather than having a large files (HTML, CSS, JS) that group all a page's functionality together.
+React's strength comes from its use of components and the way it keeps the UI updated. Components allow us to divide an SPA into smaller modules consisting of page elements, styling, and state logic. In programming terms, components encourage "separation of concerns". Components allow us to focus on small portions of the application at a time. Each component does one or a few things rather than having a large files (HTML, CSS, JS) that group all a page's functionality together. While React handles client-side rendering, most production apps now leverage frameworks such as Next.js or Remix to handle routing, data fetching, and server rendering strategies like SSR and SSG, which improve both SEO and performance.
 
-React provides hooks which are functions that allow us to manage state and logic inside of components. Props (properties) are used to pass data and event information between components. We will cover hooks and props in future lessons so don't worry if they sound confusing right now.
+React provides **hooks**, which are functions that allow us to manage state and logic inside of components. **Props** (properties) are used to pass data and event information between components. For more complex state needs, React’s built-in context can be limiting, and many teams adopt external state management solutions like **Redux Toolkit**, **Zustand**, or **Recoil** depending on application scale and complexity.
 
-Another key aspect of React is its use of a [Virtual DOM](https://legacy.reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom). This is a lightweight copy of the actual DOM (Document Object Model) in memory. When there are changes in the state of a component, React first updates the Virtual DOM and then compares it to the real DOM to identify the changes needed. This [diffing](https://www.geeksforgeeks.org/what-is-diffing-algorithm/) process is more efficient than directly manipulating the entire DOM resulting in fast updates and improved performance.
+At the same time, React offers hooks like `useMemo` and `useCallback` that help optimize performance by avoiding unnecessary re-renders, especially in applications with deeply nested components or expensive computations. Tools like **React DevTools** and features such as **StrictMode** also assist developers in catching performance issues early and ensuring applications stay responsive as they grow. We will cover hooks and props in future lessons, so don’t worry if they sound confusing right now.
+
+Another key aspect of React is its use of a [Virtual DOM](https://legacy.reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom). This is a lightweight copy of the actual DOM (Document Object Model) in memory. When there are changes in the state of a component, React first updates the Virtual DOM and then compares it to the real DOM to identify the changes needed. This [diffing](https://www.geeksforgeeks.org/what-is-diffing-algorithm/) process is more efficient than directly manipulating the entire DOM, resulting in fast updates and improved performance.
+
+With React 18, updates are also handled through **concurrent rendering**, which allows React to prioritize urgent updates (like typing in an input) while deferring less urgent ones (like rendering large lists). This makes applications feel more responsive even as they grow in complexity.
 
 ### App Installation
 
