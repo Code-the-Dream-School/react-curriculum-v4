@@ -16,11 +16,11 @@ Since this is a development tool and is not a part of the app, we install Pretti
 
 We then have to install Prettier plugin and configure VS Code to use it as the default code formatter. After installing the plugin, open VS Code's settings and filter for "format". For `Editor: Default Formatter` select Prettier and then check the box for `Editor: Format on Save`.
 
-![searching for format in ide settings](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-01/search-format.png)
+![searching for format in ide settings](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/supplementals/prettier/assets/search-format.png)
 
 Code before and after saving with Prettier enabled:
 
-![code before and after prettier formatting](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-01/pretter-before-after.png)
+![code before and after prettier formatting](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/supplementals/prettier/assets/pretter-before-after.png)
 
 - semicolons are consistently used
 - quotes on imports are single quotes instead of double quotes
