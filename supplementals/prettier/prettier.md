@@ -1,4 +1,4 @@
-#### Automatic Code Formatting with Prettier
+# Automatic Code Formatting with Prettier
 
 Clean code is vital for any project, especially in a team codebase, but having to think about formatting details detracts from our attention which is better spent on crafting useful code. We can delegate formatting to tool that automates the process of applying formatting rules consistently across a codebase.
 
