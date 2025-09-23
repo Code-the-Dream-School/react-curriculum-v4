@@ -1,6 +1,6 @@
 # Automatic Code Formatting with Prettier
 
-Clean code is vital for any project, especially in a team codebase, but having to think about formatting details detracts from our attention which is better spent on crafting useful code. We can delegate formatting to tool that automates the process of applying formatting rules consistently across a codebase.
+Clean code is vital for any project, especially in a team codebase, but having to think about formatting details detracts from our attention which is better spent on crafting useful code. We can delegate formatting to a tool that automates the process of applying formatting rules consistently across a codebase.
 
 One of the most popular JavaScript formatting tools is [Prettier](https://prettier.io/). Like ESLint, we include a configuration file in our codebase and we have to install [a plugin for VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode). When configured correctly, it frees us from having to think about formatting! Let's go ahead and set that up.
 

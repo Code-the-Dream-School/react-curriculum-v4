@@ -1,6 +1,6 @@
 # Enhance VS Code's Built-in Linting with ESLint
 
-A linter is a tool that performs a [static analysis](https://en.wikipedia.org/wiki/Static_program_analysis)of a codebase to flag syntax errors and bad practices without having to run the code. VS Code already provides basic static analysis for JavaScript but we can extend this with ESLint. The React template includes some sensible default rules when we installed it but we also have to install VS Code's [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension. The extension will allow VS Code to lint all project files and adds a tooltip when mousing over a flagged item. The tooltips usually include a brief summary of the rule violation and a link to more documentation. In the screenshot below, clicking the blue text "[react/jsx-key](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md)" will open a browser window to documentation that explains the error, how to resolve it, and even rule configuration options for `eslint.config.js`.
+A linter is a tool that performs a [static analysis](https://en.wikipedia.org/wiki/Static_program_analysis) of a codebase to flag syntax errors and bad practices without having to run the code. VS Code already provides basic static analysis for JavaScript but we can extend this with ESLint. The React template includes some sensible default rules when we installed it but we also have to install VS Code's [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension. The extension will allow VS Code to lint all project files and adds a tooltip when mousing over a flagged item. The tooltips usually include a brief summary of the rule violation and a link to more documentation. In the screenshot below, clicking the blue text "[react/jsx-key](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md)" will open a browser window to documentation that explains the error, how to resolve it, and even rule configuration options for `eslint.config.js`.
 
 ![missing key props error in ide](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/supplementals/eslint/assets/missing-key.png)
 
@@ -11,7 +11,7 @@ In the following screenshot of an error tooltip, we have an error on `setTestLis
 
 ![no unused vars tooltip](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/supplementals/eslint/assets/unused-vars.png)
 
-When working with ESLint, we can to add and remove rules that suit our needs. ESLint provides three ways to modify rules:
+When working with ESLint, we can add and remove rules that suit our needs. ESLint provides three ways to modify rules:
 
 1. ignore a rule for a file
 2. ignore a rule for a single line
