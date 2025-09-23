@@ -1,6 +1,6 @@
 <!-- h1, h2 already used by CTD Learns -->
 
-## Topics Covered
+### Topics Covered
 
 - Intro to React
 - App installation
