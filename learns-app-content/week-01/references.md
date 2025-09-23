@@ -29,7 +29,7 @@
 
 ## Improving the Development Environment
 
-- [ESLint Core Concepts (ESLint docs)](https://ESLint.org/docs/latest/use/core-concepts/)
+- [ESLint Core Concepts (ESLint docs)](https://eslint.org/docs/latest/use/core-concepts/)
 - [VS CODE ESLint Extension (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier (Prettier docs)](https://prettier.io/docs/en/)
 - [Prettier Formatter for Visual Studio Code (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)

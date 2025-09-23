@@ -66,7 +66,7 @@ The scaffolded project includes a starter SPA and a few supporting files. None o
 ├── .git/...
 ├── .gitignore
 ├── README.md
-├── ESLint.config.js
+├── eslint.config.js
 ├── index.html
 ├── package.json
 ├── node_modules/...
@@ -83,10 +83,10 @@ The scaffolded project includes a starter SPA and a few supporting files. None o
 
 ```
 
-1. **.git/**: is an invisible directory created by git to maintain version control. You may not see it if your operating system hides directories and files that start with a ".". VS Code also will hide this directory by default.
+1. **.git/**: is an invisible directory created by Git to maintain version control. You may not see it if your operating system hides directories and files that start with a ".". VS Code also will hide this directory by default.
 2. **.gitignore**: this file lists all those files and directories that should _not_ be tracked with version control.
 3. **README.md**: this file contains pertinent information about the project. We keep this up to date with details such as a project description and steps that others need to take to run or work with the project.
-4. **ESLint.config.js**: is used to configure [ESLint](https://ESLint.org/), a tool used to identify syntax problems or common [anti-patterns](https://en.wikipedia.org/wiki/Anti-pattern).
+4. **eslint.config.js**: is used to configure [ESLint](https://eslint.org/), a tool used to identify syntax problems or common [anti-patterns](https://en.wikipedia.org/wiki/Anti-pattern).
 5. **index.html**: this file is the [entry point](https://vitejs.dev/guide/#index-html-and-project-root) for the application.
 6. **package.json**: this file contains details about the project, some scripts aliases, and a list of all the packages that the project is dependent upon.
 7. **public**: this is a [directory](https://vitejs.dev/guide/assets.html#the-public-directory) is used to hold static assets like images and fonts that we want to remain unchanged.
@@ -99,7 +99,7 @@ To work with the project, we have to start Vite's server. To find the right comm
 "scripts": {
   "dev": "vite",
   "build": "vite build",
-  "lint": "ESLint .",
+  "lint": "eslint .",
   "preview": "vite preview"
 }
 ```
