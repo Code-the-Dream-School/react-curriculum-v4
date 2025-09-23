@@ -30,14 +30,11 @@
 ## Improving the Development Environment
 
 - [ESLint Core Concepts (ESLint docs)](https://ESLint.org/docs/latest/use/core-concepts/)
-- [VS CODE ESLint Extension (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-ESLint)
+- [VS CODE ESLint Extension (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier (Prettier docs)](https://prettier.io/docs/en/)
 - [Prettier Formatter for Visual Studio Code (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Using ESLint and Prettier in Visual Studio Code (Microsoft Learn)](https://learn.microsoft.com/en-us/shows/visual-studio-toolbox/using-eslint-and-prettier-in-visual-studio-code)
 - [Aliasing - (Wikipedia)](https://en.wikipedia.org/wiki/Aliasing_%28computing%29)
-- [ESLint](https://ESLint.org/)
-- [a plugin for VS Code (Visual Studio Marketplace)](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [ESLint (Visual Studio Marketplace)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [eslint-plugin-react/docs/rules/jsx-key (Github repo)](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md)
 - [Prettier](https://prettier.io/)
 
