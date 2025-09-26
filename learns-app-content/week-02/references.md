@@ -31,8 +31,8 @@
 
 ### General Concepts
 
-[Rest parameters - JavaScript (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
-[data-\* - HTML: HyperText Markup Language (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*)
-[ARIA states and properties (attributes) - ARIA (MDN)](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes)
-[Object-oriented programming (MDN)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object-oriented_programming)
-[Functional Programming 101](https://github.com/readme/guides/functional-programming-basics)
+- [Rest parameters - JavaScript (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
+- [data-\* - HTML: HyperText Markup Language (MDN)](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*)
+- [ARIA states and properties (attributes) - ARIA (MDN)](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Reference/Attributes)
+- [Object-oriented programming (MDN)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Advanced_JavaScript_objects/Object-oriented_programming)
+- [Functional Programming 101](https://github.com/readme/guides/functional-programming-basics)
