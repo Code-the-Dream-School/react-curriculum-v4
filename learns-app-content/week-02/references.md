@@ -10,6 +10,7 @@
 - [Describing the UI (React docs)](https://react.dev/learn/describing-the-ui)
 - [Your First Component (React docs)](https://react.dev/learn/your-first-component)
 - [Common Components (React docs)](https://react.dev/reference/react-dom/components/common)
+- [Deprecated](https://en.wikipedia.org/wiki/Deprecation)
 
 ### JSX
 
@@ -22,10 +23,11 @@
 ### Troubleshooting
 
 - [How to Handle Errors in React Applications (FreeCodeCamp)](https://www.freecodecamp.org/news/effective-error-handling-in-react-applications/)
-- React Developer Tools
-  - [Chrome Extension](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?pli=1)
-  - [Firefox Add-On](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
-  - [Using React Developer Tools with Safari and other browsers without plugins](https://react.dev/learn/react-developer-tools#safari-and-other-browsers)
+- [React Developer Tools](https://react.dev/learn/react-developer-tools)
+- [Chrome Extension](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?pli=1)
+- [Firefox Add-On](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
+- [Edge Extension](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
+- [Using React Developer Tools with Safari and other browsers without plugins](https://react.dev/learn/react-developer-tools#safari-and-other-browsers)
 
 ### General Concepts
 
