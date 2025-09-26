@@ -290,6 +290,12 @@ To keep the transpilation process simple and performant, we must follow some rul
 <div style={{ backgroundColor: '#800080', borderBottom: 3 }}></div>;
 ```
 
+#### Conditional Rendering
+
+One of the most powerful features of JSX is conditional rendering. It allows us to decide what gets displayed in the UI depending on some JavaScript expression.
+Since JSX only supports expressions (not full statements), we typically use tools like the ternary operator or logical AND (&&) directly inside the markup to choose what to render.
+You’ll explore more advanced patterns for conditional rendering in week 5
+
 ### Troubleshooting
 
 #### Runtime Feedback
