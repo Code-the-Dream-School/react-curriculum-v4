@@ -33,6 +33,9 @@ You will end up with a project structure that looks similar to the following:
 
 ### Instructions Part 3: Project Setup
 
+> [!note]
+> Don't worry if you encounter unfamiliar concepts like JSX, components, or React syntax in this assignment. These topics will be covered in detail in upcoming lessons. For now, follow the instructions step by step.
+
 > [!notes]
 >.
 >
@@ -47,7 +50,7 @@ You will end up with a project structure that looks similar to the following:
 #### Clean up Template
 
 - Start the development server with the command: `npm run dev`
-- Open a browser to the local link listed in the CLI output.
+- Open a browser and navigate to `http://localhost:5173)`.
 - Delete the contents of App.css but keep the file.
 - Delete the contents of index.css but keep the file.
 - Clean up App's code:
