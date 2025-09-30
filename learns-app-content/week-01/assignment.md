@@ -120,7 +120,7 @@ In the browser, you should have a list of 3 todos under the app's title:
 
 ![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/todos-screencap.png)
 
-### Instructions Part 3: Final Steps
+### Instructions Part 4: Final Steps
 
 #### Update the Project's README
 
