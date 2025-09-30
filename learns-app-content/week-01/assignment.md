@@ -1,5 +1,5 @@
 <!-- h1, h2 already used by CTD Learns -->
-<!-- DRAFT -->
+<!-- draft exercise composition v1-->
 ### Expected App Capabilities
 
 After completing this week's assignment, your app should:
@@ -14,16 +14,18 @@ After completing this week's assignment, your app should:
 #### Create new public repo on GitHub
 
 - give it the name "todo-list" or something similar and description
-- don't add a .gitignore or a license
-- clone the repo to your local environment (this differs based on if you're using HTTPS, SSH, or GitHub Desktop. See [GitHub's documentation on remote repos](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories) for more details.)
-- don't create a new branch yet - remain on `main` branch
+- do not add a .gitignore or a license
+- clone the repo to your local environment
 
 ### Instructions Part 2: Installation
 
 #### Scaffold Vite Using CLI
 
-- Bootstrap a new project with command: `npm create vite@latest . -- --template react`
-- Install with command: `npm install`
+>[!note]
+>remain on `main` branch
+
+- Bootstrap a new project: `npm create vite@latest . -- --template react`
+- After any prompts, install the project dependencies using NPM: `npm install`
 
 You will end up with a project structure that looks similar to the following:
 
@@ -31,27 +33,24 @@ You will end up with a project structure that looks similar to the following:
 
 ### Instructions Part 3: Project Setup
 
-> [!notes]
+> [!note]
+> Don't worry if you encounter unfamiliar concepts like JSX, components, or React syntax in this assignment. These topics will be covered in detail in upcoming lessons. For now, follow the instructions step by step.
+
+> [!note]
 >.
 >
 > - Some of the cleanup steps may cause errors to appear in the browser window and console but they will resolve themselves
-> - The odd, html-like syntax in the return statements is called JSX - we'll cover that next week.
-> - We also won't provide all the code snippets in every assignment. The only reason why we're doing that here is because you have not been introduced to JSX yet.
 
 #### Version Control Tasks
 
-We want to preserve a fresh installation at the start of the project in case anything happens to our code. Rather than having to re-install, we can revert back to this version!
-
-- Stage all the files with git: `git add .`
-- Commit them to main: `git commit -m "installed react"`
-- Push the changes to GitHub: `git push`
-- Create and check out a new branch for week 1's assignment before continuing: `git checkout -b week-01-setup`
-- Publish the branch to github: `git push origin week-01-setup`
+- Commit all file changes to `main` and push changes to GitHub.
+- Create and check out a new branch, `week-01-setup`.
+- Publish this branch to GitHub.
 
 #### Clean up Template
 
 - Start the development server with the command: `npm run dev`
-- Open a browser to the **Local** link listed in the CLI
+- Open a browser and navigate to `http://localhost:5173`.
 - Delete the contents of App.css but keep the file.
 - Delete the contents of index.css but keep the file.
 - Clean up App's code:
@@ -79,13 +78,13 @@ export default App
 
 Refresh the page and you'll end up with something that looks like the screencap below. Note that the console contains no errors.
 
-![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/title-screencap.png)
+![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/title-screencap.png)
 
 #### Add First Todos
 
 In App.jsx:
 
-- After App's first line but before the return statement, create an array named `todos` containing 3 empty objects. Each one of those objects will represent a todo.
+- Inside the App component, above the return statement, create an array named `todos` containing 3 empty objects.
 - Populate each object with a todo using the following object keys: `id` and `title`.
 
 ```jsx
@@ -99,7 +98,7 @@ const todos = [
 {/*code continues...*/}
 ```
 
-- Below the h1 in the return statement, create an unordered list using html tags.
+- Create an unordered list using html tags below the heading (h1).
 - Place an empty code block between the list's opening and closing tags `<ul>{}</ul>`
 - Inside the code block, map the todos to html that will render a list item per todo.
 
@@ -119,71 +118,7 @@ return (
 
 In the browser, you should have a list of 3 todos under the app's title:
 
-![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/todos-screencap.png)
-
-### Stretch Goals Instructions (optional)
-
-*Skip to **Instructions Part 4** if you are not interested in ESLint or Prettier.*
-
-#### Enable ESLint to Highlight Code Problems  (Stretch goal 1 of 2)
-
-- in VS Code, click on the extensions icon in the left-hand sidebar
-
-![screen capture highlighting extension icon in VS Code's tool tray](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/extensions-icon.png)
-
-- search for "ESLint". The appropriate extension will have the following icon:
-
-![screen capture of the VS Code extension search results for ESLint](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/eslint.png)
-
-- You need to add another plugin package, eslint-plugin-react, for additional useful React linting rules:
-  - In the terminal, install it using `npm install eslint-plugin-react --save-dev`
-  - Go to `eslint.config.js` add the import statement `import react from 'eslint-plugin-react';` above the `reactHooks` import.
-  - In the second object in the exported array:
-    - Add a `settings` object: `settings: { react: { version: 'detect' } },`.
-    - This should be placed just above the `plugins` object.
-  - Add `react` to the `plugins` object, above `react-hooks: reactHooks`. *tip: You don't need to include a key/value pair like the other plugins.*
-  - Add the following to the `rules` below `...js.configs.recommended.rules,`
-    - `...react.configs.recommended.rules,`
-    - `...react.configs['jsx-runtime'].rules,`
-- Take some time to review the `eslint.config.js` file you just updated. Documentation for the [ESLint plugin](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and [ESLint library](https://eslint.org/) can explain most of the contents.
-- Finally, we recommend adding the following entries to the `rules` object:
-
-```js
-rules: {
-        //...other rules
-        'no-unused-vars': 'warn', //this changes the error to a warning
-        'react/prop-types': 'off', //this suppresses warnings about not using prop-types
-        //other rules...
-}
-```
-
-#### Integrate Prettier (Stretch goal 2 of 2)
-
-##### Install Prettier in VS Code
-
-- search for "Prettier". Choose the following from the results:
-
-![screen capture of the VS Code extension search results for Prettier](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/prettier.png)
-
-- after installed, go to VS Code's settings and search for "format"
-  - find the "Default Formatter" setting and change the option to Prettier - Code formatter.
-  - If you've previously modified VS Code settings, refer to the full installation instructions on the [Prettier's VS Code Extension homepage](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) to help with troubleshooting.
-
-##### Install Prettier in the Project
-
-- In the terminal issue the command: `npm install --save-dev --save-exact prettier`
-- Create a .prettierrc file at the root of the project directory
-  - You can use this to add any special formatting rules by adding a JSON object
-  - All configuration options can be found on [Prettier's configuration page](https://prettier.io/docs/configuration).
-  - We recommend starting the snippet below and modify it based on what you find useful.
-
-```json
-{
-"semi": true,
-"singleQuote": true,
-"trailingComma": "es5"
-}
-```
+![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/todos-screencap.png)
 
 ### Instructions Part 4: Final Steps
 
