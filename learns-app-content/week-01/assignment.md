@@ -50,7 +50,7 @@ You will end up with a project structure that looks similar to the following:
 #### Clean up Template
 
 - Start the development server with the command: `npm run dev`
-- Open a browser and navigate to `http://localhost:5173)`.
+- Open a browser and navigate to `http://localhost:5173`.
 - Delete the contents of App.css but keep the file.
 - Delete the contents of index.css but keep the file.
 - Clean up App's code:
