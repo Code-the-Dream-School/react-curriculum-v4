@@ -78,7 +78,7 @@ export default App
 
 Refresh the page and you'll end up with something that looks like the screencap below. Note that the console contains no errors.
 
-![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/title-screencap.png)
+![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/title-screencap.png)
 
 #### Add First Todos
 
@@ -118,7 +118,7 @@ return (
 
 In the browser, you should have a list of 3 todos under the app's title:
 
-![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/todos-screencap.png)
+![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/todos-screencap.png)
 
 ### Instructions Part 3: Final Steps
 
