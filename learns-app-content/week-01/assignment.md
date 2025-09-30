@@ -36,7 +36,7 @@ You will end up with a project structure that looks similar to the following:
 > [!note]
 > Don't worry if you encounter unfamiliar concepts like JSX, components, or React syntax in this assignment. These topics will be covered in detail in upcoming lessons. For now, follow the instructions step by step.
 
-> [!notes]
+> [!note]
 >.
 >
 > - Some of the cleanup steps may cause errors to appear in the browser window and console but they will resolve themselves
