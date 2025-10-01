@@ -50,7 +50,7 @@ After completing this week's assignment, your app should:
 - Create a new file named `TodoList.jsx` in the `src` directory
 - Set up a basic React component structure with:
   - A function named `TodoList`
-  - An empty return statement (we'll fill this in soon)
+  - An return statement with an empty Fragment component (we'll replace this soon)
   - An export statement at the bottom
 
 Your new `TodoList.jsx` file should look like this:
@@ -58,7 +58,7 @@ Your new `TodoList.jsx` file should look like this:
 ```jsx
 function TodoList() {
   return (
-
+    <></>
   );
 }
 
@@ -87,7 +87,7 @@ return (
 #### Move Todo Logic to TodoList Component
 
 - **Move the todos array**: Cut the `todos` array from `App.jsx` and paste it into the `TodoList` component, above the return statement
-- **Move the todo display logic**: Cut the `<ul>` element and everything inside it from `App.jsx` and paste it into the TodoList return statement
+- **Move the todo display logic**: Cut the `<ul>` element and everything inside it from `App.jsx` and paste it into the TodoList return statement, replacing the Fragment component (`<></>`).
 
 > [!note]
 > After moving the todos array, you'll see errors in the browser console like the image below. This is normal and expected since we're in the middle of refactoring.
