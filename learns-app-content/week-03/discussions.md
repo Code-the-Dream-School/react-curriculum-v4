@@ -96,6 +96,39 @@ function PageSizer() {
 - **Update:** With `[]` as dependencies, there’s no update re-run. If you had dependencies (e.g., `[someProp]`), React would clean up the old listener and run the effect again when that value changes.
 - **Unmount:** When the component disappears, React calls the cleanup function, removing the listener.
 
+#### Intro to Hooks
+
+To manage data that changes over time and trigger lifecycle updates, React provides **hooks** - special functions that "hook into" React's internal systems.
+Hooks let function components hold data, react to changes, and keep values around between renders. Before we dive into specific hooks, here are the essential rules for using them:
+
+**Rules and guidelines:**
+
+- Call hooks at the top level of your component (not inside if statements, loops, or nested functions)
+- Only call hooks from React function components or custom hooks
+- Custom hooks must start with "use" (like `useCustomHook`)
+- Group related state variables together
+- Keep state minimal - derive values when possible
+
+##### `useState` — local state
+
+Stores a value for component and lets you update it.
+
+##### `useEffect` — Managing Side Effects
+
+`useEffect` lets you synchronize your component with external systems - things outside of React's control like timers, API calls, browser APIs, or manual DOM manipulation.
+
+##### `useRef` — Persisting Values Without Re-renders
+
+`useRef` creates a container that holds a mutable value across renders without triggering re-renders when it changes. Think of it as a "box" that keeps the same reference between renders.
+
+##### Using the React.dev Reference Documentation
+
+As you work with React, the official documentation at [react.dev](https://react.dev) will become your most valuable resource. Here's how to use it effectively:
+
+The docs are concise, accurate, and updated regularly. When in doubt about how something works, the React.dev reference should be your first stop - it's faster than searching and more reliable than outdated tutorials.
+
+Now let's explore the most fundamental hook: `useState`.
+
 #### useState
 
 `const [state, setState] = useState(initialState)`
