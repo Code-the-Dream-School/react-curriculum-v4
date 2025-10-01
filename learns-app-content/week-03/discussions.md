@@ -2,7 +2,7 @@
 
 ### State
 
-All of the information on an simple web page is composed of data of one type or another - text, images, structure, styling, etc. When going from a static web page to an SPA, we have to determine what data should load dynamically and what should remain static. To one extreme, we may limit it to a username in a page header. Towards the other extreme, everything on the page all the way down to the text inside of a button can be loaded dynamically. Most of the time, it's somewhere in the middle.
+All of the information on a simple web page is composed of data of one type or another - text, images, structure, styling, etc. When going from a static web page to an SPA, we have to determine what data should load dynamically and what should remain static. To one extreme, we may limit it to a username in a page header. Towards the other extreme, everything on the page all the way down to the text inside of a button can be loaded dynamically. Most of the time, it's somewhere in the middle.
 
 We have plenty of options when working with state. The simplest place to start is by defining a variable used inside our component. We can do this outside of the component or inside, before the return statement. We reference that variable in our JSX surrounded by `{}`. When the component is rendered, React will insert the value in its place in the virtual DOM then go through reconciliation and rendering. One detail to keep in the back of your mind is that every time a component is re-rendered, any variables defined inside the component will be re-instantiated. Most of this time this is not a problem but this will come up later in the course when we focus on optimizing our code for more advanced scenarios.
 
@@ -196,7 +196,7 @@ A JSON file that includes a full starting inventory can be [found here](https://
 import { useState } from 'react';
 import ctdLogo from './assets/mono-blue-logo.svg';
 import './App.css';
-import inventoryData from './assets/catalog.json';
+import inventoryData from './assets/inventory.json';
 
 function App() {
   const [inventory, setInventory] = useState(inventoryData.inventory);
@@ -242,39 +242,32 @@ The `key` in `<li key={item.id}>` helps React keep track of elements that are re
 
 At this point we are almost ready to do some refactoring. App component is small but will continue to grow as we set up our storefront. Remember that with "separation of concerns" it is good to limit each component to a single job. The title and the logo can be separated out as a storefront header. The inventory list and inventory cards area also good candidates for refactoring into components. Before we proceed, we need to know how to communicate data down to child components, otherwise we will have no way to pass on the `title` or `description`.
 
-Enter React **`props`**. Short for "properties", the are used to pass data from a component down to its children. They can can accept any type, including functions, but their values are immutable and managed by the parent component. The components receiving props use the data to configure themselves. In order to take props in a component, a value representing props has to be added to the component's function parameters- `function SomeComponent(props){…`. Since props are just objects, it's common to use [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to immediately get specific values from props in the component's arguments. This allows us to immediately see what sort of values we need from the parent component. An additional benefit is that we can set a default value for any of the props.
+Enter React **`props`**. Short for "properties", they are used to pass data from a component down to its children. They can can accept any type, including functions, but their values are immutable and managed by the parent component. The components receiving props use the data to configure themselves. In order to take props in a component, a value representing props has to be added to the component's function parameters- `function SomeComponent(props){…`. Since props are just objects, it's common to use [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to immediately get specific values from props in the component's arguments. This allows us to immediately see what sort of values we need from the parent component. An additional benefit is that we can set a default value for any of the props.
 
 ```jsx
 //without destructuring
-function ProductList(props){
- const inventory = props.inventory
- return (
-  <ul>
+function ProductList(props) {
+  const inventory = props.inventory;
+  return (
+    <ul>
       {inventory.map((item) => {
-       return (
-     <li key={item.id}>
-      {item.baseName}
-     </li>
-    );
-   })}
-     </ul>
- )
+        return <li key={item.id}>{item.baseName}</li>;
+      })}
+    </ul>
+  );
 }
 
 //with destructuring
-function ProductList({inventory = []){ //destructuring assignment grabs `inventory` out of props
-          //we're also setting a default value og `inventory` to an empty array
- return (
-  <ul>
+function ProductList({ inventory = [] }) {
+  //destructuring assignment grabs `inventory` out of props
+  //we're also setting a default value og `inventory` to an empty array
+  return (
+    <ul>
       {inventory.map((item) => {
-       return (
-     <li key={item.id}>
-      {item.baseName}
-     </li>
-    );
-   })}
-     </ul>
- )
+        return <li key={item.id}>{item.baseName}</li>;
+      })}
+    </ul>
+  );
 }
 ```
 
@@ -364,14 +357,14 @@ Create the file, `ProductCard.jsx` and move the list item over to the new compon
 
 import ProductCard from './ProductCard';
 
-function ProductList({inventory}) {
+function ProductList({ inventory }) {
   return (
     <ul>
       {inventory.map((item) => {
         return (
-          <ItemCard
+          <ProductCard
             key={item.id}
-            name={item.baseName
+            name={item.baseName}
             description={item.baseDescription}
           />
         );
@@ -390,14 +383,14 @@ function ProductCard({ baseName, baseDescription }) {
   return (
     <li>
       <div className="itemCard">
-        <h2>{props.baseName}</h2>
-        <p>{props.baseDescription}</p>
+        <h2>{baseName}</h2>
+        <p>{baseDescription}</p>
       </div>
     </li>
   );
 }
 
-export default ItemCard;
+export default ProductCard;
 ```
 
 > [!Remember] > `key` is a special prop that React uses to track components rendered from an array. Because of this, `key` gets added to `InventoryItem` instances in `map()` but is **not used** in the `InventoryItem` component.
@@ -482,7 +475,7 @@ function App() {
     <main>
       <Header />
       <ProductList inventory={inventory}>{promoteItem()}</ProductList>
-      {/*invoking promoted item between the tags inserts the ItemCard*/}
+      {/*invoking promoted item between the tags inserts the ProductCard*/}
     </main>
   );
 }
