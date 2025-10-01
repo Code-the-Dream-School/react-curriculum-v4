@@ -28,9 +28,9 @@ By the end of this lesson, we will:
 - Understand advantages of using JSX syntax inside components
 - Identify how JSX combines JavaScript with HTML
 - List the rules of the JSX syntax
+- Describe how Vite.js compiles JSX to JavaScript so the application renders in a browser
 
 ### Objective 4: Troubleshooting
 
-- Describe how Vite.js compiles JSX to JavaScript so the application renders in a browser
 - Discuss common hurdles in React development and how error messages can be used to help developers troubleshoot their application
 - Utilize browser developer tools and React Developer Tools extension to pinpoint and resolve bugs in code

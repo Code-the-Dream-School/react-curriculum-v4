@@ -29,7 +29,7 @@ After completing this week's assignment, your app should:
 
 You will end up with a project structure that looks similar to the following:
 
-![screen capture of the newly installed project directory](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/project-directory.png)
+![screen capture of the newly installed project directory](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/project-directory.png)
 
 ### Instructions Part 3: Project Setup
 
