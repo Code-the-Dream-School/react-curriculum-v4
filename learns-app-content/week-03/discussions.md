@@ -16,11 +16,11 @@ function App() {
   const title = ' CTD Swag'; // This is inside the Component before the return
   return (
     <div className="coming-soon">
-      <h1>{title}</h1> //`title` inserted into heading
+      <h1>{title}</h1> {/* `title` inserted into heading */}
       <div style={{ height: 100, width: 100 }}>
         <img src={ctdLogo} alt="Code The Dream Logo" />
       </div>
-      <h2>{message}</h2> //`message` inserted into heading
+      <h2>{message}</h2> {/* `message` inserted into heading */}
     </div>
   );
 }
@@ -260,7 +260,7 @@ function ProductList(props) {
 //with destructuring
 function ProductList({ inventory = [] }) {
   //destructuring assignment grabs `inventory` out of props
-  //we're also setting a default value og `inventory` to an empty array
+  //we're also setting a default value of `inventory` to an empty array
   return (
     <ul>
       {inventory.map((item) => {
@@ -340,7 +340,7 @@ rules: {
       ...react.configs['jsx-runtime'].rules,
       ...reactHooks.configs.recommended.rules,
       'react/jsx-no-target-blank': 'off',
-      'react/prop-types': 'off',                //disables react/prop-types rule
+      'react/prop-types': 'off',                /* disables react/prop-types rule */
       'react-refresh/only-export-components': [
         'warn',
         { allowConstantExport: true },
@@ -493,7 +493,8 @@ import ProductCard from './ProductCard';
 function ProductList({ inventory, children }) {
   return (
     <ul>
-      {children} //this location guarantees that this list item will be first
+      {children}{' '}
+      {/*this location guarantees that this list item will be first*/}
       {inventory.map((item) => {
         return (
           <ProductCard
