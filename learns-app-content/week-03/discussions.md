@@ -60,6 +60,42 @@ We'll know when the `setTimeout` fires off because of the console statement that
 
 ![setTimeout firing console message 1 second after page load](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/timeout-message.gif)
 
+#### Component Lifecycle
+
+The example above demonstrates why React needs special mechanisms to track and respond to data changes. Simply changing a variable doesn't trigger React to update what's shown on screen. This is where React's **hooks** come in.
+
+React components go through different phases in their lifecycle:
+
+- **Mount**: When a component first appears on the page.
+- **Update**: When a component re-renders due to state or props changes.
+- **Unmount**: When a component is removed from the page.
+
+Here's a small example—setting something up on mount, and cleaning it up on unmount:
+
+```jsx
+import { useEffect } from 'react';
+
+function PageSizer() {
+  useEffect(() => {
+    function onResize() {
+      console.log('window resized');
+    }
+    window.addEventListener('resize', onResize);
+
+    // Cleanup runs on unmount (and before re-run if dependencies change)
+    return () => window.removeEventListener('resize', onResize);
+  }, []); // Empty dependency array: run once after first render (mount)
+
+  return <p>Watching page size…</p>;
+}
+```
+
+**Where lifecycle happens in this snippet:**
+
+- **Mount:** After the first render, the `useEffect` body runs and adds the listener.
+- **Update:** With `[]` as dependencies, there’s no update re-run. If you had dependencies (e.g., `[someProp]`), React would clean up the old listener and run the effect again when that value changes.
+- **Unmount:** When the component disappears, React calls the cleanup function, removing the listener.
+
 #### useState
 
 `const [state, setState] = useState(initialState)`
