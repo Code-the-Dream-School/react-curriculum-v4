@@ -1,7 +1,27 @@
-## References and Additional Resources
+## References and Further Reading
 
-### Topic 1
+### Props
 
-### Topic 2
+- [Passing Props to a Component (React docs)](https://react.dev/learn/passing-props-to-a-component)
+- [Common Component Props (React docs)](https://react.dev/reference/react-dom/components/common#common-props)
 
-### Topic N
+### Common Component Props
+
+- [Passing Props to a Component - Familiar Props (React docs)](https://react.dev/learn/passing-props-to-a-component#familiar-props)
+- [Common Components - Reference - Props (React docs)](https://react.dev/reference/react-dom/components/common#common-props)
+- [built-in props](https://react.dev/reference/react-dom/components/common)
+- [portal](https://react.dev/reference/react-dom/createPortal)
+
+### State
+
+- [react.dev](https://react.dev)
+
+- [Managing State (React docs)](https://react.dev/learn/managing-state)
+- [Preserving and Resetting State (React docs)](https://react.dev/learn/preserving-and-resetting-state)
+- [useState (React docs)](https://react.dev/reference/react/useState)
+- [State as a Snapshot (React docs)](https://react.dev/learn/state-as-a-snapshot)
+- [destructuring assignment](https://javascript.info/destructuring-assignment)
+
+### General Concepts
+
+- [Destructuring (MDN)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring)
