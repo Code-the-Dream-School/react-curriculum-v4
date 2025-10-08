@@ -56,7 +56,7 @@ function App() {
 export default App;
 ```
 
-We'll know when the `setTimeout` fires off because of the console statement that prints out the updated `message`. As expected, this has no affect to the "Coming Soon…" message on the page:
+We'll know when the `setTimeout` fires off because of the console statement that prints out the updated `message`. As expected, this has no effect to the "Coming Soon…" message on the page:
 
 ![setTimeout firing console message 1 second after page load](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/timeout-message.gif)
 
@@ -133,13 +133,13 @@ Now let's explore the most fundamental hook: `useState`.
 
 `const [state, setState] = useState(initialState)`
 
-`useState` is a React hook that allows us to set and update a piece of data that we can then use in our SPA. We invoke `useState` with an initial state value as an argument. That initial state value can be of any type. If given a function, it would be called an "initializer function" in that context. React will run it and use the returned value to set the initial state value. Initializer functions must be pure functions and cannot take any arguments. When called, `useState` returns an array containing a state variable (a reference to the current state) and an updater function. We follow array [destructuring assignment](https://javascript.info/destructuring-assignment) convention `const [noun, setNoun] = useState(intialState)` to make use of this hook.
+`useState` is a React hook that allows us to set and update a piece of data that we can then use in our SPA. We invoke `useState` with an initial state value as an argument. That initial state value can be of any type. If given a function, it would be called an "initializer function" in that context. React will run it and use the returned value to set the initial state value. Initializer functions must be pure functions and cannot take any arguments. When called, `useState` returns an array containing a state variable (a reference to the current state) and an updater function. We follow array [destructuring assignment](https://javascript.info/destructuring-assignment) convention `const [noun, setNoun] = useState(intiialState)` to make use of this hook.
 
 With `useState` explained, we can now start setting up CTD Swag's storefront. Let's get some inventory on the page! We first need to put together some sample inventory data for our app to start with. We want to be able to offer differing colors or versions for some products but without each having their own product card. We will eventually make use of `base-` and `variant-` prefixes to combine related products to a single product card in when we discuss conditional rendering in week 5. Each item should include `baseName`, `variantName`, `id` `price`, `baseDescription`, `variantDescription`, `image`, and `inStock` keys. Here's an example of several inventory items:
 
 ```json
 {
-  inventory: [
+  "inventory": [
     {
       "id": 1,
       "baseName": "Bucket Hat",
@@ -170,9 +170,8 @@ With `useState` explained, we can now start setting up CTD Swag's storefront. Le
       "image": "clock.png",
       "inStock": "TRUE"
     }
-  ];
+  ]
 }
-
 ```
 
 A JSON file that includes a full starting inventory can be [found here](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/inventory.json). We will use Vite's JSON import feature to access the inventory. Let's get some product names and descriptions onto the page!
@@ -280,7 +279,7 @@ Let's expand on CTD Swag by introducing three new components.
 We create the first two new files and define the components inside each:
 
 - Header.jsx
-- InventoryList.jsx
+- ProductList.jsx
 
 We then extract the elements from the App component and move them over into the new components.
 
@@ -411,7 +410,7 @@ function App() {
   return (
     <main>
       <Header />
-      <ProductList />
+      <ProductList inventory={inventory} />
     </main>
   );
 }
