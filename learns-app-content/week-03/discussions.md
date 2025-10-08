@@ -378,12 +378,12 @@ export default ProductList;
 ```jsx
 /*ProductCard.jsx*/
 
-function ProductCard({ baseName, baseDescription }) {
+function ProductCard({ name, description }) {
   return (
     <li>
       <div className="itemCard">
-        <h2>{baseName}</h2>
-        <p>{baseDescription}</p>
+        <h2>{name}</h2>
+        <p>{description}</p>
       </div>
     </li>
   );
@@ -402,7 +402,6 @@ import './App.css';
 import inventoryData from './assets/inventory.json';
 import Header from './Header';
 import ProductList from './ProductList';
-import ProductCard from './ProductCard';
 
 function App() {
   const [inventory, setInventory] = useState(inventoryData.inventory);
@@ -464,8 +463,8 @@ function App() {
   function promoteItem() {
     return (
       <ProductCard
-        baseName="Limited Edition Tee!"
-        baseDescription="Special limited edition neon green shirt with a metallic Code the Dream Logo shinier than the latest front-end framework! Signed by the legendary Frank!"
+        name="Limited Edition Tee!"
+        description="Special limited edition neon green shirt with a metallic Code the Dream Logo shinier than the latest front-end framework! Signed by the legendary Frank!"
       />
     );
   }
