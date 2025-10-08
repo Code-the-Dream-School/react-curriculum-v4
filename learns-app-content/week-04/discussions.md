@@ -206,10 +206,9 @@ In `WebSocketComponent` below, we use the `useEffect` to create a new web socket
 ```jsx
 //useEffect with dependency array and cleanup function
 
-function WebSocketComponent {
-
+function WebSocketComponent() {
   useEffect(() => {
-    const socket = new WebSocket('sockets://example.com/socket');
+    const socket = new WebSocket('ws://example.com/socket');
 
     socket.onopen = () => {
       console.log('WebSocket connection opened');
@@ -226,7 +225,7 @@ function WebSocketComponent {
   }, []);
 
   return <div>WebSocket Component</div>;
-};
+}
 ```
 
 The `useEffect` in the example logs a message to the console when the component first renders. It does nothing else on subsequent re-renders.
@@ -317,12 +316,12 @@ In the following example, we store a reference to the page title and then use us
 
 function PageTitleUpdatingCounter() {
   const [count, setCount] = useState(0);
-  const title = useRef(document.querySelector('title');
+  const title = useRef(document.querySelector('title'));
 
   useEffect(() => {
     // This code will run when the component first loads
     // and each time `count` changes
-    title.current.text = `Times pressed: ${count}`
+    title.current.textContent = `Times pressed: ${count}`;
   }, [count]);
 
   return (
@@ -330,8 +329,7 @@ function PageTitleUpdatingCounter() {
       <button onClick={() => setCount(count + 1)}>Increment Count</button>
     </div>
   );
-};
-
+}
 ```
 
 Using `useRef` comes with a few rules.
