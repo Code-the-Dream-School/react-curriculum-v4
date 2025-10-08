@@ -363,8 +363,8 @@ function ProductList({ inventory }) {
         return (
           <ProductCard
             key={item.id}
-            name={item.baseName}
-            description={item.baseDescription}
+            baseName={item.baseName}
+            baseDescription={item.baseDescription}
           />
         );
       })}
@@ -378,12 +378,12 @@ export default ProductList;
 ```jsx
 /*ProductCard.jsx*/
 
-function ProductCard({ name, description }) {
+function ProductCard({ baseName, baseDescription }) {
   return (
     <li>
       <div className="itemCard">
-        <h2>{name}</h2>
-        <p>{description}</p>
+        <h2>{baseName}</h2>
+        <p>{baseDescription}</p>
       </div>
     </li>
   );
@@ -392,7 +392,7 @@ function ProductCard({ name, description }) {
 export default ProductCard;
 ```
 
-> [!Remember] > `key` is a special prop that React uses to track components rendered from an array. Because of this, `key` gets added to `InventoryItem` instances in `map()` but is **not used** in the `InventoryItem` component.
+> [!Remember] > `key` is a special prop that React uses to track components rendered from an array. Because of this, `key` gets added to `ProductCard` instances in `map()` but is **not used** in the `ProductCard` component.
 
 Finally, we refactor `App` to use the new components.
 
@@ -463,8 +463,8 @@ function App() {
   function promoteItem() {
     return (
       <ProductCard
-        name="Limited Edition Tee!"
-        description="Special limited edition neon green shirt with a metallic Code the Dream Logo shinier than the latest front-end framework! Signed by the legendary Frank!"
+        baseName="Limited Edition Tee!"
+        baseDescription="Special limited edition neon green shirt with a metallic Code the Dream Logo shinier than the latest front-end framework! Signed by the legendary Frank!"
       />
     );
   }
@@ -497,8 +497,8 @@ function ProductList({ inventory, children }) {
         return (
           <ProductCard
             key={item.id}
-            name={item.baseName}
-            description={item.baseDescription}
+            baseName={item.baseName}
+            baseDescription={item.baseDescription}
           />
         );
       })}
