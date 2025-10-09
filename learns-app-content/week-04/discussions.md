@@ -142,7 +142,7 @@ function CreateUserForm() {
   }
   return (
     //more on forms in
-    <form submit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <label>
         First Name
         <input onChange={updateFirstName} />
@@ -390,7 +390,7 @@ Browsers emit objects called events that signal when things happen on a web page
   - **`target`**: DOM node where event was triggered - this could be anywhere in the tree at or below the Component that is reading this property due to [event bubbling](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Event_bubbling).
 - methods
   - **`preventDefault()`**: Prevents the default browser action on the event. eg: preventing a page refresh from a form submission.
-  - **`stopPropogation()`**: Stops the event from bubbling up the React tree.
+  - **`stopPropagation()`**: Stops the event from bubbling up the React tree.
 
 #### Handler Props
 
@@ -430,7 +430,7 @@ function EmailInput({ setEmail }) {
         {/*assigning ref selects the element on the page*/}
         <input type="text" ref={emailInput} />
       </label>
-      <button />
+      <button type="submit">Submit</button>
     </form>
   );
 }
@@ -492,7 +492,7 @@ We need to make a minor change to the inventory. Currently, we're not using the 
 //...component code
 const [inventory, setInventory] = useState([]);
 useEffect(() => {
- setInventory([...inventoryData.inventory]);
+  setInventory([...inventoryData.inventory]);
 }, []); //<--- don't forget the dependency array or you can end up with an infinite loop!!
 //...component code
 ```
@@ -553,7 +553,7 @@ Now that we have a handler function to update the cart state, we need to wire `h
 2. Create a button in `ProductCard`
 3. We then add an `onClick` event prop to the button. Since we have to provide it with an argument unrelated to the synthetic event, we'll create an anonymous arrow function to call our handler with the correct args.
 
-- `<button onClick={() => handleAddItemToCart(cartItemId)}>Add to Cart</button>`
+- `<button onClick={() => handleAddItemToCart(id)}>Add to Cart</button>`
 
 With that done, we can now look at the state in `App` using our [React Dev Tools](https://react.dev/learn/react-developer-tools) (it's highly recommended that you have them installed!). The second State entry grows every time one of the buttons is clicked. When the entries are expanded, they contain all the details of the product but there is also a unique `cartItemId`.
 
