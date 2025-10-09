@@ -560,3 +560,369 @@ export default Cart;
 With the cart ready, we can make its data updatable for users.
 
 ![cart open](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-05/cart.png)
+
+### Controlled Components
+
+React controlled components are form elements where the component state is controlled by React. The component state is updated through user interactions like typing into input fields or selecting options in drop-downs. This ensures that React has full control over the input values and allows for dynamic updates and validation. Controlled components provide a single source of truth for the data, making it easier to manage and synchronize with other components in the application.
+
+To get started with controlled components, we will compare an uncontrolled form with a controlled form.
+
+```jsx
+import React, { useRef } from 'react';
+
+const UncontrolledForm = () => {
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const firstName = firstNameRef.current.value;
+    const lastName = lastNameRef.current.value;
+    console.log(`First Name: ${firstName}, Last Name: ${lastName}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        First Name:
+        <input type="text" ref={firstNameRef} />
+      </label>
+      <label>
+        Last Name:
+        <input type="text" ref={lastNameRef} />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default UncontrolledForm;
+```
+
+```jsx
+import React, { useState } from 'react';
+
+const ControlledForm = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(`First Name: ${firstName}, Last Name: ${lastName}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        First Name:
+        <input
+          type="text"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </label>
+      <label>
+        Last Name:
+        <input
+          type="text"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default ControlledForm;
+```
+
+Main differences between the two:
+
+|                      | **UncontrolledForm**                                   | **ControlledForm**                                                                |
+| -------------------- | ------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| **state management** | `useRef` to access form inputs each time values needed | `useState` to manage contents of form inputs                                      |
+| **form elements**    | `ref` to keep track of DOM element                     | `val` set to state variables, state update functions that fire when input changes |
+| **form submission**  | selects values out of DOM using refs                   | retrieves values from state variables                                             |
+
+At first glance, an uncontrolled form is simpler to develop. There's less code to write since we don't need to set input values or implement state update functions to synchronize input values. Overall performance is also better because the browser manages the form - changes to inputs do not trigger re-renders. Using uncontrolled forms may be a good choice for simple forms or when when integrating 3rd party libraries that work with traditional forms.
+
+Using a controlled component for a form provides some advantages over traditional forms:
+
+- **easier to manage state**: Controlled components make it easier to manage and synchronize form state with other components or global state in the application.
+- **better field validation**: We can implement custom validation like validating a phone number's format or limiting a field to alphabet characters only.
+- **dynamic updates**: React state updates trigger re-renders that reflect real-time changes in the input fields.
+- **increased testability**: With a controlled form, it's easier to test form interactions and state changes by directly manipulating the state in test scenarios.
+
+React developers tend to favor controlled forms for these reasons. Even if it is more effort to wire up the input to a state variable, the benefits are worth it.
+
+#### Controlled Components Update Cycle
+
+With the advantages of each discussed, we need to look closer at a controlled component's update cycle. The following code is a form written as a controlled component and the diagram that comes after it illustrates the communication cycle.
+
+```jsx
+//example controlled component
+import { useEffect, useState } from 'react';
+
+function ControlledComponent({ formState, setFormState }) {
+  const [input1, setInput1] = useState('');
+  const [input2, setInput2] = useState('');
+  useEffect(() => {
+    setInput1(formState.input1);
+    setInput2(formState.input2);
+  }, [formData]);
+  function handleSubmit(event) {
+    event.preventDefault();
+    setFormState({ input1, input2 });
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Input 1
+        <input
+          type="text"
+          value={input1}
+          onChange={(e) => setInput1(e.target.value)}
+        />
+      </label>
+      <label>
+        Input 2
+        <input
+          type="text"
+          value={input2}
+          onChange={(e) => setInput2(e.target.value)}
+        />
+      </label>
+      <button>Submit</button>
+    </form>
+  );
+}
+```
+
+```mermaid
+---
+title: Flow of State in ControlledComponent
+---
+flowchart TD
+    App -->|initial form state|Controlled[Controlled Component]
+    Controlled -->|useEffect to set initial state|Local1[Local State - Input1] & Local2[Local State - Input2]
+    Controlled -->|"submitted changes"|App
+    Local1 -->|input1|Input1
+    Local2 -->|input2|Input2
+    Input1 -->|"value update"|Local1
+    Input2 -->|"value update"|Local2
+```
+
+To keep a field synchronized in a controlled component, it must have a `value` props that takes a state variable and an `onChange` props with a handler function to update the local state. This update triggers a re-render which then causes the interface to show the new value. All of this happens almost instantaneously so you are left with an input that, for the user, behaves like a normal input but now we have continuous access to the field's value.
+
+![input syncing live on page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-05/input-1.gif)
+
+#### Putting Controlled Components into Action
+
+We want our users to be able to modify the count of a particular cart item so we will use elements that accept user input. These include elements such as `input`, `textarea`, `radio-buttons`, etc. It's also considered a best practice to use a form wherever we accept user inputs. We will need to prevent form submission and manage form data so this is a perfect use case for a controlled component.
+
+The `App` component manages our application's state, including the cart, so it's considered our "single source of truth". While a user is updating the form, we want to avoid updating this source of truth with every change. This makes it difficult to cancel/undo changes and has negative performance implications. Recall that every time state is changed, React re-renders the component managing that state and all of its children. Done too high up the component tree, this can lead to large UI re-renders.
+
+To keep our app smooth and responsive, we want to manage state as close to the element as possible. In our case, we want to contain re-renders to the `Cart` component. We make a working copy of the cart's data by duplicating the `App`'s state variable `cart` into a `Cart` component's state variable, `workingCart`. `workingCart` manages the user's inputs while they make changes. Only after they confirm those changes do we use `workingCart` to update `cart`.
+
+```mermaid
+sequenceDiagram
+    App->>+Cart: pass `cart` & `setCart` props
+    Cart->>+useState: set `workingCart` initialState to `cart`
+    participant form as form and inputs
+    loop Every `onChange`
+        useState->>+form: `workingCart` manages form value
+        form->>+useState: `setWorkingCart` updates local state
+    end
+        form->>+Cart: user confirms update with `handleConfirm`
+    Cart->>+App: `handleConfirm` calls `setCart` with state values
+    Note over App,form: **or if the user cancels**
+    form->>+Cart: user cancels with `handleCancel`
+    Cart->>+useState:  `handleCancel` calls `setWorkingCart` to set `workingCart` back to `cart`
+```
+
+##### App Component Changes
+
+App needs only one small change: we pass the state update function, `setCart` to the cart component as props.
+
+```jsx
+//extract from App.jsx
+//...component code
+{
+  isCartOpen && (
+    <Cart
+      cart={cart}
+      setCart={setCart} // only change
+      handleCloseCart={handleCloseCart}
+    />
+  );
+}
+//component code...
+```
+
+##### Cart Component Changes
+
+To get started with `Cart`, we add `setCart` to the function definition and establish 2 state variables: `workingCart` and `isFormDirty` and their associated state update functions. We will use `isFormDirty` as a boolean to disable certain aspects of the interface while a user is making changes to the cart. We do so we can to 1.) prevent users from closing the cart or adding more items the cart while performing edits.
+
+```jsx
+//extract from Cart.jsx
+function Cart({ cart, handleCloseCart, setCart }) {
+  const [workingCart, setWorkingCart] = useState(cart);
+  const [isFormDirty, setIsFormDirty] = useState(false);
+  //component code...
+```
+
+We next;
+
+- replace all references to `cart` in the return statement with `workingCart`
+- wrap the unordered list with a form and convert the paragraph containing `itemCount` into an `input` that accepts numbers.
+
+```jsx
+function Cart({ cart, handleCloseCart, setCart }) {
+  const [workingCart, setWorkingCart] = useState(cart);
+  const [isFormDirty, setIsFormDirty] = useState(false);
+  function getWorkingCartPrice() {
+    return workingCart
+      .reduce((acc, item) => acc + item.price * item.itemCount, 0)
+      .toFixed(2);
+  }
+
+  function handleUpdateField() {}
+  function handleCancel() {}
+
+  return (
+    <>
+      <div className="cartScreen"></div>
+      <div className="cartListWrapper">
+        {workingCart.length === 0 ? (
+          <p>cart is empty</p>
+        ) : (
+          <form>
+            <ul className="cartList">
+              {workingCart.map((item) => {
+                return (
+                  <li className="cartListItem" key={item.id}>
+                    <img src={placeholder} alt="" />
+                    <h2>{item.baseName}</h2>
+                    {item.variantName !== 'Default' ? (
+                      <p>{item.variantName}</p>
+                    ) : null}
+                    <div className="cartListItemSubtotal">
+                      <label>
+                        Count:
+                        <input
+                          type="number"
+                          value={item.itemCount}
+                          onChange={(event) =>
+                            handleUpdateField({ event, id: item.id })
+                          }
+                        />
+                      </label>
+                      <p>
+                        Subtotal: $
+                        {(item.price * item.itemCount).toFixed(2) || 0}
+                      </p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </form>
+        )}
+        <h2>Cart Total: ${getWorkingCartPrice() || 0}</h2>
+        <button onClick={handleCloseCart}>CloseCart</button>
+      </div>
+    </>
+  );
+}
+
+export default Cart;
+```
+
+With these changes, we are left with an cart that displays the item count in an input and a nifty screen is cast across the shop so none of the products are clickable.
+
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-05/open-cart-disabled-bg.gif)
+
+We next add in the confirm and cancel buttons for the working form. We don't want them showing until the user makes a change so we conditionally render them based in `isCartDirty`
+
+```jsx
+//extract from Cart.jsx
+
+{
+  isFormDirty && (
+    <div>
+      <button onClick={handleConfirm}>Confirm Update</button>
+      <button onClick={handleCancel}>Cancel Update</button>
+    </div>
+  );
+}
+```
+
+We now need to finish the handler functions so that the user can confirm or cancel their changes. `handleUpdateField` combines several tasks:
+
+- prevent page refresh
+- prevent inadvertent re-renders by calling `setIsFormDirty` only if the value changes
+- find the target item to change and it's index - we are going to replace the cart item with a new object so need both values.
+- validate the updated field value
+  - return out of the handler before any changes are made. This disposes the change.
+  - return out of the handler if user tries to delete a number
+    - note - the update cycle happens so fast, it doesn't even look like the number is deleted!
+- create a replacement object for the target item
+- call `setWorkingCart` making sure to keep the array order for the cart remains intact
+  - slice beginning of working cart up to the `targetIndex`
+  - insert new item
+  - slice 1 after `targetIndex` to the end of working cart
+
+```jsx
+// extract from Cart.jsx
+
+function handleUpdateField({ event, id }) {
+  event.preventDefault();
+  // prevent re-render if already dirty
+  if (!isFormDirty) {
+    setIsFormDirty(true);
+  }
+  const targetProduct = cart.find((item) => item.id === id);
+  const targetIndex = cart.findIndex((item) => item.id === id);
+  if (!targetProduct) {
+    console.error('cart error: item not found');
+    return;
+  }
+  //reject negative values or if user deletes value
+  if (event.target.value < 0 || event.target.value === '') {
+    return;
+  }
+  // create new object instead of updating old
+  const updatedProduct = {
+    ...targetProduct,
+    itemCount: parseInt(event.target.value, 10),
+  };
+  //avoid re-ordering array when updating cart item
+  setWorkingCart([
+    ...workingCart.slice(0, targetIndex),
+    updatedProduct,
+    ...workingCart.slice(targetIndex + 1),
+  ]);
+}
+```
+
+`handleCancel` is much simpler than its counterpart. With `handleCancel`, we call `setWorkingCart` with the `cart` to reset `workingCart` to the source of truth. `setIsFormDirty` then sets `isFormDirty` to false which re-enables a user's ability to close out the cart.
+
+```jsx
+//extract from Cart.jsx
+
+function handleCancel(e) {
+  e.preventDefault();
+  setIsFormDirty(false);
+  setWorkingCart([...cart]);
+}
+```
+
+The final helper we need to create handles the user's change confirmation. `handleConfirm` prevents the form from refreshing, calls `setCart` with the `workingCart` value. We also add in a helper function `removeEmptyItems` that removes any item that has a count of 0. It's okay to have an item in the cart with a value of 0 while the user is still editing but it should be removed once they are okay with their edits.
+
+CTD Swag is coming along! A user can brows items in the list, add items to their cart, and they can modify item counts in the cart. With our work, the `App` and `Cart` components continue to grow in size.
+
+![adding product variants to cart](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-05/add-products-mod-cart.gif)
+
+We still have a ways to go before this app is complete though. We still need to allow users to chose item variants, shirt sizes, a checkout, and an order history. Before CTD Swag become challenging to continue to develop, we will take some time next week to refactor our code into further sub-components and some utility functions. We will also talk about organizing a React project so that it continues to be easy to manage as the codebase grows.
