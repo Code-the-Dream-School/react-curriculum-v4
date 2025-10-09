@@ -492,7 +492,7 @@ We need to make a minor change to the inventory. Currently, we're not using the 
 //...component code
 const [inventory, setInventory] = useState([]);
 useEffect(() => {
- setInventory([...inventoryData.inventory);
+ setInventory([...inventoryData.inventory]);
 }, []); //<--- don't forget the dependency array or you can end up with an infinite loop!!
 //...component code
 ```
