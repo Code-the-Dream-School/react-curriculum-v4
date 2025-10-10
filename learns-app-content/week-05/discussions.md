@@ -116,7 +116,7 @@ To achieve this, we have to change the way ProductList handles inventory items. 
 
 ```jsx
 //extract from ProductList.jsx
-//...component code
+//component JSX here
 const [products, setProducts] = useState([]);
 
 useEffect(() => {
@@ -397,7 +397,7 @@ It may also be nicer for the user to see a message rather than rendering an empt
       {cart.map((item) => {
         return (
           <li className="cartListItem" key="{item.cartItemId}">
-            <img src="{placeholder}" alt="" />
+            <img src={placeholder} alt="" />
             <h2>{item.baseName}</h2>
             <div className="cartListItemSubtotal">
               <p>${item.price}</p>
@@ -701,7 +701,7 @@ function ControlledComponent({ formState, setFormState }) {
   useEffect(() => {
     setInput1(formState.input1);
     setInput2(formState.input2);
-  }, [formData]);
+  }, [formState]);
   function handleSubmit(event) {
     event.preventDefault();
     setFormState({ input1, input2 });
@@ -914,8 +914,8 @@ function handleUpdateField({ event, id }) {
   if (!isFormDirty) {
     setIsFormDirty(true);
   }
-  const targetProduct = cart.find((item) => item.id === id);
-  const targetIndex = cart.findIndex((item) => item.id === id);
+  const targetProduct = workingCart.find((item) => item.id === id);
+  const targetIndex = workingCart.findIndex((item) => item.id === id);
   if (!targetProduct) {
     console.error('cart error: item not found');
     return;
