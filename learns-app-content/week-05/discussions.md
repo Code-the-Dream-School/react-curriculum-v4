@@ -656,6 +656,31 @@ Using a controlled component for a form provides some advantages over traditiona
 
 React developers tend to favor controlled forms for these reasons. Even if it is more effort to wire up the input to a state variable, the benefits are worth it.
 
+#### Managing Multiple Inputs
+
+In real-world forms, you often have several fields. Instead of writing a separate onChange handler for each one, you can manage them all with a single function using the input’s name attribute as a key:
+
+```javascript
+const [inputs, setInputs] = useState({ firstName: '', lastName: '' });
+
+const handleChange = (e) => {
+  const name = e.target.name;
+  const value = e.target.value;
+  setInputs((values) => ({ ...values, [name]: value }));
+};
+```
+
+Each input then connects to the same handler:
+
+```javascript
+<input name="firstName" value={inputs.firstName} onChange={handleChange} />
+<input name="lastName" value={inputs.lastName} onChange={handleChange} />
+```
+
+When you type in the firstName input, `handleChange` runs and uses `name="firstName"` to update only the firstName property in the state object. Same process happens for lastName input.
+
+This pattern keeps code concise and scales easily as the form grows, ensuring every field stays in sync with React state.
+
 #### Controlled Components Update Cycle
 
 With the advantages of each discussed, we need to look closer at a controlled component's update cycle. The following code is a form written as a controlled component and the diagram that comes after it illustrates the communication cycle.
