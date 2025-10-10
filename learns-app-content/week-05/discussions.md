@@ -4,7 +4,7 @@
 
 When we left off with CTD Swag, we had a shopping cart icon and a counter on the upper-right portion of the screen. This gave the user a count of their cart contents but left them without the means to see everything they've selected. A detailed shopping cart takes up a lot of screen real estate and gets in the way of the shopping experience. Components like these are commonly developed so they can be toggled open or closed by some user action.
 
-Conditional rendering allows us to develop an interface that adapts to different states, user interactions, or data inputs. Developers can employ different techniques to hide and show elements, change styles, and update visual content to create interactive and personalized user interfaces. Before we create a shopping cart that we can show/hide, let's look some common techniques we can employ.
+Conditional rendering allows us to develop an interface that adapts to different states, user interactions, or data inputs. Developers can employ different techniques to hide and show elements, change styles, and update visual content to create interactive and personalized user interfaces. Before we create a shopping cart that we can show/hide, at some common techniques we can employ.
 
 #### Ternary Operator
 
@@ -15,11 +15,13 @@ The ternary operator is a useful tool that evaluates a condition and then execut
 ```jsx
 //ternary operator that shows 1 of 2 components
 const [isTruthy, setIsTruthy] = useState(true);
-return(
- <>
-  {isTruthy ? <TrueComponent /> : <FalseComponent /> }
-  <button type="button" onClick=(()=> setIstTruthy(!isTruthy))>Toggle Value</button>
- </>
+return (
+  <>
+    {isTruthy ? <TrueComponent /> : <FalseComponent />}
+    <button type="button" onClick={() => setIsTruthy(!isTruthy)}>
+      Toggle Value
+    </button>
+  </>
 );
 ```
 
@@ -28,32 +30,36 @@ React allows us to use `null` in place of an expression so we can show or hide a
 ```jsx
 //ternary operator to conditionally show a component
 const [isRendered, setIsRendered] = useState(true);
-return(
- <>
-  {isTruthy ? <SpecialComponent /> : null }
-  <button type="button" onClick=(()=> setIsRendered(!isRendered))>Show/Hide Element</button>
- </>
+return (
+  <>
+    {isRendered ? <SpecialComponent /> : null}
+    <button type="button" onClick={() => setIsRendered(!isRendered)}>
+      Show/Hide Element
+    </button>
+  </>
 );
 ```
 
 #### Logical && Operator
 
-We can take advantage of the way JavaScripts logical `&&` operator works to show or hide an element. Remember that JavaScript evaluates the left side (operand) first before continuing onto the right hand side. When the first operand is truthy, the second operand is evaluated - that is where we return our element. If that first operand is false, JavaScript stops the entire evaluation which prevents the item from being rendered.
+We can take advantage of the way JavaScript's logical `&&` operator works to show or hide an element. Remember that JavaScript evaluates the left side (operand) first before continuing onto the right-hand side. When the first operand is truthy, the second operand is evaluated - that is where we return our element. If that first operand is false, JavaScript stops the entire evaluation which prevents the item from being rendered.
 
 ```jsx
 //logical && operator to conditionally show a component
 const [isRendered, setIsRendered] = useState(true);
-return(
- <>
-  {isTruthy && <SpecialComponent /> }
-  <button type="button" onClick=(()=> setIsRendered(!isRendered))>Show/Hide Element</button>
- </>
+return (
+  <>
+    {isRendered && <SpecialComponent />}
+    <button type="button" onClick={() => setIsRendered(!isRendered)}>
+      Show/Hide Element
+    </button>
+  </>
 );
 ```
 
 #### Display Logic in a Function
 
-In cases where we have more than two options or our rendering logic is complex, we can define functions inside the component and use their return values. What's nice about this approach is that we can return JSX. We'll talk about some performance implications in [[Code The Dream/Intro to React V3/Curriculum/Week-09|Week-09]] that may arise from functions inside components but we will not be writing anything that will cause any performance problems during this course.
+In cases where we have more than two options or our rendering logic is complex, we can define functions inside the component and use their return values. What's nice about this approach is that we can return JSX. We'll talk about some performance implications in [[Code The Dream/Intro to React V4/Curriculum/Week-09|Week-09]] that may arise from functions inside components but we will not be writing anything that will cause any performance problems during this course.
 
 In the example below, the interface renders a button that calls `cycleLight`. Each time it does, it cycles through traffic light colors (green->yellow->red->green->…and so on). Each time `trafficLightColor` is updated, the component is re-rendered, calling `renderLight`. `renderLight` uses a switch-case statement to determine the correct component to render.
 
@@ -77,11 +83,11 @@ function cycleLight() {
 function renderLight() {
   switch (trafficLightColor) {
     case 'green':
-      return <YellowLight />;
-    case 'yellow':
-      return <RedLight />;
-    default:
       return <GreenLight />;
+    case 'yellow':
+      return <YellowLight />;
+    default:
+      return <RedLight />;
   }
 }
 
@@ -104,7 +110,7 @@ return (
 
 Now that we know how to show and hide components, we can start making improvements to the store. The first task is to update cards to let users choose from product variations. This will allow us to combine items of different colors or models into a single card that the user opens to select which variant they want to add to their cart.
 
-To achieve this, we have to change the way ProductList handles inventory items. Rather than mapping them to a `ProductCard` component, we make state variable, `products`, that is updated when `inventory` props changes. Inside this `useEffect` we create an empty array containing `workingProducts` and then iterate over the inventory to compose the each product in `workingProducts` before using that array to set the `products` variable.
+To achieve this, we have to change the way ProductList handles inventory items. Rather than mapping them to a `ProductCard` component, we make a state variable, `products`, that is updated when `inventory` props changes. Inside this `useEffect` we create an empty array containing `workingProducts` and then iterate over the inventory to compose each product in `workingProducts` before using that array to set the `products` variable.
 
 `forEach` basically looks at each item's `baseName` property to see if it matches any object already in `workingProducts`. If a match is found, that item is pushed into a `variants` array. If there is no match, a new object is composed for a product and then pushed into `workingProducts`.
 
@@ -378,7 +384,7 @@ Since we already have the `handleCartClose` in the props of the `Cart` component
 
 #### Render a Message Instead of an Empty List
 
-It may also be nicer for the user to see a message rather than rendering an empty list. Showing a message or a list is another conditional rendering scenario to address. The logic to change between the two elements is still simple enough that we don't need to extract a function for conditional rendering. The `&&` operator will not work here either so we are left with using a ternary. We look at the `cart`'s length and then determine if it's empty or not. If `cart.length === 0` then the lefthand expression executes, showing the message. If it contain items, the righthand executes, showing the list.
+It may also be nicer for the user to see a message rather than rendering an empty list. Showing a message or a list is another conditional rendering scenario to address. The logic to change between the two elements is still simple enough that we don't need to extract a function for conditional rendering. The `&&` operator will not work here either so we are left with using a ternary. We look at the `cart`'s length and then determine if it's empty or not. If `cart.length === 0` then the left-hand expression executes, showing the message. If it contain items, the right-hand executes, showing the list.
 
 ```jsx
 // extract from Cart.jsx
@@ -413,7 +419,7 @@ We are left with updating the cart total. It's not important to hide this total 
 function Cart({ cart, handleCloseCart }) {
   function getCartPrice() {
     // using `.toFixed` because floating point arithmetic
-    // introduces suprising rounding issues
+    // introduces surprising rounding issues
     // eg: `console.log(.99 + .99 +.99)` will print 2.9699999999999998
     return cart.reduce((acc, item) => acc + item.price, 0).toFixed(2);
   }
@@ -645,7 +651,7 @@ Main differences between the two:
 | **form elements**    | `ref` to keep track of DOM element                     | `val` set to state variables, state update functions that fire when input changes |
 | **form submission**  | selects values out of DOM using refs                   | retrieves values from state variables                                             |
 
-At first glance, an uncontrolled form is simpler to develop. There's less code to write since we don't need to set input values or implement state update functions to synchronize input values. Overall performance is also better because the browser manages the form - changes to inputs do not trigger re-renders. Using uncontrolled forms may be a good choice for simple forms or when when integrating 3rd party libraries that work with traditional forms.
+At first glance, an uncontrolled form is simpler to develop. There's less code to write since we don't need to set input values or implement state update functions to synchronize input values. Overall performance is also better because the browser manages the form - changes to inputs do not trigger re-renders. Using uncontrolled forms may be a good choice for simple forms or when integrating 3rd party libraries that work with traditional forms.
 
 Using a controlled component for a form provides some advantages over traditional forms:
 
@@ -798,7 +804,7 @@ function Cart({ cart, handleCloseCart, setCart }) {
   //component code...
 ```
 
-We next;
+We next
 
 - replace all references to `cart` in the return statement with `workingCart`
 - wrap the unordered list with a form and convert the paragraph containing `itemCount` into an `input` that accepts numbers.
@@ -865,11 +871,11 @@ function Cart({ cart, handleCloseCart, setCart }) {
 export default Cart;
 ```
 
-With these changes, we are left with an cart that displays the item count in an input and a nifty screen is cast across the shop so none of the products are clickable.
+With these changes, we are left with a cart that displays the item count in an input and a nifty screen is cast across the shop so none of the products are clickable.
 
 ![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-05/assets/open-cart-disabled-bg.gif)
 
-We next add in the confirm and cancel buttons for the working form. We don't want them showing until the user makes a change so we conditionally render them based in `isCartDirty`
+We next add in the confirm and cancel buttons for the working form. We don't want them showing until the user makes a change so we conditionally render them based in `isFormDirty`
 
 ```jsx
 //extract from Cart.jsx
@@ -946,8 +952,8 @@ function handleCancel(e) {
 
 The final helper we need to create handles the user's change confirmation. `handleConfirm` prevents the form from refreshing, calls `setCart` with the `workingCart` value. We also add in a helper function `removeEmptyItems` that removes any item that has a count of 0. It's okay to have an item in the cart with a value of 0 while the user is still editing but it should be removed once they are okay with their edits.
 
-CTD Swag is coming along! A user can brows items in the list, add items to their cart, and they can modify item counts in the cart. With our work, the `App` and `Cart` components continue to grow in size.
+CTD Swag is coming along! A user can browse items in the list, add items to their cart, and they can modify item counts in the cart. With our work, the `App` and `Cart` components continue to grow in size.
 
 ![adding product variants to cart](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-05/assets/add-products-mod-cart.gif)
 
-We still have a ways to go before this app is complete though. We still need to allow users to chose item variants, shirt sizes, a checkout, and an order history. Before CTD Swag become challenging to continue to develop, we will take some time next week to refactor our code into further sub-components and some utility functions. We will also talk about organizing a React project so that it continues to be easy to manage as the codebase grows.
+We still have a ways to go before this app is complete though. We still need to allow users to choose item variants, shirt sizes, a checkout, and an order history. Before CTD Swag becomes challenging to continue to develop, we will take some time next week to refactor our code into further sub-components and some utility functions. We will also talk about organizing a React project so that it continues to be easy to manage as the codebase grows.
