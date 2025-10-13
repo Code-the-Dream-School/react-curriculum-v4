@@ -112,7 +112,7 @@ This repository contains curriculum materials for a beginner React course, desig
 ### Discussion Content Review Checklist
 
 - [ ] **Concepts introduced progressively**: New ideas build on established knowledge
-- [ ] **Code examples are appropriate**: Examples include necessary imports when part of discussion; complex logic may use descriptive placeholders
+- [ ] **Code examples are appropriate**: Examples include necessary imports when part of discussion; complex logic may use descriptive placeholders; code marked as "extract" or "snippet" may be incomplete
 - [ ] **Technical accuracy**: All React patterns and syntax are correct
 - [ ] **Terminology consistent**: React terms used consistently throughout
 - [ ] **Visual aids relevant**: Screenshots and diagrams support the text content
@@ -135,6 +135,7 @@ This repository contains curriculum materials for a beginner React course, desig
 - [ ] **Key attributes**: List items have appropriate `key` props
 - [ ] **Event handlers**: Event handler syntax is correct and appropriate
 - [ ] **State management**: useState and other hooks used correctly
+- [ ] **Code extracts acceptable**: Code blocks marked as "extract from [filename]" or similar may be incomplete by design
 - [ ] **Logical placeholders**: Complex logic (4+ lines) can use descriptive placeholders when not critical to the discussion
 
 ## Error Categories and Severity Guidelines
