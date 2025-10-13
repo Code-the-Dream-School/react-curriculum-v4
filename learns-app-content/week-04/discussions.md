@@ -5,7 +5,7 @@
 
 ### Basic Hooks
 
-A React Hook is a function that allows functional components add state, integrate with side-effects, and work with other React features. We can also develop our own custom hooks to encapsulate logic into reusable functions. Hooks were introduced in React 16.8 (released February 2019) and gave functional components access to features that were previously available to only class-based components. We won't be working with class-based components but it's important to be aware they exist since you may encounter them in older codebases.
+A React Hook is a function that allows functional components to add state, integrate with side-effects, and work with other React features. We can also develop our own custom hooks to encapsulate logic into reusable functions. Hooks were introduced in React 16.8 (released February 2019) and gave functional components access to features that were previously available to only class-based components. We won't be working with class-based components but it's important to be aware they exist since you may encounter them in older codebases.
 
 The existing hooks can be broken down into several categories. We'll highlight the common ones.
 
@@ -170,7 +170,7 @@ Other things to know about the state value:
 
 The `useEffect` hook allows us to synchronize a component with data found outside the application. This could be an API request, accessing local storage, managing a non-React feature on the same page, or any other scenario where we need to "step outside" of React. This hook takes two arguments: a setup function, and an optional dependency array.
 
-The setup function contains logic needed for the effect and optionally returns a cleanup function. A cleanup function is used to for any necessary cleanup tasks before the component unmounts or before the effect is re-run. This can include clearing timers, unsubscribing from subscriptions, or any other clean-up activities to prevent memory leaks or unexpected behavior in a React component.
+The setup function contains logic needed for the effect and optionally returns a cleanup function. A cleanup function is used for any necessary cleanup tasks before the component unmounts or before the effect is re-run. This can include clearing timers, unsubscribing from subscriptions, or any other clean-up activities to prevent memory leaks or unexpected behavior in a React component.
 
 The dependency array is an optional list of props, state, and variables and functions defined directly in the component. After a component renders, if any of these have changed, React re-runs the `useEffect`. If this array is empty, the effect is ran only after the initial render. It will not do anything on subsequent re-renders. If the dependency array is omitted, the `useEffect` runs after first render and after each subsequent re-render.
 
