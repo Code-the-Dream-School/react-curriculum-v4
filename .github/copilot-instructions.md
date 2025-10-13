@@ -2,12 +2,12 @@
 
 ## Repository Summary
 
-This repository contains curriculum materials for a beginner React course, designed for use in Code the Dream's custom LMS (CTD Learns). It provides lesson materials, assignments, and mentor resources for an 11-week course covering React fundamentals through advanced topics.
+This repository contains curriculum materials for a beginner React course, designed for use in Code the Dream's custom LMS (CTD Learns). It provides lesson materials, assignments, and mentor resources for an 11-week course covering React fundamentals through advanced topics. The repository also includes archived materials from the previous curriculum version (v3) for reference and comparison purposes.
 
 ## High-Level Repository Information
 
-- **Size:** Medium (dozens of directories, hundreds of files; mostly markdown and supporting assets)
-- **Curriculum Outline:**
+- **Size:** Large (hundreds of directories, thousands of files; mostly markdown and supporting assets)
+- **Current Curriculum (v4) - 11 weeks:**
   - **Week 00:** Course Orientation and Local Environment Setup
   - **Week 01:** Intro to React, App Installation, and Working with Vite
   - **Week 02:** ReactDOM, Components, JSX, and Troubleshooting
@@ -21,23 +21,36 @@ This repository contains curriculum materials for a beginner React course, desig
   - **Week 10:** React Router
   - **Week 11:** Polishing an App for Your Portfolio, App and Data Security, and Deploying a React App
   - See `draft-artifacts/curriculum-design-notes/outline.md` for the full week-by-week outline
+- **Previous Curriculum (v3) - 15 weeks:** Archived in `references/v3/` for comparison and reference
+  - Extended course structure covering similar topics over 15 weeks instead of 11
+  - Includes additional weeks for styling, final project development, and React ecosystem overview
+  - Contains 246 archived files including lessons, assignments, objectives, and references
 
 ## Major Architectural Elements
 
 - **Key Directories:**
-  - `learns-app-content/` — Lesson materials for CTD Learns LMS
+  - `learns-app-content/` — Current curriculum materials for CTD Learns LMS (v4)
     - `week-00` to `week-11` — Weekly content
     - `class-specific/`, `reusable-content/` — Shared and class-specific resources
   - `mentor-content/` — Instructor and reviewer resources
-  - `references/` — Reference materials and handbooks
+  - `references/` — Reference materials and archived curriculum
     - `Instructional Design Handbook.md` — Curriculum design guidelines and best practices
+    - `Revised Blooms Taxonomy Action Verbs.pdf` — Educational taxonomy reference
+    - `v3/` — Complete archived curriculum from previous version (246 files)
+      - `assignments/` — Week 0-15 assignment materials
+      - `lessons/` — Week 0-15 lesson content
+      - `objectives/` — Week 0-15 learning objectives
+      - `references/` — Week 0-15 reference materials
+      - `reusable-content/` — Shared v3 materials and curriculum outline
+  - `supplementals/` — Additional tooling and setup guides
+    - `eslint/`, `prettier/` — Code formatting and linting guides
   - `docs/` — Additional documentation
   - `draft-artifacts/` — Design notes and outlines
   - `.github/` — Issue templates and agent instructions
 - **Configuration Files:**
   - `.markdownlint.json` — Markdown linting rules
   - `.prettierrc`, `.prettierignore` — Formatting preferences
-  - No build scripts or package.json found (content repo, not a codebase)
+  - `.vscode/` — VS Code workspace settings
 - **Licensing and Conduct:**
   - `LICENSE` — MIT License
   - `CODE_OF_CONDUCT.md` — Contributor Covenant
