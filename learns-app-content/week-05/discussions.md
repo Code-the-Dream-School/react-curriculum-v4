@@ -108,7 +108,7 @@ return (
 
 ##### Combining `baseItems`
 
-Now that we know how to show and hide components, we can start making improvements to the store. The first task is to update cards to let users choose from product variations. This will allow us to combine items of different colors or models into a single card that the user opens to select which variant they want to add to their cart.
+Now that we know how to show and hide components, we can start making improvements to the store. Now let's begin by updating cards to allow users to choose from product variations. This will allow us to combine items of different colors or models into a single card that the user opens to select which variant they want to add to their cart.
 
 To achieve this, we have to change the way ProductList handles inventory items. Rather than mapping them to a `ProductCard` component, we make a state variable, `products`, that is updated when `inventory` props changes. Inside this `useEffect` we create an empty array containing `workingProducts` and then iterate over the inventory to compose each product in `workingProducts` before using that array to set the `products` variable.
 
