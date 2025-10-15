@@ -17,7 +17,7 @@ After completing this week's assignment, your app should:
 
 ### Update TodoList Props
 
-1. In TodoList.jsx, add a `props` to the TodoList declaration's argument.
+1. In TodoList.jsx, add `props` to the TodoList declaration's argument.
 2. Replace the `todos.map` with `props.todos.map` in the return statement.
 3. In App component, add a `todos` prop to the TodoList instance and pass in the state value, `todos`.
 
