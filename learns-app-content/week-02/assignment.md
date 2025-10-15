@@ -87,7 +87,7 @@ return (
 #### Move Todo Logic to TodoList Component
 
 - **Move the todos array**: Cut the `todos` array from `App.jsx` and paste it into the `TodoList` component, above the return statement
-- **Move the todo display logic**: Cut the `<ul>` element and everything inside it from `App.jsx` and paste it into the TodoList return statement, replacing the Fragment component (`<></>`).
+- **Move the todo rendering logic**: Cut the `<ul>` element and everything inside it from `App.jsx` and paste it into the TodoList return statement, replacing the Fragment component (`<></>`).
 
 > [!note]
 > After moving the todos array, you'll see errors in the browser console like the image below. This is normal and expected since we're in the middle of refactoring.
@@ -188,15 +188,6 @@ Congratulations! You've successfully:
 - ✅ Learned to import and use components in other components
 - ✅ Practiced debugging common React errors during development
 - ✅ Maintained the same visual functionality while improving code organization
-
-### Looking Ahead
-
-In upcoming weeks, you'll learn to:
-
-- Make the form actually add new todos
-- Handle user interactions and events
-- Manage component state and data flow
-- And much more...
 
 > [!note]
 > **Important**: Future assignments will assume you understand the concepts covered this week. Make sure you're comfortable with component creation, importing/exporting, version control, and the basic development workflow before moving on.

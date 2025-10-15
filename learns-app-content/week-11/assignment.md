@@ -4,7 +4,7 @@
 
 ### Expected App Capabilities
 
-After completing this week's assignment, the app should be able to:
+After completing this week's assignment, your app should:
 
 - capability 1
 - capability 2
