@@ -327,7 +327,7 @@ export default ProductList;
 
 **You may see an ESLint error when working with props in Inventory**.
 
-![eslint tooltop missing props validation](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/missing-props-validation.png)
+![eslint tool-tip missing props validation](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/missing-props-validation.png)
 
 We will not be using prop-types in our project so we need to disable that rule in `config.eslint.js`. We do so by adding `'react/prop-types': 'off',` to the existing rules. The rules object should look similar to this:
 
