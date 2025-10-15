@@ -53,11 +53,10 @@ You will end up with a project structure that looks similar to the following:
 - Open a browser and navigate to `http://localhost:5173`.
 - Delete the contents of App.css but keep the file.
 - Delete the contents of index.css but keep the file.
-- Clean up App's code:
-  - Remove all imports except for App.css
+- Clean up App.jsx's code:
   - Delete the line containing `const [count, setCount] = useState(0)`
-  - Remove everything from the return statement.
-  - In the now empty return statement, add a div containing an h1 for the title for the app
+  - Remove all imports except for App.css
+  - Replace everything in the return statement with a div containing an h1 containing your app's title.
 
 Your App component should look like:
 
@@ -76,9 +75,11 @@ function App() {
 export default App
 ```
 
-Refresh the page and you'll end up with something that looks like the screencap below. Note that the console contains no errors.
+Refresh the page and you'll end up with something that looks like the screencap below.
 
 ![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/title-screencap.png)
+
+Confirm that your browser's console contains no errors before proceeding.
 
 #### Add First Todos
 
@@ -99,8 +100,9 @@ const todos = [
 ```
 
 - Create an unordered list using html tags below the heading (h1).
-- Place an empty code block between the list's opening and closing tags `<ul>{}</ul>`
-- Inside the code block, map the todos to html that will render a list item per todo.
+- Place an empty code block between the list's opening and closing tags. eg:`<ul>{}</ul>`
+- Inside the code block, map over the todos to wrap each todo title in a list item tag.
+- Add the `key` prop to the list item and pass it the todo's `id`.
 
 ```jsx
 {/*extract from App.jsx*/}
@@ -116,7 +118,7 @@ return (
 {/*code continues...*/}
 ```
 
-In the browser, you should have a list of 3 todos under the app's title:
+Your app should render a list of 3 todos under the app's title:
 
 ![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/todos-screencap.png)
 
