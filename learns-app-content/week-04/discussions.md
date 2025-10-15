@@ -288,7 +288,7 @@ function DemoEffect() {
 
 In development with StrictMode enabled, you'll see:
 
-```
+```text
 Effect started
 Cleanup ran
 Effect started
