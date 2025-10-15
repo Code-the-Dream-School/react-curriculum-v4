@@ -40,7 +40,7 @@ While the `todos` can be accessed by using `props.todos` it's a good practice to
    2. Copy the return value from the `map` statement in TodoList component to this component's return statement.
    3. Refactor the return statement so it is a list item containing `todo.title` and remove the key props.
 3. Import TodoListItem into TodoList.jsx
-4. Replace the list item instance in the `map`'s return statement with an instance of TodoList.
+4. Replace the list item instance in the `map`'s return statement with an instance of TodoListItem.
    1. Keep the `key` props here as it is still needed.
    2. Add a `todo` props which takes in `todo`.
 
