@@ -121,7 +121,7 @@ export default TodoForm;
 
 #### Build the Form Structure
 
-Add a form with input elements inside the TodoForm component's return statement:
+Add a form with input elements inside the TodoForm component's return statement. Don't forget to disable the button since it's not wired to do anything yet.
 
 ```jsx
 function TodoForm() {
@@ -129,7 +129,7 @@ function TodoForm() {
     <form>
       <label htmlFor="todoTitle">Todo</label>
       <input type="text" id="todoTitle" />
-      <button type="submit">Add Todo</button>
+      <button type="submit" disabled>Add Todo</button>
     </form>
   );
 }
