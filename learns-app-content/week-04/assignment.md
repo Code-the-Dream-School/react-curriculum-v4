@@ -4,7 +4,7 @@
 After completing this week's assignment, your app should:
 
 - manage todos using state
-- allow users add a todo
+- allow users to add a todo
 - retain the `input`'s focus when a todo is submitted with the button or enter key
 - render entered todos in a list
 
