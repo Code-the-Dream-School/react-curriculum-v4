@@ -173,5 +173,5 @@ In upcoming weeks, you'll learn to:
 - Manage more sophisticated application state
 - And much more...
 
-> [!note]
+> [!IMPORTANT]
 > **Important**: The event handling patterns you've learned this week are fundamental to building interactive React applications. Make sure you understand how events trigger state updates and how components communicate through props before moving on.
