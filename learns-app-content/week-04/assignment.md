@@ -29,7 +29,7 @@ Now we'll create a function that can add new todos to our state.
    - Creates a new todo object with an `id` property set to `Date.now()` and a `title` property set to the `todoTitle` parameter
    - Updates the todos state by creating a new array that includes the new todo and destructures the previous `todos` state. It should look something like: `setTodos([newTodo, ...todos])`
 
-> [!note]
+> [!NOTE]
 > We use `Date.now()` to generate a unique ID for each todo. In a real application, you'd typically use a more robust ID generation method, but this works well for our purposes.
 
 #### Pass the Handler to TodoForm
