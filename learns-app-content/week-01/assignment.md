@@ -85,13 +85,13 @@ Confirm that your browser's console contains no errors before proceeding.
 
 In App.jsx:
 
-- Inside the App component, above the return statement, create an array named `todos` containing 3 empty objects.
+- Inside the App component, above the return statement, create an array named `todoList` containing 3 empty objects.
 - Populate each object with a todo using the following object keys: `id` and `title`.
 
 ```jsx
 {/*extract from App.jsx*/}
 function App() {
-const todos = [
+const todoList = [
     {id: 1, title: "review resources"},
     {id: 2, title: "take notes"},
     {id: 3, title: "code out app"},
@@ -101,7 +101,7 @@ const todos = [
 
 - Create an unordered list using html tags below the heading (h1).
 - Place an empty code block between the list's opening and closing tags. eg:`<ul>{}</ul>`
-- Inside the code block, map over the todos to wrap each todo title in a list item tag.
+- Inside the code block, map over the todoList to wrap each todo title in a list item tag.
 - Add the `key` prop to the list item and pass it the todo's `id`.
 
 ```jsx
@@ -111,7 +111,7 @@ return (
     <div>
         <h1>Todo List</h1>
         <ul>
-            {todos.map(todo => <li key={todo.id}>{todo.title}</li>)}
+            {todoList.map(todo => <li key={todo.id}>{todo.title}</li>)}
         </ul>
     </div>
   );

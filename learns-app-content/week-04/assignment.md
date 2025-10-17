@@ -14,7 +14,7 @@ After completing this week's assignment, your app should:
 
 Currently your app displays the hardcoded todos from previous weeks. To make the form truly functional, we need to start with an empty todo list so users can add their own todos.
 
-1. In `App.jsx`, find where you initialize the `todos` state with `useState`
+1. In `App.jsx`, find where you initialize the `todoList` state with `useState`
 2. Change the initial value from the hardcoded array to an empty array: `useState([])`
 3. Save and refresh your browser - you should now see an empty todo list
 
@@ -27,7 +27,7 @@ Now we'll create a function that can add new todos to our state.
 1. In `App.jsx`, create a new function called `addTodo` above the return statement that:
    - Takes a `todoTitle` parameter
    - Creates a new todo object with an `id` property set to `Date.now()` and a `title` property set to the `todoTitle` parameter
-   - Updates the todos state by creating a new array that includes the new todo and destructures the previous `todos` state. It should look something like: `setTodos([newTodo, ...todos])`
+   - Updates the todoList state by creating a new array that includes the new todo and destructures the previous `todoList` state. It should look something like: `setTodoList([newTodo, ...todoList])`
 
 > [!NOTE]
 > We use `Date.now()` to generate a unique ID for each todo. In a real application, you'd typically use a more robust ID generation method, but this works well for our purposes.
