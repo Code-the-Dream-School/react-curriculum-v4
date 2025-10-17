@@ -86,15 +86,15 @@ return (
 
 #### Move Todo Logic to TodoList Component
 
-- **Move the todos array**: Cut the `todos` array from `App.jsx` and paste it into the `TodoList` component, above the return statement
+- **Move the todos array**: Cut the `todoList` array from `App.jsx` and paste it into the `TodoList` component, above the return statement
 - **Move the todo rendering logic**: Cut the `<ul>` element and everything inside it from `App.jsx` and paste it into the TodoList return statement, replacing the Fragment component (`<></>`).
 
 > [!note]
-> After moving the todos array, you'll see errors in the browser console like the image below. This is normal and expected since we're in the middle of refactoring.
+> After moving the todoList array, you'll see errors in the browser console like the image below. This is normal and expected since we're in the middle of refactoring.
 
 ![screen capture of ReferenceError in browser console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-02/assets/reference-error.png)
 
-The error occurs because we moved the `todos` array but haven't moved the code that uses it yet. Understanding these error messages helps you debug issues as you develop.
+The error occurs because we moved the `todoList` array but haven't moved the code that uses it yet. Understanding these error messages helps you debug issues as you develop.
 
 And your `App.jsx` should now look like this:
 
