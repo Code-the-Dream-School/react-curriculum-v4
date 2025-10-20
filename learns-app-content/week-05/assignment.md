@@ -10,7 +10,7 @@ After completing this week's assignment, your app should:
 
 ### Instructions Part 1: Conditional Rendering for Empty List
 
-> [!note]
+> [!NOTE]
 > This week we'll add conditional rendering and controlled components to make our todo app more user-friendly and interactive.
 
 #### Add Empty State Message
@@ -21,8 +21,6 @@ When users first visit the app or complete all their todos, they should see a he
    - Checks if the `todoList` length equals zero
    - If true, renders a paragraph element with the text "Add todo above to get started"
    - If false, renders the existing unordered list with the mapped todos
-
-Your conditional rendering should follow this pattern:
 
 ### Instructions Part 2: Add Todo Completion Feature
 
@@ -55,8 +53,7 @@ Now we'll add the ability for users to mark todos as complete using checkboxes.
 #### Update TodoListItem with Checkbox
 
 1. In `TodoListItem.jsx`, add `onCompleteTodo` to the component's props using destructuring
-2. Update the component's return statement to wrap the content in a form element
-3. Add a checkbox input above the todo title with:
+2. Wrap the content inside the list item with an `input` element.
    - `type="checkbox"`
    - `checked` prop set to `todo.isCompleted`
    - `onChange` event handler that calls `onCompleteTodo` with the todo's id
@@ -66,14 +63,12 @@ Your TodoListItem structure should look like:
 ```jsx
 return (
   <li>
-    <form>
       <input
         type="checkbox"
         checked={todo.isCompleted}
         onChange={() => onCompleteTodo(todo.id)}
       />
       {todo.title}
-    </form>
   </li>
 );
 ```
