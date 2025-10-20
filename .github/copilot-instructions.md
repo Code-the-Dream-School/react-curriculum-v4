@@ -63,6 +63,7 @@ This repository contains curriculum materials for a beginner React course, desig
 - **For configuration changes:** Edit `.markdownlint.json` or `.prettierrc` in the repo root.
 - **For documentation:** See `README.md`, `CONTRIBUTING.md`, and `docs/`.
 - **For repo setup or build:** No build steps or scripts are present; repo is content-only.
+- **For internal notes:** Use markdown comments `<!-- note content -->` for any internal notes that should not display in rendered content.
 - **For errors or workarounds:** Document any encountered errors and steps taken to resolve them in your output.
 - **Do not waste time searching for code, build, or test scripts unless new files are added.**
 
