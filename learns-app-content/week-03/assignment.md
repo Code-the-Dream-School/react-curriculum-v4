@@ -8,29 +8,29 @@ After completing this week's assignment, your app should:
 
 ### Implement useState
 
-1. Move `const todos` and its array from TodoList.jsx back to App.jsx, placing it between the file imports and the component declaration.
+1. Move `const todoList` and its array from TodoList.jsx back to App.jsx, placing it between the file imports and the component declaration.
 2. Keep the mapping statement in TodoList component. *This will generate errors until we are done working with props.*
 3. In App, import `useState`.
 4. Implement `useState` inside the top of the App component.
-   1. Use array destructuring to access the state value (`todos`) and its accompanying state update function (`setTodos`).
-   2. Set `useState`'s default value to `todos`.
+   1. Use array destructuring to access the state value (`todoList`) and its accompanying state update function (`setTodoList`).
+   2. Set `useState`'s default value to `todoList`.
 
 ### Update TodoList Props
 
 1. In TodoList.jsx, add `props` to the TodoList declaration's argument.
-2. Replace the `todos.map` with `props.todos.map` in the return statement.
-3. In App component, add a `todos` prop to the TodoList instance and pass in the state value, `todos`.
+2. Replace the `todoList.map` with `props.todoList.map` in the return statement.
+3. In App component, add a `todoList` prop to the TodoList instance and pass in the state value, `todoList`.
 
-This will look something like:  `<TodoList todos={todos} />`.
+This will look something like:  `<TodoList todoList={todoList} />`.
 
 At this point, the app should be error-free. You may need to refresh your browser window to clear the console.
 
 ### Refactor TodoList
 
-While the `todos` can be accessed by using `props.todos` it's a good practice to destructure props out of the props argument so that they're directly accessible.
+While the `todoList` can be accessed by using `props.todoList` it's a good practice to destructure props out of the props argument so that they're directly accessible.
 
-1. Replace the `props` with `{todos}` so now your component declaration looks like: `function TodoList({todos})...`
-2. Remove `props.` from the `props.todos...` in the return body.
+1. Replace the `props` with `{todoList}` so now your component declaration looks like: `function TodoList({todoList})...`
+2. Remove `props.` from the `props.todoList...` in the return body.
 
 ### Implement a TodoListItem Component
 
