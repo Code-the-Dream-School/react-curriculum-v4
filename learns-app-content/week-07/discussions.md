@@ -31,7 +31,7 @@ fetch('https://dog.ceo/api/breeds/image/random')
     return resp.json();
   })
   .then((data) => {
-    if (data.status != 'success') {
+    if (data.status !== 'success') {
       throw new Error(data.status);
     }
     placeImage(data.message);
@@ -62,7 +62,7 @@ const fetchDog = async () => {
       throw new Error(resp.status);
     }
     const data = await resp.json();
-    if (data.status != 'success') {
+    if (data.status !== 'success') {
       throw new Error(data.status);
     }
     placeImage(data.message);
@@ -104,7 +104,7 @@ export default function RandomDogPicture() {
           throw new Error(resp.status);
         }
         const data = await resp.json();
-        if (data.status != 'success') {
+        if (data.status !== 'success') {
           throw new Error(data.status);
         }
         setImg(data.message);
@@ -148,7 +148,7 @@ export default function RandomDogPic() {
           throw new Error(resp.status);
         }
         const data = await resp.json();
-        if (data.status != 'success') {
+        if (data.status !== 'success') {
           throw new Error(data.status);
         }
         if (isRan) {
@@ -191,10 +191,10 @@ The following is logged to the console when the app first loads:
 [vite] connected.                       client: 614:14
 
 useEffect running                       App.jsx: 27:14
-cleanup performed                       App. jsx:49:14
-useEffect running                        App.]sx:27:14
-skipped setImg ()                        App.]sx:38:18
-ran setImg()                            App. jsx:41:18
+cleanup performed                       App.jsx:49:14
+useEffect running                        App.jsx:27:14
+skipped setImg ()                        App.jsx:38:18
+ran setImg()                            App.jsx:41:18
 »
 ```
 
@@ -245,7 +245,7 @@ Of course, seeing only one dog is boring! Let's add a button that will load a ne
         throw new Error(resp.status);
       }
       const data = await resp.json();
-      if (data.status != "success") {
+      if (data.status !== "success") {
         throw new Error(data.status);
       }
       setImg(data.message);
@@ -256,7 +256,7 @@ Of course, seeing only one dog is boring! Let's add a button that will load a ne
   //component code...
   return (
     <main>
-      <button style={{ display: "none" }} onClick={fetchNewDog}>
+      <button onClick={fetchNewDog}>
         Another Please!
       </button>
       {error && <p>{error}</p>}
@@ -551,9 +551,9 @@ We now have to consider intermediate state. To indicate when the app is waiting 
 
 ```jsx
 //extract from App.jsx
-const [isAuthenticating, setIsAuthenticating] = useState('false');
+const [isAuthenticating, setIsAuthenticating] = useState(false);
 const [user, setUser] = useState({});
-const [authError, setAuthError] = useState('')'
+const [authError, setAuthError] = useState('');
 ```
 
 From these three state variables we can display content based on the four following UI conditions for before, during, and after a user logs in:
