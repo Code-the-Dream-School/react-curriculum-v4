@@ -86,7 +86,7 @@ return (
 
 #### Move Todo Logic to TodoList Component
 
-- **Move the todos array**: Cut the `todoList` array from `App.jsx` and paste it into the `TodoList` component, above the return statement
+- **Move the todoList array**: Cut the `todoList` array from `App.jsx` and paste it into the `TodoList` component, above the return statement
 - **Move the todo rendering logic**: Cut the `<ul>` element and everything inside it from `App.jsx` and paste it into the TodoList return statement, replacing the Fragment component (`<></>`).
 
 > [!note]
