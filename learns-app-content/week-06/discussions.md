@@ -223,12 +223,231 @@ function App() {
 
 ![info dialog with blue heading](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-06/assets/info-dialog.png)
 
+### Helper Functions and Custom Hooks
+
+When refactoring React components, you'll often encounter logic that can be extracted to improve code organization, reusability, and testability. This logic typically falls into two categories: **helper functions** and **custom hooks**. Understanding when to use each approach is crucial for writing maintainable React applications.
+
+#### Helper Functions
+
+**Helper functions** are pure JavaScript functions that contain logic that doesn't depend on React's lifecycle or state management. They can be extracted from components when you have business logic, calculations, or data transformations.
+
+**Characteristics:**
+
+- No React hooks inside them
+- Pure functions that take inputs and return outputs
+- Business logic, calculations, data transformations
+- Can be tested independently of React
+- Can be used outside of React components
+
+**Examples from CTD Swag context:**
+
+```javascript
+// Price calculation logic
+function getCartPrice(cartItems) {
+  return cartItems.reduce((total, item) => {
+    return total + (item.price * item.itemCount);
+  }, 0);
+}
+
+// Product sorting (from utils/sortByBaseName.js)
+function sortByBaseName({ productItems, isSortAscending }) {
+  return productItems.sort((a, b) => {
+    if (isSortAscending) {
+      return a.baseName.localeCompare(b.baseName);
+    }
+    return b.baseName.localeCompare(a.baseName);
+  });
+}
+
+// Product filtering (from utils/filterByQuery.js)
+function filterByQuery({ productItems, searchTerm }) {
+  if (!searchTerm) return productItems;
+  
+  return productItems.filter(item => 
+    item.baseName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+}
+
+// Data transformation (from utils/convertInventoryToProducts.js)
+function convertInventoryToProducts(inventory) {
+  // Groups flat inventory array into products with variants
+  const grouped = inventory.reduce((acc, item) => {
+    if (!acc[item.baseName]) {
+      acc[item.baseName] = [];
+    }
+    acc[item.baseName].push(item);
+    return acc;
+  }, {});
+  
+  return Object.values(grouped);
+}
+```
+
+#### Custom Hooks
+
+**Custom hooks** are functions that use React hooks internally and encapsulate stateful logic that can be shared between components.
+
+**Characteristics:**
+
+- Must start with "use"
+- Can use other React hooks (useState, useEffect, etc.)
+- Encapsulate stateful logic
+- Return state and/or functions to update that state
+- Component lifecycle aware
+
+**Custom Hooks that Could be used in CTD-Swag:**
+
+```javascript
+// Shopping cart management (these examples are not implemented in the CTD Swag repo)
+function useShoppingCart() {
+  const [cart, setCart] = useState([]);
+  
+  const addItem = (product) => {
+    setCart(prev => {
+      const existing = prev.find(item => item.id === product.id);
+      if (existing) {
+        return prev.map(item => 
+          item.id === product.id 
+            ? {...item, itemCount: item.itemCount + 1}
+            : item
+        );
+      }
+      return [...prev, {...product, itemCount: 1}];
+    });
+  };
+  
+  const removeItem = (productId) => {
+    setCart(prev => prev.filter(item => item.id !== productId));
+  };
+  
+  const total = getCartPrice(cart); // Uses helper function
+  
+  return { cart, addItem, removeItem, total };
+}
+
+// Local storage persistence
+function useLocalStorage(key, initialValue) {
+  const [value, setValue] = useState(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      return initialValue;
+    }
+  });
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.error('Error saving to localStorage:', error);
+    }
+  }, [key, value]);
+
+  return [value, setValue];
+}
+```
+
+#### When to Extract Each
+
+**Extract Helper Functions When:**
+
+- Logic is pure (no side effects)
+- No React state or lifecycle needed
+- You want to unit test the logic separately
+- Logic could be reused in non-React contexts
+- Calculation, validation, or data transformation logic
+
+**Extract Custom Hooks When:**
+
+- Logic involves React state or effects
+- Multiple components need the same stateful behavior
+- You want to encapsulate complex state management
+- Logic involves subscriptions, API calls, or timers
+- You need to share component lifecycle logic
+
+#### Best Practices
+
+**Helper Functions:**
+
+- Place in `src/utils/` or `src/services/` directories
+- Keep them pure and predictable
+- Make them easily testable
+- Use clear, descriptive names
+
+**Custom Hooks:**
+
+- Place in `src/hooks/` directory
+- Always start names with "use"
+- Return objects for multiple values (better than arrays for readability)
+- Document what state and functions they provide
+
+#### Real-World CTD Swag Example
+
+Instead of having this complex logic in a component:
+
+```jsx
+// Before - all logic in component
+function Cart({ cart, setCart }) {
+  // ...omitted code
+  
+  const updateQuantity = (id, newCount) => {
+    setCart(prev => prev.map(item => 
+      item.id === id ? {...item, itemCount: newCount} : item
+    ));
+  };
+  
+  const total = cart.reduce((sum, item) => sum + (item.price * item.itemCount), 0);
+  const formattedTotal = `$${total.toFixed(2)}`;
+  
+  // ... rest of component
+}
+```
+
+You could extract:
+
+```jsx
+// After - extracted helper and custom hook
+// Helper function (utils/cartCalculations.js)
+export function getCartPrice(cartItems) {
+  return cartItems.reduce((total, item) => {
+    return total + (item.price * item.itemCount);
+  }, 0);
+}
+
+// Hypothetical custom hook - not currently implemented in CTD Swag
+export function useCart(initialCart = []) {
+  const [cart, setCart] = useState(initialCart);
+  const [isLoading, setIsLoading] = useState(false);
+  
+  const updateQuantity = (id, newCount) => {
+    setCart(prev => prev.map(item => 
+      item.id === id ? {...item, itemCount: newCount} : item
+    ));
+  };
+  
+  const total = getCartPrice(cart); 
+  
+  return { cart, setCart, updateQuantity, total, isLoading, setIsLoading };
+}
+
+// Simplified component
+function Cart() {
+  const { cart, updateQuantity, total } = useCart();
+  
+  // Much cleaner component code
+}
+```
+
+This separation makes code more maintainable, testable, and reusable!
+
 ### Organizing Files in a React Project
 
 We inevitably add more components and refactor out non-React code into separate files as a project grows. If we maintain a flat file structure as the file count increases, it become challenging to navigate codebase or to see how files relate. In this section, we will discuss some considerations that go into determining the directory structure and organizing files for CTD Swag so we can continue to add functionality.
 
 > [!note]
-> The internet hosts many discussions and even more opinions about how to structure software projects. What we provide is a sensible approach that works well with small to medium React projects. Some larger projects require structures tailored to the problems that they solve and features they implement. Other React projects using frameworks such as Next.js, Astro, Remix must adhere to rules prescribed by the framework since they tend to use specific directories for features such as page routing or asset management.
+> The internet hosts many discussions and even more opinions about how to structure software projects. What we provide is a sensible approach that works well with small to medium React projects. Some larger projects require structures tailored to the problems that they solve. Other React projects using frameworks such as Next.js, Astro, Remix must adhere to rules prescribed by the framework since they tend to use specific directories for features such as page routing or asset management.
 
 #### Details to Consider
 
@@ -536,14 +755,8 @@ Over in the `Cart` component we import `CartItem` then replace the list item wit
 
 All of these changes should result in an interface that continues to look and behave just the same. However, our code is now organized better and it's easer to read the code in `App` and `Cart` components.
 
-#### Check-for-understanding Questions
+### Summary
 
-### Topic n
+This week, you've explored how to create reusable components, extract logic into helper functions and custom hooks, organize project files systematically, and refactor existing components. As your applications grow in complexity the refactoring techniques you've learned will help you maintain clean, readable, and maintainable codebases. The systematic approaches to component extraction and file organization will serve you well as you tackle more advanced React concepts in the coming weeks, including data fetching, performance optimization, and state management patterns.
 
-#### Topic n Check-for-understanding Questions
-
-### Review and Summary
-
-- Key takeaways from this lesson  
-- Connection to next lesson
-- Quick preview of this week’s coding assignment
+In next week's lesson, you'll learn about data fetching and UI update strategies. Well-organized components and helper functions become even more valuable for managing asynchronous operations and user interface updates.
