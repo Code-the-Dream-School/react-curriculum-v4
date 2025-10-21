@@ -73,7 +73,7 @@ We can categorize the information that we provide into one of several categories
 - info: no color or blue, ℹ️ (information)
 
 > [!NOTE]
-> Do not rely on color alone! [Around 300 million people](https://my.clevelandclinic.org/health/diseases/11604-color-blindness) around the world have some form of color blindness. This is why it's important to also include an icon when using any sort of color coding. More information about common color accessibility issues can be found on [deque's website](https://www.deque.com/blog/3-common-color-accessibility-issues-one-can-easily-avoid/). They are a maker of a popular suite of accessibility tools.
+> Do not rely on color alone! [Around 300 million people](https://my.clevelandclinic.org/health/diseases/11604-color-blindness) around the world have some form of color blindness. This is why it's important to also include an icon when using any sort of color coding. More information about common color accessibility issues can be found on [Deque's website](https://www.deque.com/blog/3-common-color-accessibility-issues-one-can-easily-avoid/). They are a maker of a popular suite of accessibility tools.
 
 The first step in making a `Dialog` component extensible is to add a `kind` prop to the `Dialog`'s definition. We'll set it to default value of "info" since that's the most generic category and can act as the default fallback. We can then use that prop to configure the rest of the component.
 
