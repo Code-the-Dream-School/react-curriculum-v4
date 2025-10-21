@@ -12,7 +12,7 @@
 
 ## Week-05: Local State and Controlled Components, and Forms
 
-## Week-06: Re-usable Components, Project Organization, and Refactoring
+## Week-06: Re-usable Components, Helper Functions and Hooks, Project Organization, and Refactoring
 
 ## Week-07: Data Fetching and UI Update Strategies
 

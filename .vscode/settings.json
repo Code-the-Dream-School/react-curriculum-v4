@@ -8,6 +8,17 @@
     "XXX",
     "[ ]",
     "[x]",
-    "PLACEHOLDER"
-  ]
+    "PLACEHOLDER",
+    "<!--"
+  ],
+  "todo-tree.highlights.customHighlight": {
+    "<!--": {
+      "background": "#ff000088",
+      "foreground": "#fff",
+      "icon": "file-moved",
+      "iconColor": "#ff0000",
+      "gutterIcon": true,
+      "type": "text-and-comment"
+    }
+  }
 }

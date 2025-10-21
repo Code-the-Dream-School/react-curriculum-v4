@@ -63,8 +63,68 @@ This repository contains curriculum materials for a beginner React course, desig
 - **For configuration changes:** Edit `.markdownlint.json` or `.prettierrc` in the repo root.
 - **For documentation:** See `README.md`, `CONTRIBUTING.md`, and `docs/`.
 - **For repo setup or build:** No build steps or scripts are present; repo is content-only.
+- **For internal notes:** Use markdown comments `<!-- note content -->` for any internal notes that should not display in rendered content.
 - **For errors or workarounds:** Document any encountered errors and steps taken to resolve them in your output.
 - **Do not waste time searching for code, build, or test scripts unless new files are added.**
+
+## CTD Swag Demo Application Reference
+
+When building code examples for weekly discussions, **ALWAYS** reference the comprehensive CTD Swag documentation in `references/demos-context/CTD-Swag/`:
+
+### Available Reference Materials
+
+- **COMPONENTS.md** - Complete list of 21 React components with architecture details
+- **HELPER-FUNCTIONS.md** - Complete list of 25+ helper functions organized by purpose
+- **CUSTOM-HOOKS.md** - Analysis of React hooks usage (Note: No custom hooks currently implemented)
+
+### Code Example Guidelines
+
+**Use Authentic CTD Swag References When:**
+
+- Demonstrating component extraction patterns (Cart/CartItem, ProductList/ProductCard)
+- Showing helper function examples (getCartPrice, sortByBaseName, filterByQuery)
+- Illustrating component organization (features/, layout/, pages/, shared/)
+- Teaching refactoring concepts with real-world context
+
+**Label Hypothetical Examples When:**
+
+- Creating examples not currently in CTD Swag
+- Demonstrating concepts beyond the current application scope
+- Introducing new patterns for educational purposes
+
+**Required Labeling for Hypothetical Examples:**
+
+```jsx
+// Hypothetical example - not currently implemented in CTD Swag
+function useShoppingCart() {
+  // Custom hook logic...
+}
+```
+
+### Architectural Consistency
+
+**Follow CTD Swag Patterns:**
+
+- Event handlers: `handle*` prefix (handleAddItemToCart, handleAuthenticate)
+- Calculations: `get*` prefix (getCartPrice, getTotal)
+- Component organization: Feature-based directory structure
+- Props naming: Consistent with existing patterns (baseName, itemCount)
+
+**Built-in Hooks Usage (No Custom Hooks):**
+
+- useState (8 instances in App.jsx, multiple across components)
+- useReducer (cart state management)
+- useEffect (lifecycle and side effects)
+- useCallback (memoization in App.jsx)
+- useRef (Footer component year reference)
+- useParams, useNavigate (React Router)
+
+**Educational Value:**
+
+- Maintains consistency with established demo application
+- Provides realistic, implementable examples
+- Builds upon student's existing knowledge base
+- Shows authentic component extraction scenarios
 
 ## When Performing a Code Review
 
@@ -129,9 +189,13 @@ This repository contains curriculum materials for a beginner React course, desig
 ### Code Example Validation Checklist
 
 - [ ] **Syntax correctness**: Code follows JavaScript/React syntax rules
+- [ ] **CTD Swag consistency**: Examples reference authentic components and functions from references/demos-context/CTD-Swag/
+- [ ] **Hypothetical examples labeled**: Non-CTD Swag examples clearly marked as "hypothetical" or "potential enhancement"
+- [ ] **Architectural alignment**: Follows CTD Swag patterns (handle* for events, get* for calculations, feature-based organization)
+- [ ] **Hook usage authentic**: References actual built-in hooks used in CTD Swag (no custom hooks currently implemented)
 - [ ] **Imports appropriate**: Imports are included when they are part of the surrounding discussion or critical for understanding
 - [ ] **Component exports**: Components are properly exported as default or named
-- [ ] **Props alignment**: Props passed match component function parameters
+- [ ] **Props alignment**: Props passed match component function parameters and CTD Swag naming conventions
 - [ ] **Key attributes**: List items have appropriate `key` props
 - [ ] **Event handlers**: Event handler syntax is correct and appropriate
 - [ ] **State management**: useState and other hooks used correctly
