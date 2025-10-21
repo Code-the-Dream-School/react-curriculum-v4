@@ -753,7 +753,7 @@ Over in the `Cart` component we import `CartItem` then replace the list item wit
 }
 ```
 
-All of these changes should result in an interface that continues to look and behave just the same. However, our code is now organized better and it's easer to read the code in `App` and `Cart` components.
+All of these changes should result in an interface that continues to look and behave just the same. However, our code is now organized better and it's easier to read the code in `App` and `Cart` components.
 
 ### Summary
 
