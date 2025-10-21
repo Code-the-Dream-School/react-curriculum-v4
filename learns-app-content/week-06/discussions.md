@@ -522,7 +522,7 @@ The outline below provides a few more notes on the directories.
 
 #### Create Directories and Organize Existing Files
 
-To start the refactor, we create the new directories and move existing files into their updated location. As each file is moved, it's important to make sure that import statements are updated - both inside the file as well as wherever it is being imported. Running the dev server provides in-browser errors that are handy at letting us know where file imports are incorrect.
+To start the refactor, we create the new directories and move existing files into their updated location. As each file is moved, it's important to make sure that import statements are updated - both inside the file as well as wherever it is being imported. Running the dev server provides in-browser errors that is handy for letting us know where file imports are incorrect.
 
 ![vite fails to resolve import](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-06/assets/error-hint-fail-import.png)
 
