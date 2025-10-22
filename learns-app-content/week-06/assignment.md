@@ -107,7 +107,7 @@ In the `TodoListItem` component:
 Your list item should resemble:
 
 ```jsx
-{/*extract from TodoListItem.jsx*/}
+{/*excerpt from TodoListItem.jsx*/}
 {/*...code*/}
 <li>
     <form>
