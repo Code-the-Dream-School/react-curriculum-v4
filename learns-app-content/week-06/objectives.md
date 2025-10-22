@@ -15,13 +15,13 @@ By the end of this lesson, we will:
 - Discuss the value of reusable components and how they foster efficiency, scalability, and consistency in React development
 - Implement reusable components that can be shared across an application
 
-#### Objective 4: Helper Functions and Custom Hooks
+#### Objective 2: Helper Functions and Custom Hooks
 
 - Discuss utility functions and custom hooks
 - Identify opportunities to extract non-React logic into helper functions
 - Understand when and why to create custom hooks for reusable stateful logic
 
-#### Objective 2: Project Organization
+#### Objective 3: Project Organization
 
 - Discuss essential methodologies for effective file organization in a React project
 - Formulate an approach to organize our project
