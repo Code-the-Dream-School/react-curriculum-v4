@@ -190,7 +190,7 @@ Now let's continue with the todo editing functionality.
   - uses the `event.target.value` to update the `workingTitle` state value
 - Update `TextInputWithLabel`
   - `value` should now use `workingTitle`
-  - add an `onChange` props to `TextInputWithLabel` that takes `handleEdit`
+  - add an `onChange` prop to `TextInputWithLabel` that takes `handleEdit`
 
 You should now be able to make changes to the todo in the input. We cannot save quite yet though!
 
