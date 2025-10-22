@@ -205,7 +205,7 @@ You should now be able to make changes to the todo in the input. We cannot save 
     - if not a match - return the current todo.
   - saves the array returned by `map` to `updatedTodos`
   - updates the `todoList` state value with `updatedTodos`.
-- Pass `updateTodo` to a new props in `TodoList` instance and name it `onUpdateTodo`.
+- Pass `updateTodo` to a new prop in `TodoList` instance and name it `onUpdateTodo`.
 - In `TodoList`, destructure that helper out of the component's props then pass it to `TodoListItem` in the same manner.
 - In `TodoListItem`:
   - destructure `onUpdateTodo` out of props.
