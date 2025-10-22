@@ -179,7 +179,7 @@ Now let's continue with the todo editing functionality.
   - sets `isEditing` state value to `false`
   - there is no need to include an argument
 - Add a button below the `TextInputWithLabel` component:
-  - Set its type to "button" to prevent the default behavior of submitting a form.
+  - Set its type to "button" so it does not act as a submit button when inside a form element.
   - Attach `handleCancel` to an `onClick` props
   - Add the text "Cancel" in the button.
 
