@@ -82,7 +82,7 @@ export default TextInputWithLabel;
 - Import `TextInputWithLabel` into `TodoForm.jsx`.
 - Find the existing label then add an instance of `TextInputWithLabel` above it.
 - Move the `ref`, `value`, and `onChange` props from the input to the component instance.
-- Add an `elementId` props and set it to the same value as the input's `id`.
+- Add an `elementId` prop and set it to the same value as the input's `id`.
 - Add a `labelText` prop and set it to the string "Todo".
 - The label and input elements are not needed anymore so remove them.
 
