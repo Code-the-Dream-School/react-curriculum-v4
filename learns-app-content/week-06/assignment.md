@@ -52,7 +52,7 @@ We can reduce this list of props by combining `htmlFor` and `id` since they used
 - Assign props to the matching label and input props. You will end up with a component that looks like:
 
 ```jsx
-{/*extract from TextInputWithLabel.jsx*/}
+{/*excerpt from TextInputWithLabel.jsx*/}
 function TextInputWithLabel({
   elementId,
   labelText,
