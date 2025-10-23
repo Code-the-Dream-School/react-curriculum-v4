@@ -33,6 +33,6 @@ Join discussions, ask questions, and share feedback in our [GitHub Discussions](
 
 ---
 
-Thank you for helping us improve the React Curriculum!
+Thank you for helping us improve the React Curriculum!!
 
 [^1]: Curriculum authors and maintainers can clone this repo without having to fork.
