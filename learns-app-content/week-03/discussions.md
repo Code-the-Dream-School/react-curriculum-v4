@@ -325,28 +325,6 @@ function ProductList({ inventory }) {
 export default ProductList;
 ```
 
-**You may see an ESLint error when working with props in Inventory**.
-
-![eslint tool-tip missing props validation](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/missing-props-validation.png)
-
-We will not be using prop-types in our project so we need to disable that rule in `config.eslint.js`. We do so by adding `'react/prop-types': 'off',` to the existing rules. The rules object should look similar to this:
-
-```javascript
-/*config.eslint.js rules extract*/
-rules: {
-      ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
-      ...reactHooks.configs.recommended.rules,
-      'react/jsx-no-target-blank': 'off',
-      'react/prop-types': 'off',                /* disables react/prop-types rule */
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
-```
-
 We then need to refactor ProductCard out of the ProductList component.
 
 Create the file, `ProductCard.jsx` and move the list item over to the new component.
