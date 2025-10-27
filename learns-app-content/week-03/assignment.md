@@ -8,12 +8,13 @@ After completing this week's assignment, your app should:
 
 ### Implement useState
 
-1. Move `const todoList` and its array from TodoList.jsx back to App.jsx, placing it between the file imports and the component declaration.
-2. Keep the mapping statement in TodoList component. *This will generate errors until we are done working with props.*
-3. In App, import `useState`.
-4. Implement `useState` inside the top of the App component.
+1. Move `const todoList` and its value out of the App component, placing it between the file imports and the component declaration.
+2. Rename `todoList` to `todos` so it does not interfere our state when we set that up.
+3. Keep the mapping statement in TodoList component. *This will generate errors until we are done working with props.*
+4. In App, import `useState`.
+5. Implement `useState` inside the top of the App component.
    1. Use array destructuring to access the state value (`todoList`) and its accompanying state update function (`setTodoList`).
-   2. Set `useState`'s default value to `todoList`.
+   2. Set `useState`'s default value to `todos`.
 
 ### Update TodoList Props
 
