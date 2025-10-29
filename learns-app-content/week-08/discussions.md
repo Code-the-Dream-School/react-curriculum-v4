@@ -296,7 +296,7 @@ function UserList() {
 **This setup:**
 
 - Uses `useCallback` to memoize the `fetchUsers` function - without it there is an infinite loop created between `useEffect` and `fetchUsers`!
-- Uses `useEffect` to trigger the fetch whenever `page` changes so it re-fetches only whenever the page changes. This approach makes `useEffect` depend on page indirectly through the memoized function, while keeping the fetch logic separate and reusable.
+- Uses `useEffect` to trigger the fetch whenever `page` changes. This approach makes `useEffect` depend on page indirectly through the memoized function, keeping the fetch logic separate and reusable.
 - The “Previous” and “Next” buttons update the page, triggering a new API request.
 - Prevents unnecessary re-fetching when unrelated state updates occur
 - Includes proper loading states and error handling
