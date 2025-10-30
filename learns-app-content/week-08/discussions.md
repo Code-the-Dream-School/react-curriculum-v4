@@ -96,7 +96,7 @@ Here, `useCallback` ensures `handleIncrement` maintains the same reference betwe
 
 #### Compare and Contrast: useMemo vs useCallback
 
-Now that we understand both hooks individually, let's explore how they relate to each other. Here's a crucial insight: `useCallback` is actually just a specialized version of `useMemo`!
+Now that we understand both hooks individually, let's explore how they relate to each other.
 
 ```jsx
 // These two are essentially equivalent:
@@ -111,7 +111,40 @@ const memoizedCallback = useMemo(() => {
 }, [a, b]);
 ```
 
-The difference is that `useCallback` returns the function itself, while `useMemo` returns the result of calling a function.
+At first glance, these might seem interchangeable — and in some cases, they can appear to behave similarly. However, this similarity is deceptive.
+
+Let's look at how that plays out in real-world examples.
+
+**Example 1: CPU-intensive work → `useMemo` is the right choice**
+
+```jsx
+// ❌ Without useMemo: this runs on every render
+const processedData = doSomethingCPUIntensive(data);
+
+// ✅ With useMemo: only re-runs when `data` changes
+const processedData = useMemo(() => doSomethingCPUIntensive(data), [data]);
+```
+
+In this case, the performance issue comes from repeatedly running a heavy computation. We only need to recompute when `data` changes. Here, `useMemo` is perfect because it caches the result of the computation, saving time and CPU cycles.
+
+**Example 2: Passing callbacks to children → `useCallback` is the right choice**
+
+```jsx
+function Parent({ data }) {
+  // ❌ Without useCallback: this function is recreated on every render
+  const handleClick = () => doSomethingInChildComponent(data);
+
+  // ✅ With useCallback: stable function reference across renders
+  const handleClick = useCallback(
+    () => doSomethingInChildComponent(data),
+    [data],
+  );
+
+  return <Child onClick={handleClick} />;
+}
+```
+
+Here, the goal isn't to avoid heavy computation — it's to prevent unnecessary re-renders. If `handleClick` is recreated every time `Parent` renders, the `Child` component will think its props changed, causing a wasted render. `useCallback` fixes that by memoizing the function reference, keeping it stable between renders as long as its dependencies don't change.
 
 #### Comparison Table
 
@@ -125,32 +158,17 @@ The difference is that `useCallback` returns the function itself, while `useMemo
 
 #### When to Actually Use Them
 
-**The Golden Rule: Don't optimize prematurely!**
+React is already fast — only optimize when you have a real performance issue.
 
-React is already very fast. Most components don't need optimization. Both of these hooks are performance optimizations — not requirements. Overusing them can make your code harder to read and sometimes even slower due to the overhead of maintaining caches.
-
-**✅ Use them when:**
-
-- You have expensive computations running on every render (`useMemo`)
-- You are passing callback props to deeply nested or memoized child components (`useCallback`)
-- You notice unnecessary re-renders in React DevTools
-- Processing large datasets (1000+ items)
-- Complex calculations take more than 16ms (affects 60fps)
-
-**❌ Avoid them when:**
-
-- The component is small and renders quickly
-- Computations are simple or infrequent
-- Adding memoization makes the code less clear without real performance benefit
-- Working with primitive values that don't need memoization
-
-**A good rule of thumb:** Use `useMemo` for expensive calculations, and `useCallback` for event handlers or callbacks passed to children.
+- Use `useMemo` for expensive computations you don't want recalculated every render.
+- Use `useCallback` for functions passed to children to prevent unnecessary re-renders.
+- 🚫 Avoid both when your components are simple, render quickly, or when memoization adds unnecessary complexity.
 
 ### API-Based Sort and Search
 
-As your app grows, you'll often need to fetch and manipulate data from APIs. At first, it might seem easy to fetch everything and use JavaScript's `.filter()` or `.sort()` locally — but that doesn't scale well.
+As your app grows, you'll often need to fetch and manipulate data from APIs. At first, it might seem easy to just fetch all your data and handle sorting or filtering in JavaScript using .filter() or .sort(). That's perfectly fine when your dataset is small — but as your app scales, this approach quickly breaks down. Large datasets increase load times, consume more memory, and cause noticeable lag as the browser struggles to process everything locally.
 
-When building applications that display data, you face a fundamental choice: where should filtering, sorting, and pagination happen? Let's explore both approaches.
+When building applications that display data, you face a fundamental choice: where should filtering, sorting, and pagination happen — in the client or on the server? Let's explore both approaches.
 
 #### Local Data Manipulation
 
@@ -223,6 +241,132 @@ This approach has two key benefits:
 - Requires internet connection
 - Increases server load
 - May need rate limiting
+
+#### Limiting Network Requests
+
+While API-based operations solve our performance problems with large datasets, they introduce a new challenge: most APIs have usage restrictions to protect their infrastructure and manage costs. These limitations mean we can't simply make unlimited requests whenever users interact with our app.
+
+For example, at the time of their writing, [Spoonacular's introductory tier for API access](https://spoonacular.com/food-api/pricing) includes a 150 requests per day restriction and a 1 request per second limitation. Without careful planning, a single enthusiastic user could exhaust your entire daily quota in minutes by repeatedly searching or paginating through results.
+
+To work efficiently within these constraints, we'll implement two essential techniques: **caching** to reuse data we've already fetched, and **throttling** to prevent requests from happening too quickly.
+
+##### Caching Search Results Using Memoization
+
+Caching is a technique used to store data fetched from the server in a temporary storage location, such as the browser's memory or local storage. This stored data can be quickly accessed when needed without making repeated network requests. In our case, if a user searches for "chicken" several times, the app uses API quotas fetching data that we've already had access to. Even without the 150 request per day limitation, we can still employ caching to save the user's bandwidth and speed up repeated searches.
+
+One approach to this is to store the query and its search results in a lookup object. A lookup object is just a normal JavaScript object that uses the search query as a key to hold the search results. The example object below contains 2 searches, one for chicken and one for spaghetti. If a user searches for "spaghetti, tomato" again, we can access the previous search's results in the object with `searchCache["spaghetti, tomato"]`.
+
+```javascript
+//example lookup object with cached search results
+
+const searchCache = {
+  chicken: [
+    {
+      id: 123,
+      title: 'red lentil soup with chicken and turnips',
+      sourceUrl: '... recipe URL',
+    },
+    {
+      id: 456,
+      title: 'chicken enchilada quinoa cassserole',
+      sourceUrl: '...recipe URL',
+    },
+  ],
+  'spaghetti, tomato': [
+    { id: 789, title: 'spaghetti pomodoro', sourceUrl: '...recipe URL' },
+    { id: 234, title: 'spaghetti carbonara', sourceUrl: '...recipe URL' },
+    { id: 567, title: 'baked spaghetti', sourceUrl: '...recipe URL' },
+  ],
+};
+```
+
+After visualizing the cache, we'll create an empty state object to store queries and their associated search results.
+
+```jsx
+const [searchCache, setSearchCache] = useState({});
+```
+
+We next update the useEffect containing our search logic that fires every time a search term is submitted:
+
+```js
+// extract from App.jsx
+//...code
+useEffect(() => {
+  if (!term) {
+    return;
+  }
+  if (searchCache[term]) {
+    console.log(`term ${term} found, returning cache...`);
+    setRecipes([...searchCache[term]]);
+    setTerm('');
+    return;
+  }
+  async function getRecipes() {
+    console.log(`getRecipes()`);
+    const options = {
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': `${KEY}`,
+      },
+    };
+    try {
+      const resp = await fetch(
+        `${BASE_URL}/complexSearch?includeIngredients=${term}&addRecipeInformation=true`,
+        options,
+      );
+      if (resp.ok) {
+        console.log('response okay');
+        // resp includes number, offset, totalResults
+        const recipeList = await resp.json();
+        setRecipes([...recipeList.results]);
+        console.log(`caching search for "${term}"`);
+        setSearchCache((prev) => ({
+          ...prev,
+          [term]: [...recipeList.results],
+        }));
+        setTerm('');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  getRecipes();
+}, [term, searchCache]);
+//code continues...
+```
+
+##### Throttling Request Rates
+
+Another type of common API requirement is that a set amount of time must elapse before it will accept another request for processing. This use of throttling, also known as rate limiting, is a protective measure to prevent over-taxing the API's infrastructure.
+
+The easiest way to throttle the response is to limit the availability of the buttons. We can temporarily set state to disable the button and then use `setTimeout` to re-enable them after a certain time has elapsed. We'll look at the handler functions since they end up with the logic to perform the throttle:
+
+```js
+// extract from App.jsx
+//...code
+function pageForward() {
+  setIsPaginationDisabled(true);
+  const maxPages = Math.ceil(resultsCount / paginationSize);
+  const currentPage = Math.ceil(currentOffset / paginationSize) + 1;
+  if (currentPage >= maxPages) {
+    return;
+  }
+  setNextOffset(currentOffset + paginationSize);
+  setTimeout(() => setIsPaginationDisabled(false), 1000);
+}
+
+function pageBack() {
+  setIsPaginationDisabled(true);
+  if (currentOffset <= 0) {
+    return;
+  }
+  setNextOffset(currentOffset - paginationSize);
+  setTimeout(() => setIsPaginationDisabled(false), 1000);
+}
+//code continues...
+```
+
+We can look at the network requests in the network activity tab in our browser to figure out how long it's taking the request to process. For this API, the response time averages out to 350ms. We can then reduce the timeout delay by this amount, making the interface a little friendlier to use without running against the API request speed limitations.
 
 #### Implementing Long List Pagination
 
