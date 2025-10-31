@@ -331,7 +331,7 @@ useEffect(() => {
     }
   }
   getRecipes();
-}, [term, searchCache]);
+}, [term]);
 //code continues...
 ```
 
