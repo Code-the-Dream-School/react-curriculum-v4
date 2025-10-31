@@ -268,7 +268,7 @@ const searchCache = {
     },
     {
       id: 456,
-      title: 'chicken enchilada quinoa cassserole',
+      title: 'chicken enchilada quinoa casserole',
       sourceUrl: '...recipe URL',
     },
   ],
