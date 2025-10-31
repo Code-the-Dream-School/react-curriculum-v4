@@ -377,3 +377,152 @@ Almost done! Now we have to back to the App component and change all `cart` refe
 ```
 
 After these changes, our cart behaves as it did previously, but all of its state is now managed by the reducer. Because the reducer, dispatch function and the action are so tightly coupled, the reducer function is probably one of the most complex things we have covered so far. While it is harder to employ, it is far easier to manage complex state this way than relying on numerous `useState`s and we also end up with a much more compact function.
+
+### Sharing State Across Components with useContext
+
+As your React applications grow, you'll often find that multiple components need access to the same data — user settings, themes, or authentication state. Passing that data through props down every level of the component tree becomes repetitive and messy.
+
+This is known as prop drilling, and React's `useContext` hook provides a clean solution.
+
+#### The Problem: Prop Drilling
+
+Imagine you want to toggle between light and dark themes in your app. The theme setting lives in your top-level component (`App`), but a nested `Header` component needs to display a button to switch modes.
+
+Without context, you'd have to pass the `theme` and `setTheme` props down through multiple intermediate components — even ones that don't care about the theme at all. This clutters your code and makes components less reusable.
+
+#### Context to the Rescue
+
+React's Context API allows you to share data across components without manually passing props. You define a "context" that can be accessed anywhere within its provider, letting components consume shared data directly.
+
+#### Example Dark/Light Mode Application
+
+##### Step 1: Create the Context
+
+First, create a new context object using `createContext()`:
+
+```js
+// ThemeContext.js
+import { createContext } from 'react';
+
+export const ThemeContext = createContext(null);
+```
+
+The argument passed to `createContext()` is the default value — used only when a component tries to access context outside of a provider.
+
+##### Step 2: Provide Context to Your Component Tree
+
+Wrap the portion of your app that needs access to the context with a `<ThemeContext.Provider>`.
+
+The Provider's `value` prop defines what data or functions will be shared.
+
+```jsx
+// App.jsx
+import { useState } from 'react';
+import { ThemeContext } from './ThemeContext';
+import Header from './Header';
+import Main from './Main';
+
+function App() {
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () =>
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <main
+        className={
+          theme === 'light' ? 'bg-white text-black' : 'bg-black text-white'
+        }>
+        <Header />
+        <Main />
+      </main>
+    </ThemeContext.Provider>
+  );
+}
+
+export default App;
+```
+
+Here, both the current theme and a toggle function are made available to all descendants.
+
+##### Step 3: Consume Context in Child Components
+
+Any component nested within the provider can use `useContext` to access the shared data — no props required.
+
+```jsx
+// Header.jsx
+import { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
+
+function Header() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  return (
+    <header className="p-4 flex justify-between items-center">
+      <h1>My Themed App</h1>
+      <button onClick={toggleTheme} className="border rounded px-3 py-1">
+        Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+      </button>
+    </header>
+  );
+}
+
+export default Header;
+```
+
+The `Header` doesn't need to receive the theme via props — it simply reads from the context.
+
+##### Step 4: Apply Context in Other Components
+
+You can use the same context anywhere else in your app:
+
+```jsx
+// Main.jsx
+import { useContext } from 'react';
+import { ThemeContext } from './ThemeContext';
+
+function Main() {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <section className="p-4">
+      <p>
+        The current theme is <strong>{theme}</strong>.
+      </p>
+    </section>
+  );
+}
+
+export default Main;
+```
+
+Both `Header` and `Main` now stay in sync with the same global theme, eliminating prop drilling.
+
+#### Performance Pitfalls
+
+While context simplifies state sharing, it can also introduce performance issues if used improperly.
+
+Every time a context's value changes, all components consuming that context re-render — even if they don't use the changed part of the value.
+
+To avoid performance bottlenecks:
+
+**Split large contexts** — Don't group unrelated data (like theme, auth, and notifications) in one context.
+
+**Memoize the provider's value** — Wrap it in `useMemo` to avoid triggering re-renders unnecessarily.
+
+```jsx
+const value = useMemo(() => ({ theme, toggleTheme }), [theme]);
+<ThemeContext.Provider value={value}>...</ThemeContext.Provider>;
+```
+
+**Use context for stable, infrequently changing data.** Rapidly updating state (like scroll position or animations) should remain local.
+
+**Don't overuse context.** If data is only shared between a few components, regular prop passing is usually simpler and faster.
+
+#### Summary
+
+`useContext` is a powerful hook that lets you share state cleanly across your component tree without prop drilling.
+
+In the light/dark theme example, both `Header` and `Main` access and update the same theme value directly — improving readability and maintainability.
+
+However, use context thoughtfully. Overusing or mismanaging context values can lead to unnecessary re-renders and performance slowdowns. Keep your contexts focused, memoized, and minimal for best results.
