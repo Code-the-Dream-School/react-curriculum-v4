@@ -359,7 +359,7 @@ Almost done! Now we have to back to the App component and change all `cart` refe
   handleOpenAuthDialog={handleOpenAuthDialog}
   handleLogOut={handleLogOut}
   user={user}
-/>;
+/>
 {
   /*...code...*/
 }
