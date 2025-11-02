@@ -76,7 +76,7 @@ Next, we'll find places where `isCartOpen` is used and determine how argument is
 
 ![ide file search result numbers for setIsCartOpen](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-11/is-cart-open-search.png)
 
-The first location is in `useState` so we do not need to worry about that for now. The second one is in a handler function that closes the cart and the final on is in the Header instance:
+The first location is in `useState` so we do not need to worry about that for now. The second one is in a handler function that closes the cart and the final one is in the Header instance:
 
 ```jsx
 {/*extract from App.jsx*/}
