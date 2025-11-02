@@ -174,7 +174,7 @@ const [cartItemError, setCartItemError] = useState('');
 
 Besides `cart`, each other state value update employs the same complexity as `isCartOpen`. We'll refactor these without discussion so we can then explore how we identify actions and refactor the state updating logic over to our reducer.
 
-Refactoring `cart` is the most complex because of the differing ways that the user interacts with the contents of their cart. I`setCart` is referenced in 7 places in `App.jsx` excluding the `useEffect`
+Refactoring `cart` is the most complex because of the differing ways that the user interacts with the contents of their cart. `setCart` is referenced in 7 places in `App.jsx` excluding the `useEffect`
 
 - 1 time in `handleAuthenticate`
   - when a user logs in and has a saved cart, `setCart` receives `userData.cartItems` from the API response
