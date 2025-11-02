@@ -127,8 +127,8 @@ Before removing any state update function, we can place the dispatch along side 
 Recall that the dispatch function takes an `action`. This can be of any type (string, object, number, etc.) but by convention, we stick with objects containing a `type` property to identify the action and add properties as needed. The actions that our reducer will receive for the cart actions resemble:
 
 ```javascript
-const open = { value: 'open' };
-const close = { value: 'close' };
+const open = { type: 'open' };
+const close = { type: 'close' };
 ```
 
 When we are happy with how the `case` blocks work in the reducer, we can then update all `isCartOpen` references with `cartState.isCartOpen` to migrate to the updated state.
