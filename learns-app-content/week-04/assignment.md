@@ -16,7 +16,8 @@ Currently your app displays the hardcoded todos from previous weeks. To make the
 
 1. In `App.jsx`, find where you initialize the `todoList` state with `useState`
 2. Change the initial value from the hardcoded array to an empty array: `useState([])`
-3. Save and refresh your browser - you should now see an empty todo list
+3. Delete the `todos` array since it's not needed.
+4. Save and refresh your browser - you should now see an empty todo list
 
 ### Instructions Part 2: Create the Add Todo Handler
 
@@ -72,6 +73,7 @@ function TodoForm({ onAddTodo }) {
     console.log('Event target:', event.target);
     console.log('Input value:', event.target.todoTitle.value);
     
+    // .trim prevents whitespace only todos
     const todoTitle = event.target.todoTitle.value.trim();
     if (todoTitle) {
       onAddTodo(todoTitle);
