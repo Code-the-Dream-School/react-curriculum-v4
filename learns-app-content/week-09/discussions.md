@@ -218,8 +218,11 @@ function CartReducer(state, action){
       };
   }
 //code continues...
-  case "update"
-
+  case "update":
+      return {
+          ...state,
+          cart: action.cart,
+      };
 }
 ```
 
