@@ -122,7 +122,7 @@ function cartReducer(state, action) {
 //code continues...
 ```
 
-Before removing any state update function, we can place the dispatch along side it if we need to do any troubleshooting. We can the log the reducer's output to ensure the action's `case` block functions as expected.
+Before removing any state update function, we can place the dispatch along side it if we need to do any troubleshooting. We can then log the reducer's output to ensure the action's `case` block functions as expected.
 
 Recall that the dispatch function takes an `action`. This can be of any type (string, object, number, etc.) but by convention, we stick with objects containing a `type` property to identify the action and add properties as needed. The actions that our reducer will receive for the cart actions resemble:
 
