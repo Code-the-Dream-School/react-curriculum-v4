@@ -60,7 +60,7 @@ import {
   //aliasing with `as` keeps the reducer and state easily identifiable
   initialState as cartInitialState,
   reducer as cartReducer,
-} from './reducers/App/cart.reducer';
+} from './reducers/cart.reducer';
 
 {
   /*...unrelated code...*/
@@ -209,7 +209,7 @@ We'll update the cart reducer to include a `case` for "update cart" and add in t
 ```js
 // extract from cart.reducer.js
 //...code
-function CartReducer(state, action){
+function cartReducer(state, action){
  switch(action.type) {
   case "open":
       return {
@@ -359,7 +359,7 @@ Almost done! Now we have to back to the App component and change all `cart` refe
   handleOpenAuthDialog={handleOpenAuthDialog}
   handleLogOut={handleLogOut}
   user={user}
-/>
+/>;
 {
   /*...code...*/
 }
@@ -398,6 +398,8 @@ Without context, you'd have to pass the `theme` and `setTheme` props down throug
 React's Context API allows you to share data across components without manually passing props. You define a "context" that can be accessed anywhere within its provider, letting components consume shared data directly.
 
 #### Example Dark/Light Mode Application
+
+The following example demonstrates a clean, focused way to use React's Context API to implement a light/dark theme toggle. These snippets are provided purely for instructional purposes and are not part of the CTD Swag application.
 
 ##### Step 1: Create the Context
 
