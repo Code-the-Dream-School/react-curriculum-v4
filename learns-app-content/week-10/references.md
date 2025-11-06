@@ -5,8 +5,8 @@
 - [React Router](https://reactrouter.com/home)
 - [A Complete Guide to React Router: Everything You Need to Know (ui.dev)](https://ui.dev/react-router-tutorial)
 - [react-router implementation Examples (GitHub)](https://github.com/remix-run/react-router/tree/dev/examples)
-  [stub](https://en.wikipedia.org/wiki/Method_stub)
-  [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character)
+- [stub](https://en.wikipedia.org/wiki/Method_stub)
+- [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character)
 
 ---
 

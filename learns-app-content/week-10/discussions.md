@@ -4,9 +4,9 @@
 
 #### Navigating SPAs vs Traditional Websites
 
-React SPAs differ from traditional websites in terms of routing and navigation. Each page of a traditional website has its own HTML file and associated URL. Navigating between pages involves making a request to the server to fetch a new HTML document. This process is managed by the browser, which updates the URL and maintains a [history stack](https://developer.mozilla.org/en-US/docs/Web/API/History_API) that users to use the back and forward buttons to navigate through their browsing history.
+React SPAs differ from traditional websites in terms of routing and navigation. Each page of a traditional website has its own HTML file and associated URL. Navigating between pages involves making a request to the server to fetch a new HTML document. This process is managed by the browser, which updates the URL and maintains a [history stack](https://developer.mozilla.org/en-US/docs/Web/API/History_API) that allows users to use the back and forward buttons to navigate through their browsing history.
 
-In contrast, a React SPA loads a single HTML file and and uses a script to dynamically update the content on the page. This means that navigation in the app does not involve fetching new HTML documents from the server. Instead, React components are rendered or hidden based on the application's state. This approach can lead to faster and fluid UI but it also means that the URL does not change when navigating around the app and the browser's history remains unchanged.
+In contrast, a React SPA loads a single HTML file and uses a script to dynamically update the content on the page. This means that navigation in the app does not involve fetching new HTML documents from the server. Instead, React components are rendered or hidden based on the application's state. This approach can lead to faster and fluid UI but it also means that the URL does not change when navigating around the app and the browser's history remains unchanged.
 
 A major disadvantage of not leveraging browser history in a React SPA is the inability to use the back and forward buttons effectively. In a traditional website, these buttons allow users to navigate through their previous actions, providing a familiar and intuitive way to move through the site. A React SPA does not offer this functionality by default which can lead to a frustrating user experience. A user may lose their place in the application or be unable to return to a previous state easily. Even worse, if they hit the browser's back button, they may exit the application entirely!
 
@@ -51,7 +51,7 @@ To address these issues, developers often use routing libraries like React Route
 
 - route nesting
 - layout routes
-- and some other hooks such as `useLocation`, `useSearchParams`, `useLocation`
+- and some other hooks such as `useLocation`, `useSearchParams`
 
 #### Implement Routing using React Router
 
@@ -208,8 +208,8 @@ function Account({ user, handleLogOut }) {
       <h2>Your Account</h2>
       <div className="accountDetails">
         <p>First Name: {user.firstName}</p>
-        <p htmlFor="lastName">Last Name: {user.lastName}</p>
-        <p htmlFor="email">Email: {user.email}</p>
+        <p>Last Name: {user.lastName}</p>
+        <p>Email: {user.email}</p>
       </div>
       <div className="buttonGroup">
         <Link className="linkButton" to={'/'}>
@@ -403,7 +403,7 @@ Don't forget to coerce the text into numbers if they are meant to be used in any
 Returning to CTD-Swag's products route, we can see that if a browser's URL bar contains the following: `http://localhost:5173/products/3e41a7cb-63d3-4e4f-a576-a27cc9953e3a`. Our Route's path props takes `"/products/:id"` . We can tell that when using `useParams` will result in an object that looks something like:
 
 ```js
-cont paramsOjb = {
+cont paramsObj = {
     id: "3e41a7cb-63d3-4e4f-a576-a27cc9953e3a"
 }
 ```
@@ -480,33 +480,25 @@ We've dealt with a missing product, but what if the user employs a url that does
 To address this, we employ a special "catchall" route. It uses a path value of asterisk `"*"` which is a common [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character).
 
 ```jsx
-{/*extract from App.jsx*/}
-{/*props removed for clarity*/}
-{/*...code*/}
+{
+  /*extract from App.jsx*/
+}
+{
+  /*props removed for clarity*/
+}
+{
+  /*...code*/
+}
 <Routes>
-    <Route
-        path="/"
-        element={<Shop/>}
-    />
-    <Route
-        path="/checkout"
-        element={<Checkout/>}
-    />
-    {user.id && (
-        <Route
-            path="/account"
-            element={<Account/>}
-        />
-    )}
-    <Route
-        path="/products/:id"
-        element={
-            <ProductDetail/>
-        }
-    />
-    <Route path="*" element={<NotFound} />
-</Routes>
-{/*code continues...*/}
+  <Route path="/" element={<Shop />} />
+  <Route path="/checkout" element={<Checkout />} />
+  {user.id && <Route path="/account" element={<Account />} />}
+  <Route path="/products/:id" element={<ProductDetail />} />
+  <Route path="*" element={<NotFound />} />
+</Routes>;
+{
+  /*code continues...*/
+}
 ```
 
 Here's the associated NotFound component:
