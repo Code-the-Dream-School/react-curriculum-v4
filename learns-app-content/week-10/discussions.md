@@ -10,7 +10,7 @@ In contrast, a React SPA loads a single HTML file and and uses a script to dynam
 
 A major disadvantage of not leveraging browser history in a React SPA is the inability to use the back and forward buttons effectively. In a traditional website, these buttons allow users to navigate through their previous actions, providing a familiar and intuitive way to move through the site. A React SPA does not offer this functionality by default which can lead to a frustrating user experience. A user may lose their place in the application or be unable to return to a previous state easily. Even worse, if they hit the browser's back button, they may exit the application entirely!
 
-![Pressing back button leaves app](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/back-button-accident.gif)
+![Pressing back button leaves app](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/back-button-accident.gif)
 
 Another issue with unchanging URLs in a React SPA is the difficulty in sharing specific views or states within the application. Look again at the URL above - it never changes while navigating the app. In a traditional website, the URL uniquely identifies the content being viewed, making it easy to bookmark or share links to specific pages. Without routing, a React SPA cannot provide this capability, as the URL remains the same regardless of the content being displayed. This can make it challenging for users to share specific parts of the application with others or to return to a particular view later.
 
@@ -88,7 +88,7 @@ createRoot(document.getElementById('root')).render(
 
 Multi-page sites tend to have one or more repeating element that appears on every page. This gives the site a cohesive look and feel from one page to another. Reused navigation elements also help make navigation easier. For these reasons, CTD-Swag's header and footer should be shown on each page.
 
-![header and footer highlighted](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/header-footer-highlight.png)
+![header and footer highlighted](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/header-footer-highlight.png)
 
 The elements in the App component is already laid out in a way that will allow us to share the header and footer across pages. The App returns the the following element structure, minus all the props:
 
@@ -119,7 +119,7 @@ return (
 
 The page can be split into three primary elements: **Header**, **main**, and **Footer**. The Dialog component is only a conditionally rendered component that doesn't affect the flow of the html document so we [can safely ignore](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flow_layout/In_flow_and_out_of_flow) it. Main is the ideal element to make into the unique part of the pages since it's centrally located and takes up the majority of the browser's existing viewport.
 
-![main element on page highlighted](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/main-highlighted.png)
+![main element on page highlighted](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/main-highlighted.png)
 
 ##### Refactor App to add Routes
 
@@ -186,11 +186,11 @@ export default Shop;
 
 Since this component is specific to React-Router, we can create a new directory in our project for "pages" to keep Shop and other route-associated components organized neatly.
 
-![pages directory in project](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/pages-dir.png)
+![pages directory in project](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/pages-dir.png)
 
 Our next step is to add in a Routes component and our Route components. We'll use Shop as the first Route's element and [stub](https://en.wikipedia.org/wiki/Method_stub) in the remaining routes using draft components that we'll flesh out for each route later.
 
-![route components are placed into route](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/routes-stubbed.png)
+![route components are placed into route](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/routes-stubbed.png)
 
 The Route using Shop also takes a `path="/"` which indicates this is an index page. We could optionally replace `path` props with an `index` attribute: `<Route index element={<Shop ...props />} />` which behaves the same way. Be careful to provide only one of the two items as they cannot be combined.
 
@@ -269,7 +269,7 @@ Finally, update the user salutation in the header to link to the account page.
 
 Now that we have 2 routes in place, let's view the site in the browser:
 
-![navigate to account route](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/nav-to-account.gif)
+![navigate to account route](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/nav-to-account.gif)
 
 When a user navigates, the URL updates and they can use their back button.
 
@@ -357,7 +357,7 @@ Finally, we provide Checkout state it needs to render the checkout page.
 
 We now have a component state that React can render based on the URL segments:
 
-![refreshing page with checkout route in address bar](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/refresh-checkout.gif)
+![refreshing page with checkout route in address bar](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/refresh-checkout.gif)
 
 We can tell that the application has lost its state when the page refreshes because the user is not logged in and the cart is empty. What remains, though, shows that it's properly rendering an empty Checkout component.
 
@@ -367,7 +367,7 @@ Our next route, `"/products/:id"` includes a dynamic segment. `:id` represents t
 
 Now that we have an understanding of dynamic segments, we can begin developing the ProductDetails component. This page provides a user with more information about a product than could fit into a smaller card. It also includes each one of the variants some of the products have. For example, the bucket hat comes in two choices: black and peach.
 
-![showing bucket hat variants](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/bucket-hats.png)
+![showing bucket hat variants](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/bucket-hats.png)
 
 We will also continue with the Page and Cards pattern so that we can neatly display all the product variants for each product. This time around, we'll focus only on the ProductDetails component since its card behaves the same as the other cards.
 
@@ -437,7 +437,7 @@ export default ProductDetail;
 }
 ```
 
-![product id shown on page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/product-id.png)
+![product id shown on page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/product-id.png)
 
 Since we are working with local state and our ProductDetail component has to be able to render _any_ single product, not just a product that is passed into it this `id` come in handy. We can use it to look up the product in a `products` props that we add to the component's props.
 
@@ -467,15 +467,15 @@ Inside the component's return body, we can conditionally render the `product` if
 }
 ```
 
-![bucket hats variations shown](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/bucket-hats2.png)
+![bucket hats variations shown](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/bucket-hats2.png)
 
 ...or if the lookup fails:
 
-![message of nothing found on product page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/nothing-found.png)
+![message of nothing found on product page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/nothing-found.png)
 
 We've dealt with a missing product, but what if the user employs a url that doesn't match any Route's path? Since the Router fails to match the route, it fails to render anything from inside the `<Route>` component instance. We also get a series of console warnings that are useful during development but are unhelpful to the user.
 
-![no routes component rendered](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/blank-route-component.png)
+![no routes component rendered](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/blank-route-component.png)
 
 To address this, we employ a special "catchall" route. It uses a path value of asterisk `"*"` which is a common [wildcard character](https://en.wikipedia.org/wiki/Wildcard_character).
 
@@ -529,11 +529,11 @@ export default NotFound;
 
 This improves the interface so the the user understands that something went wrong.
 
-![404 message displayed](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/404.png)
+![404 message displayed](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/404.png)
 
 All of the routes are in place so now we need to improve a few details about navigation. Inside cart, we want to put a link that looks like a button that will navigate to the `"/checkout"` route.
 
-![cart showing a checkout button](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-12/cart-with-checkout.png)
+![cart showing a checkout button](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/cart-with-checkout.png)
 
 We can use the hook, `useNavigate` for this task which we import into Cart. When we call it, it gives us a function that we can use to programmatically navigate the application. In our case, we create a `handleCheckout` event handler that calls `navigate` with `'/checkout'`:
 
