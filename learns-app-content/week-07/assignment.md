@@ -170,7 +170,7 @@ At this point, you should be able to log into your app. With conditional renderi
 Transform the existing `addTodo` function to work with the API:
 
 - Make the function async
-- Keep the `addTodo` to create a new todo object.
+- Keep the logic in `addTodo` that creates a new todo object before sending it to the API.
 - **Optimistically update** the state immediately by adding the new todo to the list
 - Make a POST request to `${baseUrl}/tasks` with:
   - JSON body containing `title` and `isCompleted`
