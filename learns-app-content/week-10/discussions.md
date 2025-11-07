@@ -403,9 +403,9 @@ Don't forget to coerce the text into numbers if they are meant to be used in any
 Returning to CTD-Swag's products route, we can see that if a browser's URL bar contains the following: `http://localhost:5173/products/3e41a7cb-63d3-4e4f-a576-a27cc9953e3a`. Our Route's path props takes `"/products/:id"` . We can tell that when using `useParams` will result in an object that looks something like:
 
 ```js
-cont paramsObj = {
-    id: "3e41a7cb-63d3-4e4f-a576-a27cc9953e3a"
-}
+const paramsObj = {
+  id: '3e41a7cb-63d3-4e4f-a576-a27cc9953e3a',
+};
 ```
 
 Let's put this into place in ProductDetails. We import it into our scaffolded ProductDetails component and then call it just below the component's function definition opening:
@@ -420,7 +420,7 @@ Let's put this into place in ProductDetails. We import it into our scaffolded Pr
 import { useParams } from 'react-router';
 import styles from './ProductDetails.module.css';
 
-const ProductDetail = () => {
+const ProductDetails = () => {
   const { id } = useParams();
 
   return (
@@ -431,7 +431,7 @@ const ProductDetail = () => {
   );
 };
 
-export default ProductDetail;
+export default ProductDetails;
 {
   /*code continues...*/
 }
@@ -439,12 +439,12 @@ export default ProductDetail;
 
 ![product id shown on page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-10/assets/product-id.png)
 
-Since we are working with local state and our ProductDetail component has to be able to render _any_ single product, not just a product that is passed into it this `id` come in handy. We can use it to look up the product in a `products` props that we add to the component's props.
+Since we are working with local state and our ProductDetails component has to be able to render _any_ single product, not just a product that is passed into it this `id` come in handy. We can use it to look up the product in a `products` props that we add to the component's props.
 
 ```jsx
 {/*extract from ProductDetails*/}
 {/*...code*/}
-const ProductDetail = ({ products, handleAddItemToCart }) => {
+const ProductDetails = ({ products, handleAddItemToCart }) => {
     const { id } = useParams();
 
     const [product] = products.filter((product) => {
@@ -493,7 +493,7 @@ To address this, we employ a special "catchall" route. It uses a path value of a
   <Route path="/" element={<Shop />} />
   <Route path="/checkout" element={<Checkout />} />
   {user.id && <Route path="/account" element={<Account />} />}
-  <Route path="/products/:id" element={<ProductDetail />} />
+  <Route path="/products/:id" element={<ProductDetails />} />
   <Route path="*" element={<NotFound />} />
 </Routes>;
 {
