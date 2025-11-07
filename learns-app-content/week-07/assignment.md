@@ -135,7 +135,7 @@ try{
   - If `token` exists: render `<TodosPage token={token} />`
   - If no `token`: render `<Logon onSetEmail={setEmail} onSetToken={setToken} />`
 - Include the `Header` component above the conditional rendering, passing `token`, `onSetToken`, and `onSetEmail` as props
-- In Logon.jsx, remove the placeholder functions (`()=> {}`)defined as default values on the destructured props.
+- In Logon.jsx, remove the placeholder functions (`()=> {}`) defined as default values on the destructured props.
 
 At this point, you should be able to log into your app. With conditional rendering it should now render the TodosPage with an empty todo list and your todo form.
 
