@@ -11,7 +11,6 @@ After completing this week's assignment, your app should:
 - Show loading states during API operations
 - Display error messages when API operations fail
 - Use optimistic updates for better user experience
-- Automatically retry operations after network failures
 
 ### Instructions Part 1: Environment Setup
 
