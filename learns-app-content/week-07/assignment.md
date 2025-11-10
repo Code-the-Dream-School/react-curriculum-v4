@@ -19,6 +19,24 @@ After completing this week's assignment, your app should:
 - Create a new account with the [CTD's Todo List app](https://react-todo-list-v3.onrender.com) using the Register button. Don't log in with Google.
 - Add several test todos so that you'll have data to work with during development.
 
+#### Update Vite Configuration
+
+The app needs to run on port 3001 for it to work with the Node backend. To do this, we need to update Vite's configurations by replacing the contents of vite.config.js with the following snippet:
+
+```js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  server: { port: 3001 },
+});
+```
+
+If you are running your app, restart it from the terminal. You'll also have to update the address with the new port number in your browser's address bar.
+
+
 #### Configure Environment Variables
 
 - Create a copy of `.env.example` and name it `.env`.
