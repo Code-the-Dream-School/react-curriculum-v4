@@ -24,7 +24,7 @@ After completing this week's assignment, your app should:
 >[!note]
 >remain on `main` branch
 
-- Bootstrap a new project: `npm create vite@latest . -- --template react`
+- Bootstrap a new project: `npx create-vite@latest . --template react`
 - After any prompts, install the project dependencies using NPM: `npm install`
 
 You will end up with a project structure that looks similar to the following:
