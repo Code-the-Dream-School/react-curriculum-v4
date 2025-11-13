@@ -27,6 +27,7 @@ dispatch({ type: 'increment' });
 An action is a plain JavaScript object that describes what change should occur. By convention, actions have a `type` property that identifies the action, and optionally a `payload` containing any additional data needed for the update.
 
 ```js
+// Hypothetical example - not currently implemented in CTD Swag
 // Simple action without payload
 { type: 'RESET_CART' }
 
@@ -48,14 +49,15 @@ Actions are like standardized forms - they ensure every state change follows the
 A reducer is a pure function that takes the current state and an action, then returns a new state based on that action. It's called a "reducer" because it reduces multiple possible actions into a single state update - similar to how `Array.reduce()` works.
 
 ```js
+// Hypothetical example - not currently implemented in CTD Swag
 function cartReducer(state, action) {
   switch (action.type) {
     case 'ADD_ITEM':
-      return { ...state, items: [...state.items, action.payload] };
+      return { ...state, items: [...state.cart, action.payload] };
     case 'REMOVE_ITEM':
       return {
         ...state,
-        items: state.items.filter((item) => item.id !== action.payload.id),
+        items: state.cart.filter((item) => item.id !== action.payload.id),
       };
     case 'RESET_CART':
       return { ...state, items: [] };
@@ -111,6 +113,7 @@ function ShoppingCart() {
   };
 }
 
+// Hypothetical example - not currently implemented in CTD Swag
 // After: All logic in the reducer
 function cartReducer(state, action) {
   switch (action.type) {
@@ -124,9 +127,11 @@ function cartReducer(state, action) {
     case 'REMOVE_ITEM':
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
+        cart: state.cart.filter((item) => item.id !== action.payload.id),
         error: '',
       };
+    default:
+      return state;
   }
 }
 ```
@@ -137,7 +142,7 @@ Components become cleaner because they no longer contain complex state update lo
 
 ```js
 // Component is now focused on UI, not state logic
-function ShoppingCart() {
+function ShoppingCart({ item }) {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   return (
@@ -193,7 +198,7 @@ The Redux pattern requires more boilerplate code. Simple state updates that were
 setIsOpen(true);
 
 // More verbose with useReducer
-dispatch({ type: 'OPEN' });
+dispatch({ type: 'open' });
 // Plus you need the reducer case to handle it
 ```
 
