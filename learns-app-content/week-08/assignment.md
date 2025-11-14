@@ -178,9 +178,9 @@ The cache invalidation pattern we're implementing uses a "data version" approach
 
 19. **Create cache invalidation function**:
     - Create a function called `invalidateCache` using `useCallback`
-    - The function should increment `dataVersion` by 1 using `setDataVersion`
+    - The function should increment `dataVersion` by 1 using the functional update form: `setDataVersion(prev => prev + 1)`
     - Include a console.log message: "Invalidating memo cache after todo mutation"
-    - Use an empty dependency array since it only uses the setState function
+    - Use an empty dependency array since it only uses the setState function and the functional update form
 
 > [!NOTE]
 > While `useCallback` isn't strictly necessary for this simple function, we're using it here to give you hands-on practice with the optimization hook. In real applications, you'd typically only use `useCallback` when the function is passed as a prop to child components or included in dependency arrays.
