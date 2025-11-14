@@ -239,7 +239,7 @@ The cache invalidation pattern we're implementing uses a "data version" approach
     ```
 
 25. **Clear filter errors on successful fetch**:
-    - Add a line to clear filterError after successfully setting todoList
+    - After the line `setTodoList(data);` in the try block of your `fetchTodos` function, add `setFilterError('');` to clear any previous filter errors when data loads successfully.
 
 26. **Add filter error UI** after the existing error display:
     - Create a conditional block that displays when `filterError` has a value
