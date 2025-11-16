@@ -1,5 +1,4 @@
-<!-- h1, h2 already used by CTD Learns -->
-<!-- draft exercise composition v1-->
+<!-- h1, h2 already used by CTD Learns -->---<!-- draft exercise composition v1-->
 ### Expected App Capabilities
 
 After completing this week's assignment, your app should:
@@ -29,8 +28,7 @@ After completing this week's assignment, your app should:
 
 You will end up with a project structure that looks similar to the following:
 
-![screen capture of the newly installed project directory](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/project-directory.png)
-
+![screen capture of the newly installed project directory](./assets/project-directory.png)
 ### Instructions Part 3: Project Setup
 
 > [!note]
