@@ -62,7 +62,7 @@ After completing this week's assignment, your todo app will have:
 
 5. **Integrate SortBy** in TodosPage.jsx:
    - Place the component above TodoForm in the JSX
-   - Pass the current sort state values and setState functions as props
+   - Pass the current sort state values and setState functions as props (recall the name of the props we added in the component definition)
 
 #### Test Your Sorting
 
@@ -241,7 +241,7 @@ The cache invalidation pattern we're implementing uses a "data version" approach
 25. **Clear filter errors on successful fetch**:
     - After the line `setTodoList(data);` in the try block of your `fetchTodos` function, add `setFilterError('');` to clear any previous filter errors when data loads successfully.
 
-26. **Add filter error UI** after the existing error display:
+26. **Add filter error UI** after the elements for the existing error:
     - Create a conditional block that displays when `filterError` has a value
     - Inside the block, create a `div` containing:
       - A paragraph element displaying the filter error message
@@ -267,7 +267,7 @@ Open your browser's Developer Tools and test the following:
 
 2. **Network Tab**:
    - See debounced API calls when typing in search (300ms delay)
-   - Verify URLs include correct parameters: `?sortBy=title&sortDirection=asc&find=searchterm`
+   - Verify URLs include correct parameters: `?sortBy=title&sortDirection=asc&find={{your search term}}`
 
 3. **Performance Features**:
    - Sort todos by different criteria
