@@ -45,15 +45,15 @@ Create a new repo in GitHub and give it a name. All of the other options can rem
 Clone the repo locally. With a terminal opened to the local repo's directory, issue the command below to scaffold out a Vite project using the React template.
 
 ```bash
- npx create-vite@latest . --template react
+ npx create-vite@latest --template react .
 ```
 
 Let's break that command down to see what it's doing:
 
 1. `npx …`: npx is a cli tool that makes it easy to install and manage dependencies hosted in the npm registry. It is pre-bundled with npm since version 5.2.0.
 2. `… create-vite@latest …`: this argument tells npx to scaffold the project using Vite's newest package.
-3. `… . …` lets npx know to use the current directory. You can instead write your app name `… my-app …` so that the project is created in the `… my-app …` directory. We use the `… . …` style for now.
-4. `… --template react` tells vite's package to scaffold the project using its React template.
+3. `… --template react …` tells vite's package to scaffold the project using its React template.
+4. `… .` lets npx know to use the current directory. You can instead write your app name `… my-app` so that the project is created in the `my-app` directory. We use the `… .` style for now.
 
 > [!info]
 > If we run the command without any options (`npm create vite@latest`) this will start an interactive prompt in the terminal to help scaffold the Vite project. It will ask for a project name, a template to use, and then finally a template variant. Be careful to choose `JavaScript`, not `JavaScript SWC`. [SWC (Speedy Web Compiler)](https://swc.rs/) is a faster bundler that can be used instead of the default one used by Vite but doesn't have the right options for our project. We will not be using TypeScript in this course so don't choose that either.
