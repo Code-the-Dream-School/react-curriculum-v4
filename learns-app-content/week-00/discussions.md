@@ -2,7 +2,7 @@
 
 ### What You'll Get Out of this Course
 
-You will be learning React, a popular user interface (UI) development library used to create interactive web applications. We will build a [todo list](https://en.wikipedia.org/wiki/Time_management#Implementation_of_goals) application over the course of the weekly assignments. The final two weeks of the course are dedicated to a final project. With the knowledge gained from this course, you will be equipped with the knowledge to work on real-world React applications!
+You will be learning React, a popular user interface (UI) development library used to create interactive web applications. We will build a [todo list](https://en.wikipedia.org/wiki/Time_management#Implementation_of_goals) application over the course of the weekly assignments. We will also complete weekly exercises that that will allow you to practice the topics and techniques discussed each week. With the knowledge gained from this course, you will be equipped with the knowledge to work on real-world React applications!
 
 ### Course Structure
 
@@ -16,7 +16,7 @@ The Intro to React v4 course is structured as 11 progressive weekly lessons. Eac
 - **Week 10** use React-Router to improve web-based navigation
 - **Week 11** progressing as a React Developer
 
-One of the main requirements for graduation is that all weekly assignments must include a link to a [pull request (PR)](https://github.blog/developer-skills/github/beginners-guide-to-github-creating-a-pull-request/) that has been reviewed and approved by your assigned reviewer.
+One of the main requirements for graduation is that all weekly assignments, and any week that includes exercises, must include a link to a [pull request (PR)](https://github.blog/developer-skills/github/beginners-guide-to-github-creating-a-pull-request/) that has been reviewed and approved by your assigned reviewer.
 
 The materials for the course is further broken down into a full list of topics covered each week. Every section is titled with their topics so that they double as useful search terms when looking for external resources.
 
@@ -55,24 +55,27 @@ This section provides an outline of the major topics and summarizes what you're 
 
 #### 2. Discussion
 
-In the discussion portion of each weekly lesson, we will explore each of the listed topics in depth. We will learn key techniques and best practices that developers employ while working with the topics presented. Many coding examples are from another project we'll watch come together: CTD's new eCommerce Store : CTD Swag. No coding for that project is required from you, but if you're interested, a repo for this project can be found here<!-- PLACEHOLDER ctd swag repo url -->.
+In the discussion portion of each weekly lesson, we will explore each of the listed topics in depth. We will learn key techniques and best practices that developers employ while working with the topics presented. Many coding examples are from another project we'll watch come together: CTD's new eCommerce Store : CTD Swag. No coding for that project is required from you, but if you're interested, the repos for this project can be found here:
+
+- [CTD Swag](https://github.com/Code-the-Dream-School/ctd-swag)
+- [CTD Swag Backend](https://github.com/Code-the-Dream-School/ctd-swag-backend)
 
 #### 3. Assignments
 
 On most weeks you will have two tasks to complete before submitting your assignment form:
 
-- development and refactoring exercises
-- enhance your todo list
+- weekly exercises
+- enhancing the todo list app
 
 ##### Weekly Exercises
 
-The weekly exercises use the following repo <!-- PLACEHOLDER exercise repo -->. Inside the /src/ directory are weekly folders that each contain an INSTRUCTIONS file and any necessary exercise files. The INSTRUCTIONS file introduces a scenario and several challenges to solve based on the week's material.
+The weekly exercises use the following repo:[Code-the-Dream-School/react-curriculum-v4-exercises: Exercises for React students](https://github.com/Code-the-Dream-School/react-curriculum-v4-exercises). Inside the `/src/exercises` directory are weekly folders that each contain an `instructions.md` file and any necessary exercise files. The instructions introduces a scenario and provides several tasks or challenges based on the week's material.
 
 ##### Todo List Project
 
-The weekly todo list instructions provide enough details to code out each week's work but you will also be given certain tasks to accomplish on your own. Balancing written instruction with individual problem solving keeps the course reasonably challenging and a lot more interesting than a list of exact instructions to type into your code. Developers are expected to engage in problem solving and research while doing their work. Some tasks you will be responsible for may be challenging but are designed to be reasonable for a junior developer to undertake.
+Each week's todo list instructions give you detailed steps to follow, but you'll also have some tasks to figure out on your own. This mix of guided instruction and independent problem-solving keeps the course challenging and interesting. Real developers need to research solutions and solve problems as part of their job. Some tasks may be difficult, but they're designed to be manageable for someone learning React.
 
-A reviewer will look at both PRs to approve them or recommend changes. You'll be expected to make any requested changes before starting the next lesson. If you have questions about the review or need any clarifications, use the conversation tools on the PR page and/or Slack to talk with your reviewer. They are there to help you out!
+A reviewer will look at both PRs to approve them or recommend changes. Any changes will be communicated back via through conversation on your PRs and an Airtable email alert. You'll be expected to make any requested changes before starting the next lesson. If you have questions about the review or need any clarifications, use the conversation tools on the PR page and/or Slack to talk with your reviewer. They are there to help you out!
 
 A step-by-step of how to open a PR can be [found here](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request). The assignment submission form also includes open-ended mindset questions that will help you start to think like a professional developer.
 
