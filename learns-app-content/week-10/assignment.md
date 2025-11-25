@@ -314,7 +314,7 @@ Your application will use this routing structure:
     - Import the new `Navigation` component
     - Add it to the Header JSX between the title and the logout button
 
-#### Add Navigation Logic to AuthContext
+#### Add Navigation to Logout Flow
 
 15. **Update logout navigation** in `src/features/Logoff.jsx`:
     - Import `useNavigate` from 'react-router'
