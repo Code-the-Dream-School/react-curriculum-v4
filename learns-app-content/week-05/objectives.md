@@ -14,7 +14,7 @@ By the end of this lesson, we will:
 - Use `useState` to implement local state
 - Explain controlled components and their importance in managing state
 
-#### Objective 3: Forms
+#### Objective 2: Forms
 
 - Recognize the form's role in collecting and validating user input
 - Explain the management of form data in React
