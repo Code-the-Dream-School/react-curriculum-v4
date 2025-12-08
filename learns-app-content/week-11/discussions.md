@@ -227,10 +227,227 @@ Since the React curriculum didn't cover CSS styling approaches, this overview in
 
 #### Client-Side Security (React Developer Direct Control)
 
-- XSS Prevention
-  - JSX escaping and safe practices
-  - Safe use of `dangerouslySetInnerHTML`
-  - Input validation patterns
+##### XSS (Cross-Site Scripting) Prevention
+  
+  XSS attacks occur when malicious scripts are injected into trusted websites and executed in users' browsers. These attacks can steal user data, hijack sessions, or perform actions on behalf of users without their consent. React provides built-in protection against most XSS attacks, but developers must understand how to use these protections correctly.
+
+###### JSX Escaping and Safe Practices
+
+  React automatically escapes values embedded in JSX, preventing most XSS attacks by converting potentially dangerous characters into safe HTML entities:
+
+  ```jsx
+  // Safe - React automatically escapes the user input
+  function UserGreeting({ userName }) {
+    return <h1>Welcome, {userName}!</h1>;
+  }
+
+  // Even if userName contains "<script>alert('XSS')</script>"
+  // React renders it safely as text, not executable code
+  ```
+
+  However, you must avoid bypassing React's protections:
+
+  ```jsx
+  // DANGEROUS - Using dangerouslySetInnerHTML with user input
+  function UnsafeComponent({ userInput }) {
+    // This bypasses React's escaping and enables XSS attacks
+    return <div dangerouslySetInnerHTML={{__html: userInput}} />;
+  }
+
+  // DANGEROUS - Creating HTML strings manually
+  function AlsoUnsafe({ userInput }) {
+    const htmlString = `<p>User said: ${userInput}</p>`;
+    return <div dangerouslySetInnerHTML={{__html: htmlString}} />;
+  }
+  ```
+
+###### Safe Use of `dangerouslySetInnerHTML`
+
+  The `dangerouslySetInnerHTML` prop allows you to set HTML directly, but it completely bypasses React's XSS protection. Use it only when absolutely necessary and always sanitize the content first.
+
+  When you must use `dangerouslySetInnerHTML`, be sure to sanitize the content. DOMPurify is a good tool that removes malicious code while preserving safe HTML content. [DOMPurify Documentation](https://github.com/cure53/DOMPurify)
+
+  ```jsx
+  // WRONG - Direct user input creates XSS vulnerability
+  function BadExample({ userHtml }) {
+    return <div dangerouslySetInnerHTML={{__html: userHtml}} />;
+  }
+
+  // BETTER - Sanitize HTML content first
+  import DOMPurify from 'dompurify';
+
+  function SaferExample({ userHtml }) {
+    const sanitizedHtml = DOMPurify.sanitize(userHtml);
+    return <div dangerouslySetInnerHTML={{__html: sanitizedHtml}} />;
+  }
+  ```
+
+###### Legitimate Use Cases for `dangerouslySetInnerHTML`
+
+  While you should avoid `dangerouslySetInnerHTML` in most cases, some scenarios require it:
+
+**Content Management and Rich Text:** When integrating WYSIWYG editors (TinyMCE, Quill) or displaying content from headless CMS systems that store rich text as HTML. Content creators need formatting capabilities that can't be easily recreated with React components:
+
+  ```jsx
+  import DOMPurify from 'dompurify';
+
+  function RichTextContent({ cmsContent }) {
+    // CMS content might contain: <p><strong>Bold text</strong> and <em>italic</em></p>
+    const sanitizedContent = DOMPurify.sanitize(cmsContent);
+    return <div dangerouslySetInnerHTML={{__html: sanitizedContent}} />;
+  }
+  ```
+
+**Code Syntax Highlighting:** Libraries like Prism.js generate HTML with specific classes for syntax highlighting:
+
+  ```jsx
+  import DOMPurify from 'dompurify';
+
+  function CodeBlock({ highlightedCode }) {
+    // Prism.js output: <span class="token keyword">function</span>
+    const sanitizedCode = DOMPurify.sanitize(highlightedCode);
+    return <pre dangerouslySetInnerHTML={{__html: sanitizedCode}} />;
+  }
+  ```
+
+**SVG Icons from Strings:** When working with icon libraries that provide SVG content as strings. **Important:** SVG can contain `<script>` tags and other executable content, making sanitization critical:
+
+  ```jsx
+  import DOMPurify from 'dompurify';
+
+  function SvgIcon({ svgString }) {
+    // DANGEROUS SVG content might contain malicious code:
+    // <svg width="100" height="100">
+    //   <circle cx="50" cy="50" r="40" fill="red" />
+    //   <script>fetch('/steal-data', { method: 'POST', body: document.cookie });</script>
+    //   <foreignObject><iframe src="javascript:alert('XSS')"></iframe></foreignObject>
+    // </svg>
+
+    // SAFE - DOMPurify removes script tags and other dangerous elements
+    const sanitizedSvg = DOMPurify.sanitize(svgString, { 
+      USE_PROFILES: { svg: true, svgFilters: true } 
+    });
+    // Result: <svg width="100" height="100"><circle cx="50" cy="50" r="40" fill="red"></circle></svg>
+    // Script tags and dangerous elements are completely removed
+    
+    return <span dangerouslySetInnerHTML={{__html: sanitizedSvg}} />;
+  }
+  ```
+
+###### Input Validation Patterns
+
+  Validate and sanitize user input before processing or storing it. This provides defense in depth beyond React's built-in protections. **Never attempt to manually filter malicious content** - attackers know numerous bypass techniques that manual keyword filtering can't catch.
+
+**Use Established Validation Libraries:**
+
+  Third-party validation libraries like Zod provide comprehensive schema validation that handles complex edge cases and security considerations that manual validation often misses. These libraries are battle-tested and maintained by security-conscious developers. [Zod Documentation](https://zod.dev/)
+
+  ```jsx
+  import { z } from 'zod';
+  import DOMPurify from 'dompurify';
+
+  // Define validation schema
+  const commentSchema = z.object({
+    content: z.string()
+      .min(3, 'Comment must be at least 3 characters')
+      .max(1000, 'Comment must be less than 1000 characters')
+      .refine((value) => value.trim().length > 0, 'Comment cannot be empty')
+  });
+
+  function CommentForm({ onSubmit }) {
+    const [comment, setComment] = useState('');
+    const [errors, setErrors] = useState({});
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      setErrors({});
+      
+      try {
+        // Validate with established schema
+        const validatedData = commentSchema.parse({ content: comment });
+        
+        // Sanitize content even if it's valid structure
+        const sanitizedComment = DOMPurify.sanitize(validatedData.content);
+        
+        onSubmit(sanitizedComment);
+      } catch (error) {
+        // Handle validation errors safely
+        if (error.errors) {
+          const fieldErrors = {};
+          error.errors.forEach((err) => {
+            fieldErrors[err.path[0]] = err.message;
+          });
+          setErrors(fieldErrors);
+        }
+      }
+    };
+
+    return (
+      <form onSubmit={handleSubmit}>
+        <textarea 
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          placeholder="Enter your comment..."
+        />
+        {errors.content && <p className="error">{errors.content}</p>}
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
+  ```
+
+**Server-Side Validation is Critical:**
+
+  ```jsx
+  // WRONG - Client-only validation is easily bypassed
+  function InsecureForm({ onSubmit }) {
+    const [email, setEmail] = useState('');
+    
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      // Attackers can bypass this by modifying JavaScript
+      if (email.includes('@')) {
+        onSubmit(email);
+      }
+    };
+    // ... rest of component
+  }
+
+  // BETTER - Client validation for UX, server validation for security
+  function SecureForm({ onSubmit }) {
+    const [email, setEmail] = useState('');
+    const [serverError, setServerError] = useState('');
+    
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      
+      try {
+        // Client-side validation for immediate user feedback
+        const emailSchema = z.string().email('Please enter a valid email');
+        const validEmail = emailSchema.parse(email);
+        
+        // Server handles final validation and security checks
+        const response = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: validEmail })
+        });
+        
+        if (!response.ok) {
+          const error = await response.json();
+          setServerError(error.message || 'Submission failed');
+          return;
+        }
+        
+        onSubmit(validEmail);
+      } catch (error) {
+        setServerError('Please check your input and try again');
+      }
+    };
+    // ... rest of component
+  }
+  ```
+
 - Environment variables and API keys
   - Never expose secrets in client code
   - Proper `.env` file usage
