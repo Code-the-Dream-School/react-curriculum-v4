@@ -124,13 +124,6 @@ Automated tooling ensures consistent code style and catches potential issues bef
 
 Clear documentation demonstrates your ability to communicate technical concepts effectively—a crucial skill employers value. Your documentation should tell the story of your project: what it does, how it works, and why you built it the way you did.
 
-##### README Enhancement
-
-- Clear project description and purpose
-- Live demo link and screenshots
-- Installation and setup instructions
-- How to use the application
-
 **Sample README for CTD Swag:**
 
 ````markdown
@@ -185,7 +178,7 @@ A modern e-commerce application built with React, featuring product browsing, ca
 
 ##### Portfolio-Specific Documentation
 
-Beyond the technical README, your project needs documentation that tells your personal development story. This narrative should live in dedicated sections of your README or as part of your personal website's project showcase. The goal is to help potential employers understand not just what you built, but how you grew as a developer and what you learned from the challenges you faced.
+Beyond the technical README, your project needs a narrative that tells your personal development story. This should live in dedicated sections of your README or as part of your personal website's project showcase. The goal is to help potential employers understand not just what you built, but how you grew as a developer and what you learned from the challenges you faced.
 
 - Technologies learned and applied
 - Features and functionality highlights
@@ -197,13 +190,13 @@ Beyond the technical README, your project needs documentation that tells your pe
 
 > **Technologies Learned and Applied:**
 >
-> Throughout developing CTD Swag, I mastered core React concepts including useState and useEffect hooks, component composition patterns, and prop management. After an MVP was complete, I introduced useReducer for complex cart state management, React Router for multi-page navigation, and performance optimization with useMemo and useCallback hooks. I also gained proficiency in modern development tools including Vite build system, ESLint for code quality, and CSS Modules for component-scoped styling.
+> Throughout developing CTD Swag, I mastered core React concepts including useState and useEffect hooks, component composition patterns, and prop management. After an MVP was complete, I introduced useReducer for cart state management, React Router for multi-page navigation, and performance optimization with useMemo and useCallback hooks. I also gained proficiency in modern development tools including Vite build system, ESLint for code quality, and CSS Modules for component-scoped styling.
 >
 > **Features and Functionality Highlights:**
 >
-> - **Dynamic Product Catalog:** Built a responsive product grid with real-time filtering and search capabilities, handling 50+ products with smooth user interactions
+> - **Dynamic Product Catalog:** Built a responsive product grid with filtering and search capabilities, handling 50+ products with smooth user interactions
 > - **Shopping Cart Management:** Implemented full cart functionality including add/remove items, quantity updates, price calculations, and persistent storage across browser sessions
-> - **Responsive Design:** Created mobile-first layouts adaptable from 320px mobile screens to 1920px desktop displays
+> - **Responsive Design:** Created mobile-first layouts adaptable from mobile to desktop displays
 > - **Performance Optimization:** Achieved smooth rendering for large product datasets through strategic memoization and efficient re-render patterns
 >
 > **Your Role and Contributions:**
@@ -235,17 +228,23 @@ Together, these three pillars elevate your course projects from academic exercis
 
 ### App and Data Security
 
-Security is a shared responsibility between frontend and backend developers, but React developers must understand their role in protecting user data and preventing common vulnerabilities. While backend systems handle authentication, data validation, and server-side security measures, frontend applications serve as the first line of defense against many attacks and must be designed with security principles in mind.
+Security is a shared responsibility between frontend and backend developers. React developers must understand their role in protecting user data and preventing common vulnerabilities. While backend systems handle authentication, data validation, and server-side security measures, frontend applications serve as the first line of defense against many attacks and must be designed with security principles in mind.
 
-This section covers security considerations specifically relevant to React developers, organized into three key areas: **Client-Side Security** (areas under direct React developer control), **Application Architecture Security** (frontend implications of security patterns), and **Deployment Concerns** (production environment considerations). Understanding these concepts helps you build applications that protect user data, prevent common attacks, and integrate securely with backend services.
+This section covers security considerations relevant to React developers organized into three key areas:
 
-#### Client-Side Security (React Developer Direct Control)
+- **Client-Side Security** - areas under direct React developer control
+- **Application Architecture Security** - what the React developer needs to know about security patterns used across an app’s tech stack
+- **Deployment Concerns** - production environment considerations
+
+Understanding these concepts helps you build applications that protect user data, prevent common attacks, and integrate securely with backend services.
+
+#### Client-Side Security
 
 ##### XSS (Cross-Site Scripting) Prevention
   
   XSS attacks occur when malicious scripts are injected into trusted websites and executed in users' browsers. These attacks can steal user data, hijack sessions, or perform actions on behalf of users without their consent. React provides built-in protection against most XSS attacks, but developers must understand how to use these protections correctly.
-
-###### JSX Escaping and Safe Practices
+  
+###### React’s Handling of Embedded Values
 
   React automatically escapes values embedded in JSX, preventing most XSS attacks by converting potentially dangerous characters into safe HTML entities:
 
@@ -259,7 +258,7 @@ This section covers security considerations specifically relevant to React devel
   // React renders it safely as text, not executable code
   ```
 
-  React's automatic escaping works reliably unless you explicitly bypass these protections:
+  This automatic escaping works reliably unless you explicitly bypass these protections:
 
   ```jsx
   // DANGEROUS - Using dangerouslySetInnerHTML with user input
@@ -275,11 +274,11 @@ This section covers security considerations specifically relevant to React devel
   }
   ```
 
-###### Safe Use of `dangerouslySetInnerHTML`
+###### Use of `dangerouslySetInnerHTML`
 
   The `dangerouslySetInnerHTML` prop allows you to set HTML directly, but it completely bypasses React's XSS protection. Use it only when absolutely necessary and always sanitize the content first.
 
-  When you must use `dangerouslySetInnerHTML`, be sure to sanitize the content. DOMPurify is a good tool that removes malicious code while preserving safe HTML content. [DOMPurify Documentation](https://github.com/cure53/DOMPurify)
+  DOMPurify is a good tool that removes malicious code while preserving safe HTML content. [DOMPurify Documentation](https://github.com/cure53/DOMPurify)
 
   ```jsx
   // WRONG - Direct user input creates XSS vulnerability
@@ -300,29 +299,9 @@ This section covers security considerations specifically relevant to React devel
 
   While you should avoid `dangerouslySetInnerHTML` in most cases, some scenarios require it:
 
-**Content Management and Rich Text:** When integrating WYSIWYG editors (TinyMCE, Quill) or displaying content from headless CMS systems that store rich text as HTML. Content creators need formatting capabilities that can't be easily recreated with React components:
+**Content Management and Rich Text:** When integrating WYSIWYG editors (TinyMCE, Quill) or displaying content from headless CMS systems that store rich text as HTML. Content creators need formatting capabilities that can't be easily recreated with React components.
 
-  ```jsx
-  import DOMPurify from 'dompurify';
-
-  function RichTextContent({ cmsContent }) {
-    // CMS content might contain: <p><strong>Bold text</strong> and <em>italic</em></p>
-    const sanitizedContent = DOMPurify.sanitize(cmsContent);
-    return <div dangerouslySetInnerHTML={{__html: sanitizedContent}} />;
-  }
-  ```
-
-**Code Syntax Highlighting:** Libraries like Prism.js generate HTML with specific classes for syntax highlighting:
-
-  ```jsx
-  import DOMPurify from 'dompurify';
-
-  function CodeBlock({ highlightedCode }) {
-    // Prism.js output: <span class="token keyword">function</span>
-    const sanitizedCode = DOMPurify.sanitize(highlightedCode);
-    return <pre dangerouslySetInnerHTML={{__html: sanitizedCode}} />;
-  }
-  ```
+**Code Syntax Highlighting:** Libraries like Prism.js generate HTML with specific classes for syntax highlighting.
 
 **SVG Icons from Strings:** When working with icon libraries that provide SVG content as strings. **Important:** SVG can contain `<script>` tags and other executable content, making sanitization critical:
 
@@ -333,8 +312,8 @@ This section covers security considerations specifically relevant to React devel
     // DANGEROUS SVG content might contain malicious code:
     // <svg width="100" height="100">
     //   <circle cx="50" cy="50" r="40" fill="red" />
-    //   <script>fetch('/steal-data', { method: 'POST', body: document.cookie });</script>
-    //   <foreignObject><iframe src="javascript:alert('XSS')"></iframe></foreignObject>
+    //⚠️   <script>fetch('/steal-data', { method: 'POST', body: document.cookie });</script>
+    //⚠️   <foreignObject><iframe src="javascript:alert('XSS')"></iframe></foreignObject>
     // </svg>
 
     // SAFE - DOMPurify removes script tags and other dangerous elements
@@ -350,11 +329,11 @@ This section covers security considerations specifically relevant to React devel
 
 ###### Input Validation Patterns
 
-  Validate and sanitize user input before processing or storing it. This provides defense in depth beyond React's built-in protections. **Never attempt to manually filter malicious content** - attackers know numerous bypass techniques that manual keyword filtering can't catch.
+  Validate and sanitize user input before processing or storing it. This provides a line of defense beyond React's built-in protections. **Never attempt to manually filter malicious content** - attackers know numerous bypass techniques that manual keyword filtering can't catch.
 
 **Use Established Validation Libraries:**
 
-  Third-party validation libraries like Zod provide comprehensive schema validation that handles complex edge cases and security considerations that manual validation often misses. These libraries are battle-tested and maintained by security-conscious developers. [Zod Documentation](https://zod.dev/)
+  Third-party validation libraries like Zod provide comprehensive schema validation that handles complex edge cases that manual validation often misses. These libraries are battle-tested and maintained by security-conscious developers. [Zod Documentation](https://zod.dev/)
 
   ```jsx
   import { z } from 'zod';
@@ -412,7 +391,7 @@ This section covers security considerations specifically relevant to React devel
 
 **Server-Side Validation is Critical:**
 
-  Client-side validation serves primarily as a user experience enhancement, providing immediate feedback to help users complete forms correctly. However, it cannot be trusted for security purposes because users have complete control over client-side code. Attackers can easily bypass client-side validation by disabling JavaScript, modifying code in developer tools, or sending HTTP requests directly to your API endpoints.
+  Client-side validation serves primarily as a user experience enhancement, providing immediate feedback to help users complete forms correctly. While validation can deter some malicious behavior, it cannot be relied on for security purposes. Users still have complete control over client-side code. Attackers can easily bypass client-side validation by disabling JavaScript, modifying code in developer tools, or sending HTTP requests directly to your API endpoints.
 
   Every piece of data your application receives must be validated and sanitized on the server, regardless of client-side checks. This principle applies to all user inputs: form data, URL parameters, file uploads, and API request payloads. Server-side validation acts as your application's security boundary—the final checkpoint that determines whether data is safe to process and store.
 
@@ -909,7 +888,7 @@ This section covers security considerations specifically relevant to React devel
 
   Before updating dependencies, ensure you have comprehensive test coverage for your application's critical functionality. This includes testing authentication flows, data fetching and display, form submissions, routing and navigation, and any payment or business logic.
 
-  Always test updates in a staging environment that mirrors your production setup. Have a rollback plan ready in case updates break functionality - this might involve reverting to the previous package-lock.json file or maintaining backup branches.
+  Always have a rollback plan ready in case updates break functionality - this might involve reverting to the previous package-lock.json file or maintaining backup branches.
 
   After applying updates, validate that all critical user paths still work correctly. Pay special attention to areas where updated packages are heavily used, and monitor your application closely after deploying updated dependencies to production.
 
@@ -987,7 +966,7 @@ These examples demonstrate how authorization creates granular control over who c
 
 In React applications, authentication typically involves managing user credentials, tokens, and login state. Your React app handles the user interface for login forms and manages the authentication tokens received from your backend. This includes implementing login/logout functionality and maintaining user session state throughout the application lifecycle. Session management becomes critical here—React applications must handle token expiration, automatic logout, and session persistence across browser tabs through session validation, automatic token refresh, and periodic session checks.
 
-Authorization controls what authenticated users can see and do within your application through protected routes, conditional rendering, and role-based access control. However, **authorization must be enforced on the backend server, not just in the React frontend.** While React can customize the UI based on user roles for better user experience, malicious users can manipulate client-side code to change local state (such as modifying `role: "user"` to `role: "admin"`). Your backend APIs must validate user permissions for every request—frontend authorization controls are purely for UI enhancement and user experience, while true security enforcement happens on the server.
+Authorization controls what authenticated users can see and do within your application through protected routes, conditional rendering, and role-based access control. However, **authorization must be enforced on the backend server, not just in the React frontend.** React can customize the UI based on user roles for better user experience but malicious users can manipulate client-side code to change local state (such as modifying `role: "user"` to `role: "admin"`). Your backend APIs must validate user permissions for every request — frontend authorization controls are purely for UI enhancement and user experience, while true security enforcement happens on the server.
 
 ##### Cross-Origin Resource Sharing (CORS)
 
@@ -1041,25 +1020,503 @@ Implement patterns that prevent accidentally exposing user data, API keys, or in
 
 #### Deployment Concerns
 
-- Development vs production builds
-  - Source map protection
-  - Removing dev tools and debugging info
-- HTTPS everywhere
-  - Secure connections requirement
-- CSP (Content Security Policy)
-  - Header configuration impact on React apps
-  - Script and resource loading restrictions
+Deploying React applications securely requires careful attention to build configuration, connection security, and browser security policies. While development environments prioritize debugging and rapid iteration, production deployments must eliminate debug information, enforce secure connections, and implement strict content policies that protect users from malicious attacks.
+
+##### Development vs Production Builds
+
+React applications require different configurations for development and production environments. Development builds include extensive debugging information, hot reloading capabilities, and verbose error messages that help developers identify and fix issues quickly. However, this same information becomes a security liability in production environments where it can expose internal application structure, API endpoints, and sensitive implementation details to potential attackers.
+
+**Source Map Protection:**
+
+Source maps enable developers to debug minified production code by mapping it back to the original source files. While invaluable for debugging production issues, source maps expose your entire application source code to anyone who accesses your deployed application. This includes business logic, API endpoints, internal comments, and potentially sensitive configuration details that attackers can use to understand your application's architecture and identify vulnerabilities.
+
+Most deployment platforms allow you to generate source maps for internal debugging while preventing them from being served to end users. For example, you can configure your build process to generate source maps but store them separately from your public assets, making them available only to your development team for production debugging. Alternatively, you can upload source maps to error monitoring services like Sentry or LogRocket, which use them for error tracking without exposing them publicly.
+
+When using Vite for React applications, you can control source map generation through the build configuration. For production deployments, consider using `"hidden-source-map"` which generates source maps for debugging but doesn't include the reference comment that would allow browsers to automatically load them.
+
+**Removing Dev Tools and Debugging Information:**
+
+Production builds must eliminate all development-only code that could expose sensitive information or create performance bottlenecks. This includes removing `console.log` statements, debug flags, development-only error messages, and React DevTools integration.
+
+Development code often contains temporary logging, experimental features, and detailed error information that helps during the development process but should never reach production users. React's production build process automatically removes some development code, but developers must ensure their own debug code is properly excluded from production bundles.
+
+Use environment variables to conditionally include debugging code only in development environments. This ensures that sensitive logging, development shortcuts, and debug interfaces are completely absent from production builds, eliminating potential attack vectors and improving application performance.
+
+```jsx
+// Safe debugging pattern using environment variables
+function UserDashboard({ user }) {
+  const [userData, setUserData] = useState(null);
+  
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch(`/api/users/${user.id}`);
+      const data = await response.json();
+      
+      // Debug logging only in development
+      if (import.meta.env.DEV) {
+        console.log('User data received:', data);
+        console.log('API response headers:', response.headers);
+        // Development-only performance timing
+        console.time('render-user-dashboard');
+      }
+      
+      setUserData(data);
+    } catch (error) {
+      console.error('Failed to load user data');
+    }
+  };
+  
+  // ... rest of component
+}
+```
+
+##### HTTPS Everywhere
+
+Modern web applications must use HTTPS for all communications, not just authentication or payment pages. This requirement has evolved from a best practice to a mandatory security standard that affects not only data protection but also access to modern browser APIs that React applications frequently depend on.
+
+**Secure Connection Requirements:**
+
+HTTPS encrypts all communication between users' browsers and your React application, preventing man-in-the-middle attacks, data interception, and content manipulation by malicious actors. Without HTTPS, attackers can modify your React application's JavaScript code as it travels from your server to users' browsers, potentially injecting malicious code or stealing sensitive information.
+
+```mermaid
+sequenceDiagram
+    participant U as User's Browser
+    participant A as Attacker
+    participant S as React App Server
+    
+    Note over U,S: HTTP Connection (Vulnerable)
+    U->>A: HTTP Request for React App
+    Note over A: Attacker intercepts request
+    A->>S: Modified request to server
+    S->>A: React App JavaScript
+    Note over A: Attacker injects malicious code
+    A->>U: Malicious React App
+    Note over U: User receives compromised app<br/>with injected malware
+    
+    Note over U,S: HTTPS Connection (Secure)
+    U->>S: HTTPS Request (encrypted)
+    Note over A: Attacker cannot read<br/>or modify encrypted traffic
+    S->>U: React App (encrypted & verified)
+    Note over U: User receives authentic app
+```
+
+Many modern browser APIs that React applications commonly use—including geolocation, camera access, push notifications, and service workers for Progressive Web Apps—require secure contexts and will not function over HTTP connections. This means React applications served over HTTP lose access to important functionality that users expect from modern web applications.
+
+Search engines now factor HTTPS usage into search rankings, and browsers display prominent warnings for HTTP sites, particularly those with form inputs. These factors make HTTPS essential not just for security but for user experience and application discoverability.
+
+**Certificate Management and Best Practices:**
+
+Deploy HTTPS using valid SSL/TLS certificates from trusted Certificate Authorities. Most modern deployment platforms (Netlify, Vercel, Railway) automatically provide and manage SSL certificates, including automatic renewal to prevent expiration issues.
+
+Configure your deployment to redirect all HTTP traffic to HTTPS automatically, ensuring users always access your React application over secure connections regardless of how they initially navigate to your site. Implement HTTP Strict Transport Security (HSTS) headers to instruct browsers to always use HTTPS for future visits to your domain, providing protection against protocol downgrade attacks.
+
+##### Content Security Policy (CSP)
+
+Content Security Policy is a security standard that helps prevent XSS attacks, data injection, and other code execution vulnerabilities by controlling which resources browsers are allowed to load for your React application. CSP works by defining approved sources for various types of content, effectively creating an allow-list that prevents malicious scripts from executing even if they somehow get injected into your application.
+
+> [!NOTE]
+> CSP is an advanced security topic that you typically won't be expected to configure as a junior React developer. However, understanding the basics of how CSP affects React applications will help you troubleshoot deployment issues and prepare you for increased responsibilities as you advance in your career. Focus on understanding what CSP does and how your React code choices impact CSP requirements rather than memorizing configuration details.
+
+**Header Configuration Impact on React Apps:**
+
+CSP policies are implemented through HTTP headers sent by your web server, making them a deployment-level security configuration that React developers must understand and plan for. These policies affect how your React application loads JavaScript files, CSS stylesheets, images, fonts, and makes API requests.
+
+React applications built with modern tools like Vite generate unique file names with content hashes, which can complicate CSP implementation since you can't predict exact file names in advance. However, you can use CSP directives that allow resources from specific domains (like your own deployment domain) or implement nonce-based CSP policies that work with dynamic file names.
+
+Most deployment platforms allow you to configure CSP headers through configuration files, dashboard settings, or redirect rules. The key is balancing security with functionality—overly restrictive CSP policies can break your React application's functionality, while overly permissive policies provide little security benefit.
+
+**Script and Resource Loading Restrictions:**
+
+CSP policies directly affect how React applications load and execute code. The `script-src` directive controls which JavaScript sources browsers will execute, affecting not only your React bundle but also any third-party analytics, chat widgets, or payment processing scripts your application uses.
+
+**Where CSP Directives Come From:**
+
+CSP directives are configured at the server or deployment platform level, not within your React application code. They're delivered to browsers through HTTP headers sent by your web server when serving your React application. React developers work with CSP by understanding how their application's requirements map to the necessary policy configurations.
+
+```bash
+# Example CSP header sent by your server/deployment platform:
+Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.yourapp.com
+```
+
+**How React Developers Work with CSP:**
+
+React developers need to identify all the external resources their application requires and communicate these requirements to their deployment platform or DevOps team. This includes cataloging third-party scripts, CDN resources, API endpoints, and any external services the application integrates with.
+
+```jsx
+// React developers need to account for all external resources:
+function App() {
+  useEffect(() => {
+    // Analytics script - requires script-src for Google Analytics domain
+    gtag('config', 'GA-MEASUREMENT-ID');
+    
+    // External API calls - requires connect-src for API domain
+    fetch('https://api.external-service.com/data')
+      .then(response => response.json())
+      .then(data => setData(data));
+  }, []);
+
+  return (
+    <div>
+      {/* External fonts - requires font-src for Google Fonts */}
+      <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet" />
+      
+      {/* External images - requires img-src for CDN */}
+      <img src="https://cdn.example.com/image.jpg" alt="Product" />
+      
+      {/* Payment widget - requires script-src for Stripe domain */}
+      <StripeCheckout />
+    </div>
+  );
+}
+```
+
+**Common CSP Configuration for React Apps:**
+
+Most deployment platforms (Netlify, Vercel, Railway) allow CSP configuration through configuration files, dashboard settings, or special headers files:
+
+```bash
+# Example _headers file (Netlify) or vercel.json (Vercel)
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://www.googletagmanager.com https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.yourapp.com https://analytics.google.com
+```
+
+Modern React applications typically require CSP configurations that allow scripts from your deployment domain, popular CDNs for third-party libraries, and specific domains for services like analytics providers or customer support tools. However, avoid using `'unsafe-eval'` or `'unsafe-inline'` directives, which significantly weaken CSP protection.
+
+For React applications that dynamically load assets or make API calls, you'll need to ensure the `connect-src` directive is configured to include all domains your application communicates with. This includes your backend API, external services, and any third-party APIs your React application integrates with. As a React developer, your role is to identify and document these requirements so they can be properly configured at the deployment level.
+
+Image and font loading policies (`img-src`, `font-src`) should include your application domain, CDNs for any external assets, and potentially data URIs if your application uses inline images or fonts. The `style-src` directive affects CSS loading and may require special configuration if you use CSS-in-JS libraries that generate dynamic styles.
 
 ### Deploying a React App
 
-- choose a service
-- upgrading/downgrading package.json deps to meet service's
-- connecting service to repo
-- using service's environmental key store
-- update CORS on backend
+Moving from development to production requires deploying your React application to a hosting platform that can serve your built application to users worldwide. This section covers deploying React applications using Render.com, a modern platform that provides free hosting for static sites with automatic HTTPS, CDN distribution, and seamless GitHub integration.
+
+We'll use the [CTD Swag application](https://github.com/Code-the-Dream-School/ctd-swag) as our example throughout this deployment walkthrough, demonstrating the complete process from connecting your repository to managing environment variables and monitoring deployments.
+
+#### Choosing a Deployment Platform
+
+Render.com offers an excellent balance of features, simplicity, and cost-effectiveness for React applications. Unlike traditional hosting services that require manual configuration and server management, Render provides a Platform-as-a-Service (PaaS) experience that handles infrastructure concerns automatically.
+
+##### Key Benefits of Render for React Apps
+
+- Automatic HTTPS certificates for secure connections without manual SSL setup
+- Global CDN distribution for fast loading times worldwide
+- GitHub integration for automatic deployments on code changes
+- Environment variable management through a secure web interface
+- Build optimization with caching and modern deployment pipelines
+- Zero-downtime deployments with automatic rollback capabilities
+
+##### Free Tier Capabilities
+
+Render's free tier provides substantial resources for learning and portfolio projects:
+
+- 750 hours per month of runtime (enough for continuous operation)
+- Automatic sleep after 15 minutes of inactivity to conserve resources
+- Automatic wake-up when users visit your application
+- 100 GB bandwidth per month for serving your application
+- Global CDN included for improved performance
+- Custom build commands and environment configuration
+
+The free tier limitations are designed for development and portfolio use cases. Production applications typically require paid plans for guaranteed uptime, but the free tier perfectly suits learning projects and portfolio demonstrations.
+
+#### Repository Setup and GitHub Integration
+
+Before deploying to Render, ensure your React application repository is properly configured and accessible on GitHub. The deployment process requires a public repository or appropriate access permissions for private repositories.
+
+##### Connecting Your GitHub Repository
+
+1. **Sign up for Render** using your GitHub account at [render.com](https://render.com) for seamless integration
+2. **Authorize Render** to access your GitHub repositories through OAuth
+3. **Select repository access** - choose specific repositories or grant access to all repositories
+4. **Repository permissions** - Render requires read access to code and write access for deployment status updates
+
+##### Automatic Deployment Configuration
+
+Render monitors your connected repository for changes and automatically triggers new deployments when you push code to your main branch. This continuous deployment workflow ensures your live application stays synchronized with your latest code changes.
+
+The deployment process begins immediately when Render detects new commits to your configured branch (typically `main` or `master`). Each deployment creates a new version of your application while maintaining the previous version until the new deployment completes successfully.
+
+##### Deploy Hooks for Advanced Workflows
+
+For more sophisticated deployment patterns, Render provides deploy hooks that allow programmatic control over the deployment process. The simplest approach uses GitHub webhooks that trigger deployments based on specific repository events:
+
+- Push events to trigger deployments on code changes
+- Pull request merges for deployment after code review
+- Manual triggers through Render's dashboard or API
+- Scheduled deployments for regular updates or maintenance
+
+While deploy hooks offer powerful automation capabilities, most React applications work well with the default GitHub integration that automatically deploys on push to the main branch.
+
+#### Build Configuration and Environment Setup
+
+Render automatically detects React applications and configures appropriate build settings, but understanding the build process helps you troubleshoot issues and optimize deployment performance.
+
+##### Automatic Build Detection
+
+Render analyzes your repository structure to determine the appropriate build configuration:
+
+- Package.json detection identifies Node.js applications and dependencies
+- Build script recognition uses standard npm scripts like `build` and `start`
+- Framework detection automatically configures settings for React, Vue, Angular, and other frameworks
+- Node.js version selection based on your `.nvmrc` file or package.json engines field
+
+##### Build Environment Configuration
+
+The build process occurs in a containerized environment with the following default settings:
+
+```bash
+# Default Node.js version (configurable)
+Node.js: 18.x (latest LTS)
+
+# Build commands (automatically detected)
+Build Command: npm run build
+Install Command: npm install
+
+# Output directory (standard for React)
+Publish Directory: dist (for Vite)
+```
+
+##### Customizing Build Settings
+
+While Render's automatic detection works for most React applications, you can customize build settings when needed:
+
+- Build command - override with custom build scripts or optimization flags
+- Install command - use `yarn install` instead of `npm install` if preferred
+- Node.js version - specify exact versions for consistency
+- Environment variables - configure build-time variables for different environments
+
+The CTD Swag application uses Vite as its build tool, which Render automatically detects and configures correctly.
+
+#### Environment Variables and Configuration
+
+Secure environment variable management is crucial for production deployments. Render provides a secure interface for managing environment variables that are injected into your build process and runtime environment.
+
+##### Setting Up Environment Variables
+
+Access environment variable configuration through Render's dashboard:
+
+1. **Navigate to your service** in the Render dashboard
+2. **Click "Environment"** in the service navigation
+3. **Add environment variables** using the web interface
+4. **Set variable values** - Render encrypts and securely stores all values
+
+##### Example Environment Variables for React
+
+For the CTD Swag application, you might configure these environment variables:
+
+```bash
+# API Configuration
+VITE_API_BASE_URL=https://api.ctd-swag-backend.render.com
+VITE_ENVIRONMENT=production
+
+# Feature Flags
+VITE_ENABLE_ANALYTICS=true
+VITE_DEBUG_MODE=false
+
+# Third-party Service Configuration
+VITE_STRIPE_PUBLISHABLE_KEY=pk_live_51H123...xyz
+
+# Application Metadata
+VITE_APP_VERSION=1.2.3
+VITE_BUILD_DATE=2024-12-10
+```
+
+#### Deployment Process and Build Logs
+
+Understanding the deployment process helps you monitor deployments, troubleshoot build issues, and optimize deployment performance. Render provides detailed logging and status information throughout the deployment lifecycle.
+
+##### Deployment Lifecycle
+
+Each deployment follows a predictable sequence of steps:
+
+1. **Source code fetch** - Render retrieves the latest code from your connected GitHub repository
+2. **Build environment setup** - A fresh container is created with Node.js and build tools
+3. **Dependency installation** - npm or yarn installs packages based on your package.json
+4. **Build execution** - Your build command (`npm run build`) generates production assets
+5. **Asset optimization** - Static files are compressed and prepared for CDN distribution
+6. **Deployment** - New assets replace the previous version with zero downtime
+7. **Health checks** - Render verifies the deployment is serving correctly
+
+##### Monitoring Build Progress
+
+Render's dashboard provides real-time visibility into the build process:
+
+- Build logs show detailed output from each build step
+- Error highlighting makes it easy to identify and fix build failures
+- Build duration helps you optimize build performance over time
+- Deployment status provides clear success/failure indicators
+
+##### Common Build Issues and Solutions
+
+###### Dependency Installation Failures
+
+Build failures often occur during dependency installation due to version conflicts or missing packages:
+
+```bash
+# Error example
+npm ERR! peer dep missing: react@^18.0.0, required by some-package@1.0.0
+```
+
+**Solutions:**
+
+1. Update package.json dependencies
+2. Clear npm cache in build settings
+3. Use exact version numbers for problematic packages
+
+###### Build Command Failures
+
+React applications sometimes fail during the build step due to code issues that weren't caught in development:
+
+```bash
+# Error example
+Build failed: 'VITE_API_URL' is not defined (no-undef)
+```
+
+**Solutions:**
+
+1. Add missing environment variables
+2. Fix undefined variable references
+3. Check for case-sensitive file path issues
+
+###### Memory or Time Limits
+
+Large React applications might encounter resource limits during builds:
+
+```bash
+# Error example
+Build exceeded memory limit or timeout
+```
+
+**Solutions:**
+
+1. Optimize bundle size and dependencies
+2. Use code splitting and lazy loading
+3. Consider upgrading to a paid plan for more resources
+
+[Learn more about build troubleshooting →](https://render.com/docs/your-first-deploy)
+
+#### Rollback Capabilities and Version Management
+
+Production deployments require the ability to quickly revert to previous versions when issues arise. Render provides comprehensive rollback capabilities that allow you to restore previous deployments instantly.
+
+##### Automatic Version History
+
+Render maintains a complete history of your deployments, making rollback operations safe and reliable:
+
+- Deployment snapshots preserve the exact state of each deployment
+- Immutable deployments ensure previous versions remain unchanged
+- Metadata tracking records deployment time, commit hash, and build details
+- Unlimited history keeps all previous deployments accessible
+
+##### Rollback Process
+
+Rolling back to a previous deployment is a straightforward process through Render's dashboard:
+
+1. **Access deployment history** in your service dashboard
+2. **Select target deployment** from the chronological list
+3. **Click "Rollback"** to initiate the rollback process
+4. **Monitor rollback progress** through real-time logs
+
+The rollback process typically completes within 30-60 seconds, restoring your application to the selected previous state without data loss or extended downtime.
+
+##### Rollback Scenarios
+
+Common situations where rollbacks become necessary:
+
+- Critical bugs discovered after deployment that affect core functionality
+- Performance regressions that significantly impact user experience
+- Environment configuration errors causing application failures
+- Dependency conflicts introduced in recent updates
+
+[Learn more about deployment rollbacks →](https://render.com/docs/rollbacks)
+
+#### CORS Configuration for Backend Integration
+
+When deploying React applications that communicate with backend APIs, you must configure Cross-Origin Resource Sharing (CORS) policies to allow your deployed frontend to make API requests. This configuration happens on your backend server, not in your React application.
+
+##### Understanding CORS in Deployment
+
+During development, your React app typically runs on `localhost:3000` while your API runs on `localhost:8000`, creating a cross-origin scenario that requires CORS configuration. In production, your deployed React app will have a different origin (like `https://ctd-swag.onrender.com`) that must be explicitly allowed by your backend.
+
+##### Backend CORS Configuration
+
+Your backend API must include your deployed React application's URL in its CORS allowed origins:
+
+```javascript
+// Example Express.js CORS configuration
+const cors = require('cors');
+
+const corsOptions = {
+  origin: [
+    'http://localhost:3000',           // Development
+    'https://ctd-swag.onrender.com',   // Production
+  ],
+  credentials: true,  // Allow cookies/auth headers
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+```
+
+##### Deployment-Specific Considerations
+
+- Update CORS origins before deploying frontend changes
+- Test API connectivity after deploying to ensure CORS is working
+- Use environment variables to manage different CORS settings per environment
+- Monitor CORS errors in browser console and server logs
+
+[Static site deployment guide →](https://render.com/docs/static-sites)
 
 ### Review and Summary
 
-- Key takeaways from this lesson  
-- Connection to next lesson
-- Quick preview of this week’s coding assignment
+#### Key Takeaways from This Lesson
+
+##### Professional Development Readiness
+
+Your React applications are now portfolio-ready through comprehensive attention to three critical areas. **Visual presentation** creates compelling first impressions through professional styling, responsive design, and attention to user experience details that demonstrate your understanding of modern web standards. **Code quality** establishes your credibility through clean organization, consistent naming conventions, and proper tooling integration that shows employers you write maintainable code for team environments. **Documentation** sets you apart by showcasing communication skills that help employers understand not just what you built, but how you think, learn, and solve problems.
+
+##### Security-First Development Mindset
+
+You now understand that security is woven throughout the entire development lifecycle, not added as an afterthought. From protecting against XSS attacks through React's built-in safeguards to properly managing environment variables and understanding authentication patterns, you've developed the awareness needed to build applications that protect user data and maintain trust. These security fundamentals become increasingly critical as you progress to backend development where you'll handle user authentication, database security, and server-side validation.
+
+##### Production Deployment Proficiency
+
+The deployment experience has introduced you to modern DevOps practices including continuous deployment, environment management, and production monitoring. Understanding build processes, environment variables, CORS configuration, and rollback procedures demonstrates your readiness for development teams where deployment is frequent and reliability is paramount. This knowledge bridges the gap between writing code and delivering working applications to real users.
+
+#### Your React Journey: From Concepts to Production
+
+Congratulations! You've completed an intensive 11-week journey through React development, transforming from someone learning basic component concepts to a developer capable of building, securing, and deploying professional-grade applications. This final week represents not just the end of the React curriculum, but a significant milestone in your growth as a web developer.
+
+Your React toolkit now includes professional-level capabilities that prepare you for collaborative development environments:
+
+- **Component-Based Thinking**: Breaking complex UIs into reusable, maintainable pieces
+- **State Management**: From local component state to complex application-wide state patterns
+- **Modern JavaScript Integration**: ES6+ features, async/await patterns, and module systems
+- **Performance Optimization**: Understanding when and how to optimize React applications for production
+- **Testing and Debugging**: Using React Developer Tools and debugging strategies for complex applications
+- **Build Tool Proficiency**: Working with modern development environments and build processes
+- **Version Control Integration**: Managing code changes and collaborating through Git workflows
+- **Production Readiness**: Deploying applications with proper security, monitoring, and maintenance practices
+
+#### Your Continuing Journey
+
+The React ecosystem continues evolving with new patterns, tools, and best practices. The foundation you've established—component-based thinking, state management principles, and deployment awareness—prepares you for ongoing learning in areas like:
+
+- **Advanced Frameworks**: Next.js for server-side rendering, Remix for full-stack React development
+- **State Management Libraries**: Redux Toolkit, Zustand, or Jotai for complex application state
+- **Testing Strategies**: Jest and React Testing Library for comprehensive application testing
+- **Performance Monitoring**: Real User Monitoring and performance optimization techniques
+- **Progressive Web Apps**: Service workers, offline functionality, and mobile app-like experiences
+- **TypeScript Integration**: Adding type safety and enhanced developer experience to React projects
+
+As you transition to Node.js and Express development, you're not leaving React behind—you're expanding your capabilities to build the complete application stack. Many professional developers work across the entire stack, building Express APIs that power React frontends, and your understanding of both sides makes you a more effective full-stack developer.
+
+#### Preparing for Node.js and Express
+
+Your React experience provides an excellent foundation for backend development with Node.js and Express. The JavaScript knowledge you've strengthened—including async/await patterns, module systems, and modern ES6+ features—translates directly to server-side development. Understanding component organization and code structure from React will help you organize Express applications into logical, maintainable modules.
+
+The API integration experience you gained in React (handling HTTP requests, managing authentication tokens, working with JSON data) now shifts perspective as you'll be building the APIs that frontend applications consume. CORS configuration, environment variable management, and security considerations you learned as a frontend developer become even more critical as you take responsibility for protecting user data and securing server-side operations.
+
+Your deployment experience with platforms like Render provides valuable context for understanding how full-stack applications work together. You'll see the other side of the deployment process as you build Express servers that handle database connections, user authentication, and API endpoints that power React front-ends.
+
+**Congratulations on completing this curriculum and developing the skills that will serve you throughout your development career. The applications you've built, the problems you've solved, and the knowledge you've gained represent significant achievement that you should be proud of! Welcome to the community of React developers—you've earned your place here.**  
