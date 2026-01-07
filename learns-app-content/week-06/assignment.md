@@ -162,7 +162,7 @@ import { isValidTodoTitle } from '../utils/todoValidation';
 - Update the button's disabled attribute to use the helper function:
 
 ```jsx
-<button disabled={!isValidTodoTitle(workingTodo)}>Add Todo</button>
+<button disabled={!isValidTodoTitle(workingTodoTitle)}>Add Todo</button>
 ```
 
 The form should behave exactly the same as before, but now the validation logic is centralized and can be reused throughout the application. This helper function demonstrates how pure JavaScript functions can be extracted from React components to improve code organization and reusability.
