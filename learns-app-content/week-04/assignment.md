@@ -75,7 +75,7 @@ function TodoForm({ onAddTodo }) {
     
     // .trim prevents whitespace only todos
     const todoTitle = event.target.todoTitle.value.trim();
-    if (todoTitle) {
+    if (todoTitle && todoTitle !== "") {
       onAddTodo(todoTitle);
       event.target.reset();
       inputRef.current.focus();
@@ -94,18 +94,14 @@ function TodoForm({ onAddTodo }) {
 
 ```jsx
 return (
-  <form onSubmit={handleAddTodo}>
-    <label htmlFor="todoTitle">Todo</label>
-    <input 
-      type="text" 
-      id="todoTitle" 
-      name="todoTitle"
-      ref={inputRef}
-      required
-    />
-    <button type="submit">Add Todo</button>
-  </form>
-);
+        <form>
+            <label htmlFor="todoTitle" >Todo</label>
+            <input ref={inputRef} type="text" id="todoTitle" placeholder={"Todo text"} required />
+            <button type="submit" onClick={handleAddTodo} >
+                Add Todo
+            </button>
+        </form>
+    );
 ```
 
 > [!note]
