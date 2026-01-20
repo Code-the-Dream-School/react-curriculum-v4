@@ -59,7 +59,7 @@ return (
 
 #### Display Logic in a Function
 
-In cases where we have more than two options or our rendering logic is complex, we can define functions inside the component and use their return values. What's nice about this approach is that we can return JSX. We'll talk about some performance implications in [[Code The Dream/Intro to React V4/Curriculum/Week-09|Week-09]] that may arise from functions inside components but we will not be writing anything that will cause any performance problems during this course.
+In cases where we have more than two options or our rendering logic is complex, we can define functions inside the component and use their return values. What's nice about this approach is that we can return JSX. We'll talk about some performance implications in week-09 that may arise from functions inside components but we will not be writing anything that will cause any performance problems during this course.
 
 In the example below, the interface renders a button that calls `cycleLight`. Each time it does, it cycles through traffic light colors (green->yellow->red->green->…and so on). Each time `trafficLightColor` is updated, the component is re-rendered, calling `renderLight`. `renderLight` uses a switch-case statement to determine the correct component to render.
 
