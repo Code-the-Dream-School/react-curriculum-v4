@@ -36,15 +36,14 @@ export default defineConfig({
 
 If you are running your app, restart it from the terminal. You'll also have to update the address with the new port number in your browser's address bar.
 
-
 #### Configure Environment Variables
 
 - Create a copy of `.env.example` and name it `.env`.
 - Make sure that it is listed in your `.gitignore`
-- Open `.env` and update the `VITE_BASE_URL` with the full URL provided by your instructor.
+- Update the `VITE_BASE_URL` with `https://ctd-learns-node-l42tx.ondigitalocean.app/api`
 
 > [!note]
-> Environment variables in Vite must start with `VITE_` to be accessible in your React app. The `import.meta.env.VITE_BASE_URL` syntax accesses these variables.
+> Environment variables in Vite must start with `VITE_` to be accessible in your React app. Use the `import.meta.env.VITE_BASE_URL` syntax to access these variables.
 
 ### Instructions Part 2: Project Organization and Component Extraction
 
@@ -71,7 +70,7 @@ If you are running your app, restart it from the terminal. You'll also have to u
 
 #### Update App Component
 
-- Remove all todo-related code from `App.jsx` (anything that was moved over to TodoPage and Header)
+- Remove all todo-related code from `App.jsx` (anything that was moved over to TodosPage)
 - Import the new TodosPage and Header components
 - Update App to render:
   - The Header component
@@ -101,7 +100,7 @@ If you are running your app, restart it from the terminal. You'll also have to u
   - uses `try/catch/finally` blocks
   - Prevents default form submission
   - Sets loading state to true
-  - Makes a POST request to `${baseUrl}/user/logon` with email and password in the request body
+  - Makes a POST request to `${baseUrl}/users/logon` with email and password in the request body
   - Includes headers for `Content-Type: application/json` and `credentials: 'include'`
   - On successful response (status 200 with name and csrfToken), calls `onSetEmail` and `onSetToken` props: This will be made when we update App.jsx.
   - On failure, sets appropriate error message
@@ -110,7 +109,7 @@ If you are running your app, restart it from the terminal. You'll also have to u
 ```jsx
 // example fetch request structure
 try{ 
-  const response = await fetch(`${baseUrl}/user/logon`, {
+  const response = await fetch(`${baseUrl}/users/logon`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
@@ -161,6 +160,7 @@ At this point, you should be able to log into your app. With conditional renderi
 #### Add API Integration with useEffect
 
 - Update `src/features/Todos/TodosPage.jsx` to add API data fetching
+- Update the component to accept and destructure the `token` prop: `function TodosPage({ token })`
 - Add a constant for the base URL above the component definition: `const baseUrl = import.meta.env.VITE_BASE_URL`
 - Add new state variables for:
   - `error` (for displaying API errors, default empty string)
@@ -172,9 +172,11 @@ At this point, you should be able to log into your app. With conditional renderi
     - `X-CSRF-TOKEN` header set to the token prop
     - `credentials: 'include'`
   - Handles different response scenarios:
+    - Success: parse response and update todoList state
+      - *note 1: the response will be a JSON object that contains an array named `tasks` and another object, `pagination` that will be used in future lessons*.
+      - *note 2: see the bottom of the assignment for an example fetch response.*
     - Status 401: throw 'unauthorized' error
     - Other non-ok responses: throw generic error
-    - Success: parse JSON and update todoList state
   - Catches errors and sets error state
   - Always sets loading to false in finally block
 - Make the useEffect depend on the `token` and only call `fetchTodos` when `token` exists
@@ -207,7 +209,7 @@ Update the existing `completeTodo` function:
 - Store the original todo before making changes (for potential rollback)
 - **Optimistically update** the todo as completed in state
 - Make a PATCH request to `${baseUrl}/tasks/${id}` with:
-  - JSON body containing `isCompleted: true` and `createdTime: originalTodo.createdTime`
+  - JSON body containing `isCompleted: true` and `createdAt: originalTodo.createdAt`
   - Same headers as above
 - On failure: rollback to the original todo and set error message
 
@@ -219,11 +221,11 @@ Update the existing `updateTodo` function:
 - Store the original todo for rollback
 - **Optimistically apply** the edited todo to state
 - Make a PATCH request to `${baseUrl}/tasks/${editedTodo.id}` with:
-  - JSON body containing title, isCompleted, and createdTime
+  - JSON body containing title, isCompleted, and createdAt
   - Same headers pattern
 - On failure: rollback to original todo and show error message
 
-#### Complete the TodoPage Return Statement
+#### Complete the TodosPage Return Statement
 
 Update the JSX return to include:
 
@@ -290,3 +292,97 @@ In upcoming weeks, you'll learn about:
 - Optimizing React applications and implementing efficient API-based sorting and searching
 - Managing complex application state with useReducer and useContext
 - And much more...
+
+### Example Fetch Response for `api/tasks`
+
+```js
+{
+    "tasks": [
+        {
+            "id": 61,
+            "title": "meal prep",
+            "isCompleted": false,
+            "priority": "medium",
+            "createdAt": "2026-01-05T19:28:23.583Z",
+            "User": {
+                "name": "Cindy Wilmington",
+                "email": "cindy.wilmingon@some.email"
+            }
+        },
+        {
+            "id": 60,
+            "title": "write term paper",
+            "isCompleted": false,
+            "priority": "medium",
+            "createdAt": "2026-01-05T19:28:21.541Z",
+            "User": {
+                "name": "Cindy Wilmington",
+                "email": "cindy.wilmingon@some.email"
+            }
+        },
+        {
+            "id": 59,
+            "title": "return library books",
+            "isCompleted": false,
+            "priority": "medium",
+            "createdAt": "2026-01-05T19:28:19.750Z",
+            "User": {
+                "name": "Cindy Wilmington",
+                "email": "cindy.wilmingon@some.email"
+            }
+        },
+        {
+            "id": 28,
+            "title": "feed cats",
+            "isCompleted": false,
+            "priority": "medium",
+            "createdAt": "2025-12-17T14:40:54.329Z",
+            "User": {
+                "name": "Cindy Wilmington",
+                "email": "cindy.wilmingon@some.email"
+            }
+        },
+        {
+            "id": 27,
+            "title": "approve PR",
+            "isCompleted": true,
+            "priority": "medium",
+            "createdAt": "2025-12-17T14:40:54.329Z",
+            "User": {
+                "name": "Cindy Wilmington",
+                "email": "cindy.wilmingon@some.email"
+            }
+        },
+        {
+            "id": 26,
+            "title": "write documentation",
+            "isCompleted": true,
+            "priority": "medium",
+            "createdAt": "2025-12-17T14:40:54.329Z",
+            "User": {
+                "name": "Cindy Wilmington",
+                "email": "cindy.wilmingon@some.email"
+            }
+        },
+        {
+            "id": 25,
+            "title": "deploy app",
+            "isCompleted": true,
+            "priority": "medium",
+            "createdAt": "2025-12-17T14:40:54.329Z",
+            "User": {
+                "name": "Cindy Wilmington",
+                "email": "cindy.wilmingon@some.email"
+            }
+        }
+    ],
+    "pagination": {
+        "page": 1,
+        "limit": 10,
+        "total": 7,
+        "pages": 1,
+        "hasNext": false,
+        "hasPrev": false
+    }
+}
+```
