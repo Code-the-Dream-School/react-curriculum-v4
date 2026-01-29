@@ -150,23 +150,14 @@ export default defineConfig(({ mode }) => {
 - **Security Handling**: Automatically configures HTTPS settings based on target URL
 - **Cookie Handling**: Manages Origin headers for proper authentication
 
-### Step 3: Update Your Fetch Requests
+### Step 3: No Code Changes Needed
 
-Your fetch requests will now use the proxy endpoint instead of the direct API URL:
-
-**Before (Direct API):**
+**Your fetch request code stays exactly the same:**
 
 ```javascript
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 const response = await fetch(`${baseUrl}/tasks`, {
-  headers: { 'X-CSRF-TOKEN': token },
-  credentials: 'include'
-});
-```
-
-**After (Proxy):**
-
-```javascript
-const response = await fetch('/api/tasks', {
   headers: { 'X-CSRF-TOKEN': token },
   credentials: 'include'
 });
@@ -174,9 +165,12 @@ const response = await fetch('/api/tasks', {
 
 **What's Changed:**
 
-- **URL Path**: Use `/api/tasks` instead of `${baseUrl}/tasks`
+- **Environment Variable Only**: Change `VITE_BASE_URL` in your `.env` file from `'https://ctd-learns-node-l42tx.ondigitalocean.app/api'` to `'/api'`
+- **Code Pattern Unchanged**: Continue using `${baseUrl}/tasks` pattern in your code
+- **How It Works**: 
+  - Before: `${baseUrl}/tasks` → `'https://ctd-learns-node-l42tx.ondigitalocean.app/api/tasks'` (direct API call)
+  - After: `${baseUrl}/tasks` → `'/api/tasks'` (proxied through localhost:3001)
 - **Authentication**: Keep `credentials: 'include'` and CSRF tokens exactly the same
-- **Everything Else**: All other authentication patterns remain identical
 
 ### Step 4: Restart Your Development Server
 
