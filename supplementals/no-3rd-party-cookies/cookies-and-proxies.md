@@ -280,7 +280,7 @@ The `vite.config.js` includes a fallback to `http://localhost:3000` if no `VITE_
 **Solutions:**
 
 - Verify `VITE_BASE_URL=/api` in your `.env` file
-- Check that your fetch requests use `/api/tasks` not `${baseUrl}/tasks`
+- Check that your fetch requests use `${baseUrl}/tasks`, where `baseUrl` comes from `import.meta.env.VITE_BASE_URL`, instead of hardcoding `/api/tasks`
 - Ensure the proxy configuration uses `/api` as the key
 
 #### Authentication Still Failing
