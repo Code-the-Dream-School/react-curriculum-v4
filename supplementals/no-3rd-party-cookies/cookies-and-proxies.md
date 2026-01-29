@@ -166,7 +166,7 @@ const response = await fetch(`${baseUrl}/tasks`, {
 **After (Proxy):**
 
 ```javascript
-const response = await fetch('/api/tasks', {
+const response = await fetch(`${baseUrl}/tasks`, {
   headers: { 'X-CSRF-TOKEN': token },
   credentials: 'include'
 });
@@ -174,7 +174,7 @@ const response = await fetch('/api/tasks', {
 
 **What's Changed:**
 
-- **URL Path**: Use `/api/tasks` instead of `${baseUrl}/tasks`
+- **URL Path**: The code stays the same (`${baseUrl}/tasks`), but `VITE_BASE_URL` is now set to `/api` instead of the full API URL, so requests go through the proxy
 - **Authentication**: Keep `credentials: 'include'` and CSRF tokens exactly the same
 - **Everything Else**: All other authentication patterns remain identical
 
