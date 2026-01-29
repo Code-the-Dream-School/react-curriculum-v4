@@ -42,7 +42,7 @@ Before proceeding with the proxy setup, you can check if your browser is configu
 1. Open Safari and go to **Safari** > **Settings** (or **Preferences**)
 2. Click on the **Privacy** tab
 3. Check the **Block all cookies** and **Prevent cross-site tracking** settings:
-   - **Block all cookies(in Advanced)**: Checked means you will need the proxy
+   - **Block all cookies (in Advanced)**: Checked means you will need the proxy
    - **Prevent cross-site tracking**: Checked may cause authentication issues
 
 **If any of these settings indicate third-party cookie blocking, the proxy setup in this guide will help ensure your React app works properly.**
