@@ -150,35 +150,7 @@ export default defineConfig(({ mode }) => {
 - **Security Handling**: Automatically configures HTTPS settings based on target URL
 - **Cookie Handling**: Manages Origin headers for proper authentication
 
-### Step 3: Update Your Fetch Requests
-
-Your fetch requests will now use the proxy endpoint instead of the direct API URL:
-
-**Before (Direct API):**
-
-```javascript
-const response = await fetch(`${baseUrl}/tasks`, {
-  headers: { 'X-CSRF-TOKEN': token },
-  credentials: 'include'
-});
-```
-
-**After (Proxy):**
-
-```javascript
-const response = await fetch(`${baseUrl}/tasks`, {
-  headers: { 'X-CSRF-TOKEN': token },
-  credentials: 'include'
-});
-```
-
-**What's Changed:**
-
-- **URL Path**: The code stays the same (`${baseUrl}/tasks`), but `VITE_BASE_URL` is now set to `/api` instead of the full API URL, so requests go through the proxy
-- **Authentication**: Keep `credentials: 'include'` and CSRF tokens exactly the same
-- **Everything Else**: All other authentication patterns remain identical
-
-### Step 4: Restart Your Development Server
+### Step 3: Restart Your Development Server
 
 After making these changes, restart your Vite development server:
 
