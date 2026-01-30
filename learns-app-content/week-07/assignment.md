@@ -19,6 +19,9 @@ After completing this week's assignment, your app should:
 - Create a new account with the [CTD's Todo List app](https://react-todo-list-v3.onrender.com) using the Register button. Don't log in with Google.
 - Add several test todos so that you'll have data to work with during development.
 
+> [!NOTE]
+> **Alternative Setup for Cookie-Restricted Browsers**
+> If you experience authentication issues due to your browser blocking third-party cookies, see the [Vite Proxy Supplemental Guide](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/main/supplementals/no-3rd-party-cookies/cookies-and-proxies.md) for an alternative configuration that uses a development proxy instead of direct API requests. Complete the setup instructions from there and then proceed to Part 2 of the assignment.
 #### Update Vite Configuration
 
 The app needs to run on port 3001 for it to work with the Node backend. To do this, we need to update Vite's configurations by replacing the contents of vite.config.js with the following snippet:
