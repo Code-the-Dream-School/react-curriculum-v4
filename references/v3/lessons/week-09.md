@@ -150,7 +150,7 @@ The console statements from the above statement illustrates how the caching logi
 
 Another type of common API requirement is that a set amount of time must elapse before it will accept another request for processing. This use of throttling, also known as rate limiting, is a protective measure to prevent over-taxing the API's infrastructure. When we update the search results to let the user page through all the results, we have to be mindful of this constraint, we need to prevent the app from submitting a request until at least one second has elapsed since the previous one is sent.
 
-We are going to look closer at pagination in [[lesson-12|week 12]] but we need to know some basic details about the API response that enable us to paginate. Each API response includes a portion of the search results, an offset value(how many recipes that have been skipped), and a total number of results in a search. By updating the fetch logic and updating the UI, the app ends up with a group of buttons below the results that allow a user to page through all the search results.
+We are going to look closer at pagination in lesson 12 but we need to know some basic details about the API response that enable us to paginate. Each API response includes a portion of the search results, an offset value(how many recipes that have been skipped), and a total number of results in a search. By updating the fetch logic and updating the UI, the app ends up with a group of buttons below the results that allow a user to page through all the search results.
 
 ![paging through search results](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-09/search-chicken-pagination.gif)
 
