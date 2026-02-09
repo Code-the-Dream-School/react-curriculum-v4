@@ -30,7 +30,7 @@ After completing this week's assignment, your app should:
 
 You will end up with a project structure that looks similar to the following:
 
-![screen capture of the newly installed project directory](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/project-directory.png)
+![screen capture of the newly installed project directory](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-01/project-directory.png)
 
 ### Instructions Part 3: Project Setup
 
@@ -47,8 +47,8 @@ We want to preserve a fresh installation of the project in case anything happens
 - Stage all the files with git: `git add .`
 - Commit them to main: `git commit -m "installed react"`
 - Push the changes to GitHub: `git push`
-- Create and check out a new branch for week 1's assignment before continuing: `git checkout -b week-01-setup`
-- Publish the branch to github: `git push origin week-01-setup`
+- Create and check out a new branch for week 1's assignment before continuing: `git checkout -b lesson-01-setup`
+- Publish the branch to github: `git push origin lesson-01-setup`
 
 #### Clean up Template
 
@@ -81,7 +81,7 @@ export default App
 
 Refresh the page and you'll end up with something that looks like the screencap below. Note that the console contains no errors.
 
-![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/title-screencap.png)
+![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-01/title-screencap.png)
 
 #### Add First Todos
 
@@ -121,7 +121,7 @@ return (
 
 In the browser, you should have a list of 3 todos under the app's title:
 
-![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/todos-screencap.png)
+![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-01/todos-screencap.png)
 
 ### Stretch Goals Instructions (optional)
 
@@ -131,11 +131,11 @@ In the browser, you should have a list of 3 todos under the app's title:
 
 - in VS Code, click on the extensions icon in the left-hand sidebar
 
-![screen capture highlighting extension icon in VS Code's tool tray](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/extensions-icon.png)
+![screen capture highlighting extension icon in VS Code's tool tray](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-01/extensions-icon.png)
 
 - search for "ESLint". The appropriate extension will have the following icon:
 
-![screen capture of the VS Code extension search results for ESLint](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/eslint.png)
+![screen capture of the VS Code extension search results for ESLint](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-01/eslint.png)
 
 - You need to add another plugin package, eslint-plugin-react, for additional usefulReact linting rules:
   - In the terminal, install it using `npm install eslint-plugin-react --save-dev`
@@ -165,7 +165,7 @@ rules: {
 
 - search for "Prettier". Choose the following from the results:
 
-![screen capture of the VS Code extension search results for Prettier](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-01/prettier.png)
+![screen capture of the VS Code extension search results for Prettier](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-01/prettier.png)
 
 - after installed, go to VS Code's settings and search for "format"
   - find the "Default Formatter" setting and change the option to Prettier - Code formatter.

@@ -7,9 +7,9 @@ assignees: ''
 
 ---
 
-## Week and Section of Change
+## Lesson and Section of Change
 
-eg: Week 2 discussion, ReactDOM, Main.jsx
+eg: Lesson-02 discussion, ReactDOM, Main.jsx
 
 ## Notes
 

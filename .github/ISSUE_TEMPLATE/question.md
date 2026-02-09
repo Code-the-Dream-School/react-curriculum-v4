@@ -13,7 +13,7 @@ Be as clear and concise as possible
 
 ## Related Location in Curriculum
 
-- Week#:
+- Lesson#:
 - Section(choose one): Learning Objectives, Lesson Materials/Discussion Topics, or Assignments
 - Sub-heading:
 

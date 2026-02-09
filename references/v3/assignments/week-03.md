@@ -21,7 +21,7 @@ After completing this week's assignment, your app should:
 
 At this point, the todo list in the browser should appear identical. However, if you go to the [React developer tools'](https://react.dev/learn/react-developer-tools) component tab in your browser's dev tools, you'll see that the `TodoList` has three sub-component instances of `TodoListItem`. Each contains a key coinciding to the `todo.id`.
 
-![screen capture of component tree in React dev tools](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-03/component-tree.png)
+![screen capture of component tree in React dev tools](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-03/component-tree.png)
 
 ### Instructions Part 2: State for New Todos
 
@@ -39,7 +39,7 @@ const [exampleStateValue, setExampleStateValue] = useState(42)
 
 The browser should render that `initialValue` between the form and the todo list.
 
-![screen capture with paragraph tag containing the todo state value](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-03/todo-list-with-paragraph-tag.png)
+![screen capture with paragraph tag containing the todo state value](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-03/todo-list-with-paragraph-tag.png)
 
 ### Closing Notes
 

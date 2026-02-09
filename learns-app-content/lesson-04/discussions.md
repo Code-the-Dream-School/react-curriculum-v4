@@ -5,20 +5,20 @@
 
 ### Basic Hooks
 
-A React Hook is a function that allows functional components add state, integrate with side-effects, and work with other React features. We can also develop our own custom hooks to encapsulate logic into reusable functions. Hooks were introduced in React 16.8 (released February 2019) and gave functional components access to features that were previously available to only class-based components. We won't be working with class-based components but it's important to be aware they exist since you may encounter them in older codebases.
+A React Hook is a function that allows functional components to add state, integrate with side-effects, and work with other React features. We can also develop our own custom hooks to encapsulate logic into reusable functions. Hooks were introduced in React 16.8 (released February 2019) and gave functional components access to features that were previously available to only class-based components. We won't be working with class-based components but it's important to be aware they exist since you may encounter them in older codebases.
 
 The existing hooks can be broken down into several categories. We'll highlight the common ones.
 
 - **state** - stores information like user input that is used to help render components
   - `useState`: keeps track of a single, updatable value
-  - `useReducer`: used when there are a lot of values to track and update in a component - covered in week 11
+  - `useReducer`: used when there are a lot of values to track and update in a component - covered in lesson 11
 - **context** - refers to a way to share data between components without having to pass props
-  - `useContext` allows a component to read and subscribe to a defined context - covered in week 11
+  - `useContext` allows a component to read and subscribe to a defined context - covered in lesson 11
 - **effects**
-  - `useEffect`: allows us to run side effects like loading data or working with non-React page code - more in week 7.
+  - `useEffect`: allows us to run side effects like loading data or working with non-React page code - more in lesson 7.
 - **refs** - short for "reference" - they allow us to save and work with values that persist across renders but are not used for rendering
   - `useRef`: creates a `ref` that can hold a value or commonly to access a DOM node
-- **performance**: optimizes re-render performance by allowing unnecessary re-rendering to be skipped - more in week 9.
+- **performance**: optimizes re-render performance by allowing unnecessary re-rendering to be skipped - more in lesson 9.
   - `useMemo`: caches result of an expensive calculation
   - `useCallback`: caches a function definition between re-renders
 - **custom**: hooks created by the developer or imported from a 3rd party library to encapsulate re-usable logic - advanced topic not covered in this course
@@ -142,7 +142,7 @@ function CreateUserForm() {
   }
   return (
     //more on forms in
-    <form submit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <label>
         First Name
         <input onChange={updateFirstName} />
@@ -170,7 +170,7 @@ Other things to know about the state value:
 
 The `useEffect` hook allows us to synchronize a component with data found outside the application. This could be an API request, accessing local storage, managing a non-React feature on the same page, or any other scenario where we need to "step outside" of React. This hook takes two arguments: a setup function, and an optional dependency array.
 
-The setup function contains logic needed for the effect and optionally returns a cleanup function. A cleanup function is used to for any necessary cleanup tasks before the component unmounts or before the effect is re-run. This can include clearing timers, unsubscribing from subscriptions, or any other clean-up activities to prevent memory leaks or unexpected behavior in a React component.
+The setup function contains logic needed for the effect and optionally returns a cleanup function. A cleanup function is used for any necessary cleanup tasks before the component unmounts or before the effect is re-run. This can include clearing timers, unsubscribing from subscriptions, or any other clean-up activities to prevent memory leaks or unexpected behavior in a React component.
 
 The dependency array is an optional list of props, state, and variables and functions defined directly in the component. After a component renders, if any of these have changed, React re-runs the `useEffect`. If this array is empty, the effect is ran only after the initial render. It will not do anything on subsequent re-renders. If the dependency array is omitted, the `useEffect` runs after first render and after each subsequent re-render.
 
@@ -206,10 +206,9 @@ In `WebSocketComponent` below, we use the `useEffect` to create a new web socket
 ```jsx
 //useEffect with dependency array and cleanup function
 
-function WebSocketComponent {
-
+function WebSocketComponent() {
   useEffect(() => {
-    const socket = new WebSocket('sockets://example.com/socket');
+    const socket = new WebSocket('ws://example.com/socket');
 
     socket.onopen = () => {
       console.log('WebSocket connection opened');
@@ -226,7 +225,7 @@ function WebSocketComponent {
   }, []);
 
   return <div>WebSocket Component</div>;
-};
+}
 ```
 
 The `useEffect` in the example logs a message to the console when the component first renders. It does nothing else on subsequent re-renders.
@@ -255,6 +254,55 @@ const ExampleComponent = () => {
 };
 ```
 
+#### StrictMode
+
+When developing in React, you might notice useEffect running twice — this is not a bug. It happens because most starter projects wrap the app in `<React.StrictMode>`
+
+React automatically wraps components in `<React.StrictMode>` when you start a new app with tools like Create React App or Vite. StrictMode helps detect unexpected side effects, memory leaks, and other issues early in development. One of the ways it does this is by intentionally re-running certain lifecycle logic twice — including:
+
+- The component's render function
+- The `useEffect` setup and cleanup functions
+- Some other initialization logic
+
+This behavior only occurs in development mode and only when StrictMode is active. It does not happen in production builds.
+
+##### Why React Does This
+
+`StrictMode` helps identify side-effects that aren’t properly cleaned up. By running the effect twice (mount → unmount → mount again), React helps surface bugs that wouldn't appear until later, such as forgetting to close a WebSocket or cancel a timer.
+
+Here's a small example showing how this looks in development:
+
+```javascript
+function DemoEffect() {
+  useEffect(() => {
+    console.log('Effect started');
+
+    return () => {
+      console.log('Cleanup ran');
+    };
+  }, []);
+
+  return <div>Check your console</div>;
+}
+```
+
+In development with StrictMode enabled, you'll see:
+
+```text
+Effect started
+Cleanup ran
+Effect started
+```
+
+That double log shows the mount → unmount → mount cycle triggered by StrictMode.
+
+##### What to Remember
+
+- This happens only in development, never in production builds.
+- It's not a bug, but a helpful check for side-effect safety.
+- If your effect runs code like an API call or socket connection, make sure to include a proper cleanup function to prevent duplicates.
+- You can disable StrictMode temporarily by removing `<React.StrictMode>` in `main.jsx` (or `index.jsx`), but it's best to leave it enabled while debugging.
+
 #### useRef
 
 `const ref = useRef(intialValue)`
@@ -268,12 +316,12 @@ In the following example, we store a reference to the page title and then use us
 
 function PageTitleUpdatingCounter() {
   const [count, setCount] = useState(0);
-  const title = useRef(document.querySelector('title');
+  const title = useRef(document.querySelector('title'));
 
   useEffect(() => {
     // This code will run when the component first loads
     // and each time `count` changes
-    title.current.text = `Times pressed: ${count}`
+    title.current.textContent = `Times pressed: ${count}`;
   }, [count]);
 
   return (
@@ -281,8 +329,7 @@ function PageTitleUpdatingCounter() {
       <button onClick={() => setCount(count + 1)}>Increment Count</button>
     </div>
   );
-};
-
+}
 ```
 
 Using `useRef` comes with a few rules.
@@ -343,7 +390,7 @@ Browsers emit objects called events that signal when things happen on a web page
   - **`target`**: DOM node where event was triggered - this could be anywhere in the tree at or below the Component that is reading this property due to [event bubbling](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Event_bubbling).
 - methods
   - **`preventDefault()`**: Prevents the default browser action on the event. eg: preventing a page refresh from a form submission.
-  - **`stopPropogation()`**: Stops the event from bubbling up the React tree.
+  - **`stopPropagation()`**: Stops the event from bubbling up the React tree.
 
 #### Handler Props
 
@@ -383,7 +430,7 @@ function EmailInput({ setEmail }) {
         {/*assigning ref selects the element on the page*/}
         <input type="text" ref={emailInput} />
       </label>
-      <button />
+      <button type="submit">Submit</button>
     </form>
   );
 }
@@ -445,18 +492,18 @@ We need to make a minor change to the inventory. Currently, we're not using the 
 //...component code
 const [inventory, setInventory] = useState([]);
 useEffect(() => {
- setInventory([...inventoryData.inventory);
+  setInventory([...inventoryData.inventory]);
 }, []); //<--- don't forget the dependency array or you can end up with an infinite loop!!
 //...component code
 ```
 
 It loads the same as before but now the code is a bit more flexible for future changes.
 
-![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-04/render-priority-product-list.png)
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-04/assets/render-priority-product-list.png)
 
-Let's fix up the styling to make it look more like a storefront and then add a shopping cart! For now, we'll add classes to elements so that they're easy to select and add style rules to `App.css` - the same that we would do with a static html page. We'll talk about css and images in depth in week 10 because there are other, more flexible options for styling in React, especially as an app grows and becomes more complex.
+Let's fix up the styling to make it look more like a storefront and then add a shopping cart! For now, we'll add classes to elements so that they're easy to select and add style rules to `App.css` - the same that we would do with a static html page. We'll talk about css and images in depth in lesson 10 because there are other, more flexible options for styling in React, especially as an app grows and becomes more complex.
 
-![product cards](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-04/product-cards.png)
+![product cards](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-04/assets/product-cards.png)
 
 For a cart feature, we need to be able to track items that have been put into a cart. To do so, we'll to add another `useState` to hold and update the items a user has selected. The initial state will be an empty array and we need handler function to add items from the cart. Removing items will come next week when we work with forms. We're also going to remove the special limited edition tee to simplify the product list. It will end up causing bugs because it's not a part of the inventory that we import from `catalog.json`. Sorry Frank, it'll come back later!
 
@@ -506,11 +553,11 @@ Now that we have a handler function to update the cart state, we need to wire `h
 2. Create a button in `ProductCard`
 3. We then add an `onClick` event prop to the button. Since we have to provide it with an argument unrelated to the synthetic event, we'll create an anonymous arrow function to call our handler with the correct args.
 
-- `<button onClick={() => handleAddItemToCart(cartItemId)}>Add to Cart</button>`
+- `<button onClick={() => handleAddItemToCart(id)}>Add to Cart</button>`
 
 With that done, we can now look at the state in `App` using our [React Dev Tools](https://react.dev/learn/react-developer-tools) (it's highly recommended that you have them installed!). The second State entry grows every time one of the buttons is clicked. When the entries are expanded, they contain all the details of the product but there is also a unique `cartItemId`.
 
-![adding items to cart updates state](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-04/add-product-state.gif)
+![adding items to cart updates state](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-04/assets/add-product-state.gif)
 
 Now that we have a state representation of the cart, we can add it to the page. The cart does not need to remain open all the time - it would get in the way of the products. We'll keep the cart minimized and add a cart icon with an item count in the upper-left corner which is controlled by the Header component.
 
@@ -536,7 +583,7 @@ useEffect(() => {
 //...component code.
 ```
 
-![print shopping cart to console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-04/add-product-console.gif)
+![print shopping cart to console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-04/assets/add-product-console.gif)
 
 > [!note]
 > A handler function's name doesn't have to remain the same when it passed through props. We could have called the props `addItem` when defining ProductCard and then added that to the `onClick`

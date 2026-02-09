@@ -8,19 +8,19 @@ This repository contains curriculum materials for a beginner React course, desig
 
 - **Size:** Large (hundreds of directories, thousands of files; mostly markdown and supporting assets)
 - **Current Curriculum (v4) - 11 weeks:**
-  - **Week 00:** Course Orientation and Local Environment Setup
-  - **Week 01:** Intro to React, App Installation, and Working with Vite
-  - **Week 02:** ReactDOM, Components, JSX, and Troubleshooting
-  - **Week 03:** Component Lifecycle, Basic Hooks, State, and Props
-  - **Week 04:** Hooks Continued, Events and Handlers
-  - **Week 05:** Local State and Controlled Components, and Forms
-  - **Week 06:** Re-usable Components, Project Organization, and Refactoring
-  - **Week 07:** Data Fetching and UI Update Strategies
-  - **Week 08:** Advanced Hooks: useCallback and useMemo, Optimizing a React App, and API-based Sort/Search
-  - **Week 09:** Advanced State, useReducer, and useContext
-  - **Week 10:** React Router
-  - **Week 11:** Polishing an App for Your Portfolio, App and Data Security, and Deploying a React App
-  - See `draft-artifacts/curriculum-design-notes/outline.md` for the full week-by-week outline
+  - **Lesson 00:** Course Orientation and Local Environment Setup
+  - **Lesson 01:** Intro to React, App Installation, and Working with Vite
+  - **Lesson 02:** ReactDOM, Components, JSX, and Troubleshooting
+  - **Lesson 03:** Component Lifecycle, Basic Hooks, State, and Props
+  - **Lesson 04:** Hooks Continued, Events and Handlers
+  - **Lesson 05:** Local State and Controlled Components, and Forms
+  - **Lesson 06:** Re-usable Components, Project Organization, and Refactoring
+  - **Lesson 07:** Data Fetching and UI Update Strategies
+  - **Lesson 08:** Advanced Hooks: useCallback and useMemo, Optimizing a React App, and API-based Sort/Search
+  - **Lesson 09:** Advanced State, useReducer, and useContext
+  - **Lesson 10:** React Router
+  - **Lesson 11:** Polishing an App for Your Portfolio, App and Data Security, and Deploying a React App
+  - See `draft-artifacts/curriculum-design-notes/outline.md` for the full lesson-by-week outline
 - **Previous Curriculum (v3) - 15 weeks:** Archived in `references/v3/` for comparison and reference
   - Extended course structure covering similar topics over 15 weeks instead of 11
   - Includes additional weeks for styling, final project development, and React ecosystem overview
@@ -30,7 +30,7 @@ This repository contains curriculum materials for a beginner React course, desig
 
 - **Key Directories:**
   - `learns-app-content/` — Current curriculum materials for CTD Learns LMS (v4)
-    - `week-00` to `week-11` — Weekly content
+    - `lesson-00` to `lesson-11` — Weekly content
     - `class-specific/`, `reusable-content/` — Shared and class-specific resources
   - `mentor-content/` — Instructor and reviewer resources
   - `references/` — Reference materials and archived curriculum

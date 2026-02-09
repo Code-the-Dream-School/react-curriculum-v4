@@ -11,7 +11,7 @@ After completing this week's assignment, your app should:
 
 ### Instructions Part 0: Pre-Work Version Control Tasks
 
-*Before proceeding, make sure your week-01 lesson has been approved.*
+*Before proceeding, make sure your lesson-01 lesson has been approved.*
 
 - Merge your PR in GitHub
 - On your local environment, check out `main` and then pull down the latest changes:
@@ -21,8 +21,8 @@ git checkout main
 git pull
 ```
 
-- Create and checkout a working branch for this week: `git checkout -b week-02-components`
-- Publish the branch to GitHub: `git push origin week-02-components`
+- Create and checkout a working branch for this week: `git checkout -b lesson-02-components`
+- Publish the branch to GitHub: `git push origin lesson-02-components`
 - Start up your development server and open the app in your browser.
 
 ### Instructions Part 1: TodoList Component
@@ -49,7 +49,7 @@ export default TodoList
 - Move the `todos` array over to `TodoList`
 - Observe the errors that appear in the browser console. You'll see something like:
 
-![screen capture of ReferenceError in browser console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-02/reference-error.png)
+![screen capture of ReferenceError in browser console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-02/reference-error.png)
 
 Errors like list are common during development and help us out quite a bit. Make sure you understand what the "Uncaught ReferenceError" message means and where it comes from. You may not know what an "error boundary" in the second message. Take an opportunity to do some research into what that message may mean. Our next step will resolve this.
 
@@ -71,7 +71,7 @@ Errors like list are common during development and help us out quite a bit. Make
 
  The app should now look like:
 
-![screen capture of todo list with new todo form in the browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-02/todo-list-with-form.png)
+![screen capture of todo list with new todo form in the browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-02/todo-list-with-form.png)
 
 ### Instructions Part 3: Final Steps
 

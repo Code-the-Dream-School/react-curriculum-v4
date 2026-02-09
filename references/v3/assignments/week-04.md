@@ -49,11 +49,11 @@ function handleAddTodo(event){
 - On the form, add an `onSubmit` event listener and pass in `handleAddTodo`: `<form onSubmit={handleAddTodo}>`. When the form submits, the event listener will fire off the function and pass it the submit event's event object.
 - Enter some text in the input on the browser window and hit the Add Todo button.
 
-![todo being entered](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-04/type-todo.gif)
+![todo being entered](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-04/type-todo.gif)
 
 You should see the event object in the console statement:
 
-![event object containing form data](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-04/form-data.png)
+![event object containing form data](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-04/form-data.png)
 
 > [!note]
 > All screenshots are from a Chrome-based browser. Firefox or Safari display objects in the console differently.
@@ -62,7 +62,7 @@ Since we added `name="title"` to the input's props, we can reference the input w
 
 - Update the `console.dir` statement to log out `event.target.title` and then hit the button again. The console now logs:
 
-![object containing data about the todoTitle input](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-04/todoTitle-data.png)
+![object containing data about the todoTitle input](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-04/todoTitle-data.png)
 
 - The console statement shows that you can access the input's value with `event.target.title.value`.
 - Back in the `handleAddTodo`, remove the console and create a new `const title` and assign it the event target's title value.
@@ -73,7 +73,7 @@ Since we added `name="title"` to the input's props, we can reference the input w
 
 When a user hits enter after adding a todo, the form retains focus so the user can rapidly enter more todos. However, when they click on the submit button, they then have to click on the field again to return the focus. Note below how they have to click into the field again before entering text.
 
-![typing a todo but input focus is lost when todo is added](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-04/type-todo.gif)
+![typing a todo but input focus is lost when todo is added](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-04/type-todo.gif)
 
 We can improve the user's experience by using a `ref` on the input element. Recall that this can act like a selector (`document.querySelector("#todoTitle")`), so we can use it to re-focus the input in the `handleAddTodo` event handler.
 
@@ -84,7 +84,7 @@ We can improve the user's experience by using a `ref` on the input element. Reca
 
 With that in place, a user should now be able to click the Add Todo button and the focus will return to the field.
 
-![input retains focus after submitting new todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-04/enter-todo-2.gif)
+![input retains focus after submitting new todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-04/enter-todo-2.gif)
 
 ### Instructions Part 2: Render Todos from State
 
@@ -114,11 +114,11 @@ export default TodoList
 
 Back over in the browser, we are still rendering the `TodoList` but it's children are now tied to the `todoList` state. Since the `initialValue` is an empty array, no `TodoListItem`s are rendered.
 
-![no todos rendered in react dev tools](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-04/no-todos.png)
+![no todos rendered in react dev tools](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-04/no-todos.png)
 
 - In the browser, type a new todo in the input - the todo form should now add items to your list!
 
-![TodoListItems rendering as todos entered into form](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-04/enter-todo.gif)
+![TodoListItems rendering as todos entered into form](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-04/enter-todo.gif)
 
 ### Closing Notes
 

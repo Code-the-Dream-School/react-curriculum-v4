@@ -2,7 +2,7 @@
 
 ### State
 
-All of the information on an simple web page is composed of data of one type or another - text, images, structure, styling, etc. When going from a static web page to an SPA, we have to determine what data should load dynamically and what should remain static. To one extreme, we may limit it to a username in a page header. Towards the other extreme, everything on the page all the way down to the text inside of a button can be loaded dynamically. Most of the time, it's somewhere in the middle.
+All of the information on a simple web page is composed of data of one type or another - text, images, structure, styling, etc. When going from a static web page to an SPA, we have to determine what data should load dynamically and what should remain static. To one extreme, we may limit it to a username in a page header. Towards the other extreme, everything on the page all the way down to the text inside of a button can be loaded dynamically. Most of the time, it's somewhere in the middle.
 
 We have plenty of options when working with state. The simplest place to start is by defining a variable used inside our component. We can do this outside of the component or inside, before the return statement. We reference that variable in our JSX surrounded by `{}`. When the component is rendered, React will insert the value in its place in the virtual DOM then go through reconciliation and rendering. One detail to keep in the back of your mind is that every time a component is re-rendered, any variables defined inside the component will be re-instantiated. Most of this time this is not a problem but this will come up later in the course when we focus on optimizing our code for more advanced scenarios.
 
@@ -16,11 +16,11 @@ function App() {
   const title = ' CTD Swag'; // This is inside the Component before the return
   return (
     <div className="coming-soon">
-      <h1>{title}</h1> //`title` inserted into heading
+      <h1>{title}</h1> {/* `title` inserted into heading */}
       <div style={{ height: 100, width: 100 }}>
         <img src={ctdLogo} alt="Code The Dream Logo" />
       </div>
-      <h2>{message}</h2> //`message` inserted into heading
+      <h2>{message}</h2> {/* `message` inserted into heading */}
     </div>
   );
 }
@@ -56,21 +56,90 @@ function App() {
 export default App;
 ```
 
-We'll know when the `setTimeout` fires off because of the console statement that prints out the updated `message`. As expected, this has no affect to the "Coming Soon…" message on the page:
+We'll know when the `setTimeout` fires off because of the console statement that prints out the updated `message`. As expected, this has no effect to the "Coming Soon…" message on the page:
 
-![setTimeout firing console message 1 second after page load](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-03/timeout-message.gif)
+![setTimeout firing console message 1 second after page load](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/timeout-message.gif)
+
+#### Component Lifecycle
+
+The example above demonstrates why React needs special mechanisms to track and respond to data changes. Simply changing a variable doesn't trigger React to update what's shown on screen. This is where React's **hooks** come in.
+
+React components go through different phases in their lifecycle:
+
+- **Mount**: When a component first appears on the page.
+- **Update**: When a component re-renders due to state or props changes.
+- **Unmount**: When a component is removed from the page.
+
+Here's a small example—setting something up on mount, and cleaning it up on unmount:
+
+```jsx
+import { useEffect } from 'react';
+
+function PageSizer() {
+  useEffect(() => {
+    function onResize() {
+      console.log('window resized');
+    }
+    window.addEventListener('resize', onResize);
+
+    // Cleanup runs on unmount (and before re-run if dependencies change)
+    return () => window.removeEventListener('resize', onResize);
+  }, []); // Empty dependency array: run once after first render (mount)
+
+  return <p>Watching page size…</p>;
+}
+```
+
+**Where lifecycle happens in this snippet:**
+
+- **Mount:** After the first render, the `useEffect` body runs and adds the listener.
+- **Update:** With `[]` as dependencies, there’s no update re-run. If you had dependencies (e.g., `[someProp]`), React would clean up the old listener and run the effect again when that value changes.
+- **Unmount:** When the component disappears, React calls the cleanup function, removing the listener.
+
+#### Intro to Hooks
+
+To manage data that changes over time and trigger lifecycle updates, React provides **hooks** - special functions that "hook into" React's internal systems.
+Hooks let function components hold data, react to changes, and keep values around between renders. Before we dive into specific hooks, here are the essential rules for using them:
+
+**Rules and guidelines:**
+
+- Call hooks at the top level of your component (not inside if statements, loops, or nested functions)
+- Only call hooks from React function components or custom hooks
+- Custom hooks must start with "use" (like `useCustomHook`)
+- Group related state variables together
+- Keep state minimal - derive values when possible
+
+##### `useState` — local state
+
+Stores a value for component and lets you update it.
+
+##### `useEffect` — Managing Side Effects
+
+`useEffect` lets you synchronize your component with external systems - things outside of React's control like timers, API calls, browser APIs, or manual DOM manipulation.
+
+##### `useRef` — Persisting Values Without Re-renders
+
+`useRef` creates a container that holds a mutable value across renders without triggering re-renders when it changes. Think of it as a "box" that keeps the same reference between renders.
+
+##### Using the React.dev Reference Documentation
+
+As you work with React, the official documentation at [react.dev](https://react.dev) will become your most valuable resource. Here's how to use it effectively:
+
+The docs are concise, accurate, and updated regularly. When in doubt about how something works, the React.dev reference should be your first stop - it's faster than searching and more reliable than outdated tutorials.
+
+Now let's explore the most fundamental hook: `useState`.
 
 #### useState
 
 `const [state, setState] = useState(initialState)`
 
-`useState` is a React hook that allows us to set and update a piece of data that we can then use in our SPA. We invoke `useState` with an initial state value as an argument. That initial state value can be of any type. If given a function, it would be called an "initializer function" in that context. React will run it and use the returned value to set the initial state value. Initializer functions must be pure functions and cannot take any arguments. When called, `useState` returns an array containing a state variable (a reference to the current state) and an updater function. We follow array [destructuring assignment](https://javascript.info/destructuring-assignment) convention `const [noun, setNoun] = useState(intialState)` to make use of this hook.
+`useState` is a React hook that allows us to set and update a piece of data that we can then use in our SPA. We invoke `useState` with an initial state value as an argument. That initial state value can be of any type. If given a function, it would be called an "initializer function" in that context. React will run it and use the returned value to set the initial state value. Initializer functions must be pure functions and cannot take any arguments. When called, `useState` returns an array containing a state variable (a reference to the current state) and an updater function. We follow array [destructuring assignment](https://javascript.info/destructuring-assignment) convention `const [noun, setNoun] = useState(initialState)` to make use of this hook.
 
-With `useState` explained, we can now start setting up CTD Swag's storefront. Let's get some inventory on the page! We first need to put together some sample inventory data for our app to start with. We want to be able to offer differing colors or versions for some products but without each having their own product card. We will eventually make use of `base-` and `variant-` prefixes to combine related products to a single product card in when we discuss conditional rendering in week 5. Each item should include `baseName`, `variantName`, `id` `price`, `baseDescription`, `variantDescription`, `image`, and `inStock` keys. Here's an example of several inventory items:
+With `useState` explained, we can now start setting up CTD Swag's storefront. Let's get some inventory on the page! We first need to put together some sample inventory data for our app to start with. We want to be able to offer differing colors or versions for some products but without each having their own product card. We will eventually make use of `base-` and `variant-` prefixes to combine related products to a single product card in when we discuss conditional rendering in lesson 5. Each item should include `baseName`, `variantName`, `id` `price`, `baseDescription`, `variantDescription`, `image`, and `inStock` keys. Here's an example of several inventory items:
 
 ```json
 {
-  inventory: [
+  "inventory": [
     {
       "id": 1,
       "baseName": "Bucket Hat",
@@ -101,12 +170,11 @@ With `useState` explained, we can now start setting up CTD Swag's storefront. Le
       "image": "clock.png",
       "inStock": "TRUE"
     }
-  ];
+  ]
 }
-
 ```
 
-A JSON file that includes a full starting inventory can be [found here](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-03/inventory.json). We will use Vite's JSON import feature to access the inventory. Let's get some product names and descriptions onto the page!
+A JSON file that includes a full starting inventory can be [found here](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/inventory.json). We will use Vite's JSON import feature to access the inventory. Let's get some product names and descriptions onto the page!
 
 > [!note]
 > Note: Screen captures of the application using an older version of this JSON file. The newest version includes product variations that will be used in later lessons.
@@ -127,7 +195,7 @@ A JSON file that includes a full starting inventory can be [found here](https://
 import { useState } from 'react';
 import ctdLogo from './assets/mono-blue-logo.svg';
 import './App.css';
-import inventoryData from './assets/catalog.json';
+import inventoryData from './assets/inventory.json';
 
 function App() {
   const [inventory, setInventory] = useState(inventoryData.inventory);
@@ -158,12 +226,12 @@ function App() {
 export default App;
 ```
 
-![render product list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-03/render-product-list.png)
+![render product list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/render-product-list.png)
 
 > [!note]
 > ESLint may be highlighting `setInventory` since it hasn't been used yet. We will use it next lesson. For now, this is one of the few errors we'll ignore.
 
-![highlighting eslint error to ignore](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-03/ignore-error.png)
+![highlighting eslint error to ignore](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/ignore-error.png)
 
 The `key` in `<li key={item.id}>` helps React keep track of elements that are rendered from an array. It may initially seem like a good idea to use the item's array index since each item has one and it is unique. The downside is that an item and its index value are not guaranteed to keep matching. An item may be removed from the inventory, changing the array, when it goes out of stock. `inventory` can eventually have a sort or filter feature added to it which would also have an impact on item order. In either case, using array indices as keys could introduce unexpected behavior or degrade React's rendering cycle. We've included an `id` on the item so this will not happen.
 
@@ -173,43 +241,36 @@ The `key` in `<li key={item.id}>` helps React keep track of elements that are re
 
 At this point we are almost ready to do some refactoring. App component is small but will continue to grow as we set up our storefront. Remember that with "separation of concerns" it is good to limit each component to a single job. The title and the logo can be separated out as a storefront header. The inventory list and inventory cards area also good candidates for refactoring into components. Before we proceed, we need to know how to communicate data down to child components, otherwise we will have no way to pass on the `title` or `description`.
 
-Enter React **`props`**. Short for "properties", the are used to pass data from a component down to its children. They can can accept any type, including functions, but their values are immutable and managed by the parent component. The components receiving props use the data to configure themselves. In order to take props in a component, a value representing props has to be added to the component's function parameters- `function SomeComponent(props){…`. Since props are just objects, it's common to use [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to immediately get specific values from props in the component's arguments. This allows us to immediately see what sort of values we need from the parent component. An additional benefit is that we can set a default value for any of the props.
+Enter React **`props`**. Short for "properties", they are used to pass data from a component down to its children. They can can accept any type, including functions, but their values are immutable and managed by the parent component. The components receiving props use the data to configure themselves. In order to take props in a component, a value representing props has to be added to the component's function parameters- `function SomeComponent(props){…`. Since props are just objects, it's common to use [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to immediately get specific values from props in the component's arguments. This allows us to immediately see what sort of values we need from the parent component. An additional benefit is that we can set a default value for any of the props.
 
 ```jsx
 //without destructuring
-function ProductList(props){
- const inventory = props.inventory
- return (
-  <ul>
+function ProductList(props) {
+  const inventory = props.inventory;
+  return (
+    <ul>
       {inventory.map((item) => {
-       return (
-     <li key={item.id}>
-      {item.baseName}
-     </li>
-    );
-   })}
-     </ul>
- )
+        return <li key={item.id}>{item.baseName}</li>;
+      })}
+    </ul>
+  );
 }
 
 //with destructuring
-function ProductList({inventory = []){ //destructuring assignment grabs `inventory` out of props
-          //we're also setting a default value og `inventory` to an empty array
- return (
-  <ul>
+function ProductList({ inventory = [] }) {
+  //destructuring assignment grabs `inventory` out of props
+  //we're also setting a default value of `inventory` to an empty array
+  return (
+    <ul>
       {inventory.map((item) => {
-       return (
-     <li key={item.id}>
-      {item.baseName}
-     </li>
-    );
-   })}
-     </ul>
- )
+        return <li key={item.id}>{item.baseName}</li>;
+      })}
+    </ul>
+  );
 }
 ```
 
-Functions passed as props are a key tool for interactivity. This is such an important detail that we have to cover a few more topics before we can fully appreciate their role in an interactive application. We continue talking about functions used in props next week.
+Functions passed as props are a key tool for interactivity. This is such an important detail that we have to cover a few more topics before we can fully appreciate their role in an interactive application. We continue talking about functions used in props next lesson.
 
 #### Props in Action
 
@@ -218,7 +279,7 @@ Let's expand on CTD Swag by introducing three new components.
 We create the first two new files and define the components inside each:
 
 - Header.jsx
-- InventoryList.jsx
+- ProductList.jsx
 
 We then extract the elements from the App component and move them over into the new components.
 
@@ -264,28 +325,6 @@ function ProductList({ inventory }) {
 export default ProductList;
 ```
 
-**You may see an ESLint error when working with props in Inventory**.
-
-![eslint tooltop missing props validation](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-03/missing-props-validation.png)
-
-We will not be using prop-types in our project so we need to disable that rule in `config.eslint.js`. We do so by adding `'react/prop-types': 'off',` to the existing rules. The rules object should look similar to this:
-
-```javascript
-/*config.eslint.js rules extract*/
-rules: {
-      ...js.configs.recommended.rules,
-      ...react.configs.recommended.rules,
-      ...react.configs['jsx-runtime'].rules,
-      ...reactHooks.configs.recommended.rules,
-      'react/jsx-no-target-blank': 'off',
-      'react/prop-types': 'off',                //disables react/prop-types rule
-      'react-refresh/only-export-components': [
-        'warn',
-        { allowConstantExport: true },
-      ],
-    },
-```
-
 We then need to refactor ProductCard out of the ProductList component.
 
 Create the file, `ProductCard.jsx` and move the list item over to the new component.
@@ -295,15 +334,15 @@ Create the file, `ProductCard.jsx` and move the list item over to the new compon
 
 import ProductCard from './ProductCard';
 
-function ProductList({inventory}) {
+function ProductList({ inventory }) {
   return (
     <ul>
       {inventory.map((item) => {
         return (
-          <ItemCard
+          <ProductCard
             key={item.id}
-            name={item.baseName
-            description={item.baseDescription}
+            baseName={item.baseName}
+            baseDescription={item.baseDescription}
           />
         );
       })}
@@ -321,17 +360,17 @@ function ProductCard({ baseName, baseDescription }) {
   return (
     <li>
       <div className="itemCard">
-        <h2>{props.baseName}</h2>
-        <p>{props.baseDescription}</p>
+        <h2>{baseName}</h2>
+        <p>{baseDescription}</p>
       </div>
     </li>
   );
 }
 
-export default ItemCard;
+export default ProductCard;
 ```
 
-> [!Remember] > `key` is a special prop that React uses to track components rendered from an array. Because of this, `key` gets added to `InventoryItem` instances in `map()` but is **not used** in the `InventoryItem` component.
+> [!Remember] > `key` is a special prop that React uses to track components rendered from an array. Because of this, `key` gets added to `ProductCard` instances in `map()` but is **not used** in the `ProductCard` component.
 
 Finally, we refactor `App` to use the new components.
 
@@ -341,7 +380,6 @@ import './App.css';
 import inventoryData from './assets/inventory.json';
 import Header from './Header';
 import ProductList from './ProductList';
-import ProductCard from './ProductCard';
 
 function App() {
   const [inventory, setInventory] = useState(inventoryData.inventory);
@@ -349,7 +387,7 @@ function App() {
   return (
     <main>
       <Header />
-      <ProductList />
+      <ProductList inventory={inventory} />
     </main>
   );
 }
@@ -364,20 +402,20 @@ Along with the props that we can define on our own, React's common components fe
 #### Props for All Built-in Components
 
 - **children**: accepts a React node. Valid React nodes include custom or built-in components, array of React nodes, empty node (null, undefined), string, number, or a [portal](https://react.dev/reference/react-dom/createPortal). We'll cover children in more detail below.
-- **ref**: takes a reference object from `useRef` (covered in week 4) or `createRef`, or a callback that gets called when React renders the element.
-- **style**: takes an object defining CSS styles in property name/ property value pairs. All property names must be written in camelCase. Eg. `background-color` is written as `backgroundColor`. More in week 10.
+- **ref**: takes a reference object from `useRef` (covered in lesson 4) or `createRef`, or a callback that gets called when React renders the element.
+- **style**: takes an object defining CSS styles in property name/ property value pairs. All property names must be written in camelCase. Eg. `background-color` is written as `backgroundColor`. More in lesson 10.
 
 #### Props for Standard DOM Components
 
 - **className**: String. Replacement for html attribute `class`. Multiple classes can be added by using spaces between class names.
 - **htmlFor**: String. Primarily for `label` or `output` and is a replacement for html attribute `for`.
-- **on\* - (onBlur, onClick, onFocus, etc.)**: Takes a callback function. Event listener props are named after a specific event that they listen for on the element where they are used. More in week 4.
+- **on\* - (onBlur, onClick, onFocus, etc.)**: Takes a callback function. Event listener props are named after a specific event that they listen for on the element where they are used. More in lesson 4.
 
 #### Props for DOM Components that Accept User Input
 
 > [!note]
 > These include `<input>`,`<textarea>`, etc.
-> We will cover these in depth when we start working with React controlled components and forms in week 5.
+> We will cover these in depth when we start working with React controlled components and forms in lesson 5.
 
 - **disabled**: Boolean. Prevents a user from interacting with element when true.
 - **value**: String: the text contents inside the element.
@@ -413,7 +451,7 @@ function App() {
     <main>
       <Header />
       <ProductList inventory={inventory}>{promoteItem()}</ProductList>
-      {/*invoking promoted item between the tags inserts the ItemCard*/}
+      {/*invoking promoted item between the tags inserts the ProductCard*/}
     </main>
   );
 }
@@ -431,13 +469,14 @@ import ProductCard from './ProductCard';
 function ProductList({ inventory, children }) {
   return (
     <ul>
-      {children} //this location guarantees that this list item will be first
+      {children}{' '}
+      {/*this location guarantees that this list item will be first*/}
       {inventory.map((item) => {
         return (
           <ProductCard
             key={item.id}
-            name={item.baseName}
-            description={item.baseDescription}
+            baseName={item.baseName}
+            baseDescription={item.baseDescription}
           />
         );
       })}
@@ -448,4 +487,4 @@ function ProductList({ inventory, children }) {
 export default ProductList;
 ```
 
-![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-03/render-priority-product-list.png)
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/render-priority-product-list.png)

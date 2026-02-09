@@ -19,7 +19,7 @@ In TodoList.jsx:
 
 Your app should show the paragraph if the list is empty or the todos if the `todoList` contains any.
 
-![hitting enter adds todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-05/enter-todo.gif)
+![hitting enter adds todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-05/enter-todo.gif)
 
 ## Instructions Part 2: Mark Todo as Complete
 
@@ -93,7 +93,7 @@ In `TodoList`, we need to filter out the completed todos before we map the todos
 
 Now, when a user clicks on the checkbox beside an item, that todo disappears from the list.
 
-![submit and complete a todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-05/add-complete-todo.gif)
+![submit and complete a todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-05/add-complete-todo.gif)
 
 ## Instructions Part 3: Convert Form to Controlled Component
 
@@ -121,8 +121,8 @@ Now, when a user clicks on the checkbox beside an item, that todo disappears fro
 
 We are pretty close to being complete for this week but there is one minor problem with the interface. A user is able to add empty todos to their list. Since the form was converted to a controlled component, we can do so based on the value of the working state in the component.
 
-![user is able to hit add todo even when input is empty](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-05/submit-enabled.gif)
+![user is able to hit add todo even when input is empty](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-05/submit-enabled.gif)
 
 - In `TodoForm`'s button element, add a `disabled` prop that evaluates to true when `workingTodo` is an empty string.
 
-![submission button disabled when input is empty](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-05/submit-disabled.gif)
+![submission button disabled when input is empty](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-05/submit-disabled.gif)

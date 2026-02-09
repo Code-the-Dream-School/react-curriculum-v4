@@ -24,7 +24,7 @@ createRoot(document.getElementById('root')).render(
 From here we have two directions to go to identify how everything is tied together. The first is to find the element with the id of `root`. It's not found in `/src` anywhere. Recall that `index.html` in the root directory is the entry point for the application. In that file, we will find a div with an id of `root`. When Vite starts, it serves up this file. The script loaded on line 11 is our application! Once it loaded, the script runs which renders the application inside of that div. If there is anything in that element, it removes it first.
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -153,7 +153,7 @@ function App() {
 
 Renders out to:
 
-![simple components rendered to page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-02/page-render.png)
+![simple components rendered to page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/page-render.png)
 
 Although a component is just a function, there are a few rules to follow when creating them.
 
@@ -162,7 +162,7 @@ Although a component is just a function, there are a few rules to follow when cr
   - Its return values are always the same given the same inputs.
   - No side effects[^side-effects] should happen during render. These must happen outside the render cycle.
     - Mutations local to the component during render is acceptable. Example: pushing items into an array that is then rendered into list items.
-  - Don't make direct changes (mutate) to props or state. We'll cover making updates to these next week.
+  - Don't make direct changes (mutate) to props or state. We'll cover making updates to these next lesson.
 
 There are also a few best practices to follow:
 
@@ -178,7 +178,7 @@ React includes several built-in components - we've already ran into the two used
 - **Fragment**: allows us to group elements together without affecting the DOM structure. The shorthand `<></>` is used in most cases.
 - **StrictMode**: a special development tool that adds behaviors to the application that reveal common React bugs
   - components mount twice to expose impure renders
-  - effects are re-ran to validate cleanup functions work correctly - more details about useEffect will be covered in week 8.
+  - effects are re-ran to validate cleanup functions work correctly - more details about useEffect will be covered in lesson-08.
   - flags use of [deprecated](https://en.wikipedia.org/wiki/Deprecation) APIs
   - It's added to our project automatically with Vite's React template. It may be tempting to remove it to suppress odd behaviors (especially with useEffect) but don't. Again, errors are our friends and they'll guide us to the right path!
 
@@ -249,7 +249,7 @@ To keep the transpilation process simple and performant, we must follow some rul
 ```
 
 - Most keys and attributes must be camelCase
-  - [aria-\*](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*) + [data-\*](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) are still written with dashes
+- [aria-\*](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes) + [data-\*](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*) are still written with dashes
 - `class` and `for` are reserved words in JavaScript so `className` and `htmlFor` are used in their place.
 - JavaScript blocks inside JSX must be wrapped with curly brackets `{}`
   - don't use single line JS comments, eg. `//some comment`
@@ -290,13 +290,19 @@ To keep the transpilation process simple and performant, we must follow some rul
 <div style={{ backgroundColor: '#800080', borderBottom: 3 }}></div>;
 ```
 
+#### Conditional Rendering
+
+One of the most powerful features of JSX is conditional rendering. It allows us to decide what gets displayed in the UI depending on some JavaScript expression.
+Since JSX only supports expressions (not full statements), we typically use tools like the ternary operator or logical AND (&&) directly inside the markup to choose what to render.
+You’ll explore more advanced patterns for conditional rendering in lesson 5.
+
 ### Troubleshooting
 
 #### Runtime Feedback
 
 Vite provides us with some error feedback through the terminal, the browser window, and the browser's development console. In the example below, the code still transpiles to JavaScript correctly but list items returned by the `map` function do not have a mandatory `key` props. React will still render the list but the reconciliation process is degraded severely by this bug.
 
-![console error because of missing key](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-02/missing-key.png)
+![console error because of missing key](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/missing-key.png)
 
 Common syntactical issues often result in long stack traces but Vite tries to provide some helpful details in the terminal and in a browser overlay before printing the trace. In the example below, can you tell what syntactical error crashed the application? Hint: look at the second line of the black browser overlay on the right. It should become obvious what character our code is missing.
 
@@ -304,7 +310,7 @@ Another detail to look for is a caret (`^`) inside the printed code snippet - th
 
 The same message appears in the terminal session running Vite. Don't be daunted by all the `at JSXParserMixin…` lines. These are helpful for more complex problems but all the information we usually need to resolve an issue is at the top of the output. Error messages are a developer's friend!
 
-![page error missing closing tag](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-02/missing-close-tag.png)
+![page error missing closing tag](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/missing-close-tag.png)
 
 > [!note]
 > After resolving an error that results in an error overlay in the browser, you have to click in the gray area to dismiss it. In some cases, you may also need to refresh the browser window to fully restore your app.
@@ -318,18 +324,17 @@ The same message appears in the terminal session running Vite. Don't be daunted 
 - [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 - [Install the standalone version](https://react.dev/learn/react-developer-tools#safari-and-other-browsers) using these instructions.
 
-![react dev tools components tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-02/components-tab.png)
+![react dev tools components tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/components-tab.png)
 Above: Screenshot of the Components Inspector as used in Firefox.
 
-![react dev tools profiler tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-02/profiler-tab.png)
+![react dev tools profiler tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/profiler-tab.png)
 
 Above: Screenshot of the Profiler as used in Firefox.
 
 [^class-component]: React components can also be class-based but it's not common to see them any more. With the introduction of hooks in React v16.8 (released February, 2019), many of the disadvantages of functional components disappeared. A large portion of the JavaScript community eschews [OOP](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_programming) in favor of [functional](https://github.com/readme/guides/functional-programming-basics) programming. This is not a judgement, just an observation.
-
 [^side-effects]: In JavaScript, a side effect refers to any observable behavior or change that a function introduces beyond simply returning a value. Side effects can include modifying variables outside the function's scope, interacting with the DOM, making API calls, and updating state in a React component. Side effects can impact the application's state, environment, or external systems in ways that go beyond the function's primary purpose of computing and returning a value.
 
 For example, consider a function that updates a global variable or performs a network request. These actions are considered side effects because they alter the program's state or interact with external resources outside the function's local scope. While side effects are often necessary for applications to interact with the outside world, excessive or unexpected side effects can lead to unintended consequences, bugs, and harder-to-maintain code.
 
 Managing and controlling side effects is a key consideration in JavaScript development, especially when working with asynchronous operations, state management, and complex applications. Tools like pure functions, immutability, and libraries like Redux and React's useEffect hook help developers manage side effects effectively while keeping the codebase clean and maintainable.
-[^avoid-anonymous]: Default export can be used with anonymous functions but this is discouraged. While components are given a name when imported, anonymous function components make React needlessly difficult to troubleshoot.\
+[^avoid-anonymous]: Default export can be used with anonymous functions but this is discouraged. While components are given a name when imported, anonymous function components make React needlessly difficult to troubleshoot.

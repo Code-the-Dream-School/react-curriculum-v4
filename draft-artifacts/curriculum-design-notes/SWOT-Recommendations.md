@@ -138,7 +138,7 @@ The following immediate improvements have been successfully implemented in `.git
 #### Technical Validation Section ✅
 
 - Added comprehensive React code validation guidelines
-- Included props consistency checks (addressing exact issues found in Week 3)
+- Included props consistency checks (addressing exact issues found in Lesson 3)
 - Added component naming and import/export validation
 - Specified hook usage and cross-reference validation requirements
 
