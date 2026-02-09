@@ -78,7 +78,7 @@ You will be moving all of the todo-related components to a TodosPage component. 
 - Import into `App` and replace the h1 element in the wildcard route with an instance of `NotFound`.
 
 At this point, the updated app should allow the user to navigate between the todo list and about page. It should also display the "Not Found" page for any pathname that doesn't match those defined in the first 2 Route components.
-![User navigating between home and about pages](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-12/nav-home-to-about.gif)
+![User navigating between home and about pages](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-12/nav-home-to-about.gif)
 
 ### Instructions Part 3: Paginate Todo List
 
@@ -106,7 +106,7 @@ You will be setting up pagination for your todo list. Unlike the pagination in t
 
 Example of how the buttons and span may look:
 
-![Navigation controls with current and total page numbers between buttons](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-12/nav-controls.png)
+![Navigation controls with current and total page numbers between buttons](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-12/nav-controls.png)
 
 - Create a handler function `handlePreviousPage` that uses `setSearchParams` to set `page` to `currentPage - 1` while preventing the value from decreasing below 1.
 - Create a handler function `handleNextPage` that increments the `page` value with a max value of `totalPages`.
@@ -127,7 +127,7 @@ One problem that arises is that the todos are initially empty while they are bei
 - Wrap the contents of the `useEffect` in an `if` statement that evaluates `totalPages`.
   - If it is greater than 0, permit the `navigate("/")` to fire.
 
-![demo of todo pagination and reloading page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-12/router-params-demo.gif)
+![demo of todo pagination and reloading page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-12/router-params-demo.gif)
 
 ### Closing Notes
 

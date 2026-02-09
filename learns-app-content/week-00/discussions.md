@@ -10,28 +10,28 @@ You will be learning React, a popular user interface (UI) development library us
 
 The Intro to React v4 course is structured as 11 progressive weekly lessons. Each lesson builds upon concepts from previous weeks, making it essential to complete the course sequentially without skipping ahead or missing content.
 
-- **Weeks 1-6** basics of React
-- **Week 7**  working with data fetched from an API
-- **Week 8 and 9** advanced hooks
-- **Week 10** use React-Router to improve web-based navigation
-- **Week 11** progressing as a React Developer
+- **Lessons 1-6** basics of React
+- **Lesson 7**  working with data fetched from an API
+- **Lesson 8 and 9** advanced hooks
+- **Lesson 10** use React-Router to improve web-based navigation
+- **Lesson 11** progressing as a React Developer
 
 One of the main requirements for graduation is that all weekly assignments, and any week that includes exercises, must include a link to a [pull request (PR)](https://github.blog/developer-skills/github/beginners-guide-to-github-creating-a-pull-request/) that has been reviewed and approved by your assigned reviewer.
 
 The materials for the course is further broken down into a full list of topics covered each week. Every section is titled with their topics so that they double as useful search terms when looking for external resources.
 
-- **Week-00:** Course Orientation and Local Environment Setup
-- **Week-01:** Intro to React, App Installation, and Working with Vite
-- **Week-02:** ReactDOM, Components, JSX, and Troubleshooting
-- **Week-03:** Component Lifecycle, Basic Hooks, State, and Props
-- **Week-04:** Hooks Continued, Events and Handlers
-- **Week-05:** Local State and Controlled Components, and Forms
-- **Week-06:** Re-usable Components, Project Organization, and Refactoring
-- **Week-07:** Data Fetching and UI Update Strategies
-- **Week-08:** Advanced Hooks: useCallback and useMemo, Optimizing a React App, and API-based Sort/Search
-- **Week-09:** Advanced State, useReducer, and useContext
-- **Week-10:** React Router
-- **Week-11:** Polishing an App for Your Portfolio, App and Data Security, and Deploying a React App
+- **Lesson-00:** Course Orientation and Local Environment Setup
+- **Lesson-01:** Intro to React, App Installation, and Working with Vite
+- **Lesson-02:** ReactDOM, Components, JSX, and Troubleshooting
+- **Lesson-03:** Component Lifecycle, Basic Hooks, State, and Props
+- **Lesson-04:** Hooks Continued, Events and Handlers
+- **Lesson-05:** Local State and Controlled Components, and Forms
+- **Lesson-06:** Re-usable Components, Project Organization, and Refactoring
+- **Lesson-07:** Data Fetching and UI Update Strategies
+- **Lesson-08:** Advanced Hooks: useCallback and useMemo, Optimizing a React App, and API-based Sort/Search
+- **Lesson-09:** Advanced State, useReducer, and useContext
+- **Lesson-10:** React Router
+- **Lesson-11:** Polishing an App for Your Portfolio, App and Data Security, and Deploying a React App
 
 ### Weekly Lesson Structure
 

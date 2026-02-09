@@ -17,7 +17,7 @@ After completing this week's assignment, your app should:
 
 *While running the Vite development server, these changes will throw errors about non-existent files until all of the import statements are corrected.*
 
-![error fail to load file](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-06/does-file-exist.png)
+![error fail to load file](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-06/does-file-exist.png)
 
 - Create two new directories in `src`: `features` and `shared`
 - Inside of `src/features`, create a new directory `TodoList`
@@ -96,7 +96,7 @@ export default TextInputWithLabel
 
 The form should behave the same as it did previously but you can see that there's a new component in the component tree:
 
-![TextInputWithLabel in react dev tools](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-06/text-input-with-label-dev-tools.png)
+![TextInputWithLabel in react dev tools](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-06/text-input-with-label-dev-tools.png)
 
 #### Allow Users to Edit Existing Todos
 
@@ -141,7 +141,7 @@ Your list item should resemble:
 
 At this point, when you click on the todo in the list, it will toggle between being displayed as text and showing in a form input:
 
-![editing a todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-06/edit-todo.gif)
+![editing a todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-06/edit-todo.gif)
 
 - Create a new state variable, `workingTitle` and its associated state update function. Set the `initialValue` to `todo.title`
 - Create a `handleCancel` event helper that:
@@ -164,7 +164,7 @@ At this point, when you click on the todo in the list, it will toggle between be
 
 You should now be able to make changes to the todo in the input. We cannot save quite yet though!
 
-![including a cancel button on edit-able todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-06/edit-todo-cancel-button.gif)
+![including a cancel button on edit-able todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-06/edit-todo-cancel-button.gif)
 
 ##### Update Todo State from Local State
 
@@ -192,7 +192,7 @@ You should now be able to make changes to the todo in the input. We cannot save 
   - add a click handler that takes `handleUpdate`
 - Add an `onSubmit` handler to the form element and pass it `handleUpdate`
 
-![adding and completing multiple todos](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/week-06/add-todos.gif)
+![adding and completing multiple todos](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/assignments/assets/lesson-06/add-todos.gif)
 
 #### Closing Notes
 

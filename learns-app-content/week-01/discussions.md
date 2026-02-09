@@ -40,7 +40,7 @@ To work with a React project, we must choose a build tool and server. One of the
 
 Create a new repo in GitHub and give it a name. All of the other options can remain the default. Any files such as the license, readme, or .gitignore will just get in the way of the installation process and be re-created anyways. The .git directory (a normally invisible directory used to manage version control) is unaffected so does not have to be worried about.
 
-![github create new repository](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/new-repo.png)
+![github create new repository](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01/assets/new-repo.png)
 
 Clone the repo locally. With a terminal opened to the local repo's directory, issue the command below to scaffold out a Vite project using the React template.
 
@@ -105,13 +105,13 @@ To work with the project, we have to start Vite's server. To find the right comm
 
 Since the packages in the repo are installed locally, the command line will not recognize them. Instead of trying to call them directly (e.g. typing `vite build` into our terminal), we use npm to call the scripts for us by using the command `npm run <<scriptKey>>` in the terminal at the project's root directory. Remember in JSON, a `key` is a property name - the word on the left side of a colon. In our case, we're going to use the command **`npm run dev`**. This will spin up a development pipeline to create a version of our code that is understandable by the browser.
 
-![vite running in terminal](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/terminal-serve.png)
+![vite running in terminal](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01/assets/terminal-serve.png)
 
 Vite then serves up the transformed code so we can see it in the browser!
 
-![starting page in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/starter-page.png)
+![starting page in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01/assets/starter-page.png)
 
-You may have noticed a `:5173` in the url. This is the port number that Vite serves content from locally. We will talk more about this and how to deploy a live app in week 13.
+You may have noticed a `:5173` in the url. This is the port number that Vite serves content from locally. We will talk more about this and how to deploy a live app in lesson 13.
 
 Any time we are working in our codebase, it's _highly recommended_ to have the development server running and our SPA open in a browser window. This gives instant feedback on the code that we are working on. There are plenty of scenarios where our code does not have any errors in a grammatical or technical sense but will crash our SPA or generate other undesirable behaviors.
 
@@ -124,15 +124,15 @@ Now that we have the project scaffolded and we know it runs, we'll dig into some
 - **[esbuild](https://esbuild.github.io/)** - Vite uses esbuild for pre-bundling during development. It converts all of our code and dependencies into native ESM understood by browsers. It also combines project dependencies into a single cached module to improve page loading/refreshing while we code. In other words, rather than having to re-bundle everything every time we save a file while Vite is running, it bundles all of our dependencies and saves the output. It then only has to rebuild the module(s) containing our code.
 - **[Rollup](https://rollupjs.org/introduction/)** - this is another module bundler for JavaScript. Vite uses this to output highly optimized files for production.
 - **[PostCSS](https://github.com/postcss/postcss)** - PostCSS is a JS tool that transforms CSS through an ecosystem of plugins. We will not be working with this directly.
-- **[CSS Modules](https://github.com/css-modules/css-modules)** - this tool scopes class selectors in module files to the respective component file. This simplifies style management directly by preventing selectors from inadvertently applying styles to undesired areas of the rendered page. We'll talk more about this in [Week-10](../week-10/).
+- **[CSS Modules](https://github.com/css-modules/css-modules)** - this tool scopes class selectors in module files to the respective component file. This simplifies style management directly by preventing selectors from inadvertently applying styles to undesired areas of the rendered page. We'll talk more about this in Lesson 10.
 
 #### Features
 
 - **HMR** - Hot Module Replacement. This is the ability to replace a JavaScript module in the browser while maintaining application state. This mean that the app doesn't need to re-start. This is very handy when working on features that are "far away" from the initial state of the application. For example, this could include maintaining a logged on user session where some content is blocked from a user who is not logged in. It gets to be a pain when you have to log into your app 30 times in a row while you're doing work on a new feature. With HMR, this hassle is reduced.
 - **TypeScript support** - TypeScript (TS) provides valuable guard rails for developers so that they can develop bug-free, performant JavaScript. Since browsers and Node don't natively support TS, the code has to be [transpiled](https://daily.dev/blog/typescript-transpiler-explained) to JavaScript. While there are tools to do this, they need careful configuration to get them working properly. Vite provides support for this without the need to configure anything.
-- **JSX transformation** - Similar to TypeScript, browsers do not understand JSX. This extension of JavaScript (which we will talk more about next week) needs converted to plain JavaScript before being served to a browser. Vite provides this transformation for any `.jsx` or `.tsx` (the TypeScript equivalent) file in the `src/` directory automatically.
+- **JSX transformation** - Similar to TypeScript, browsers do not understand JSX. This extension of JavaScript (which we will talk more about next lesson) needs converted to plain JavaScript before being served to a browser. Vite provides this transformation for any `.jsx` or `.tsx` (the TypeScript equivalent) file in the `src/` directory automatically.
 - **CSS, JSON importing** - JavaScript files are not normally able to import files that are written in other languages. Rather than having to create special loaders ourselves so that we can work with non-JavaScript files, Vite gives us the ability to do so. Vite injects CSS onto the page and gives it HMR support. Vite also allows us to work with JSON through named or default imports that we can treat it like a JavaScript object. This is handy for data population where we don't want to reach for an API connection.
-- **Inclusion of static assets** - these resolve a public URL for the file when imported into a `.jsx` file. We'll explore how to take advantage of this during [Week-10](../week-10/).
+- **Inclusion of static assets** - these resolve a public URL for the file when imported into a `.jsx` file. We'll explore how to take advantage of this during Lesson 10.
 - **strong Plugin ecosystem** - Vite has [official plugins](https://vitejs.dev/plugins/) and [community plugins](https://github.com/vitejs/awesome-vite#plugins) that extend its capabilities - some are React-specific, some work with other frameworks, and a lot are UI framework/library agnostic.
 
 ### Summary

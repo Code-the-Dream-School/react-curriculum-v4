@@ -29,7 +29,7 @@ After completing this week's assignment, your app should:
 
 You will end up with a project structure that looks similar to the following:
 
-![screen capture of the newly installed project directory](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/project-directory.png)
+![screen capture of the newly installed project directory](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01/assets/project-directory.png)
 
 ### Instructions Part 3: Project Setup
 
@@ -42,7 +42,7 @@ You will end up with a project structure that looks similar to the following:
 #### Version Control Tasks
 
 - Commit all file changes to `main` and push changes to GitHub.
-- Create and check out a new branch, `week-01-setup`.
+- Create and check out a new branch, `lesson-01-setup`.
 - Publish this branch to GitHub.
 
 #### Clean up Template
@@ -75,7 +75,7 @@ export default App
 
 Refresh the page and you'll end up with something that looks like the screencap below.
 
-![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/title-screencap.png)
+![screen capture of app title in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01/assets/title-screencap.png)
 
 Confirm that your browser's console contains no errors before proceeding.
 
@@ -118,7 +118,7 @@ return (
 
 Your app should render a list of 3 todos under the app's title:
 
-![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-01/assets/todos-screencap.png)
+![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01/assets/todos-screencap.png)
 
 ### Instructions Part 4: Final Steps
 

@@ -128,7 +128,7 @@ export default function RandomDogPicture() {
 
 Remember that in the development environment, `<StrictMode>...</StrictMode>` causes components to mount twice to expose impure component functions. This means that the useEffect is firing twice so two network requests are being sent off in rapid succession. In most other API fetch scenarios the data that is returned is same between the requests. The double mount in this typical case does not cause a problem with the UI. Since the [DOG CEO](https://dog.ceo) API returns a different picture for each request, the differing results of the two fetches causes our application to behave in an undesired manner.
 
-We discuss rate limiting in week 9 but it's worth looking at a way to fix the component's behavior. As a good coding practice, we do not want to modify our component to behave differently based on StrictMode's presence. _This is akin to disabling ESLint warnings in an IDE - it hides warnings about undesired behavior but does not fix it!_ We cannot prevent the network request from happening twice, but we can ignore the results of the first request. We accomplish this by setting a boolean `let isRan = false` at the beginning of the `useEffect`. We then only call `setImg(data.message)` if `isRan` is false when the the `if` block is finally evaluated. The final, and most important detail is to include a cleanup function that toggles `isRan` to true. Let's look at the refactored code:
+We discuss rate limiting in lesson 9 but it's worth looking at a way to fix the component's behavior. As a good coding practice, we do not want to modify our component to behave differently based on StrictMode's presence. _This is akin to disabling ESLint warnings in an IDE - it hides warnings about undesired behavior but does not fix it!_ We cannot prevent the network request from happening twice, but we can ignore the results of the first request. We accomplish this by setting a boolean `let isRan = false` at the beginning of the `useEffect`. We then only call `setImg(data.message)` if `isRan` is false when the the `if` block is finally evaluated. The final, and most important detail is to include a cleanup function that toggles `isRan` to true. Let's look at the refactored code:
 
 ```jsx
 import { useEffect, useState } from 'react';
@@ -182,7 +182,7 @@ Going back into the function that runs fetch, code execution stops at `const res
 
 The code above also includes a few `console.log` statements that provide us some insight into the execution order across the useEffect.
 
-![page loads dog image](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/useeffect-skip-image.gif)
+![page loads dog image](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/useeffect-skip-image.gif)
 
 The following is logged to the console when the app first loads:
 
@@ -268,7 +268,7 @@ Of course, seeing only one dog is boring! Let's add a button that will load a ne
 
 We can then update the JSX with the new button. `fetchDog` can be passed to the button's onClick handler props.
 
-![clicking button loads another dog image](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/another.gif)
+![clicking button loads another dog image](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/another.gif)
 
 #### Loading CTD-Swag with Product Data from an API
 
@@ -443,13 +443,13 @@ We want to avoid making a user having to wait to take further actions after addi
 
 ##### Implementing User and Cart Features
 
-We are now ready to expand the functionality of CTD Swag. The discussion will focus on state updates and API synchronization using fetch and how they relate to intermediate UI state. In week 11, we'll cover some more advanced state management techniques that will help simplify UI state updates. For now, we will stick with the `useState` hook.
+We are now ready to expand the functionality of CTD Swag. The discussion will focus on state updates and API synchronization using fetch and how they relate to intermediate UI state. In lesson 11, we'll cover some more advanced state management techniques that will help simplify UI state updates. For now, we will stick with the `useState` hook.
 
 ##### Log in an Existing User
 
 For this task we need to create a form that accepts an email and password. Since we don't want to clutter the interface any further, we will add a Log In button beside the cart that toggles the visibility of a dialog containing the auth form. We will use a state variable, `isAuthFormShown` to control this dialog's visibility.
 
-![submitting auth form](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login3.gif)
+![submitting auth form](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login3.gif)
 
 We next consider the POST request that we send to authenticate. An initial request looks like:
 
@@ -521,7 +521,7 @@ With that in place with a few `console.dir` statements, we get the auth response
 
 Here's the current UI appearance for successful login and failed login:
 
-![failed login attempt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login-error.gif)
+![failed login attempt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login-error.gif)
 Here are the relevant console outputs so that we can determine how to integrate it to our existing state:
 
 ```javascript
@@ -597,15 +597,15 @@ async function handleAuthenticate(credentials) {
 
 Finally, we use those state values to update the content in the UI. We'll take care of items that use intermediate state - loading message and the spinner. We pass `isAuthenticating` to the auth form. Using conditional rendering, we'll toggle between the form and the loading elements. If the authentication is successful, we'll also close out the form dialog window.
 
-![loading spinner shows briefly during login](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login2.gif)
+![loading spinner shows briefly during login](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login2.gif)
 
 That quick state change makes it challenging to work with html elements and styling if you forget to take advantage of React's dev tools. In the Components tab of the browser's dev tools, you are able to see and change state values in all of the components rendered on the page. We can find the one that toggles the dialog's loading message and set it to true. This results in the loading elements staying on screen.
 
-![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login-spinner.gif)
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login-spinner.gif)
 
 With this open, we can also insert and position the error message to the bottom of the dialog. Remember to reset `authError` to an empty string if the user successfully logs in or they close the dialog out. We don't want that value persisting in the application.
 
-![login dialog shows error message on bad login attempt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login-error.gif)
+![login dialog shows error message on bad login attempt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login-error.gif)
 
 Our final step is to update UI content for the user based on the `user` state variable. This includes populating the cart, changing the login button to log out (text and functionality), and adding the welcome message.
 
@@ -613,7 +613,7 @@ Our final step is to update UI content for the user based on the `user` state va
 
 One of the key features of adding users and carts is to populate the cart. Luckily, this is a simple matter. Recall that in the console statements, the response object contained an `cartItems` entry. We don't have to go through the awkward transformation of product items into cart items again. Our API is set up to deliver the cart items so we can add them directly into the cart. We can take a closer look at that fetch response but this time in the browser's Network tab.
 
-![pointing out server-based properties in cart items](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/cart-state-server-fields.png)
+![pointing out server-based properties in cart items](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/cart-state-server-fields.png)
 
 We just have to confirm that the variable names for each property matches the corresponding value in the response response (eg: `cart` vs `cartList` vs `cartItems`). We can then destructure the cart items directly into the the cart's state updater function to update the cart.
 
@@ -637,7 +637,7 @@ async function handleAuthenticate(credentials) {
     }
     const userData = await resp.json();
     // this is a LOT of state update functions in a row!!
-    // we fix this in week 11
+    // we fix this in lesson 11
     setUser({ ...userData.user, token: userData.token });
     setCart([...userData.cartItems]);
     setAuthError('');
@@ -677,7 +677,7 @@ We pass the Header additional props:
 {/*component code continues...*/}
 ```
 
-In the Header component, we determine there is a user by looking for the existence of `user.id` which will only be set if there is a user logged in. There are better approaches to solving this problem but we'll cover that in week 11 when we address advanced state topics. We'll also use conditional rendering to toggle between the existing log in button and a new sign out button.
+In the Header component, we determine there is a user by looking for the existence of `user.id` which will only be set if there is a user logged in. There are better approaches to solving this problem but we'll cover that in lesson 11 when we address advanced state topics. We'll also use conditional rendering to toggle between the existing log in button and a new sign out button.
 
 ```jsx
 {
@@ -707,21 +707,21 @@ In the Header component, we determine there is a user by looking for the existen
 
 Here is the updated UI functionality for logging in:
 
-![cart loads at login](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login-cart-loaded2.gif)
+![cart loads at login](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login-cart-loaded2.gif)
 
 ##### Sign Up New User
 
 Signing up a new user uses the same pessimistic UI strategy that logging in employs. Since we already saw an example of a pessimistic approach, we'll just summarize the changes for signing up a new user. We first added a register button beside login.
 
-![login and register buttons](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login-register-buttons.png)
+![login and register buttons](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login-register-buttons.png)
 
 Both buttons call the same handler, `handleOpenAuthDialog`, to open the dialog, but we also set an `isRegistering` state variable that we use to show either the `LoginForm` or the `RegisterForm` form in the `AuthDialog`. We then extract the login form from the into its own `LoginForm` component and then create a `RegisterForm` component.
 
-![toggling between auth and login dialogs](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login-auth-dialogs.gif)
+![toggling between auth and login dialogs](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login-auth-dialogs.gif)
 
 We then create a new POST fetch request to the `/auth/register` endpoint. If all goes well with the registration, then we use the response to set the `user` state value, completing a successful registration and login. We handle any registration errors by displaying messages in the form with the same `authError` state value the login form uses.
 
-![user registers and logs in](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/register-form.gif)
+![user registers and logs in](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/register-form.gif)
 
 ###### Sync Cart Form Update
 
@@ -729,7 +729,7 @@ Our API's `/cart` endpoint incudes a PATCH method. Our response include the auth
 
 Note the flicker in the gif below - this is caused by the brief change of `workingCart` to the previous `cart` value before the API response completes. When the cart is updated from the fetch response, that `workingCart` is being changed again.
 
-![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/confirm-update-temp-reversion.gif)
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/confirm-update-temp-reversion.gif)
 
 We can prevent that rapid change by relying on a state boolean, `isCartSyncing`. While it's set to true, we prevent the `useEffect` in the `Cart` component making any state updates to `workingCart`. When the response resolves, we toggle `isCartSyncing` so that `Cart` can resume syncing its `workingCart` with the global `cart`.
 
@@ -807,7 +807,7 @@ On review of that function, we can see a pattern emerge from how we tie together
 
 And here is the final cart behavior!
 
-![logs in and opens loaded cart](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/login-cart-loaded.gif)
+![logs in and opens loaded cart](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/login-cart-loaded.gif)
 
 Note how pessimistic strategy of UI updates doesn't make the experience _bad_ or _slow_ as long as it's applied to major operations. In the state updates that we have done so far, making the user wait for the back end has only a part of confirmation tasks. In the last feature planned, making the user to wait while adding items to the cart would be detrimental to the shopping experience.
 
@@ -887,9 +887,9 @@ if (!resp.ok) {
 //code continues...
 ```
 
-![error saving item](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/saving-error.png)
+![error saving item](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/saving-error.png)
 
-![error confirming cart update](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/cart-saving-error.png)
+![error confirming cart update](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/cart-saving-error.png)
 
 After setting up the alert dialog, we finally need to revert the cart item to its state prior to adding it to the cart. We still have access to target list item so we can decrement its quantity. If the quantity goes down to 0, we then remove it from the cart entirely.
 
@@ -916,4 +916,4 @@ if (updatedCartItem.quantity === 1) {
 
 As seen in the gif below, the cart number updates immediately. When an error response is received, it reverts back to its previous value. This lets us know the item has been removed.
 
-![cart displaying error dialog](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-07/assets/cart-saving-error.gif)
+![cart displaying error dialog](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07/assets/cart-saving-error.gif)

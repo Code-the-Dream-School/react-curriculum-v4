@@ -55,4 +55,4 @@ Congratulations! You've successfully:
 - ✅ Created reusable components that accept and display dynamic data
 
 > [!note]
-> **Important**: The concepts covered this week—state management and props—are fundamental to all React development. Make sure you're comfortable with `useState`, props passing, and component communication before moving on to more advanced topics.
+> **Important**: The concepts covered this — state management and props — are fundamental to all React development. Make sure you're comfortable with `useState`, props passing, and component communication before moving on to more advanced topics.

@@ -236,7 +236,7 @@ Ensure all features work correctly in the production environment:
 
 ### Submission Requirements
 
-**For Week 11, submit your project URL instead of a pull request link.**
+**For Lesson 11, submit your project URL instead of a pull request link.**
 
 Submit the following:
 

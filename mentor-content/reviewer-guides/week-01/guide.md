@@ -1,6 +1,6 @@
-# Week 01 Exercise : About Me Page
+# Lesson-01 Exercise : About Me Page
 
-This guide helps mentors review Week 01 submissions quickly and consistently.
+This guide helps mentors review Lesson-01 submissions quickly and consistently.
 
 ---
 
@@ -16,13 +16,13 @@ A user should be able to see a student’s “About Me” information, including
 
 ### Acceptance Criteria
 
-- [ ] Student work is only in: `src/exercises/week-01/studentWork.jsx`  
+- [ ] Student work is only in: `src/exercises/lesson-01/studentWork.jsx`  
 - [ ] Page renders with **no errors**  
 - [ ] Page displays:
   - [ ] A personal heading  
   - [ ] An introduction paragraph  
   - [ ] A list of hobbies/interests  
-- [ ] Weekly folder includes a **screen capture** of the rendered page (demonstrates that student is working with development)
+- [ ] Lesson#/week# folder includes a **screen capture** of the rendered page (demonstrates that student is working with development)
 
 ---
 
@@ -69,6 +69,5 @@ No keys are required for the list items.
 
 - CTD React Curriculum Exercises Repo  
   `Code-the-Dream-School/react-curriculum-v4-exercises`  
-- Week 01 Assignment  
-  `react-curriculum-v4/learns-app-content/week-01/assignment.md`
-
+- Lesson-01 Assignment  
+  `react-curriculum-v4/learns-app-content/lesson-01/assignment.md`

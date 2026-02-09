@@ -6,7 +6,7 @@
 
 After some (pretend) success, CTD has decided to add more items to its eCommerce store:
 
-![scrolling product list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-08/long-scroll.gif)
+![scrolling product list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-08/long-scroll.gif)
 
 What is readily apparent with the growth is the store's page is much longer and products are out of order. We can improve the user's experience by immediately sorting the products alphabetic order and giving the them other sorting options.
 
@@ -62,7 +62,7 @@ CTD-Swag's product list now shows in alphabetic order. That is a helpful start b
 
 CTD Swag's users may also want to browse the shop in different ways. For, example, a user may want to sort by price. To allow the user to browse by price, we'll create a form at the top of the page. For now, we just construct the basic form with static content to visualize the purpose of the form.
 
-![sort options](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-08/sort-options.png)
+![sort options](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-08/sort-options.png)
 
 We then update the utility function `sortByBaseName` by adding `isSortAscending` to the arguments and updating the sorting logic.
 
@@ -196,7 +196,7 @@ useEffect(() => {
 
 These updates results in a product list that the user can sort by the product name or the price:
 
-![changing sort options](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-08/sort-options.gif)
+![changing sort options](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-08/sort-options.gif)
 
 ### Filtering
 
@@ -275,7 +275,7 @@ This initial `filterQuery` when ran on its own results in the following output:
 
 Our now utility function works so now we need to create the rest of the filter feature before we integrate it. For now, we place it with the other utility functions at the top of the App component file. We next need to add filter UI elements to the form we made while implementing sort.
 
-![filter field added](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-08/filter-field.png)
+![filter field added](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-08/filter-field.png)
 
 At this point, we have to consider how this filter should interact with our global state. We don't want this this function removing anything from the `inventory` so we will have to create an intermediate working state to provide a `filteredInventory` to the product list. Its associated `setFilteredInventory` state function is called alongside `setInventory` in the `useEffect` that fetches the inventory. We then replace the `inventory` prop with `filteredInventory` in ProductList instance.
 
@@ -302,7 +302,7 @@ useEffect(() => {
 
 Here is the update interface in action:
 
-![filter live-updates search for terms](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/week-08/filter-pillow.gif)
+![filter live-updates search for terms](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v3/refs/heads/main/learns-app-content/lessons/assets/lesson-08/filter-pillow.gif)
 
 Sort and search implemented locally are appropriate for applications that work with a limited amount of data. We already have all product data on hand so these approaches great for improving the experience users have with CTD Swag.
 

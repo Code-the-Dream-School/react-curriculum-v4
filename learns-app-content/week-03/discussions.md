@@ -58,7 +58,7 @@ export default App;
 
 We'll know when the `setTimeout` fires off because of the console statement that prints out the updated `message`. As expected, this has no effect to the "Coming Soon…" message on the page:
 
-![setTimeout firing console message 1 second after page load](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/timeout-message.gif)
+![setTimeout firing console message 1 second after page load](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/timeout-message.gif)
 
 #### Component Lifecycle
 
@@ -135,7 +135,7 @@ Now let's explore the most fundamental hook: `useState`.
 
 `useState` is a React hook that allows us to set and update a piece of data that we can then use in our SPA. We invoke `useState` with an initial state value as an argument. That initial state value can be of any type. If given a function, it would be called an "initializer function" in that context. React will run it and use the returned value to set the initial state value. Initializer functions must be pure functions and cannot take any arguments. When called, `useState` returns an array containing a state variable (a reference to the current state) and an updater function. We follow array [destructuring assignment](https://javascript.info/destructuring-assignment) convention `const [noun, setNoun] = useState(initialState)` to make use of this hook.
 
-With `useState` explained, we can now start setting up CTD Swag's storefront. Let's get some inventory on the page! We first need to put together some sample inventory data for our app to start with. We want to be able to offer differing colors or versions for some products but without each having their own product card. We will eventually make use of `base-` and `variant-` prefixes to combine related products to a single product card in when we discuss conditional rendering in week 5. Each item should include `baseName`, `variantName`, `id` `price`, `baseDescription`, `variantDescription`, `image`, and `inStock` keys. Here's an example of several inventory items:
+With `useState` explained, we can now start setting up CTD Swag's storefront. Let's get some inventory on the page! We first need to put together some sample inventory data for our app to start with. We want to be able to offer differing colors or versions for some products but without each having their own product card. We will eventually make use of `base-` and `variant-` prefixes to combine related products to a single product card in when we discuss conditional rendering in lesson 5. Each item should include `baseName`, `variantName`, `id` `price`, `baseDescription`, `variantDescription`, `image`, and `inStock` keys. Here's an example of several inventory items:
 
 ```json
 {
@@ -174,7 +174,7 @@ With `useState` explained, we can now start setting up CTD Swag's storefront. Le
 }
 ```
 
-A JSON file that includes a full starting inventory can be [found here](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/inventory.json). We will use Vite's JSON import feature to access the inventory. Let's get some product names and descriptions onto the page!
+A JSON file that includes a full starting inventory can be [found here](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/inventory.json). We will use Vite's JSON import feature to access the inventory. Let's get some product names and descriptions onto the page!
 
 > [!note]
 > Note: Screen captures of the application using an older version of this JSON file. The newest version includes product variations that will be used in later lessons.
@@ -226,12 +226,12 @@ function App() {
 export default App;
 ```
 
-![render product list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/render-product-list.png)
+![render product list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/render-product-list.png)
 
 > [!note]
 > ESLint may be highlighting `setInventory` since it hasn't been used yet. We will use it next lesson. For now, this is one of the few errors we'll ignore.
 
-![highlighting eslint error to ignore](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/ignore-error.png)
+![highlighting eslint error to ignore](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/ignore-error.png)
 
 The `key` in `<li key={item.id}>` helps React keep track of elements that are rendered from an array. It may initially seem like a good idea to use the item's array index since each item has one and it is unique. The downside is that an item and its index value are not guaranteed to keep matching. An item may be removed from the inventory, changing the array, when it goes out of stock. `inventory` can eventually have a sort or filter feature added to it which would also have an impact on item order. In either case, using array indices as keys could introduce unexpected behavior or degrade React's rendering cycle. We've included an `id` on the item so this will not happen.
 
@@ -270,7 +270,7 @@ function ProductList({ inventory = [] }) {
 }
 ```
 
-Functions passed as props are a key tool for interactivity. This is such an important detail that we have to cover a few more topics before we can fully appreciate their role in an interactive application. We continue talking about functions used in props next week.
+Functions passed as props are a key tool for interactivity. This is such an important detail that we have to cover a few more topics before we can fully appreciate their role in an interactive application. We continue talking about functions used in props next lesson.
 
 #### Props in Action
 
@@ -402,20 +402,20 @@ Along with the props that we can define on our own, React's common components fe
 #### Props for All Built-in Components
 
 - **children**: accepts a React node. Valid React nodes include custom or built-in components, array of React nodes, empty node (null, undefined), string, number, or a [portal](https://react.dev/reference/react-dom/createPortal). We'll cover children in more detail below.
-- **ref**: takes a reference object from `useRef` (covered in week 4) or `createRef`, or a callback that gets called when React renders the element.
-- **style**: takes an object defining CSS styles in property name/ property value pairs. All property names must be written in camelCase. Eg. `background-color` is written as `backgroundColor`. More in week 10.
+- **ref**: takes a reference object from `useRef` (covered in lesson 4) or `createRef`, or a callback that gets called when React renders the element.
+- **style**: takes an object defining CSS styles in property name/ property value pairs. All property names must be written in camelCase. Eg. `background-color` is written as `backgroundColor`. More in lesson 10.
 
 #### Props for Standard DOM Components
 
 - **className**: String. Replacement for html attribute `class`. Multiple classes can be added by using spaces between class names.
 - **htmlFor**: String. Primarily for `label` or `output` and is a replacement for html attribute `for`.
-- **on\* - (onBlur, onClick, onFocus, etc.)**: Takes a callback function. Event listener props are named after a specific event that they listen for on the element where they are used. More in week 4.
+- **on\* - (onBlur, onClick, onFocus, etc.)**: Takes a callback function. Event listener props are named after a specific event that they listen for on the element where they are used. More in lesson 4.
 
 #### Props for DOM Components that Accept User Input
 
 > [!note]
 > These include `<input>`,`<textarea>`, etc.
-> We will cover these in depth when we start working with React controlled components and forms in week 5.
+> We will cover these in depth when we start working with React controlled components and forms in lesson 5.
 
 - **disabled**: Boolean. Prevents a user from interacting with element when true.
 - **value**: String: the text contents inside the element.
@@ -487,4 +487,4 @@ function ProductList({ inventory, children }) {
 export default ProductList;
 ```
 
-![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-03/assets/render-priority-product-list.png)
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/render-priority-product-list.png)

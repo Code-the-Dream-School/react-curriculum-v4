@@ -25,7 +25,7 @@ Please review our [Code of Conduct](CODE_OF_CONDUCT.md) before contributing.
 ## Reporting Issues
 
 - Search for existing issues before opening a new one.
-- Include adequate detail including the week, section, and sub-section.
+- Include adequate detail including the lesson number, section, and sub-section.
 
 ## Community
 

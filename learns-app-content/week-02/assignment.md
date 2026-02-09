@@ -7,17 +7,17 @@ After completing this week's assignment, your app should:
 - Contain a `TodoForm` component with a form containing:
   - A labeled input field for entering new todos
   - A submit button (non-functional for now)
-- Display the same visual elements as week 1: heading, todo form, and todo list
+- Display the same visual elements as lesson-01: heading, todo form, and todo list
 - Maintain all functionality from the previous week
 
 ### Instructions Part 1: Pre-Work Setup
 
 > [!note]
-> Make sure your week-01 assignment has been reviewed and approved before proceeding.
+> Make sure your lesson-01 assignment has been reviewed and approved before proceeding.
 
 #### Version Control Preparation
 
-- **Merge your previous week's work**: Go to GitHub and merge your week-01 PR into the `main` branch
+- **Merge your previous week's work**: Go to GitHub and merge your lesson-01 PR into the `main` branch
 - **Update your local environment**:
 
   ```terminal
@@ -28,8 +28,8 @@ After completing this week's assignment, your app should:
 - **Create a new working branch**:
 
   ```terminal
-  git checkout -b week-02-components
-  git push origin week-02-components
+  git checkout -b lesson-02-components
+  git push origin lesson-02-components
   ```
 
 - **Start your development environment**:
@@ -92,7 +92,7 @@ return (
 > [!note]
 > After moving the todoList array, you'll see errors in the browser console like the image below. This is normal and expected since we're in the middle of refactoring.
 
-![screen capture of ReferenceError in browser console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-02/assets/reference-error.png)
+![screen capture of ReferenceError in browser console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/reference-error.png)
 
 The error occurs because we moved the `todoList` array but haven't moved the code that uses it yet. Understanding these error messages helps you debug issues as you develop.
 
@@ -155,7 +155,7 @@ Your app should now display:
 
 The app should look approximately like this:
 
-![screen capture of todo list with new todo form in the browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-02/assets/todo-list-with-form.png)
+![screen capture of todo list with new todo form in the browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/todo-list-with-form.png)
 
 > [!note]
 > The form won't actually add todos yet - that functionality will be added in future weeks. For now, we're focusing on component structure and organization.
@@ -169,7 +169,7 @@ Before submitting, verify that your app works correctly:
 - The page loads without console errors
 - You can see the heading, form, and todo list
 - The form contains a properly labeled input field and submit button
-- All three todos from week 1 are still displayed
+- All three todos from lesson-01's assignment are still displayed
 
 #### Version Control Submission
 

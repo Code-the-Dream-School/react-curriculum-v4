@@ -83,7 +83,7 @@ Since the React curriculum didn't cover CSS styling approaches, this overview in
 
 ##### Code Organization and Structure
 
-Building on the project organization principles from Week 6's discussion on organizing files in a React project, ensure your portfolio project maintains a clear, scalable directory structure:
+Building on the project organization principles from lesson-06's discussion on organizing files in a React project, ensure your portfolio project maintains a clear, scalable directory structure:
 
 - **`features/`** - Components grouped by functionality
   - Group related components in feature-specific subdirectories
@@ -92,7 +92,7 @@ Building on the project organization principles from Week 6's discussion on orga
   - Form components, buttons, modals, and other UI elements
 - **`layout/`** - UI organization components (headers, footers, navigation)
   - Components that structure the overall application layout
-- **`pages/`** - Page-level components for routing (introduced in Week 10)
+- **`pages/`** - Page-level components for routing (introduced in lesson-010)
   - Top-level components that represent distinct application views
 - **`assets/`** - Static resources (images, fonts, icons)
 - **`services/`** - Non-React functionality and API integration

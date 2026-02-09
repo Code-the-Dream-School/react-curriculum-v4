@@ -13,7 +13,7 @@ A clear and concise description of the error (eg: typo, incorrect information, m
 
 ## Location
 
-- Week#:
+- Lesson#:
 - Section(choose one): Learning Objectives, Lesson Materials/Discussion Topics, or Assignments
 - Sub-heading:
 

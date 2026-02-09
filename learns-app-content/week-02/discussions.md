@@ -153,7 +153,7 @@ function App() {
 
 Renders out to:
 
-![simple components rendered to page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-02/assets/page-render.png)
+![simple components rendered to page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/page-render.png)
 
 Although a component is just a function, there are a few rules to follow when creating them.
 
@@ -162,7 +162,7 @@ Although a component is just a function, there are a few rules to follow when cr
   - Its return values are always the same given the same inputs.
   - No side effects[^side-effects] should happen during render. These must happen outside the render cycle.
     - Mutations local to the component during render is acceptable. Example: pushing items into an array that is then rendered into list items.
-  - Don't make direct changes (mutate) to props or state. We'll cover making updates to these next week.
+  - Don't make direct changes (mutate) to props or state. We'll cover making updates to these next lesson.
 
 There are also a few best practices to follow:
 
@@ -178,7 +178,7 @@ React includes several built-in components - we've already ran into the two used
 - **Fragment**: allows us to group elements together without affecting the DOM structure. The shorthand `<></>` is used in most cases.
 - **StrictMode**: a special development tool that adds behaviors to the application that reveal common React bugs
   - components mount twice to expose impure renders
-  - effects are re-ran to validate cleanup functions work correctly - more details about useEffect will be covered in week 8.
+  - effects are re-ran to validate cleanup functions work correctly - more details about useEffect will be covered in lesson-08.
   - flags use of [deprecated](https://en.wikipedia.org/wiki/Deprecation) APIs
   - It's added to our project automatically with Vite's React template. It may be tempting to remove it to suppress odd behaviors (especially with useEffect) but don't. Again, errors are our friends and they'll guide us to the right path!
 
@@ -294,7 +294,7 @@ To keep the transpilation process simple and performant, we must follow some rul
 
 One of the most powerful features of JSX is conditional rendering. It allows us to decide what gets displayed in the UI depending on some JavaScript expression.
 Since JSX only supports expressions (not full statements), we typically use tools like the ternary operator or logical AND (&&) directly inside the markup to choose what to render.
-You’ll explore more advanced patterns for conditional rendering in week 5.
+You’ll explore more advanced patterns for conditional rendering in lesson 5.
 
 ### Troubleshooting
 
@@ -302,7 +302,7 @@ You’ll explore more advanced patterns for conditional rendering in week 5.
 
 Vite provides us with some error feedback through the terminal, the browser window, and the browser's development console. In the example below, the code still transpiles to JavaScript correctly but list items returned by the `map` function do not have a mandatory `key` props. React will still render the list but the reconciliation process is degraded severely by this bug.
 
-![console error because of missing key](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-02/assets/missing-key.png)
+![console error because of missing key](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/missing-key.png)
 
 Common syntactical issues often result in long stack traces but Vite tries to provide some helpful details in the terminal and in a browser overlay before printing the trace. In the example below, can you tell what syntactical error crashed the application? Hint: look at the second line of the black browser overlay on the right. It should become obvious what character our code is missing.
 
@@ -310,7 +310,7 @@ Another detail to look for is a caret (`^`) inside the printed code snippet - th
 
 The same message appears in the terminal session running Vite. Don't be daunted by all the `at JSXParserMixin…` lines. These are helpful for more complex problems but all the information we usually need to resolve an issue is at the top of the output. Error messages are a developer's friend!
 
-![page error missing closing tag](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-02/assets/missing-close-tag.png)
+![page error missing closing tag](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/missing-close-tag.png)
 
 > [!note]
 > After resolving an error that results in an error overlay in the browser, you have to click in the gray area to dismiss it. In some cases, you may also need to refresh the browser window to fully restore your app.
@@ -324,10 +324,10 @@ The same message appears in the terminal session running Vite. Don't be daunted 
 - [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 - [Install the standalone version](https://react.dev/learn/react-developer-tools#safari-and-other-browsers) using these instructions.
 
-![react dev tools components tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-02/assets/components-tab.png)
+![react dev tools components tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/components-tab.png)
 Above: Screenshot of the Components Inspector as used in Firefox.
 
-![react dev tools profiler tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/week-02/assets/profiler-tab.png)
+![react dev tools profiler tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/profiler-tab.png)
 
 Above: Screenshot of the Profiler as used in Firefox.
 

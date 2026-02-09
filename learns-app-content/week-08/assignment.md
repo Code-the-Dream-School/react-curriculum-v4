@@ -299,7 +299,7 @@ Open your browser's Developer Tools and test the following:
 
 ### Looking Ahead
 
-Next week, we'll explore **Advanced State Management** with `useReducer` and `useContext` to handle more complex application state patterns, moving beyond simple `useState` for larger applications.
+Next lesson, we'll explore **Advanced State Management** with `useReducer` and `useContext` to handle more complex application state patterns, moving beyond simple `useState` for larger applications.
 
 ---
 

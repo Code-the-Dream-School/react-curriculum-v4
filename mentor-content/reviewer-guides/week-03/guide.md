@@ -1,6 +1,6 @@
-# Week 03 Exercise : React Bug Hunt
+# Lesson-03 Exercise : React Bug Hunt
 
-This guide helps mentors review Week 03 submissions quickly and consistently.
+This guide helps mentors review Lesson-03 submissions quickly and consistently.
 
 ---
 
@@ -22,14 +22,14 @@ Each component must:
 
 ### Acceptance Criteria
 
-- [ ] All work is located in: `src/exercises/week-03/`  
+- [ ] All work is located in: `src/exercises/lesson-03/`  
 - [ ] Student fixes all **three** bugs:
   - [ ] `BugEffectLoop.jsx`  
   - [ ] `BugMutatedState.jsx`  
   - [ ] `BugProps.jsx`
 - [ ] Each component includes a completed **Explanation** section at the bottom  
 - [ ] `studentWork.jsx` imports all three bug components and renders them together  
-- [ ] Screenshot of the final rendered page is included in the week-03 folder  
+- [ ] Screenshot of the final rendered page is included in the lesson-03 folder  
 - [ ] Page loads without errors or warnings  
 
 ---
@@ -37,6 +37,7 @@ Each component must:
 ## Technical Specifications
 
 ### Bug #1 — Effect Issue (`BugEffectLoop.jsx`)
+
 - Student should update `useEffect` so it runs **only once**, on mount  
   - This means adding an empty dependency array `[]`  
 - Behavior should no longer loop or repeatedly trigger  
@@ -47,6 +48,7 @@ Each component must:
 ---
 
 ### Bug #2 — Mutated State (`BugMutatedState.jsx`)
+
 - Student should correct the state update so React can detect and re-render  
 - Fix typically involves:
   - Avoiding direct mutation (e.g., `count++`)  
@@ -58,6 +60,7 @@ Each component must:
 ---
 
 ### Bug #3 — Props Not Updating UI (`BugProps.jsx`)
+
 - Component should not store prop values in regular variables  
 - Student should use `useState` or rely directly on props  
 - Updated value must trigger a re-render when a button is clicked  
@@ -85,7 +88,7 @@ export default function StudentWork() {
   );
   }
 
---- 
+---
 
 ## Quality Checklist
 
@@ -106,7 +109,7 @@ export default function StudentWork() {
 - Props being copied into state unnecessarily  
 - Missing or vague explanations  
 - Components not imported or not rendered in `studentWork.jsx`  
-- Missing screenshot in the Week 03 folder  
+- Missing screenshot in the Lesson-03 folder  
 
 ---
 
@@ -114,6 +117,5 @@ export default function StudentWork() {
 
 - CTD React Curriculum Exercises Repo  
   `Code-the-Dream-School/react-curriculum-v4-exercises`  
-- Week 03 Assignment  
-  `react-curriculum-v4/learns-app-content/week-03/assignment.md`
-
+- Lesson-03 Assignment  
+  `react-curriculum-v4/learns-app-content/lesson-03/assignment.md`
