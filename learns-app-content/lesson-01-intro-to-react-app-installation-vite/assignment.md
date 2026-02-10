@@ -79,6 +79,16 @@ Refresh the page and you'll end up with something that looks like the screencap 
 
 Confirm that your browser's console contains no errors before proceeding.
 
+#### If You Get Stuck
+
+If you run into errors or unexpected behavior while cleaning up App.jsx, resist the urge to ask AI for the complete solution. 
+
+Instead, try this:
+
+> "I'm working on cleaning up a Vite React template. I need to remove the default state and imports from App.jsx and replace the return statement with a simple div and h1. I'm getting this error: [paste your error]. Ask me 3 questions that will help me figure out what's wrong on my own."
+
+This way, the AI helps you develop your debugging skills rather than just giving you the answer.
+
 #### Add First Todos
 
 In App.jsx:
@@ -116,7 +126,7 @@ return (
 {/*code continues...*/}
 ```
 
-**Predict Before You Run**
+#### Predict Before You Run
 
 Before refreshing the browser, study the code you just wrote inside the `<ul>` tags:
 
@@ -132,7 +142,7 @@ Before refreshing the browser, study the code you just wrote inside the `<ul>` t
 **Example prompt:** 
 >"Looking at this JSX code: `{todoList.map(todo => <li key={todo.id}>{todo.title}</li>)}`, I predict it will render [your prediction] because [your reasoning about map and JSX]. Am I understanding this correctly? If not, what am I missing about how map works inside JSX?"
 
-**Result**
+#### Result
 
 Your app should render a list of 3 todos under the app's title:
 
