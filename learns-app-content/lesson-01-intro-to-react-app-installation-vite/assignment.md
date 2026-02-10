@@ -116,6 +116,24 @@ return (
 {/*code continues...*/}
 ```
 
+**Predict Before You Run**
+
+Before refreshing the browser, study the code you just wrote inside the `<ul>` tags:
+
+```jsx
+{todoList.map(todo => <li key={todo.id}>{todo.title}</li>)}
+```
+
+1. Predict what will appear in the browser. How many list items? What text will each one contain?
+2. Explain to an AI chatbot why you think that's what will render. What is map doing here? What do the curly braces {} mean inside the JSX?
+3. Now refresh the browser and check — were you right?
+4. If anything surprised you, ask the AI to explain the concept you're unsure about.
+
+**Example prompt:** 
+>"Looking at this JSX code: `{todoList.map(todo => <li key={todo.id}>{todo.title}</li>)}`, I predict it will render [your prediction] because [your reasoning about map and JSX]. Am I understanding this correctly? If not, what am I missing about how map works inside JSX?"
+
+**Result**
+
 Your app should render a list of 3 todos under the app's title:
 
 ![screen capture of the todos in browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01/assets/todos-screencap.png)
