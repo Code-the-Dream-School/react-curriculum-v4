@@ -119,6 +119,15 @@ Any time we are working in our codebase, it's _highly recommended_ to have the d
 
 Now that we have the project scaffolded and we know it runs, we'll dig into some of the details about working with our SPA. Vite incorporates several other tools to be aware of and provides us with features to make UI development a pretty nice experience.
 
+### Check Your Understanding With AI
+
+Without looking back at the file descriptions above, try this:
+
+1. Open your preferred AI chatbot (CTD's AI Assignment Reviewer is always a good choice!).
+2. From memory, explain the purpose of at least 4 of the files or directories in the Vite project structure (e.g., package.json, src/, index.html, public/, vite.config.js).
+3. Ask the AI: "Here's my understanding of these files in a Vite React project: [your explanations]. What did I get right, and what should I correct or add?"
+4. Review the feedback and check it against the descriptions in the lesson.
+
 #### Sub-tools
 
 - **[esbuild](https://esbuild.github.io/)** - Vite uses esbuild for pre-bundling during development. It converts all of our code and dependencies into native ESM understood by browsers. It also combines project dependencies into a single cached module to improve page loading/refreshing while we code. In other words, rather than having to re-bundle everything every time we save a file while Vite is running, it bundles all of our dependencies and saves the output. It then only has to rebuild the module(s) containing our code.
@@ -150,3 +159,15 @@ With a library, we are in control of how its code is called. Libraries provide a
 
 **Example UI libraries**: [jQuery](https://jquery.com/), [Knockout](https://knockoutjs.com/), [Preact](https://preactjs.com/), and [React](https://react.dev/).
 **Example UI frameworks**: [Angular](https://angular.dev/), [Astro](https://astro.build/), [Ember](https://emberjs.com/), [Next.js](https://nextjs.org/), [Remix](https://remix.run/), and [Vue](https://vuejs.org/).
+
+### Check Your Understanding with AI
+
+You just learned about several core React concepts: components, declarative programming, and the Virtual DOM.
+
+1. Open your preferred AI chatbot (CTD's AI Reviewer is always a good choice!)
+2. In your own words, explain **what problem React solves compared to building a UI with plain JavaScript, and what role the Virtual DOM plays in that**.
+3. Ask the AI chatbot to give feedback on your explanation, telling you what you got right and where your understanding could be improved.
+4. Revise your explanation based on what you learned.
+
+**Example prompt**: 
+> "I just learned about React and why it exists. Here's my understanding of the problem React solves and how the Virtual DOM helps: [your explanation]. Can you tell me what I got right and what I should refine?"
