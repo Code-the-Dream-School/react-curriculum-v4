@@ -79,6 +79,16 @@ Refresh the page and you'll end up with something that looks like the screencap 
 
 Confirm that your browser's console contains no errors before proceeding.
 
+#### If You Get Stuck
+
+If you run into errors or unexpected behavior while cleaning up App.jsx, resist the urge to ask AI for the complete solution. 
+
+Instead, try this:
+
+> "I'm working on cleaning up a Vite React template. I need to remove the default state and imports from App.jsx and replace the return statement with a simple div and h1. I'm getting this error: [paste your error]. Ask me 3 questions that will help me figure out what's wrong on my own."
+
+This way, the AI helps you develop your debugging skills rather than just giving you the answer.
+
 #### Add First Todos
 
 In App.jsx:
@@ -115,6 +125,24 @@ return (
   );
 {/*code continues...*/}
 ```
+
+#### Predict Before You Run
+
+Before refreshing the browser, study the code you just wrote inside the `<ul>` tags:
+
+```jsx
+{todoList.map(todo => <li key={todo.id}>{todo.title}</li>)}
+```
+
+1. Predict what will appear in the browser. How many list items? What text will each one contain?
+2. Explain to an AI chatbot why you think that's what will render. What is map doing here? What do the curly braces {} mean inside the JSX?
+3. Now refresh the browser and check — were you right?
+4. If anything surprised you, ask the AI to explain the concept you're unsure about.
+
+**Example prompt:** 
+>"Looking at this JSX code: `{todoList.map(todo => <li key={todo.id}>{todo.title}</li>)}`, I predict it will render [your prediction] because [your reasoning about map and JSX]. Am I understanding this correctly? If not, what am I missing about how map works inside JSX?"
+
+#### Result
 
 Your app should render a list of 3 todos under the app's title:
 
