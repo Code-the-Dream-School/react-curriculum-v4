@@ -1517,6 +1517,6 @@ Your React experience provides an excellent foundation for backend development w
 
 The API integration experience you gained in React (handling HTTP requests, managing authentication tokens, working with JSON data) now shifts perspective as you'll be building the APIs that frontend applications consume. CORS configuration, environment variable management, and security considerations you learned as a frontend developer become even more critical as you take responsibility for protecting user data and securing server-side operations.
 
-Your deployment experience with platforms like Render provides valuable context for understanding how full-stack applications work together. You'll see the other side of the deployment process as you build Express servers that handle database connections, user authentication, and API endpoints that power React front-ends.
+Your deployment experience with platforms like Vercel or Render provides valuable context for understanding how full-stack applications work together. You'll see the other side of the deployment process as you build Express servers that handle database connections, user authentication, and API endpoints that power React front-ends.
 
 **Congratulations on completing this curriculum and developing the skills that will serve you throughout your development career. The applications you've built, the problems you've solved, and the knowledge you've gained represent significant achievement that you should be proud of! Welcome to the community of React developers—you've earned your place here.**  
