@@ -10,7 +10,7 @@
 After completing this week's assignment, your app should:
 
 - Be professionally styled and ready to be incorporated into your portfolio
-- Be hosted live using [Render](https://render.com/) static site hosting
+- Be hosted live using [Vercel](https://vercel.com/) static site hosting
 - Maintain all existing CRUD and routing functionality
 - Include a comprehensive README with live demo link
 - Demonstrate security best practices and input validation
@@ -153,9 +153,9 @@ Create a professional README.md that includes all of the following sections:
 - [ ] **License Information**: MIT license or other appropriate license
 - [ ] **Contact Information**: Your GitHub profile or portfolio link
 
-### Part 4: Deploy to Render
+### Part 4: Deploy to Vercel
 
-Deploy your application to Render's static site hosting for free public access:
+Deploy your application to Vercel's static site hosting for free public access:
 
 #### 4.1 Prepare for Deployment
 
@@ -179,36 +179,47 @@ Verify your `package.json` includes the correct build script:
 }
 ```
 
-#### 4.2 Deploy to Render
+> [!NOTE]
+> **Important for Cookie-Restricted Browsers**
+> If you encountered authentication issues in Lesson 7 due to your browser blocking third-party cookies and used the [Vite Proxy Supplemental Guide](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/main/supplementals/no-3rd-party-cookies/cookies-and-proxies.md), you should also reference the [Vercel Proxy Configuration Guide](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/main/supplementals/no-3rd-party-cookies/vercel-proxy-config.md) for deployment-specific proxy setup. If you didn't need the proxy configuration for development in Lesson 7, you don't need to worry about this deployment guide either.
 
-**Step 1: Create Render Account**
+#### 4.2 Deploy to Vercel
 
-1. Go to [render.com](https://render.com/)
+**Step 1: Create Vercel Account and Connect GitHub**
+
+1. Go to [vercel.com](https://vercel.com/)
 2. Sign up using your GitHub account
-3. Authorize Render to access your repositories
+3. **Connect GitHub Account**: If this is your first time using Vercel, you'll need to:
+   - Associate your GitHub account with your Vercel account
+   - Choose repository access permissions:
+     - **Recommended**: Select "All repositories" for easier project management
+     - **Alternative**: Choose "Only select repositories" and manually select your todo app repository
+4. Authorize Vercel to access your chosen repositories
 
-**Step 2: Create New Static Site**
+**Step 2: Create New Project**
 
-1. Click "New +" in the Render dashboard
-2. Select "Static Site"
-3. Connect your GitHub repository
-4. Configure the deployment settings:
-   - **Build Command**: `npm run build`
-   - **Publish Directory**: `dist`
-   - **Branch**: `main`
+1. Find the "Projects" pane in your Vercel Overview dashboard
+2. Click "Import Project"  
+3. **Select Repository**: Choose your GitHub repository from the list (if you don't see your repository, you may need to adjust your GitHub access permissions)
+4. Configure the project settings (Vercel will auto-detect Vite settings):
+   - **Framework Preset**: Vite (auto-detected)
+   - **Build Command**: `npm run build` (auto-configured)
+   - **Output Directory**: `dist` (auto-configured)
+   - **Install Command**: `npm install` (auto-configured)
 
 **Step 3: Configure Environment Variables (if needed)**
 
-1. In the Render dashboard, go to your site settings
+1. In the project configuration screen, expand "Environment Variables"
 2. Add any environment variables your app needs
 3. Use the same variable names from your `.env` file
 
 **Step 4: Deploy and Test**
 
-1. Click "Create Static Site"
-2. Wait for the build to complete (usually 2-5 minutes)
-3. Test your live application thoroughly
-4. Fix any deployment-specific issues and redeploy
+1. Click "Deploy" to create your project
+2. Wait for the build to complete (usually 1-3 minutes)
+3. Vercel will provide a live URL (ending in `.vercel.app`)
+4. Test your live application thoroughly
+5. Fix any deployment-specific issues and push changes to trigger redeployment
 
 ### Part 5: Final Testing and Quality Assurance
 
