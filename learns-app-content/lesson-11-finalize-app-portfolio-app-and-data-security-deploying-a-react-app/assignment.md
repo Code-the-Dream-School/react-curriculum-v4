@@ -1,6 +1,4 @@
 <!-- h1, h2 already used by CTD Learns -->
-> [!note]
-> This week also includes a CoderByte assessment
 
 > [!important]
 > This assignment is **optional**. We understand that not everyone will want to deploy their application online or use this specific hosting service. You can focus on the styling and portfolio preparation aspects without deploying, or choose an alternative deployment platform that better suits your needs. If you choose another service, your mentors may not be able to assist with troubleshooting.
