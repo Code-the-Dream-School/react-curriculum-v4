@@ -21,6 +21,7 @@ This repository contains curriculum materials for a beginner React course, desig
   - **Lesson 10:** React Router
   - **Lesson 11:** Polishing an App for Your Portfolio, App and Data Security, and Deploying a React App
   - See `draft-artifacts/curriculum-design-notes/outline.md` for the full lesson-by-week outline
+  - **Directory naming note:** lesson directories are sluggified (e.g., `lesson-01-intro-to-react-app-installation-vite`, not `lesson-01`)
 - **Previous Curriculum (v3) - 15 weeks:** Archived in `references/v3/` for comparison and reference
   - Extended course structure covering similar topics over 15 weeks instead of 11
   - Includes additional weeks for styling, final project development, and React ecosystem overview
@@ -30,7 +31,7 @@ This repository contains curriculum materials for a beginner React course, desig
 
 - **Key Directories:**
   - `learns-app-content/` — Current curriculum materials for CTD Learns LMS (v4)
-    - `lesson-00` to `lesson-11` — Weekly content
+    - `lesson-00` and `lesson-01-...` through `lesson-11-...` — Weekly content (sluggified lesson directories)
     - `class-specific/`, `reusable-content/` — Shared and class-specific resources
   - `mentor-content/` — Instructor and reviewer resources
   - `references/` — Reference materials and archived curriculum
@@ -66,6 +67,47 @@ This repository contains curriculum materials for a beginner React course, desig
 - **For internal notes:** Use markdown comments `<!-- note content -->` for any internal notes that should not display in rendered content.
 - **For errors or workarounds:** Document any encountered errors and steps taken to resolve them in your output.
 - **Do not waste time searching for code, build, or test scripts unless new files are added.**
+
+## AI Usage Prompts for Students (Assignments and Exercises)
+
+When updating lesson materials, add short AI-usage prompts that align with CTD's AI policy and encourage active learning. These prompts should guide students to think first, explain reasoning, and use AI for feedback, hints, and clarification rather than answers.
+
+### Core Principles
+
+- **Active learning over passive prompting:** Students should explain their own reasoning, then ask for feedback.
+- **AI as a teaching assistant, not an answer key:** Encourage hints, debugging help, and concept checks.
+- **Validation:** Remind students to verify AI guidance with official docs and testing.
+- **No AI during technical assessments:** Coderbyte and other assessments prohibit AI use.
+
+### Prompt Types to Include
+
+**Retrieval Practice (Explain in your own words):**
+
+- Ask students to explain a concept in their own words, then ask AI to critique and refine.
+- Example prompt: "I just learned about [concept]. Here is my understanding: [your explanation]. What did I get right, and what should I refine?"
+
+**Predict-then-Check:**
+
+- Ask students to predict output or behavior before running code, explain why, then verify.
+- Example prompt: "Looking at this code: [paste code]. I predict it will [prediction] because [reasoning]. Am I correct? If not, what am I misunderstanding?"
+
+**Scaffold Removal (Hints only):**
+
+- Ask AI for high-level hints or questions rather than solutions.
+- Example prompt: "I am stuck on Task 3. Can you give me 3 high-level hints without giving the answer?"
+- Example prompt: "I am seeing this error: [error]. Ask me 3 questions to help me solve it on my own."
+
+### Policy Reminders to Embed Where Relevant
+
+- **Intro-level guidance:** Do not use AI to write code for you. Use it to clarify concepts, explain your own understanding, or get hints.
+- **Advanced-level guidance (React/Node/Python):** If a student copies AI-generated code, they must add a code comment and include AI attribution in the submission form, explaining what was used and how it was modified.
+- **Cross-checking:** Encourage students to compare AI guidance with official docs and reputable sources.
+- **Discernment:** Remind students AI can be wrong or outdated; they must run and test any AI-assisted code.
+
+### Additional Encouraged Uses
+
+- **Time management prompts:** Help students break work into smaller tasks or plan catch-up schedules.
+- **Translation prompts:** Allow students to request translations or simplified explanations in their native language.
 
 ## CTD Swag Demo Application Reference
 
