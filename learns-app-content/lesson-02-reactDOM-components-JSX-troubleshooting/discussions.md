@@ -153,7 +153,7 @@ function App() {
 
 Renders out to:
 
-![simple components rendered to page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/page-render.png)
+![simple components rendered to page](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02-reactDOM-components-JSX-troubleshooting/assets/page-render.png)
 
 Although a component is just a function, there are a few rules to follow when creating them.
 
@@ -302,7 +302,7 @@ You’ll explore more advanced patterns for conditional rendering in lesson 5.
 
 Vite provides us with some error feedback through the terminal, the browser window, and the browser's development console. In the example below, the code still transpiles to JavaScript correctly but list items returned by the `map` function do not have a mandatory `key` props. React will still render the list but the reconciliation process is degraded severely by this bug.
 
-![console error because of missing key](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/missing-key.png)
+![console error because of missing key](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02-reactDOM-components-JSX-troubleshooting/assets/missing-key.png)
 
 Common syntactical issues often result in long stack traces but Vite tries to provide some helpful details in the terminal and in a browser overlay before printing the trace. In the example below, can you tell what syntactical error crashed the application? Hint: look at the second line of the black browser overlay on the right. It should become obvious what character our code is missing.
 
@@ -310,7 +310,7 @@ Another detail to look for is a caret (`^`) inside the printed code snippet - th
 
 The same message appears in the terminal session running Vite. Don't be daunted by all the `at JSXParserMixin…` lines. These are helpful for more complex problems but all the information we usually need to resolve an issue is at the top of the output. Error messages are a developer's friend!
 
-![page error missing closing tag](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/missing-close-tag.png)
+![page error missing closing tag](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02-reactDOM-components-JSX-troubleshooting/assets/missing-close-tag.png)
 
 > [!note]
 > After resolving an error that results in an error overlay in the browser, you have to click in the gray area to dismiss it. In some cases, you may also need to refresh the browser window to fully restore your app.
@@ -324,10 +324,10 @@ The same message appears in the terminal session running Vite. Don't be daunted 
 - [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 - [Install the standalone version](https://react.dev/learn/react-developer-tools#safari-and-other-browsers) using these instructions.
 
-![react dev tools components tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/components-tab.png)
+![react dev tools components tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02-reactDOM-components-JSX-troubleshooting/assets/components-tab.png)
 Above: Screenshot of the Components Inspector as used in Firefox.
 
-![react dev tools profiler tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/profiler-tab.png)
+![react dev tools profiler tab](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02-reactDOM-components-JSX-troubleshooting/assets/profiler-tab.png)
 
 Above: Screenshot of the Profiler as used in Firefox.
 
