@@ -11,7 +11,7 @@ After completing this week's assignment, your app should:
 
 *While running the Vite development server, these changes will throw errors about non-existent files until all of the import statements are corrected.*
 
-![error fail to load file](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/does-file-exist.png)
+![error fail to load file](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/does-file-exist.png)
 
 - Create two new directories in `src`: `features` and `shared`
 - Inside of `src/features`, create a new directory `TodoList`
@@ -88,7 +88,7 @@ export default TextInputWithLabel;
 
 The form should behave the same as it did previously but you can see that there's a new component in the component tree:
 
-![TextInputWithLabel in react dev tools](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/text-input-with-label-dev-tools.png)
+![TextInputWithLabel in react dev tools](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/text-input-with-label-dev-tools.png)
 
 ### Allow Users to Edit Existing Todos
 
@@ -133,7 +133,7 @@ Your list item should resemble:
 
 At this point, when you click on the todo in the list, it will toggle between being displayed as text and showing in a form input:
 
-![editing a todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/edit-todo.gif)
+![editing a todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/edit-todo.gif)
 
 #### Extract Form Validation to Helper Function
 
@@ -194,7 +194,7 @@ Now let's continue with the todo editing functionality.
 
 You should now be able to make changes to the todo in the input. We cannot save quite yet though!
 
-![including a cancel button on edit-able todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/edit-todo-cancel-button.gif)
+![including a cancel button on edit-able todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/edit-todo-cancel-button.gif)
 
 #### Update Todo State from Local State
 
@@ -222,7 +222,7 @@ You should now be able to make changes to the todo in the input. We cannot save 
   - reuse the validation helper we extracted from the Add Todo button earlier
 - Add an `onSubmit` handler to the form element and pass it `handleUpdate`
 
-![adding and completing multiple todos](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/add-todos.gif)
+![adding and completing multiple todos](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/add-todos.gif)
 
 ### Stretch Goal (Optional): Create Custom Hook
 

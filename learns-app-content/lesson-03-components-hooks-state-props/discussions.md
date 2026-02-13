@@ -58,7 +58,7 @@ export default App;
 
 We'll know when the `setTimeout` fires off because of the console statement that prints out the updated `message`. As expected, this has no effect to the "Coming Soon…" message on the page:
 
-![setTimeout firing console message 1 second after page load](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/timeout-message.gif)
+![setTimeout firing console message 1 second after page load](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03-components-hooks-state-props/assets/timeout-message.gif)
 
 #### Component Lifecycle
 
@@ -174,7 +174,7 @@ With `useState` explained, we can now start setting up CTD Swag's storefront. Le
 }
 ```
 
-A JSON file that includes a full starting inventory can be [found here](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/inventory.json). We will use Vite's JSON import feature to access the inventory. Let's get some product names and descriptions onto the page!
+A JSON file that includes a full starting inventory can be [found here](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03-components-hooks-state-props/assets/inventory.json). We will use Vite's JSON import feature to access the inventory. Let's get some product names and descriptions onto the page!
 
 > [!note]
 > Note: Screen captures of the application using an older version of this JSON file. The newest version includes product variations that will be used in later lessons.
@@ -226,12 +226,12 @@ function App() {
 export default App;
 ```
 
-![render product list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/render-product-list.png)
+![render product list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03-components-hooks-state-props/assets/render-product-list.png)
 
 > [!note]
 > ESLint may be highlighting `setInventory` since it hasn't been used yet. We will use it next lesson. For now, this is one of the few errors we'll ignore.
 
-![highlighting eslint error to ignore](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/ignore-error.png)
+![highlighting eslint error to ignore](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03-components-hooks-state-props/assets/ignore-error.png)
 
 The `key` in `<li key={item.id}>` helps React keep track of elements that are rendered from an array. It may initially seem like a good idea to use the item's array index since each item has one and it is unique. The downside is that an item and its index value are not guaranteed to keep matching. An item may be removed from the inventory, changing the array, when it goes out of stock. `inventory` can eventually have a sort or filter feature added to it which would also have an impact on item order. In either case, using array indices as keys could introduce unexpected behavior or degrade React's rendering cycle. We've included an `id` on the item so this will not happen.
 
@@ -487,4 +487,4 @@ function ProductList({ inventory, children }) {
 export default ProductList;
 ```
 
-![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03/assets/render-priority-product-list.png)
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03-components-hooks-state-props/assets/render-priority-product-list.png)

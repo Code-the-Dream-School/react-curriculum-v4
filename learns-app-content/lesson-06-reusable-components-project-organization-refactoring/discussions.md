@@ -19,7 +19,7 @@ Components are one of the fundamental building blocks of any React application. 
 
 We have already seen a few examples of repeated elements in CTD Swag. The blurred out product cards and the shopping cart items are both elements that repeat themselves. In fact, we've already had some experience with the card components. The shopping cart items are a prime example of an element that can be turned into a re-usable component. Inside of the `Cart` component, we map over the `workingCart` to create each list item. Rather than housing the code in `Cart` component, it can be extracted out to a `CartItem` component. Doing so saves space in the existing component file plus make it easier to read.
 
-![displaying cart list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/cart.png)
+![displaying cart list](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/cart.png)
 
 Another category of reusable components are elements that are used throughout an interface that allow user to navigate or interact with the page. They can also be visual details that unify the look and feel of an interface. Such components could include:
 
@@ -33,7 +33,7 @@ Any visual element is a candidate to become a reusable component as long as 2 cr
 
 Dialog boxes convey messages to users based on their actions, such as success messages, error notifications, or warnings, or general information the user may need. A typical dialog box consists of its container, a heading, message, and one or more buttons to take an action on the message.
 
-![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/info-dialog-white-header.png)
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/info-dialog-white-header.png)
 
 Below is the equivalent code, excluding styles to neaten up the dialog's appearance.
 
@@ -163,7 +163,7 @@ function App() {
 export default App;
 ```
 
-![toggle through dialog types](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/toggle-dialogs.gif)
+![toggle through dialog types](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/toggle-dialogs.gif)
 
 The dialog has a default `kind` when first rendered and when changed, it displays a different color and a helpful icon in its heading. Suppose that we have messages that come from an API response that we wanted to include them instead of the static paragraph we currently had. We have two options with this approach - we can add a `message` props or we can place the message into the instance using `children` props. Using the `children` approach has the added advantage that we can further format the message or include other jsx.
 
@@ -221,7 +221,7 @@ function App() {
 }
 ```
 
-![info dialog with blue heading](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/info-dialog.png)
+![info dialog with blue heading](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/info-dialog.png)
 
 ### Helper Functions and Custom Hooks
 
@@ -524,11 +524,11 @@ The outline below provides a few more notes on the directories.
 
 To start the refactor, we create the new directories and move existing files into their updated location. As each file is moved, it's important to make sure that import statements are updated - both inside the file as well as wherever it is being imported. Running the dev server provides in-browser errors that is handy for letting us know where file imports are incorrect.
 
-![vite fails to resolve import](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/error-hint-fail-import.png)
+![vite fails to resolve import](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/error-hint-fail-import.png)
 
 VS Code is helpful in making some of these updates automatically as we move around files too. Be careful to double-check the imports in the file being moved - VS Code may not recognize non-JavaScript imports. Being able to import images and other non-JavaScript files is a feature of Vite and is not a part of [JavaScript module syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules).
 
-![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/import-dialog.png)
+![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/import-dialog.png)
 
 #### Refactoring Out Components
 
@@ -702,7 +702,7 @@ We go through the decision tree as we examine the JSX to come up with the follow
 
 For ease of reference, the image below highlights the considerations listed above:
 
-![highlighting workingCart map JSX](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06/assets/working-cart-map.png)
+![highlighting workingCart map JSX](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/working-cart-map.png)
 
 With these considerations identified, we can finally plan our refactor to extract `CartItem`. We first create the new file inside `src/features/cart` and define the `CartItem` component. We include `{item}` in the arguments so that we have it to work with. We next copy over (don't remove it yet) the entire list item into `CartItem's` return statement. We also copy over the image import. Remove the `key` props from the list item in the new component since it's not needed any more. We add `onHandleItemUpdate` to `CartItem`'s arguments so that we can pass the handler function as props.
 

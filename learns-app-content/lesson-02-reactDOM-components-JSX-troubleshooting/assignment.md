@@ -92,7 +92,7 @@ return (
 > [!note]
 > After moving the todoList array, you'll see errors in the browser console like the image below. This is normal and expected since we're in the middle of refactoring.
 
-![screen capture of ReferenceError in browser console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/reference-error.png)
+![screen capture of ReferenceError in browser console](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02-reactDOM-components-JSX-troubleshooting/assets/reference-error.png)
 
 The error occurs because we moved the `todoList` array but haven't moved the code that uses it yet. Understanding these error messages helps you debug issues as you develop.
 
@@ -155,7 +155,7 @@ Your app should now display:
 
 The app should look approximately like this:
 
-![screen capture of todo list with new todo form in the browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02/assets/todo-list-with-form.png)
+![screen capture of todo list with new todo form in the browser](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-02-reactDOM-components-JSX-troubleshooting/assets/todo-list-with-form.png)
 
 > [!note]
 > The form won't actually add todos yet - that functionality will be added in future weeks. For now, we're focusing on component structure and organization.
