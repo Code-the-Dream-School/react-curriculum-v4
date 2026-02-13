@@ -1,6 +1,6 @@
 # react-curriculum-v4
 
-React curriculum for FY 2026+ (Work in Progress)
+React curriculum for FY 2026+
 
 ## About
 
@@ -14,3 +14,14 @@ Key directories:
 ## Demo Apps
 
 - [Code-the-Dream-School/react-curriculum-v3: Intro to React v3](https://github.com/Code-the-Dream-School/react-curriculum-v3)
+
+## Credits
+
+This curriculum was a massive undertaking and could have not been done without the help and time of our volunteers!
+
+- [EJ Mason](https://github.com/mxmason)
+- [Ines Chavez Vigueras](https://github.com/Ineschvz)
+- [Jayanti Hari](https://github.com/jayanti-neu)
+- [Linh Pham](https://github.com/linh-pham19)
+- [Rebbekah Callari-Kaczmarczyk](https://github.com/rebekahcallkacz)
+- [Sarah Soutoul](https://github.com/SarahSoutoul)
