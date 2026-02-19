@@ -171,7 +171,16 @@ Before submitting, verify that your app works correctly:
 - The form contains a properly labeled input field and submit button
 - All three todos from lesson-01's assignment are still displayed
 
-#### Version Control Submission
+#### Checkpoint: Check Your Understanding with AI
+
+Choose 1–2 prompts below. Explain in your own words first, then ask AI for feedback.
+
+1. "I just split my app into `App`, `TodoList`, and `TodoForm`. Here’s my explanation of why this is better than keeping everything in one file: [my explanation]. What did I get right, and what should I refine?"
+2. "Here’s how I think `import`, `export`, and `export default` work between components in this assignment: [my explanation]. Can you correct mistakes and give me one quick check question?"
+3. "I added a form with `<label htmlFor=\"todoTitle\">` and `<input id=\"todoTitle\" />`. Here’s why I think this improves accessibility: [my explanation]. What did I miss?"
+4. "I want to self-check my understanding. Based on this week’s tasks (component creation, imports, moving logic, form structure), ask me 5 short concept questions without giving answers first."
+
+#### Version Control and Submission
 
 - Commit changes to your local working branch.
 - Push the changes up to GitHub.
