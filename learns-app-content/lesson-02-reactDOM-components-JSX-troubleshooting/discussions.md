@@ -335,7 +335,7 @@ Above: Screenshot of the Profiler as used in Firefox.
 
 You just learned how ReactDOM connects your app to the page, how components are organized and imported, and how JSX rules affect what renders.
 
-1. Open your preferred AI chatbot
+1. Open your preferred AI chatbot (CTD's AI Reviewer is always a good choice!)
 2. In your own words, explain one concept from this lesson (for example: `createRoot` and `#root`, `import`/`export default`, JSX rules, or why `key` is required in mapped lists).
 3. Ask the AI to critique your explanation: what is accurate, what is incomplete, and what should be corrected.
 4. Revise your explanation based on the feedback, then compare your revised version to this lesson's examples.
