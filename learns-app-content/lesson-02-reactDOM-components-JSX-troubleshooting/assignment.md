@@ -29,7 +29,7 @@ After completing this week's assignment, your app should:
 
   ```terminal
   git checkout -b lesson-02-components
-  git push origin lesson-02-components
+  git push -u origin lesson-02-components
   ```
 
 - **Start your development environment**:
