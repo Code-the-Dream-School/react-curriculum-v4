@@ -2,7 +2,7 @@
 
 ## Overview
 
-This supplemental guide provides an alternative setup for the React todo application that eliminates the need for third-party cookies. Some users have browsers configured to block third-party cookies, and some browsers are implementing stricter cookie policies over time. Using a Vite development proxy allows your React app to communicate with the backend API without encountering these restrictions.
+This supplemental guide provides an alternative setup for the React todo application that eliminates the need for third-party cookies. Some users have browsers configured to block third-party cookies, and some browsers are implementing stricter cookie policies over time.[^cookie-policy-summary] Using a Vite development proxy allows your React app to communicate with the backend API without encountering these restrictions.
 
 ## What Are Third-Party Cookies?
 
@@ -95,14 +95,12 @@ Create or modify your `.env` file in your React project root to include the back
 
 ```bash
 # .env
-VITE_BACK_END=https://ctd-learns-node-l42tx.ondigitalocean.app
-VITE_BASE_URL=/api
+VITE_TARGET=https://ctd-learns-node-l42tx.ondigitalocean.app
 ```
 
 **Important Changes:**
 
-- **`VITE_BACK_END`**: Points to the actual backend API server
-- **`VITE_BASE_URL`**: Now uses a relative path `/api` which resolves to your local proxy endpoint
+- **`VITE_TARGET`**: Points to the backend API server used by the Vite proxy
 
 ### Step 2: Update Your Vite Configuration
 
@@ -113,42 +111,45 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
-export default defineConfig(({ mode }) => {
+export default ({ mode }) => {
   const env = loadEnv(mode, '.', '');
-
-  // Use VITE_BACK_END as proxy target, fallback to localhost
-  const proxyTarget = env.VITE_BACK_END || 'http://localhost:3000';
-
-  const proxyConfig = {
-    target: proxyTarget,
-    changeOrigin: true,
-    secure: proxyTarget.startsWith('https://'),
-    configure: (proxy) => {
-      proxy.on('proxyReq', (proxyReq) => {
-        // Set the Origin header to match the target for cookie handling
-        proxyReq.setHeader('Origin', proxyTarget);
-      });
-    },
-  };
-
-  return {
+  return defineConfig({
     plugins: [react()],
     server: {
       port: 3001,
       proxy: {
-        '/api': proxyConfig,
+        '/api': {
+          target: env.VITE_TARGET,
+          secure: false,
+          changeOrigin: true,
+          configure: (proxy) => {
+            proxy.on('proxyRes', (proxyRes) => {
+              const cookies = proxyRes.headers['set-cookie'];
+              if (!cookies) {
+                return;
+              }
+              const cookieArray = Array.isArray(cookies) ? cookies : [cookies];
+              proxyRes.headers['set-cookie'] = cookieArray.map((cookie) =>
+                cookie
+                  .replace(/; *Secure/gi, '')
+                  .replace(/; *SameSite=None/gi, '')
+                  .replace(/; *Domain=[^;]+/gi, '')
+              );
+            });
+          },
+        },
       },
     },
-  };
-});
+  });
+};
 ```
 
 **Key Features:**
 
 - **Dynamic Configuration**: Uses `loadEnv()` to read environment variables
-- **Flexible Target**: Proxy target is set from `VITE_BACK_END` environment variable
-- **Security Handling**: Automatically configures HTTPS settings based on target URL
-- **Cookie Handling**: Manages Origin headers for proper authentication
+- **Single Environment Variable**: Proxy target is set from `VITE_TARGET`
+- **Proxy Compatibility**: Uses `secure: false` with `changeOrigin: true`
+- **Cookie Handling**: Rewrites `Set-Cookie` headers to improve local dev compatibility
 
 ### Step 3: Restart Your Development Server
 
@@ -185,7 +186,7 @@ This guide assumes you're using the online API at `https://ctd-learns-node-l42tx
 
 ### Local Backend (Advanced)
 
-The `vite.config.js` includes a fallback to `http://localhost:3000` if no `VITE_BACK_END` is specified. This would only work if you're running the backend API locally on your computer.
+If you are running the backend API locally, set `VITE_TARGET` to your local server URL (for example, `http://localhost:3000`).
 
 **Local Backend Requirements:**
 
@@ -199,14 +200,13 @@ The `vite.config.js` includes a fallback to `http://localhost:3000` if no `VITE_
 
 ### Environment Variables
 
-- **`VITE_BACK_END`**: The actual API server where your requests will be forwarded
-- **`VITE_BASE_URL`**: The URL your React app uses (now points to the proxy)
+- **`VITE_TARGET`**: The API server URL where proxy requests are forwarded
 
 ### Proxy Configuration Details
 
 - **`changeOrigin: true`**: Tells the proxy to change the origin of the request to match the target
-- **`secure`**: Automatically set based on whether the target uses HTTPS
-- **`configure`**: Adds proper Origin headers for cookie authentication
+- **`secure: false`**: Allows proxying in local development without strict certificate checks
+- **`configure`**: Rewrites `Set-Cookie` headers by removing `Secure`, `SameSite=None`, and `Domain` attributes for local dev behavior
 
 ### Why This Works
 
@@ -221,7 +221,7 @@ The `vite.config.js` includes a fallback to `http://localhost:3000` if no `VITE_
 
 #### Environment Variables Not Loading
 
-**Problem**: `VITE_BACK_END` is undefined or not found
+**Problem**: `VITE_TARGET` is undefined or not found
 **Solutions:**
 
 - Ensure `.env` file is in your project root (same level as `package.json`)
@@ -251,8 +251,8 @@ The `vite.config.js` includes a fallback to `http://localhost:3000` if no `VITE_
 **Problem**: Network tab still shows direct API requests instead of localhost
 **Solutions:**
 
-- Verify `VITE_BASE_URL=/api` in your `.env` file
-- Check that your fetch requests use `${baseUrl}/tasks`, where `baseUrl` comes from `import.meta.env.VITE_BASE_URL`, instead of hardcoding `/api/tasks`
+- Verify `VITE_TARGET` is set correctly in your `.env` file
+- Check that your fetch requests use relative `/api/*` paths (for example, `/api/tasks`) instead of direct external URLs
 - Ensure the proxy configuration uses `/api` as the key
 
 #### Authentication Still Failing
@@ -293,9 +293,13 @@ If you continue to experience issues after trying these troubleshooting steps:
 
 ## Additional Resources
 
+- [Reference `vite.config.js` (CTD deploy branch)](https://github.com/Code-the-Dream-School/react-todo-list-v4/blob/deploy/vite.config.js)
+
 For deeper understanding of browser cookie policies and web privacy:
 
 - [MDN: Using HTTP Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Cookies)
 - [MDN: Third-party cookies guide](https://developer.mozilla.org/en-US/docs/Web/Privacy/Guides/Third-party_cookies)
 - [Web.dev: SameSite cookies explained](https://web.dev/articles/samesite-cookies-explained)
 - [Firefox Enhanced Tracking Protection](https://support.mozilla.org/en-US/kb/enhanced-tracking-protection-firefox-desktop)
+
+[^cookie-policy-summary]: Third-party cookie behavior varies by browser and user privacy settings. As a directional estimate from default browser settings, PrivacyTests desktop results (rows `cookie (HTTP)` and `cookie (JS)` under State Partitioning tests) weighted by StatCounter worldwide browser share indicate about **19.66%** of users (conservative lower-bound estimate), or **20.52%** when normalized across the major browsers included in the estimate. **Current as of 2026-03-05.** Source data: [PrivacyTests](https://privacytests.org/) and [StatCounter browser share](https://gs.statcounter.com/browser-market-share).
