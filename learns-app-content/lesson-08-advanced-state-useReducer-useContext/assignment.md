@@ -86,29 +86,29 @@ Create a new file `src/utils/useDebounce.js` that exports a custom hook:
 
 For reference, the finished function should look something like:
 
-   ```jsx
-   import { useState, useEffect } from 'react';
+```jsx
+import { useState, useEffect } from 'react';
 
-   function useDebounce(value, delay) {
-     const [debouncedValue, setDebouncedValue] = useState(value);
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
 
-     useEffect(() => {
-       // Set up a timeout to update the debounced value after the delay
-       const timeoutId = setTimeout(() => {
-         setDebouncedValue(value);
-       }, delay);
+  useEffect(() => {
+    // Set up a timeout to update the debounced value after the delay
+    const timeoutId = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
 
-       // Cleanup function to clear the timeout if value changes before delay
-       return () => {
-         clearTimeout(timeoutId);
-       };
-     }, [value, delay]);
+    // Cleanup function to clear the timeout if value changes before delay
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [value, delay]);
 
-     return debouncedValue;
-   }
+  return debouncedValue;
+}
 
-   export default useDebounce;
-   ```
+export default useDebounce;
+```
 
 #### Create FilterInput Component
 
@@ -130,10 +130,10 @@ For reference, the finished function should look something like:
     - Import `useDebounce` from your utils directory at the top of the file
     - Add the filter state variables:
 
-   ```jsx
-   const [filterTerm, setFilterTerm] = useState('');
-   const debouncedFilterTerm = useDebounce(filterTerm, 300);
-   ```
+```jsx
+const [filterTerm, setFilterTerm] = useState('');
+const debouncedFilterTerm = useDebounce(filterTerm, 300);
+```
 
 14. **Create filter handler function**:
     - Create a function that accepts the new filter term and calls setFilterTerm
@@ -194,8 +194,8 @@ The cache invalidation pattern we're implementing uses a "data version" approach
     For example, in `addTodo` after replacing the temp todo:
 
     ```jsx
-    setTodoList((currentList) =>
-      currentList.map((todo) => (todo.id === tempId ? savedTodo : todo))
+    setTodoList((previous) =>
+      previous.map((todo) => (todo.id === tempId ? savedTodo : todo)),
     );
     invalidateCache(); // Add this line
     ```
@@ -203,7 +203,6 @@ The cache invalidation pattern we're implementing uses a "data version" approach
 #### Optimize TodoList with useMemo
 
 21. **Update `src/features/Todos/TodoList/TodoList.jsx`**:
-
     - Add `dataVersion` as a prop to the component function parameters
     - Create a memoized `filteredTodoList` using `useMemo`
     - Inside the useMemo function:
