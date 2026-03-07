@@ -240,6 +240,9 @@ The cache invalidation pattern we're implementing uses a "data version" approach
 25. **Clear filter errors on successful fetch**:
     - After the line `setTodoList(data);` in the try block of your `fetchTodos` function, add `setFilterError('');` to clear any previous filter errors when data loads successfully.
 
+> [!NOTE]
+> We don't functionally update here like we have before. Functional updates are most useful when the new state relies on the previous state. Here, we want the new state (the data from our fetch request) to replace our previous state (the empty array we started with).
+
 26. **Add filter error UI** after the elements for the existing error:
     - Create a conditional block that displays when `filterError` has a value
     - Inside the block, create a `div` containing:
