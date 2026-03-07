@@ -1,4 +1,5 @@
 <!-- h1, h2 already used by CTD Learns -->
+
 ### Expected App Capabilities
 
 After completing this week's assignment, your app should:
@@ -28,7 +29,7 @@ Now we'll create a function that can add new todos to our state.
 1. In `App.jsx`, create a new function called `addTodo` above the return statement that:
    - Takes a `todoTitle` parameter
    - Creates a new todo object with an `id` property set to `Date.now()` and a `title` property set to the `todoTitle` parameter
-   - Updates the todoList state by creating a new array that includes the new todo and destructures the previous `todoList` state. It should look something like: `setTodoList([newTodo, ...todoList])`
+   - We update the todoList state by functionally updating (because current state relies on previous state), adding our `newTodo`, and spreading the `previous` todoList. It should look something like: `setTodoList(previous => [newTodo, ...previous])`
 
 > [!NOTE]
 > We use `Date.now()` to generate a unique ID for each todo. In a real application, you'd typically use a more robust ID generation method, but this works well for our purposes.
@@ -67,12 +68,12 @@ function TodoForm({ onAddTodo }) {
 
   const handleAddTodo = (event) => {
     event.preventDefault();
-    
+
     // Explore the event object (we'll remove this later)
     console.log('Event object:', event);
     console.log('Event target:', event.target);
     console.log('Input value:', event.target.todoTitle.value);
-    
+
     // .trim prevents whitespace only todos
     const todoTitle = event.target.todoTitle.value.trim();
     if (todoTitle && todoTitle !== "") {
@@ -94,14 +95,20 @@ function TodoForm({ onAddTodo }) {
 
 ```jsx
 return (
-        <form>
-            <label htmlFor="todoTitle" >Todo</label>
-            <input ref={inputRef} type="text" id="todoTitle" placeholder={"Todo text"} required />
-            <button type="submit" onClick={handleAddTodo} >
-                Add Todo
-            </button>
-        </form>
-    );
+  <form>
+    <label htmlFor="todoTitle">Todo</label>
+    <input
+      ref={inputRef}
+      type="text"
+      id="todoTitle"
+      placeholder={'Todo text'}
+      required
+    />
+    <button type="submit" onClick={handleAddTodo}>
+      Add Todo
+    </button>
+  </form>
+);
 ```
 
 > [!note]
@@ -126,7 +133,7 @@ Once you've verified everything works and explored the event object:
 ```jsx
 const handleAddTodo = (event) => {
   event.preventDefault();
-  
+
   const todoTitle = event.target.todoTitle.value.trim();
   if (todoTitle) {
     onAddTodo(todoTitle);
