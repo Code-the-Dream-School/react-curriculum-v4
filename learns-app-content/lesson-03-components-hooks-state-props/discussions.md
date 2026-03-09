@@ -155,7 +155,7 @@ function add() {
 
 **Let's break this down**
 
-Whenever you pass a function to your setter, it needs an argument and that argument (whatever you label it) is your current state. As you see here, we have named it previous. This is because we plan to make a new current with this operation. ( We will follow this convention the rest of the course. )
+Whenever you pass a function to your setter, it needs an argument and that argument (whatever you label it) is your current state. As you see here, we have named it previous. This is because we plan to make a new current with this operation. ( This is a common naming convention that it helps make our code easier to understand. )
 
 Now when executed, the add function will increment count by two. So now when our setters are called, each one pulls in the most fresh/current state at the moment of call. This way, if React batches the actions, it will still always get the most current state.
 
