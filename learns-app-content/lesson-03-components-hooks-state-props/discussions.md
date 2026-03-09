@@ -98,7 +98,7 @@ function PageSizer() {
 
 #### Avoiding Stale State (or Stale Closures)
 
-We will start by building a basic counter to explain this concept.
+We will start by building a basic counter to explain this concept;
 
 ```jsx
 import { useState, useEffect } from 'react';
@@ -132,7 +132,7 @@ export default function Counter() {
 - The add function that handles the count
 - An add button that will increment the count by one.
 
-But we have a problem. What if we want to add one two times? ( or someone clicks the button really fast ). These actions can allow stale state to interrupt our app.
+But we have a problem. What if we want to add one two times in the same event handler? For example, we might accidentally call `setCount(count + 1)` twice in a row. This pattern can allow stale state to interrupt our app.
 
 ```js
 function add() {
