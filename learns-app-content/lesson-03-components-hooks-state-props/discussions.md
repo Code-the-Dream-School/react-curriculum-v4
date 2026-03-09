@@ -138,7 +138,7 @@ function add() {
 }
 ```
 
-You might think this would add two. But it does not. Each set call is pulling a value from the same spot at the same time.
+You might think this would add two, it does not. Each set call is pulling a value from the same spot at the same time.
 
 So when setCount is called the second time, the value is stale. Both setters get the same starting value, thanks to React batching the calls for efficiency.
 
