@@ -101,6 +101,7 @@ return (
       ref={inputRef}
       type="text"
       id="todoTitle"
+      name="todoTitle"
       placeholder={'Todo text'}
       required
     />
