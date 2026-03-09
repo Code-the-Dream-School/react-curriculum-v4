@@ -164,3 +164,6 @@ In upcoming weeks, you'll learn to:
 
 > [!note]
 > **Important**: The controlled component pattern you've learned this week is essential for building robust React forms. Make sure you understand how state controls form inputs and how to handle user interactions before moving on.
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.

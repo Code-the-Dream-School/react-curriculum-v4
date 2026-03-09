@@ -687,3 +687,6 @@ Next week, we'll focus on **polishing your application for portfolio presentatio
 **URL Parameters**: If filters don't persist in URLs, check that `useSearchParams` is being used correctly and that `setSearchParams` is called when filters change.
 
 **404 Handling**: If the 404 page doesn't appear for invalid routes, ensure the catch-all route (`*`) is the last route in your `Routes` component.
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
