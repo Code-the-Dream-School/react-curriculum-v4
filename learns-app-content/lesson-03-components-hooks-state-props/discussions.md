@@ -101,7 +101,6 @@ function PageSizer() {
 We will start by building a basic counter to explain this concept.
 
 ```jsx
-// Your basic Counter component code here
 import { useState, useEffect } from 'react';
 
 export default function Counter() {
