@@ -195,7 +195,7 @@ The cache invalidation pattern we're implementing uses a "data version" approach
 
     ```jsx
     setTodoList((previous) =>
-      previous.map((todo) => (todo.id === tempId ? savedTodo : todo)),
+      previous.map((todo) => (todo.id === tempId ? savedTodo : todo))
     );
     invalidateCache(); // Add this line
     ```
