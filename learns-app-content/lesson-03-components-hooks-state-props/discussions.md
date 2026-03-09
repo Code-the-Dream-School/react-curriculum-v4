@@ -138,24 +138,13 @@ function add() {
 }
 ```
 
-You might think this would add two. But it does not.
-Each set call is pulling a value from the same spot at
-the same time.
+You might think this would add two. But it does not. Each set call is pulling a value from the same spot at the same time.
 
-So when setCount is called the second
-time, the value is stale. Both setters get the same
-starting value, thanks to React batching the calls for
-efficiency.
+So when setCount is called the second time, the value is stale. Both setters get the same starting value, thanks to React batching the calls for efficiency.
 
-It's like walking into a room and flipping the light
-switch off and on again super quick. You try to
-observe the "off" state, but you can't see it—it gets
-skipped right over. You only end up seeing the final
-"on" state.
+It's like walking into a room and flipping the light switch off and on again super quick. You try to observe the "off" state, but you can't see it—it gets skipped right over. You only end up seeing the final "on" state.
 
-To fix this, React has something called functional
-updating. Here is an example of how we would write the
-new code.
+To fix this, React has something called functional updating. Here is an example of how we would write the new code.
 
 ```js
 function add() {
@@ -166,28 +155,15 @@ function add() {
 
 **Let's break this down**
 
-Whenever you pass a function to your setter, it needs
-an argument—and that argument (whatever you label it) is
-your current state. As you see here, we have named it
-previous. This is because we plan to make a new current with
-this operation. ( We will follow this convention the rest of
-the course. )
+Whenever you pass a function to your setter, it needs an argument—and that argument (whatever you label it) is your current state. As you see here, we have named it previous. This is because we plan to make a new current with this operation. ( We will follow this convention the rest of the course. )
 
 Now when executed, the add function will increment count by two. So now when our setters are called, each one pulls in the most fresh/current state at the moment of call. This way, if React batches the actions, it will still always get the most current state.
 
 **Tips for Usage:**
 
-Use functional updating whenever your new state relies
-on the old state. Like async fetches, optimistic updates,
-quick clicks, or just React batching. These situations will
-cause stale state bugs if you use direct updates.
+Use functional updating whenever your new state relies on the old state. Like async fetches, optimistic updates, quick clicks, or just React batching. These situations will cause stale state bugs if you use direct updates.
 
-This pattern will also prevent stale closure bugs, where
-old state gets stuck in a function that runs later in your code
-(timers, listeners, etc.).
-It's best to use a direct set when you're just resetting state,
-you know like clearing a list or errors. But we will talk more
-about this in later lessons.
+This pattern will also prevent stale closure bugs, where old state gets stuck in a function that runs later in your code (timers, listeners, etc.). It's best to use a direct set when you're just resetting state, you know like clearing a list or errors. But we will talk more about this in later lessons.
 
 #### Intro to Hooks
 
