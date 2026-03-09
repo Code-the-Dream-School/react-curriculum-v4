@@ -132,7 +132,7 @@ export default function Counter() {
 - The add function that handles the count
 - An add button that will increment the count by one.
 
-But we have a problem. What if we want to add one two times? ( or someone clicks the button really fast ). These actions can allow stale state to interupt our app.
+But we have a problem. What if we want to add one two times? ( or someone clicks the button really fast ). These actions can allow stale state to interrupt our app.
 
 ```js
 function add() {
