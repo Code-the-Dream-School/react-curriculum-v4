@@ -29,7 +29,8 @@ Now we'll create a function that can add new todos to our state.
 1. In `App.jsx`, create a new function called `addTodo` above the return statement that:
    - Takes a `todoTitle` parameter
    - Creates a new todo object with an `id` property set to `Date.now()` and a `title` property set to the `todoTitle` parameter
-   - We update the todoList state by functionally updating (because current state relies on previous state), adding our `newTodo`, and spreading the `previous` todoList. It should look something like: `setTodoList(previous => [newTodo, ...previous])`
+   - Updating the todoList functionally ( because current state relies on previous state )
+   - Adding our `newTodo` while spreading the `previous` todoList. It should look something like: `setTodoList(previous => [newTodo, ...previous])`
 
 > [!NOTE]
 > We use `Date.now()` to generate a unique ID for each todo. In a real application, you'd typically use a more robust ID generation method, but this works well for our purposes.
