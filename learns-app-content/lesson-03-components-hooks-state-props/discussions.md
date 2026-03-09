@@ -161,7 +161,10 @@ Now when executed, the add function will increment count by two. So now when our
 
 **Tips for Usage:**
 
-Use functional updating whenever your new state relies on the old state. Like async fetches, optimistic updates, quick clicks, or just React batching. These situations will cause stale state bugs if you use direct updates.
+Use functional updating when:
+ - Your new state relies on the old state
+ - You have async fetches and  optimistic updates
+ - React batching (or quick clickers)
 
 This pattern will also prevent stale closure bugs, where old state gets stuck in a function that runs later in your code (timers, listeners, etc.). It's best to use a direct set when you're just resetting state, you know like clearing a list or errors. But we will talk more about this in later lessons.
 
