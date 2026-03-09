@@ -129,7 +129,7 @@ export default function Counter() {
 
 We have a useEffect that will fire whenever count changes, so that we may see the value in the console. The add function that handles the count and the add button that will increment the count by one.
 
-But we have a problem. What if we want to add one two times in the same event handler? For example, we might accidentally call `setCount(count + 1)` twice in a row. This pattern can allow stale state to interrupt our app.
+But we have a problem. What if we want to add one two times in the same event handler? For example, we might accidentally call `setCount(count + 1)` twice in a row. This pattern can cause our app to behave in undesired ways.
 
 ```js
 function add() {
