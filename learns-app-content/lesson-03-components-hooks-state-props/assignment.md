@@ -84,5 +84,9 @@ Congratulations! You've successfully:
 - ✅ Practiced props destructuring for cleaner, more readable code
 - ✅ Created reusable components that accept and display dynamic data
 
+### Closing Notes
+
+**Important**: The concepts covered this — state management and props — are fundamental to all React development. Make sure you're comfortable with `useState`, props passing, and component communication before moving on to more advanced topics.
+
 > [!NOTE]
-> **Important**: The concepts covered this — state management and props — are fundamental to all React development. Make sure you're comfortable with `useState`, props passing, and component communication before moving on to more advanced topics.
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
