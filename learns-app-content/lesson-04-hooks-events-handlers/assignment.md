@@ -192,8 +192,9 @@ In upcoming weeks, you'll learn to:
 - Manage more sophisticated application state
 - And much more...
 
-> [!IMPORTANT]
-> **Important**: The event handling patterns you've learned this week are fundamental to building interactive React applications. Make sure you understand how events trigger state updates and how components communicate through props before moving on.
+### Closing Notes
+
+**Important**: The event handling patterns you've learned this week are fundamental to building interactive React applications. Make sure you understand how events trigger state updates and how components communicate through props before moving on.
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
