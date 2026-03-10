@@ -959,6 +959,7 @@ Imagine we refactor CTD-Swag so login sets an auth cookie instead of returning a
 Configure Vite Server Proxy to forward `/api/*` calls to the local backend:
 
 ```js
+// Hypothetical example - not currently implemented in CTD Swag
 // vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
@@ -980,6 +981,7 @@ export default defineConfig({
 Then update fetch requests to use relative paths and include credentials.
 
 ```js
+// Hypothetical example - not currently implemented in CTD Swag
 // App.jsx - login request (cookie-based auth scenario)
 async function handleAuthenticate(credentials) {
   const resp = await fetch('/api/auth/login', {
@@ -999,6 +1001,7 @@ async function handleAuthenticate(credentials) {
 ```
 
 ```js
+// Hypothetical example - not currently implemented in CTD Swag
 // App.jsx - authenticated request after login
 // No Authorization header needed because cookie is sent automatically.
 async function loadCart() {
