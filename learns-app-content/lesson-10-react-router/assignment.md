@@ -544,7 +544,7 @@ Your application will use this routing structure:
 
 21. **Complete the ProfilePage implementation**:
     - Import necessary hooks: `useState` and `useEffect` from React, and `useAuth` from your AuthContext
-    - Import the base URL from environment variables using `import.meta.env.VITE_BASE_URL`
+    - Use relative API paths (for example, `/api/tasks`) so requests go through the proxy configuration
     - Create state variables for todo statistics (total, completed, active counts), loading state, and error handling
     - Use `useAuth()` to access the user's name and authentication token
     - Create a ProfilePage component that displays user account information (name, status)
@@ -570,7 +570,7 @@ Your application will use this routing structure:
             credentials: 'include',
           };
 
-          const response = await fetch(`${baseUrl}/tasks`, options);
+          const response = await fetch('/api/tasks', options);
 
           if (response.status === 401) {
             throw new Error('Unauthorized');
