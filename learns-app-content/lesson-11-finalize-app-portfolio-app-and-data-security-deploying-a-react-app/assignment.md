@@ -294,6 +294,8 @@ Choose 1–2 prompts below. Explain in your own words first, then ask AI for fee
 > Do not ask AI to complete the assignment code for you.
 
 > - "I chose CSS Modules to style my React app. Here's my explanation of how CSS Modules scope class names to components and why that prevents conflicts when two components use the same class name: [my explanation]. Is my reasoning correct?"
+> - "My app uses a Vite Server Proxy during development so that relative `/api/*` fetch calls are forwarded to the backend. Here's my explanation of why the proxy is only needed in development and why it cannot be used in production when deployed to Vercel: [my explanation]. What did I get right, and what should I refine?"
+> - "I added a `vercel.json` file with a rewrites rule that maps `/api/:path*` to the CTD backend URL. Here's my explanation of how Vercel uses this file to forward API requests in production, and why this replaces the role the Vite Server Proxy played during development: [my explanation]. Is my reasoning accurate?"
 > - "I deployed my React app to Vercel by connecting my GitHub repository. Here's my explanation of what Vercel does with my source code during deployment, how environment variables are configured separately from the repository, and why the dist folder is what gets served to users: [my explanation]. What should I refine?"
 
 ### Version Control and Submission
