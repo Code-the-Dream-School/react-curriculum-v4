@@ -171,3 +171,6 @@ Your app should render a list of 3 todos under the app's title:
 - Push the changes up to GitHub (publish the branch there if you have not done so already).
 - In GitHub, create a PR (pull request) that compares the working branch to `main`.
 - Copy the PR link and submit assignment.
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.

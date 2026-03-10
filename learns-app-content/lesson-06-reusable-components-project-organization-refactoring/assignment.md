@@ -333,3 +333,6 @@ Choose 1–2 prompts below. Explain in your own words first, then ask AI for fee
 ### Closing Notes
 
 At this point, we've created a solid MVP (minimum viable product). Next week, we are going to work with a Node/Express API to synchronize the todo list remotely so a user can save todos.
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
