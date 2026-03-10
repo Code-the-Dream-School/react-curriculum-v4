@@ -179,7 +179,7 @@ Verify your `package.json` includes the correct build script:
 
 > [!NOTE]
 > **Deployment Config for Proxy-Based API Calls**
-> Since your app uses relative API paths like `/api/tasks`, we'll need to add a `vercel.json` file so Vercel forwards `/api/*` requests to the CTD backend in production. This replaces the Vite Sever proxy when the project is ran locally.
+> Since your app uses relative API paths like `/api/tasks`, we'll need to add a `vercel.json` file so Vercel forwards `/api/*` requests to the CTD backend in production. This replaces the Vite Server proxy when the project is run locally.
 
 Create `vercel.json` in your project root (same directory as `package.json`) with this configuration:
 
