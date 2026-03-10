@@ -344,3 +344,6 @@ After completing this assignment, consider these enhancements for your portfolio
 - Add dark/light theme toggle
 - Implement data persistence with localStorage or a backend API
 - Add drag and drop functionality for reordering todos
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.

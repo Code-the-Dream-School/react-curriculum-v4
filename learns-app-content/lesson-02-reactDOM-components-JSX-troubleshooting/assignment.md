@@ -201,5 +201,9 @@ Congratulations! You've successfully:
 - ✅ Practiced debugging common React errors during development
 - ✅ Maintained the same visual functionality while improving code organization
 
-> [!note]
-> **Important**: Future assignments will assume you understand the concepts covered this week. Make sure you're comfortable with component creation, importing/exporting, version control, and the basic development workflow before moving on.
+### Closing Notes
+
+**Important**: Future assignments will assume you understand the concepts covered this week. Make sure you're comfortable with component creation, importing/exporting, version control, and the basic development workflow before moving on.
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
