@@ -162,7 +162,92 @@ React is already fast — only optimize when you have a real performance issue.
 
 - Use `useMemo` for expensive computations you don't want recalculated every render.
 - Use `useCallback` for functions passed to children to prevent unnecessary re-renders.
-- 🚫 Avoid both when your components are simple, render quickly, or when memoization adds unnecessary complexity.
+- Use `React.memo` to wrap child components that receive stable props and re-render too often.
+- 🚫 Avoid all three when your components are simple, render quickly, or when memoization adds unnecessary complexity.
+
+#### React.memo: Preventing Unnecessary Component Re-renders
+
+`useMemo` and `useCallback` optimize work done _inside_ a component. But there's another layer of optimization: preventing a child component from re-rendering at all when its props haven't changed.
+
+By default, when a parent component re-renders, all of its child components re-render too — even when their props are identical. `React.memo` wraps a component and tells React to skip re-rendering it unless its props have actually changed (using shallow comparison).
+
+```jsx
+// Before: re-renders every time the parent renders
+function ProductCard({ name, price }) {
+  console.log(`Rendering: ${name}`);
+  return <div>{name} - ${price}</div>;
+}
+```
+
+```jsx
+import { memo } from 'react';
+
+// After: skips re-render if name and price haven't changed
+const ProductCard = memo(function ProductCard({ name, price }) {
+  console.log(`Rendering: ${name}`);
+  return <div>{name} - ${price}</div>;
+});
+
+export default ProductCard;
+```
+
+Since `React.memo` uses shallow comparison, it works well for primitive props like strings and numbers. But if a prop is an object, array, or — importantly — a function, React treats it as a "new" value on every render even when the contents are unchanged. In those cases, `memo` won't prevent re-renders on its own.
+
+This is why `React.memo` pairs naturally with `useCallback`. Function props must be stable across renders for memoization to work:
+
+```jsx
+import { memo, useCallback, useState } from 'react';
+
+// Memoized component - skips re-render if props haven't changed
+const ProductCard = memo(function ProductCard({
+  name,
+  price,
+  productId,
+  onAddToCart,
+}) {
+  console.log(`Rendering: ${name}`);
+  return (
+    <div>
+      <span>
+        {name} - ${price}
+      </span>
+      <button onClick={() => onAddToCart(productId)}>Add to Cart</button>
+    </div>
+  );
+});
+
+function ProductList({ products }) {
+  const [cart, setCart] = useState([]);
+
+  // ✅ useCallback ensures onAddToCart is the same reference across renders
+  const handleAddToCart = useCallback((id) => {
+    setCart((prev) => [...prev, id]);
+  }, []);
+
+  return (
+    <ul>
+      {products.map((product) => (
+        <ProductCard
+          key={product.id}
+          name={product.name}
+          price={product.price}
+          productId={product.id}
+          onAddToCart={handleAddToCart}
+        />
+      ))}
+    </ul>
+  );
+}
+```
+
+Without `useCallback`, `handleAddToCart` would be a new function reference on every render of `ProductList`. Even though `ProductCard` is wrapped in `memo`, the shallow comparison would detect a changed `onAddToCart` prop and trigger a re-render anyway.
+
+**Key Points about React.memo:**
+
+- Wraps a **component** to skip re-renders when props haven't changed
+- Uses **shallow comparison** — primitives work well; objects, arrays, and functions need stable references
+- Pairs with **`useCallback`** when passing function props to memoized components
+- Like `useMemo` and `useCallback`, don't add it everywhere — only when you have a confirmed performance issue
 
 ### API-Based Sort and Search
 
@@ -474,5 +559,6 @@ Explain in your own words first, then ask for feedback on what is accurate and w
 **Example prompts**:
 
 > - "I learned that `useCallback` memoizes a function so it isn't re-created on every render. Here's my explanation of why passing a new function reference on every render can cause unnecessary re-renders in child components, and how `useCallback` solves that: [my explanation]. What did I get right, and what should I refine?"
+> - "I learned about `React.memo` and how it prevents unnecessary re-renders in child components. Here's my explanation of how it works, why it uses shallow comparison, and why it needs to be paired with `useCallback` when function props are involved: [my explanation]. What did I get right, and what should I refine?"
 > - "I learned about debouncing as a technique to delay function execution until a user stops a repeated action like typing. Here's my explanation of what debouncing is and why it matters for reducing unnecessary API calls: [my explanation]. What did I get right, and what should I refine?"
 > - "I compared local data manipulation to API-based sort and search. Here's my explanation of when each approach is the better choice and what factors drive that decision: [my explanation]. Can you check my reasoning and ask me one follow-up question?"
