@@ -20,7 +20,7 @@ After completing this week's assignment, your app should:
 - Create a new account with the [CTD's Todo List app](https://react-todo-list-v3.onrender.com) using the Register button. Don't log in with Google.
 - Add several test todos so that you'll have data to work with during development.
 
-> [!REMINDER]
+> [!NOTE]
 > **Why We Use Vite Server Proxy in This Assignment**
 > Some browsers block third-party cookies by default. If your frontend sends requests directly to another domain, authentication cookies may be rejected and logon can fail. In this assignment, we use a Vite Server Proxy so your browser talks to `localhost:3001/api/*` (same-origin), while Vite forwards those requests to the CTD backend.
 
