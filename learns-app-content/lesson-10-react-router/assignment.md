@@ -2,15 +2,15 @@
 
 ### Expected App Capabilities
 
-After completing this week's assignment, your todo app will be transformed from a single-page application to a multi-page experience with:
+After completing this week's assignment, your app should:
 
-✅ **Multi-page navigation** with dedicated routes for todos, profile, about, and login  
-✅ **Protected routes** that require authentication to access  
-✅ **URL-based todo filtering** using search parameters (`/todos?status=completed`)  
-✅ **Programmatic navigation** after login/logout with proper redirects  
-✅ **Navigation component** with active state indicators  
-✅ **404 error handling** for unknown routes  
-✅ **Authentication flow** that preserves intended destinations after login
+- support multi-page navigation with dedicated routes for todos, profile, about, and login
+- protect routes that require authentication to access
+- filter todos by URL search parameters (`/todos?status=completed`)
+- use programmatic navigation after login/logout with proper redirects
+- display a navigation component with active state indicators
+- handle 404 errors for unknown routes
+- preserve intended destinations after login
 
 ---
 

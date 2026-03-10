@@ -3,15 +3,15 @@
 
 After completing this week's assignment, your app should:
 
-- Require user authentication before accessing todos
-- Employ Vite's Server Proxy to relay API requests
-- Fetch todos from a backend API and display them
-- Allow users to add new todos that persist to the database
-- Allow users to mark todos as complete with database updates
-- Allow users to edit existing todo titles with persistence
-- Show loading states during API operations
-- Display error messages when API operations fail
-- Use optimistic updates for better user experience
+- require user authentication before accessing todos
+- employ Vite's Server Proxy to relay API requests
+- fetch todos from a backend API and display them
+- allow users to add new todos that persist to the database
+- allow users to mark todos as complete with database updates
+- allow users to edit existing todo titles with persistence
+- show loading states during API operations
+- display error messages when API operations fail
+- use optimistic updates for better user experience
 
 ### Instructions Part 1: Environment Setup
 
