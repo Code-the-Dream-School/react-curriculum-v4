@@ -28,7 +28,7 @@ After completing this week's assignment, your todo app will have:
      sortBy,
      sortDirection,
    });
-   const resp = await fetch(`${baseUrl}/tasks?${params}`, options);
+   const resp = await fetch(`/api/tasks?${params}`, options);
    ```
 
 > [!NOTE]
@@ -41,12 +41,12 @@ After completing this week's assignment, your todo app will have:
 >   sortBy: 'creationDate',
 >   sortDirection: 'desc',
 > });
-> fetch(`${baseUrl}/tasks?${params}`, options);
+> fetch(`/api/tasks?${params}`, options);
 > ```
 >
 > JavaScript automatically calls `params.toString()`, which converts the object to: `"sortBy=creationDate&sortDirection=desc"`
 >
-> This creates the final URL: `http://localhost:3001/tasks?sortBy=creationDate&sortDirection=desc`
+> This creates the final URL: `http://localhost:3001/api/tasks?sortBy=creationDate&sortDirection=desc`
 
 3. **Update useEffect dependencies** to re-fetch when sort options change:
    - Add `sortBy` and `sortDirection` to the dependency array alongside the existing `token`
@@ -67,7 +67,7 @@ After completing this week's assignment, your todo app will have:
 #### Test Your Sorting
 
 - Try different sort combinations and verify the API requests include the correct parameters
-- Check the Network tab in DevTools to see, for example: `GET /tasks?sortBy=title&sortDirection=asc`
+- Check the Network tab in DevTools to see, for example: `GET /api/tasks?sortBy=title&sortDirection=asc`
 
 ### Instructions Part 2: Implement Debounced Search with Performance Optimization
 
@@ -327,3 +327,6 @@ Next lesson, we'll explore **Advanced State Management** with `useReducer` and `
 **Performance**: Use React DevTools Profiler to verify your optimizations are working - you should see fewer re-renders with proper `useCallback` usage.
 
 **Debouncing**: If search seems instant, verify your `useDebounce` hook is properly delaying API calls by watching the Network tab.
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.

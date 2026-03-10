@@ -178,12 +178,39 @@ Verify your `package.json` includes the correct build script:
 ```
 
 > [!NOTE]
-> **Important for Cookie-Restricted Browsers**
-> If you encountered authentication issues in Lesson 7 due to your browser blocking third-party cookies and used the [Vite Proxy Supplemental Guide](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/main/supplementals/no-3rd-party-cookies/cookies-and-proxies.md), you should also reference the [Vercel Proxy Configuration Guide](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/main/supplementals/no-3rd-party-cookies/vercel-proxy-config.md) for deployment-specific proxy setup. If you didn't need the proxy configuration for development in Lesson 7, you don't need to worry about this deployment guide either.
+> **Deployment Config for Proxy-Based API Calls**
+> Since your app uses relative API paths like `/api/tasks`, we'll need to add a `vercel.json` file so Vercel forwards `/api/*` requests to the CTD backend in production. This replaces the Vite Server proxy when the project is run locally.
+
+Create `vercel.json` in your project root (same directory as `package.json`) with this configuration:
+
+```json
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://ctd-learns-node-l42tx.ondigitalocean.app/api/:path*"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/:path*",
+      "headers": [
+        {
+          "key": "X-Same-Origin-Proxy",
+          "value": "vercel"
+        }
+      ]
+    }
+  ]
+}
+```
+
+After creating `vercel.json`, commit and push it before deploying.
 
 #### 4.2 Deploy to Vercel
 
-**Step 1: Create Vercel Account and Connect GitHub**
+##### Step 1: Create Vercel Account and Connect GitHub
 
 1. Go to [vercel.com](https://vercel.com/)
 2. Sign up using your GitHub account
@@ -194,7 +221,7 @@ Verify your `package.json` includes the correct build script:
      - **Alternative**: Choose "Only select repositories" and manually select your todo app repository
 4. Authorize Vercel to access your chosen repositories
 
-**Step 2: Create New Project**
+##### Step 2: Create New Project
 
 1. Find the "Projects" pane in your Vercel Overview dashboard
 2. Click "Import Project"  
@@ -205,19 +232,25 @@ Verify your `package.json` includes the correct build script:
    - **Output Directory**: `dist` (auto-configured)
    - **Install Command**: `npm install` (auto-configured)
 
-**Step 3: Configure Environment Variables (if needed)**
+##### Step 3: Configure Environment Variables (if needed)
 
 1. In the project configuration screen, expand "Environment Variables"
 2. Add any environment variables your app needs
 3. Use the same variable names from your `.env` file
 
-**Step 4: Deploy and Test**
+##### Step 4: Deploy and Test
 
 1. Click "Deploy" to create your project
 2. Wait for the build to complete (usually 1-3 minutes)
 3. Vercel will provide a live URL (ending in `.vercel.app`)
 4. Test your live application thoroughly
 5. Fix any deployment-specific issues and push changes to trigger redeployment
+
+##### Step 5: Verify API Routing in Production
+
+1. Open your deployed app and test logon plus task operations
+2. Open DevTools Network tab and confirm frontend requests use `/api/*` paths on your deployed domain
+3. If requests fail, verify `vercel.json` is in project root and redeploy
 
 ### Part 5: Final Testing and Quality Assurance
 
@@ -261,7 +294,8 @@ Choose 1–2 prompts below. Explain in your own words first, then ask AI for fee
 > Do not ask AI to complete the assignment code for you.
 
 > - "I chose CSS Modules to style my React app. Here's my explanation of how CSS Modules scope class names to components and why that prevents conflicts when two components use the same class name: [my explanation]. Is my reasoning correct?"
-> - "I stored my API base URL in a .env file using a VITE_ prefix. Here's my explanation of why the VITE_ prefix is required, what happens to that value during the build, and why truly sensitive secrets should not use that prefix: [my explanation]. Can you check my understanding and ask me one follow-up question?"
+> - "My app uses a Vite Server Proxy during development so that relative `/api/*` fetch calls are forwarded to the backend. Here's my explanation of why the proxy is only needed in development and why it cannot be used in production when deployed to Vercel: [my explanation]. What did I get right, and what should I refine?"
+> - "I added a `vercel.json` file with a rewrites rule that maps `/api/:path*` to the CTD backend URL. Here's my explanation of how Vercel uses this file to forward API requests in production, and why this replaces the role the Vite Server Proxy played during development: [my explanation]. Is my reasoning accurate?"
 > - "I deployed my React app to Vercel by connecting my GitHub repository. Here's my explanation of what Vercel does with my source code during deployment, how environment variables are configured separately from the repository, and why the dist folder is what gets served to users: [my explanation]. What should I refine?"
 
 ### Version Control and Submission
@@ -312,3 +346,6 @@ After completing this assignment, consider these enhancements for your portfolio
 - Add dark/light theme toggle
 - Implement data persistence with localStorage or a backend API
 - Add drag and drop functionality for reordering todos
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.

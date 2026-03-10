@@ -433,7 +433,7 @@ const login = async (userEmail, password) => {
       credentials: 'include',
     };
     
-    const res = await fetch(`${baseUrl}/user/logon`, options);
+    const res = await fetch('/api/users/logon', options);
     const data = await res.json();
     
     if (res.status === 200 && data.name && data.csrfToken) {
@@ -661,3 +661,6 @@ Choose 1–2 prompts below. Explain in your own words first, then ask AI for fee
 ### Looking Ahead
 
  This week's assignment was a doozy! Pat yourself on the back for a job well done! Next week, we'll explore React Router to add navigation and multiple pages to your application, building on the solid state management foundation you've established this week.
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.

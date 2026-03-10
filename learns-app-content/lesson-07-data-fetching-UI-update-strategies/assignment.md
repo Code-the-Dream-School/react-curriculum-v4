@@ -4,6 +4,7 @@
 After completing this week's assignment, your app should:
 
 - Require user authentication before accessing todos
+- Employ Vite's Server Proxy to relay API requests
 - Fetch todos from a backend API and display them
 - Allow users to add new todos that persist to the database
 - Allow users to mark todos as complete with database updates
@@ -20,33 +21,75 @@ After completing this week's assignment, your app should:
 - Add several test todos so that you'll have data to work with during development.
 
 > [!NOTE]
-> **Alternative Setup for Cookie-Restricted Browsers**
-> If you experience authentication issues due to your browser blocking third-party cookies, see the [Vite Proxy Supplemental Guide](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/main/supplementals/no-3rd-party-cookies/cookies-and-proxies.md) for an alternative configuration that uses a development proxy instead of direct API requests. Complete the setup instructions from there and then proceed to Part 2 of the assignment.
+> **Why We Use Vite Server Proxy in This Assignment**
+> Some browsers block third-party cookies by default. If your frontend sends requests directly to another domain, authentication cookies may be rejected and logon can fail. In this assignment, we use a Vite Server Proxy so your browser talks to `localhost:3001/api/*` (same-origin), while Vite forwards those requests to the CTD backend.
+
 #### Update Vite Configuration
 
-The app needs to run on port 3001 for it to work with the Node backend. To do this, we need to update Vite's configurations by replacing the contents of vite.config.js with the following snippet:
+The app needs to run on port 3001 and proxy all `/api/*` requests through Vite.
+
+Copy and paste the `vite.config.js` configuration from the reference file:
+
+- [Reference `vite.config.js` (react-todo-list-v4)](https://github.com/Code-the-Dream-School/react-todo-list-v4/blob/main/vite.config.js)
+
+Your file should look similar to this:
 
 ```js
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  server: { port: 3001 },
-});
+// https://vite.dev/config/ for more info about configuration options
+export default ({ mode }) => {
+  const env = loadEnv(mode, '.', '');
+
+  return defineConfig({
+    plugins: [react()],
+    server: {
+      port: 3001,
+      proxy: {
+        '/api': {
+          target: env.VITE_TARGET,
+          secure: false,
+          changeOrigin: true,
+          configure: (proxy) => {
+            proxy.on('proxyRes', (proxyRes) => {
+              const cookies = proxyRes.headers['set-cookie'];
+
+              if (!cookies) {
+                return;
+              }
+
+              const cookieArray = Array.isArray(cookies) ? cookies : [cookies];
+              proxyRes.headers['set-cookie'] = cookieArray.map((cookie) =>
+                cookie
+                  .replace(/; *Secure/gi, '')
+                  .replace(/; *SameSite=None/gi, '')
+                  .replace(/; *Domain=[^;]+/gi, '')
+              );
+            });
+          },
+        },
+      },
+    },
+  });
+};
 ```
 
-If you are running your app, restart it from the terminal. You'll also have to update the address with the new port number in your browser's address bar.
+> [!NOTE]
+>
+> - `defineConfig.server.proxy['/api']` - '/api' is the path prefix Vite watches for proxying. Requests that start with `/api` are forwarded to `VITE_TARGET`, while non-API paths continue to be handled by the Vite dev server.
+> - `defineConfig.server.proxy['/api'].changeOrigin: true` updates outgoing `Host`/origin information so proxied requests look like they are going directly to the target server. This helps backends that validate host or origin headers.
+> - `defineConfig.server.proxy['/api'].configure` lets you hook into proxy events. In this config, it listens to proxy responses (`proxyRes`) and rewrites `Set-Cookie` headers for local development compatibility by removing cookie attributes that break local cross-domain testing.
 
 #### Configure Environment Variables
 
 - Create a copy of `.env.example` and name it `.env`.
 - Make sure that it is listed in your `.gitignore`
-- Update the `VITE_BASE_URL` with `https://ctd-learns-node-l42tx.ondigitalocean.app/api`
+- Add this variable to `.env`:
 
-> [!note]
-> Environment variables in Vite must start with `VITE_` to be accessible in your React app. Use the `import.meta.env.VITE_BASE_URL` syntax to access these variables.
+```text
+VITE_TARGET=https://ctd-learns-node-l42tx.ondigitalocean.app
+```
 
 ### Instructions Part 2: Project Organization and Component Extraction
 
@@ -98,12 +141,11 @@ If you are running your app, restart it from the terminal. You'll also have to u
   - `email` and `password` (controlled form inputs, `initialValue` of empty strings)
   - `authError` (to display login failure, `initialValue` of an empty string)
   - `isLoggingOn` (to show loading state during login, `initialValue` of false)
-- Access the base URL using `const baseUrl = import.meta.env.VITE_BASE_URL`
 - Create an async `handleSubmit` function that:
   - uses `try/catch/finally` blocks
   - Prevents default form submission
   - Sets loading state to true
-  - Makes a POST request to `${baseUrl}/users/logon` with email and password in the request body
+  - Makes a POST request to `/api/users/logon` with email and password in the request body
   - Includes headers for `Content-Type: application/json` and `credentials: 'include'`
   - On successful response (status 200 with name and csrfToken), calls `onSetEmail` and `onSetToken` props: This will be made when we update App.jsx.
   - On failure, sets appropriate error message
@@ -112,7 +154,7 @@ If you are running your app, restart it from the terminal. You'll also have to u
 ```jsx
 // example fetch request structure
 try{ 
-  const response = await fetch(`${baseUrl}/users/logon`, {
+  const response = await fetch('/api/users/logon', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
@@ -142,6 +184,13 @@ try{
   - Submit button that shows loading state
   - An Error message at the top when `authError` exists.
 
+#### Verify Proxy Setup
+
+1. Restart your dev server: `npm run dev`
+2. Open browser DevTools and go to the Network tab
+3. Confirm requests show `localhost:3001/api/*` URLs
+4. Test logon and task operations before moving to Part 4
+
 ### Instructions Part 4: Update App Component for Authentication
 
 #### Add Authentication State to App
@@ -164,14 +213,13 @@ At this point, you should be able to log into your app. With conditional renderi
 
 - Update `src/features/Todos/TodosPage.jsx` to add API data fetching
 - Update the component to accept and destructure the `token` prop: `function TodosPage({ token })`
-- Add a constant for the base URL above the component definition: `const baseUrl = import.meta.env.VITE_BASE_URL`
 - Add new state variables for:
   - `error` (for displaying API errors, default empty string)
   - `isTodoListLoading` (for showing loading state, default false)
 - Create an async function `fetchTodos` inside a `useEffect` hook that:
   - uses `try/catch/finally` blocks
   - Sets `isTodoListLoading` to true
-  - Makes a GET request to `${baseUrl}/tasks` with:
+  - Makes a GET request to `/api/tasks` with:
     - `X-CSRF-TOKEN` header set to the token prop
     - `credentials: 'include'`
   - Handles different response scenarios:
@@ -194,7 +242,7 @@ Transform the existing `addTodo` function to work with the API:
 - Make the function async
 - Keep the logic in `addTodo` that creates a new todo object before sending it to the API.
 - **Optimistically update** the state immediately by adding the new todo to the list
-- Make a POST request to `${baseUrl}/tasks` with:
+- Make a POST request to `/api/tasks` with:
   - JSON body containing `title` and `isCompleted`
   - `Content-Type: application/json` and `X-CSRF-TOKEN` headers
   - `credentials: 'include'`
@@ -211,7 +259,7 @@ Update the existing `completeTodo` function:
 - Make the function async
 - Store the original todo before making changes (for potential rollback)
 - **Optimistically update** the todo as completed in state
-- Make a PATCH request to `${baseUrl}/tasks/${id}` with:
+- Make a PATCH request to `/api/tasks/${id}` with:
   - JSON body containing `isCompleted: true` and `createdAt: originalTodo.createdAt`
   - Same headers as above
 - On failure: rollback to the original todo and set error message
@@ -223,7 +271,7 @@ Update the existing `updateTodo` function:
 - Make the function async
 - Store the original todo for rollback
 - **Optimistically apply** the edited todo to state
-- Make a PATCH request to `${baseUrl}/tasks/${editedTodo.id}` with:
+- Make a PATCH request to `/api/tasks/${editedTodo.id}` with:
   - JSON body containing title, isCompleted, and createdAt
   - Same headers pattern
 - On failure: rollback to original todo and show error message
@@ -401,3 +449,6 @@ In upcoming weeks, you'll learn about:
     }
 }
 ```
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.

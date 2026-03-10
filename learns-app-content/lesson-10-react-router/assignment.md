@@ -544,7 +544,7 @@ Your application will use this routing structure:
 
 21. **Complete the ProfilePage implementation**:
     - Import necessary hooks: `useState` and `useEffect` from React, and `useAuth` from your AuthContext
-    - Import the base URL from environment variables using `import.meta.env.VITE_BASE_URL`
+    - Use relative API paths (for example, `/api/tasks`) so requests go through the proxy configuration
     - Create state variables for todo statistics (total, completed, active counts), loading state, and error handling
     - Use `useAuth()` to access the user's name and authentication token
     - Create a ProfilePage component that displays user account information (name, status)
@@ -570,7 +570,7 @@ Your application will use this routing structure:
             credentials: 'include',
           };
 
-          const response = await fetch(`${baseUrl}/tasks`, options);
+          const response = await fetch('/api/tasks', options);
 
           if (response.status === 401) {
             throw new Error('Unauthorized');
@@ -687,3 +687,6 @@ Next week, we'll focus on **polishing your application for portfolio presentatio
 **URL Parameters**: If filters don't persist in URLs, check that `useSearchParams` is being used correctly and that `setSearchParams` is called when filters change.
 
 **404 Handling**: If the 404 page doesn't appear for invalid routes, ensure the catch-all route (`*`) is the last route in your `Routes` component.
+
+> [!NOTE]
+> The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
