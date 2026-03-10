@@ -918,6 +918,108 @@ As seen in the gif below, the cart number updates immediately. When an error res
 
 ![cart displaying error dialog](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-07-data-fetching-UI-update-strategies/assets/cart-saving-error.gif)
 
+### Vite Server Proxy for Cookie-based API Authentication
+
+So far in this lesson, our CTD-Swag examples have used bearer tokens in the `Authorization` header. That pattern is common and valid. In many apps, though, authentication is handled with cookies instead. When cookies are part of auth, development setup matters because browser cookie policy affects whether login sessions work.
+
+#### First-party vs third-party cookies
+
+A cookie is **first-party** when it belongs to the same origin shown in the browser's address bar. A cookie is **third-party** when it belongs to a different origin.
+
+- If the app runs at `http://localhost:3001` and directly calls `http://localhost:8641`, cookie handling is cross-origin.
+- Depending on browser policy and user settings, those cookies can be treated more restrictively and may be blocked.
+- If login/session cookies are blocked, auth appears to fail even when your endpoint and payload are correct.
+
+#### Browser policy changes and current impact
+
+Browser vendors have continued tightening third-party cookie behavior. Firefox and Safari have already blocked many third-party cookie scenarios by default for years. Google has postponed full third-party cookie deprecation rollout in Chrome, but this still affects part of real-world usage today because users are spread across browsers and privacy settings.
+
+As a directional estimate from our supplemental data:[^cookie-policy-summary]
+
+- About **19.66%** of users are affected (conservative lower-bound estimate)
+- About **20.52%** when normalized across major browsers in the estimate
+
+These figures are derived from PrivacyTests + StatCounter weighted analysis and are current as of 2026-03-05.
+
+#### How Vite Server Proxy works
+
+Vite Server Proxy acts as an intermediary in development:
+
+1. Your React app sends requests to a relative path such as `/api/auth/login`
+2. The browser sends that request to `localhost:3001` (same origin as the app)
+3. Vite forwards the request to the backend target (for us: `http://localhost:8641`)
+4. Vite forwards the response back to the browser
+
+Because the browser is communicating with `localhost:3001`, cookie handling will behave like same-origin local traffic from the frontend's perspective.
+
+#### Refactor scenario: CTD-Swag bearer token auth to cookie auth
+
+Imagine we refactor CTD-Swag so login sets an auth cookie instead of returning a token we store and send in an `Authorization` header.
+
+Configure Vite Server Proxy to forward `/api/*` calls to the local backend:
+
+```js
+// vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 3001,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8641',
+        changeOrigin: true,
+      },
+    },
+  },
+});
+```
+
+Then update fetch requests to use relative paths and include credentials.
+
+```js
+// App.jsx - login request (cookie-based auth scenario)
+async function handleAuthenticate(credentials) {
+  const resp = await fetch('/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify(credentials),
+  });
+
+  if (!resp.ok) {
+    throw new Error('Login failed');
+  }
+
+  const userData = await resp.json();
+  setUser(userData.user);
+}
+```
+
+```js
+// App.jsx - authenticated request after login
+// No Authorization header needed because cookie is sent automatically.
+async function loadCart() {
+  const resp = await fetch('/api/cart', {
+    method: 'GET',
+    credentials: 'include',
+  });
+
+  if (!resp.ok) {
+    throw new Error('Could not load cart');
+  }
+
+  const cartItems = await resp.json();
+  setCart(cartItems);
+}
+```
+
+The key change is conceptual: Vite Server Proxy does not change your backend auth rules, but it can change the browser-facing request origin in development so cookie-based auth works more consistently across privacy settings.
+
+[^cookie-policy-summary]: Third-party cookie behavior varies by browser and user privacy settings. As a directional estimate from default browser settings, PrivacyTests desktop results (rows `cookie (HTTP)` and `cookie (JS)` under State Partitioning tests) weighted by StatCounter worldwide browser share indicate about **19.66%** of users (conservative lower-bound estimate), or **20.52%** when normalized across the major browsers included in the estimate. **Current as of 2026-03-05.** Source data: [PrivacyTests](https://privacytests.org/) and [StatCounter browser share](https://gs.statcounter.com/browser-market-share).
+
 ### Check Your Understanding with AI
 
 Explain in your own words first, then ask for feedback on what is accurate and what needs revision.
