@@ -91,13 +91,6 @@ export default ({ mode }) => {
 VITE_TARGET=https://ctd-learns-node-l42tx.ondigitalocean.app
 ```
 
-#### Verify Proxy Setup
-
-1. Restart your dev server: `npm run dev`
-2. Open browser DevTools and go to the Network tab
-3. Confirm requests show `localhost:3001/api/*` URLs
-4. Test logon and task operations before moving to Part 2
-
 ### Instructions Part 2: Project Organization and Component Extraction
 
 #### Create the TodosPage Component
@@ -190,6 +183,13 @@ try{
   - Labels properly associated with inputs using `htmlFor`
   - Submit button that shows loading state
   - An Error message at the top when `authError` exists.
+
+#### Verify Proxy Setup
+
+1. Restart your dev server: `npm run dev`
+2. Open browser DevTools and go to the Network tab
+3. Confirm requests show `localhost:3001/api/*` URLs
+4. Test logon and task operations before moving to Part 4
 
 ### Instructions Part 4: Update App Component for Authentication
 
