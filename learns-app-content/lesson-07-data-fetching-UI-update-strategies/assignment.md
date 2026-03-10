@@ -77,7 +77,7 @@ export default ({ mode }) => {
 
 > [!NOTE]
 >
-> - ``defineConfig.server.proxy['/api']` - '/api' is the path prefix Vite watches for proxying. Requests that start with `/api` are forwarded to `VITE_TARGET`, while non-API paths continue to be handled by the Vite dev server.
+> - `defineConfig.server.proxy['/api']` - '/api' is the path prefix Vite watches for proxying. Requests that start with `/api` are forwarded to `VITE_TARGET`, while non-API paths continue to be handled by the Vite dev server.
 > - `defineConfig.server.proxy['/api'].changeOrigin: true` updates outgoing `Host`/origin information so proxied requests look like they are going directly to the target server. This helps backends that validate host or origin headers.
 > - `defineConfig.server.proxy['/api'].configure` lets you hook into proxy events. In this config, it listens to proxy responses (`proxyRes`) and rewrites `Set-Cookie` headers for local development compatibility by removing cookie attributes that break local cross-domain testing.
 
