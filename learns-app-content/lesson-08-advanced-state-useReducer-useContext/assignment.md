@@ -2,13 +2,13 @@
 
 ### Expected App Capabilities
 
-After completing this week's assignment, your todo app will have:
+After completing this week's assignment, your app should:
 
-- Server-side sorting by creation date or title in ascending/descending order
-- Debounced search functionality that filters todos without flooding the API
-- Performance optimizations using `useCallback` and `useMemo` hooks
-- Enhanced error handling with specific recovery options for different error types
-- Cache invalidation patterns to ensure data consistency after mutations
+- support server-side sorting by creation date or title in ascending/descending order
+- use debounced search to filter todos without flooding the API
+- optimize performance using `useCallback` and `useMemo` hooks
+- handle errors with specific recovery options for different error types
+- invalidate cache to ensure data consistency after mutations
 
 ---
 

@@ -3,12 +3,12 @@
 
 After completing this week's assignment, your app should:
 
-- Contain a `TodoList` component that displays all todo items
-- Contain a `TodoForm` component with a form containing:
-  - A labeled input field for entering new todos
-  - A submit button (non-functional for now)
-- Display the same visual elements as lesson-01: heading, todo form, and todo list
-- Maintain all functionality from the previous week
+- contain a `TodoList` component that displays all todo items
+- contain a `TodoForm` component with a form containing:
+  - a labeled input field for entering new todos
+  - a submit button (non-functional for now)
+- display the same visual elements as lesson-01: heading, todo form, and todo list
+- maintain all functionality from the previous week
 
 ### Instructions Part 1: Pre-Work Setup
 

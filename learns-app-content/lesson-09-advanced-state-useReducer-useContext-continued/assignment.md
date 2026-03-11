@@ -10,13 +10,13 @@
 
 ### Expected App Capabilities
 
-After completing this week's assignment, your todo app will demonstrate advanced React state management patterns:
+After completing this week's assignment, your app should:
 
-✅ **useReducer Implementation**: Replace multiple useState calls with a single useReducer to manage complex todo state  
-✅ **useContext Integration**: Eliminate prop drilling by using context for authentication state  
-✅ **Centralized State Logic**: All todo operations handled through dispatched actions  
-✅ **Clean Component Architecture**: Components access shared state without prop passing  
-✅ **Optimistic Updates**: UI updates immediately with proper error rollback handling
+- replace multiple `useState` calls with a single `useReducer` to manage todo state
+- eliminate prop drilling by using context for authentication state
+- handle all todo operations through dispatched actions
+- allow components to access shared state without prop passing
+- implement optimistic updates with proper error rollback handling
 
 ### Instructions Part 1: Understanding the Problem
 

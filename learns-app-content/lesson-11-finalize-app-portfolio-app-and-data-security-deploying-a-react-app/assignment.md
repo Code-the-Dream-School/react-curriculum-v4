@@ -7,12 +7,12 @@
 
 After completing this week's assignment, your app should:
 
-- Be professionally styled and ready to be incorporated into your portfolio
-- Be hosted live using [Vercel](https://vercel.com/) static site hosting
-- Maintain all existing CRUD and routing functionality
-- Include a comprehensive README with live demo link
-- Demonstrate security best practices and input validation
-- Be responsive and accessible across different devices
+- be professionally styled and ready to be incorporated into your portfolio
+- be hosted live using [Vercel](https://vercel.com/) static site hosting
+- maintain all existing CRUD and routing functionality
+- include a comprehensive README with live demo link
+- demonstrate security best practices and input validation
+- be responsive and accessible across different devices
 
 ### Part 1: Style Your Application
 
