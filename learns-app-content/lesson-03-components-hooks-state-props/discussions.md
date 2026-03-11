@@ -96,6 +96,78 @@ function PageSizer() {
 - **Update:** With `[]` as dependencies, there’s no update re-run. If you had dependencies (e.g., `[someProp]`), React would clean up the old listener and run the effect again when that value changes.
 - **Unmount:** When the component disappears, React calls the cleanup function, removing the listener.
 
+#### Avoiding Stale State (or Stale Closures)
+
+We will start by building a basic counter to explain this concept;
+
+```jsx
+import { useState, useEffect } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
+
+  function add() {
+    setCount(count + 1);
+  }
+
+  return (
+    <>
+      <p>Count: {count}</p>
+      <button type="button" onClick={add}>
+        Add
+      </button>
+    </>
+  );
+}
+```
+
+**So let's explain:**
+
+We have a useEffect that will fire whenever count changes, so that we may see the value in the console. The add function that handles the count and the add button that will increment the count by one.
+
+But we have a problem. What if we want to add one two times in the same event handler? For example, we might accidentally call `setCount(count + 1)` twice in a row. This pattern can cause our app to behave in undesired ways.
+
+```js
+function add() {
+  setCount(count + 1);
+  setCount(count + 1);
+}
+```
+
+You might think this would add two, it does not. Each set call is pulling a value from the same spot at the same time.
+
+So when setCount is called the second time, the value is stale. Both setters get the same starting value, thanks to React batching the calls for efficiency.
+
+It's like walking into a room and flipping the light switch off and on again super quick. You try to observe the "off" state, but you can't see it—it gets skipped right over. You only end up seeing the final "on" state.
+
+To fix this, React has something called functional updating. Here is an example of how we would write the new code.
+
+```js
+function add() {
+  setCount((previous) => previous + 1);
+  setCount((previous) => previous + 1);
+}
+```
+
+**Let's break this down**
+
+Whenever you pass a function to your setter, it needs an argument and that argument (whatever you label it) is your current state. As you see here, we have named it previous. This is because we plan to make a new current with this operation. ( This is a common naming convention that it helps make our code easier to understand. )
+
+Now when executed, the add function will increment count by two. So now when our setters are called, each one pulls in the most fresh/current state at the moment of call. This way, if React batches the actions, it will still always get the most current state.
+
+**Tips for Usage:**
+
+Use functional updating when:
+ - Your new state relies on the old state
+ - You have async fetches and  optimistic updates
+ - React batching (or quick clickers)
+
+This pattern will also prevent stale closure bugs, where old state gets stuck in a function that runs later in your code (timers, listeners, etc.). It's best to use a direct set when you're just resetting state, you know like clearing a list or errors. But we will talk more about this in later lessons.
+
 #### Intro to Hooks
 
 To manage data that changes over time and trigger lifecycle updates, React provides **hooks** - special functions that "hook into" React's internal systems.
@@ -498,7 +570,7 @@ Explain in your own words first, then ask for feedback on what is accurate and w
 3. Ask the AI to critique your explanation and point out gaps.
 4. Revise your explanation and compare it to this week's examples.
 
->[!reminder]
+> [!reminder]
 > Use AI as a learning coach, not an answer key.
 
 **Example prompts**:
