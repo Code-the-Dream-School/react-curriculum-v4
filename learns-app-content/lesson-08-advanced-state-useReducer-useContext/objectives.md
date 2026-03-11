@@ -2,7 +2,7 @@
 ### Topics Covered
 
 - Advanced Hooks: useCallback and useMemo
-- Optimizing a React App
+- Optimizing a React App (including React.memo)
 - API-based Sort/Search
 
 ### Learning Objectives
@@ -18,6 +18,7 @@ By the end of this lesson, we will:
 
 - Differentiate between useMemo and useCallback, including when to use each.
 - Identify scenarios where useMemo or useCallback improves performance and where they may be unnecessary or harmful.
+- Describe how React.memo prevents unnecessary re-renders of child components and explain when to use it alongside useCallback.
 
 #### Objective 3: API-based Sort/Search
 
