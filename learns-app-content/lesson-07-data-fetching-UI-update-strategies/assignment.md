@@ -17,7 +17,7 @@ After completing this week's assignment, your app should:
 
 #### Register with CTD's Todo List API
 
-- Create a new account with the [CTD's Todo List app](https://react-todo-list-v3.onrender.com) using the Register button. Don't log in with Google.
+- Create a new account with the [CTD's Todo List app](https://react-todo-list-v4-snowy.vercel.app) using the Register button. Don't log in with Google.
 - Add several test todos so that you'll have data to work with during development.
 
 > [!NOTE]
