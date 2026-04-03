@@ -64,8 +64,8 @@ In the discussion portion of each weekly lesson, we will explore each of the lis
 
 On most weeks you will have two tasks to complete before submitting your assignment form:
 
-- weekly exercises
-- enhancing the todo list app
+- enhancing the todo list app (use the URL field in the submission form)
+- weekly exercises (use URL2 field in the submission form)
 
 ##### Weekly Exercises
 
