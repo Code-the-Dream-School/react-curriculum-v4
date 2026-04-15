@@ -4,7 +4,6 @@
 
 - [Built-in Hooks (React docs)](https://react.dev/reference/react/hooks)
 - [Mastering React Hooks: A Comprehensive Guide with Examples (dev.to)](https://dev.to/jaingurdeep/mastering-react-hooks-a-comprehensive-guide-with-examples-3e3b)
-- [React Hooks Cheatsheet](https://react-hooks-cheatsheet.com/)
 - [forwardRef (React docs)](https://react.dev/reference/react/forwardRef)
 
 ### Passing Props
