@@ -92,7 +92,7 @@ function TodoForm({ onAddTodo }) {
 
 #### Update the Form JSX
 
-1. Update the form's return statement to use the handler and ref:
+1. Update the correct elements in the return statement to use the handler and ref:
 
 ```jsx
 return (
