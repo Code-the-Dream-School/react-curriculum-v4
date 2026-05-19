@@ -260,7 +260,7 @@ Update the existing `completeTodo` function:
 - Store the original todo before making changes (for potential rollback)
 - **Optimistically update** the todo as completed in state
 - Make a PATCH request to `/api/tasks/${id}` with:
-  - JSON body containing `isCompleted: true` and `createdAt: originalTodo.createdAt`
+  - JSON body containing `isCompleted: true`
   - Same headers as above
 - On failure: rollback to the original todo and set error message
 
@@ -272,7 +272,7 @@ Update the existing `updateTodo` function:
 - Store the original todo for rollback
 - **Optimistically apply** the edited todo to state
 - Make a PATCH request to `/api/tasks/${editedTodo.id}` with:
-  - JSON body containing title, isCompleted, and createdAt
+  - JSON body containing `title` and `isCompleted` with associated values
   - Same headers pattern
 - On failure: rollback to original todo and show error message
 
