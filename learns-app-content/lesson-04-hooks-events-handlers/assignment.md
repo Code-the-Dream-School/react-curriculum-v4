@@ -96,7 +96,7 @@ function TodoForm({ onAddTodo }) {
 
 ```jsx
 return (
-  <form>
+  <form onSubmit={handleAddTodo}>
     <label htmlFor="todoTitle">Todo</label>
     <input
       ref={inputRef}
@@ -106,7 +106,7 @@ return (
       placeholder={'Todo text'}
       required
     />
-    <button type="submit" onClick={handleAddTodo}>
+    <button type="submit">
       Add Todo
     </button>
   </form>
