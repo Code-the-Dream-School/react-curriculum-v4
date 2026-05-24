@@ -135,8 +135,8 @@ VITE_TARGET=https://ctd-learns-node-l42tx.ondigitalocean.app
 
 - Create a new file `src/features/Logon.jsx`
 - Destructure out the props, `onSetEmail`, and `onSetToken` in the component definition arguments.
-  - Give each an empty placeholder function as a default value. eg: `function NewComponent({ newProp = () => {})`
-  - We will make these handler functions when we update App.jsx then can remove these placeholder functions.
+  - For this Part 3 step only, you may give each an empty placeholder function as a temporary default value. Example: `function NewComponent({ newProp = () => {} })`
+  - These defaults are scaffolding while `App.jsx` is not wired yet. You must remove them in Part 4 after passing real handlers from `App.jsx`.
 - Set up authentication state using `useState` for:
   - `email` and `password` (controlled form inputs, `initialValue` of empty strings)
   - `authError` (to display login failure, `initialValue` of an empty string)
