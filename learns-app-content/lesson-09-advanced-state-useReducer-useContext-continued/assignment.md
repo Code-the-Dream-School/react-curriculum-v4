@@ -1,15 +1,15 @@
 <!-- h1, h2 already used by CTD Learns -->
 
-> **📚 Important Note About This Assignment**
+> **Important Note About This Assignment**
 >
 > This week, we are diving into useReducer and useContext — two useful tools for managing complex application logic. Learning these state management patterns is a major milestone in your development journey!
 >
 >Because we are updating and organizing your existing code, this week’s project requires a bit more time and focus than previous assignments.
 >
->Tips for Success:
-> 1. Spread it out: Plan for about 6–8 hours total, broken down into short, focused sessions across the week.
-> 2. Take it step-by-step: The concepts build on each other, so give yourself time to absorb each part before moving to the next.
-> 3. Commit often: Save your progress frequently in version control so you can experiment with confidence.
+>**Tips for Success:**
+> 1. **Spread it out:** Plan for about 6–8 hours total, broken down into short, focused sessions across the week.
+> 2. **Take it step-by-step:** The concepts build on each other, so give yourself time to absorb each part before moving to the next.
+> 3. **Commit often**: Save your progress frequently in version control so you can experiment with confidence.
 >
 >These patterns take time and practice to fully click, and that is completely normal. Attend a mentor session, ask questions in Slack, and take it one step at a time. You've got this! 🚀
 
