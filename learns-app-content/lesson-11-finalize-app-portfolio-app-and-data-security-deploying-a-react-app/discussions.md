@@ -1,7 +1,7 @@
 <!-- h1, h2 already used by CTD Learns -->
 ### Polishing an App for Your Portfolio
 
-Transforming your course assignments into portfolio-worthy applications requires attention to three critical areas: visual presentation, code quality, and documentation. While your projects may function correctly, potential employers and collaborators will evaluate not just what your app does, but how professionally it's presented, how well it's built, and how clearly it's documented. This section provides a comprehensive checklist to elevate your React applications from course exercises to showcase pieces that demonstrate your growth as a developer and your readiness for professional development work.
+Transforming your course assignments into portfolio-worthy applications requires attention to three critical areas: visual presentation, code quality, and documentation. While your projects may function correctly, potential employers and collaborators will evaluate not just what your app does. They will also evaluate how professionally it's presented, how well it's built, and how clearly it's documented. This section provides a comprehensive checklist to elevate your React applications from course exercises to showcase pieces that demonstrate your growth as a developer and your readiness for professional development work.
 
 #### Styling
 
@@ -242,7 +242,7 @@ Understanding these concepts helps you build applications that protect user data
 
 ##### XSS (Cross-Site Scripting) Prevention
   
-  XSS attacks occur when malicious scripts are injected into trusted websites and executed in users' browsers. These attacks can steal user data, hijack sessions, or perform actions on behalf of users without their consent. React provides built-in protection against most XSS attacks, but developers must understand how to use these protections correctly.
+  XSS attacks occur when attackers inject malicious scripts into trusted websites. These attacks can steal user data, hijack sessions, or perform actions on behalf of users without their consent. React provides built-in protection against most XSS attacks, but developers must understand how to use these protections correctly.
   
 ###### React’s Handling of Embedded Values
 
@@ -391,7 +391,7 @@ Understanding these concepts helps you build applications that protect user data
 
 **Server-Side Validation is Critical:**
 
-  Client-side validation serves primarily as a user experience enhancement, providing immediate feedback to help users complete forms correctly. While validation can deter some malicious behavior, it cannot be relied on for security purposes. Users still have complete control over client-side code. Attackers can easily bypass client-side validation by disabling JavaScript, modifying code in developer tools, or sending HTTP requests directly to your API endpoints.
+  Client-side validation serves primarily as a user experience enhancement, providing immediate feedback to help users complete forms correctly. While validation can deter some malicious behavior, you cannot rely on client-side validation alone for security. Users still have complete control over client-side code. Attackers can easily bypass client-side validation by disabling JavaScript, modifying code in developer tools, or sending HTTP requests directly to your API endpoints.
 
   Every piece of data your application receives must be validated and sanitized on the server, regardless of client-side checks. This principle applies to all user inputs: form data, URL parameters, file uploads, and API request payloads. Server-side validation acts as your application's security boundary—the final checkpoint that determines whether data is safe to process and store.
 
@@ -724,8 +724,8 @@ Understanding these concepts helps you build applications that protect user data
   
   // Also avoid storing complete user profiles with sensitive data:
   localStorage.setItem('userProfile', JSON.stringify({
-    name: 'John Doe',
-    email: 'john@example.com',
+    name: 'Priya Krishna',
+    email: 'priya@example.com',
     ssn: '123-45-6789',        // DANGEROUS
     bankAccount: '123456789',   // DANGEROUS
     medicalInfo: 'diabetes'     // DANGEROUS
@@ -1409,7 +1409,7 @@ Render maintains a complete history of your deployments, making rollback operati
 
 ##### Rollback Process
 
-Rolling back to a previous deployment is a straightforward process through Render's dashboard:
+Rolling back to a previous deployment has clear steps through Render's dashboard:
 
 1. **Access deployment history** in your service dashboard
 2. **Select target deployment** from the chronological list
