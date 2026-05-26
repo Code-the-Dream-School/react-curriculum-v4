@@ -19,4 +19,4 @@ By the end of this lesson, we will:
 - Recognize the form's role in collecting and validating user input
 - Explain the management of form data in React
 - Use a controlled form to handle form events, validate user input, and commit user input back to the application
-- Managing inputs on larger forms
+- Manage inputs on larger forms
