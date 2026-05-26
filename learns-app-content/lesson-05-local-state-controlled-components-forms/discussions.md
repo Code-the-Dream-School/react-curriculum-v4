@@ -2,9 +2,9 @@
 
 ### Conditional Rendering
 
-When we left off with CTD Swag, we had a shopping cart icon and a counter on the upper-right portion of the screen. This gave the user a count of their cart contents but left them without the means to see everything they've selected. A detailed shopping cart takes up a lot of screen real estate and gets in the way of the shopping experience. Components like these are commonly developed so they can be toggled open or closed by some user action.
+When we left off with CTD Swag, we had a shopping cart icon and a counter on the upper-right portion of the screen. This gave the user a count of their cart contents but left them without the means to see everything they've selected. A detailed shopping cart takes up a lot of screen real estate and gets in the way of the shopping experience. We'll develop these components so they can be toggled open or closed by a user action.
 
-Conditional rendering allows us to develop an interface that adapts to different states, user interactions, or data inputs. Developers can employ different techniques to hide and show elements, change styles, and update visual content to create interactive and personalized user interfaces. Before we create a shopping cart that we can show/hide, at some common techniques we can employ.
+Conditional rendering allows us to develop an interface that adapts to different states, user interactions, or data inputs. Developers can employ different techniques to hide and show elements, change styles, and update visual content to create interactive and personalized user interfaces. Before we create a shopping cart that we can show/hide, let's look at some common techniques we can employ.
 
 #### Ternary Operator
 
@@ -250,7 +250,7 @@ Here is the resulting change:
 
 ##### Create Cart Component
 
-Looking back at CTD swag, we can now determine which approaches to use that best suites our needs at each step of building out the feature.
+Looking back at CTD swag, we can now determine which approaches to use that best suits our needs at each step of building out the feature.
 
 To get started, we create a cart component which contains the contents of the shopping cart, a cart total, and a button to close the cart. We need to include props for the cart and the handler function that handles closing the cart. The inside an unordered list, items are mapped to `li.cartListItem` similar to how the products were mapped to a list of cards in the store. We can then include a cart total and a button to close the cart. We pass an `onClick` props to the button with the handler function.
 
@@ -437,7 +437,7 @@ export default Cart;
 
 #### Updating Cart to Accept User Inputs
 
-Our shopping cart looks pretty good but there are a few improvements that can be made. In shopping carts on other sites frequently users to make changes to their carts - they can remove items or change the quantity of items in the cart.
+Our shopping cart looks good, but there are a few improvements that can be made. Shopping carts on other sites frequently allow users to make changes to their carts - they can remove items or change the quantity of items in the cart.
 
 ![updating cart at mechanicalkeyboards.com](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-05-local-state-controlled-components-forms/assets/keyboard-switch.gif)
 ![updating cart at louisianapantry.com](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-05-local-state-controlled-components-forms/assets/lousiana-pantry.gif)
@@ -569,7 +569,7 @@ With the cart ready, we can make its data updatable for users.
 
 ### Controlled Components
 
-React controlled components are form elements where the component state is controlled by React. The component state is updated through user interactions like typing into input fields or selecting options in drop-downs. This ensures that React has full control over the input values and allows for dynamic updates and validation. Controlled components provide a single source of truth for the data, making it easier to manage and synchronize with other components in the application.
+React controlled components are form elements where React controlls the component state. User actions — like typing into input fields or selecting options in drop-downs — update the component state . This ensures that React has full control over the input values and allows for dynamic updates and validation. Controlled components provide a single source of truth for the data, making it easier to manage and synchronize with other components in the application.
 
 To get started with controlled components, we will compare an uncontrolled form with a controlled form.
 
@@ -651,7 +651,7 @@ Main differences between the two:
 | **form elements**    | `ref` to keep track of DOM element                     | `val` set to state variables, state update functions that fire when input changes |
 | **form submission**  | selects values out of DOM using refs                   | retrieves values from state variables                                             |
 
-At first glance, an uncontrolled form is simpler to develop. There's less code to write since we don't need to set input values or implement state update functions to synchronize input values. Overall performance is also better because the browser manages the form - changes to inputs do not trigger re-renders. Using uncontrolled forms may be a good choice for simple forms or when integrating 3rd party libraries that work with traditional forms.
+At first glance, an uncontrolled form is more simple to develop. There's less code to write since we don't need to set input values or implement state update functions to synchronize input values. Overall performance is also better because the browser manages the form - changes to inputs do not trigger re-renders. Using uncontrolled forms may be a good choice for simple forms or when integrating 3rd party libraries that work with traditional forms.
 
 Using a controlled component for a form provides some advantages over traditional forms:
 
@@ -751,7 +751,7 @@ To keep a field synchronized in a controlled component, it must have a `value` p
 
 #### Putting Controlled Components into Action
 
-We want our users to be able to modify the count of a particular cart item so we will use elements that accept user input. These include elements such as `input`, `textarea`, `radio-buttons`, etc. It's also considered a best practice to use a form wherever we accept user inputs. We will need to prevent form submission and manage form data so this is a perfect use case for a controlled component.
+We want our users to be able to modify the count of a particular cart item so we will use elements that accept user input. These include elements such as `input`, `textarea`, `radio-buttons`, etc. It is best practice to use a form wherever we accept user inputs. We will need to prevent form submission and manage form data so this is a perfect use case for a controlled component.
 
 The `App` component manages our application's state, including the cart, so it's considered our "single source of truth". While a user is updating the form, we want to avoid updating this source of truth with every change. This makes it difficult to cancel/undo changes and has negative performance implications. Recall that every time state is changed, React re-renders the component managing that state and all of its children. Done too high up the component tree, this can lead to large UI re-renders.
 
@@ -794,7 +794,7 @@ App needs only one small change: we pass the state update function, `setCart` to
 
 ##### Cart Component Changes
 
-To get started with `Cart`, we add `setCart` to the function definition and establish 2 state variables: `workingCart` and `isFormDirty` and their associated state update functions. We will use `isFormDirty` as a boolean to disable certain aspects of the interface while a user is making changes to the cart. We do so we can to 1.) prevent users from closing the cart or adding more items the cart while performing edits.
+To get started with `Cart`, we add `setCart` to the function definition and establish two state variables: `workingCart` and `isFormDirty` and their associated state update functions. We will use `isFormDirty` as a boolean to disable certain aspects of the interface while a user is making changes to the cart. We'll do this to prevent users from closing the cart or adding more items the cart while performing edits.
 
 ```jsx
 //extract from Cart.jsx
@@ -875,7 +875,7 @@ With these changes, we are left with a cart that displays the item count in an i
 
 ![alt](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-05-local-state-controlled-components-forms/assets/open-cart-disabled-bg.gif)
 
-We next add in the confirm and cancel buttons for the working form. We don't want them showing until the user makes a change so we conditionally render them based in `isFormDirty`
+We next add in the confirm and cancel buttons for the working form. We don't want them showing until the user makes a change, so we conditionally render them based on `isFormDirty`
 
 ```jsx
 //extract from Cart.jsx
