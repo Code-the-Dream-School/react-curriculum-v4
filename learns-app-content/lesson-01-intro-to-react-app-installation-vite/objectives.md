@@ -18,7 +18,7 @@ By the end of this lesson, we will:
 
 #### Objective 2: App Installation
 
-- Use the CLI to create a new project using Vite.js and its React project template
+- Use the CLI (command-line interface) to create a new project using Vite.js and its React project template
 - List the dependencies and scripts in package.json.
 - Use the CLI to install Vite.js, React, and dependencies
 
