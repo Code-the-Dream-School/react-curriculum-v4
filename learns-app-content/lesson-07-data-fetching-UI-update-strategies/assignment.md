@@ -84,7 +84,7 @@ export default ({ mode }) => {
 #### Configure Environment Variables
 
 - Create a copy of `.env.example` and name it `.env`.
-- Make sure that it is listed in your `.gitignore`
+- Confirm that it is listed in your `.gitignore`
 - Add this variable to `.env`:
 
 ```text
