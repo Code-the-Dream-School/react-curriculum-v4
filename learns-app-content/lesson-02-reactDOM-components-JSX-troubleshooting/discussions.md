@@ -173,7 +173,7 @@ There are also a few best practices to follow:
 
 #### Built-in Components
 
-React includes several built-in components - we've already ran into the two used in the course.
+React includes several built-in components - we've already encountered the two used in the course.
 
 - **Fragment**: allows us to group elements together without affecting the DOM structure. The shorthand `<></>` is used in most cases.
 - **StrictMode**: a special development tool that adds behaviors to the application that reveal common React bugs
@@ -204,13 +204,13 @@ When assembling components, the hierarchical structure that is formed is called 
 
 ### JSX
 
-Writing components in JavaScript is possible but becomes but becomes tedious as a component grows. JSX provides a more concise and expressive syntax for defining UI components. JSX stands for **JavaScript XML**. It is a syntax extension for JavaScript that Vite transpiles down to JavaScript using ESBuild. JSX resembles HTML, making it easier for developers to visualize the component structure and to write code that closely resembles the final UI.
+Writing components in JavaScript is possible but becomes tedious as a component grows. JSX provides a more concise and expressive syntax for defining UI components. JSX stands for **JavaScript XML**. It is a syntax extension for JavaScript that Vite transpiles down to JavaScript using ESBuild. JSX resembles HTML, making it easier for developers to visualize the component structure and to write code that closely resembles the final UI.
 
 When we place custom or built-in components into JSX with `<>` brackets, that element is commonly referred to as an "instance" of that component. JSX also allows for embedding JavaScript expressions directly in the markup using `{}` brackets.
 
 #### Rules of JSX
 
-To keep the transpilation process simple and performant, we must follow some rules:
+To keep the transpilation process simple and performant, we will follow several rules:
 
 - a component must return a single React element or component.
   - This element can contain one or more child elements.
