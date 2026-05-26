@@ -36,7 +36,7 @@ We were introduced to `useState` last week to load our inventory. It's important
 
 When React re-renders the component, it uses this new value.
 
-React performs [shallow comparisons](https://monsterlessons-academy.com/posts/shallow-comparison-vs-deep-comparison-in-javascript) when looking for state changes. For primitive state values (strings, numbers), updating is a straight-forward process. In the example below, each time the "Count Up" button is pushed, `setCounter` increments the counter then tells React to refresh the component, replacing the previous counter value.
+React performs [shallow comparisons](https://monsterlessons-academy.com/posts/shallow-comparison-vs-deep-comparison-in-javascript) when looking for state changes. For primitive state values (strings, numbers), updating has clear steps. In the example below, each time the "Count Up" button is pushed, `setCounter` increments the counter then tells React to refresh the component, replacing the previous counter value.
 
 ```jsx
 function Counter() {
@@ -172,7 +172,7 @@ The `useEffect` hook allows us to synchronize a component with data found outsid
 
 The setup function contains logic needed for the effect and optionally returns a cleanup function. A cleanup function is used for any necessary cleanup tasks before the component unmounts or before the effect is re-run. This can include clearing timers, unsubscribing from subscriptions, or any other clean-up activities to prevent memory leaks or unexpected behavior in a React component.
 
-The dependency array is an optional list of props, state, and variables and functions defined directly in the component. After a component renders, if any of these have changed, React re-runs the `useEffect`. If this array is empty, the effect is ran only after the initial render. It will not do anything on subsequent re-renders. If the dependency array is omitted, the `useEffect` runs after first render and after each subsequent re-render.
+The dependency array is an optional list of props, state, and variables and functions defined directly in the component. After a component renders, if any of these have changed, React re-runs the `useEffect`. If this array is empty, the effect runs only after the initial render. It will not do anything on subsequent re-renders. If the dependency array is omitted, the `useEffect` runs after first render and after each subsequent re-render.
 
 For the example below, we've implemented another counter component. Each time the button is clicked, it updates count. After the component re-renders, React looks at the useEffect's dependencies - if any of the dependencies have changed, it will then re-run the effect. In this case, each time the component re-renders, the `useEffect` logs out a message and the `count` value to the console.
 
@@ -300,14 +300,14 @@ That double log shows the mount → unmount → mount cycle triggered by StrictM
 
 - This happens only in development, never in production builds.
 - It's not a bug, but a helpful check for side-effect safety.
-- If your effect runs code like an API call or socket connection, make sure to include a proper cleanup function to prevent duplicates.
+- If your effect runs code like an API call or socket connection, include a proper cleanup function to prevent duplicates.
 - You can disable StrictMode temporarily by removing `<React.StrictMode>` in `main.jsx` (or `index.jsx`), but it's best to leave it enabled while debugging.
 
 #### useRef
 
 `const ref = useRef(intialValue)`
 
-`useRef` is a React Hook that returns an object whose `current` property is initialized with the provided value. The ref's `current` property can be used to hold a value that we can change but remains intact across component re-renders. A change a ref does not trigger a component re-render. `useRef` is commonly used to access DOM nodes and managing focus on input fields.
+`useRef` is a React Hook that returns an object whose `current` property is initialized with the provided value. The ref's `current` property can be used to hold a value that we can change but remains intact across component re-renders. A change to a ref does not trigger a component re-render. `useRef` is commonly used to access DOM nodes and managing focus on input fields.
 
 In the following example, we store a reference to the page title and then use useEffect to keep it updated with the latest `count` value.
 
@@ -386,7 +386,7 @@ Browsers emit objects called events that signal when things happen on a web page
 [React's documentation](https://react.dev/reference/react-dom/components/common#react-event-object) includes a full list of common properties and methods on the synthetic event. A few are worth mentioning because we will see them frequently:
 
 - properties
-  - **`currentTarget`**: DOM node where the event listener has been is attached.
+  - **`currentTarget`**: DOM node where the event listener is attached.
   - **`target`**: DOM node where event was triggered - this could be anywhere in the tree at or below the Component that is reading this property due to [event bubbling](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Event_bubbling).
 - methods
   - **`preventDefault()`**: Prevents the default browser action on the event. eg: preventing a page refresh from a form submission.
@@ -410,7 +410,7 @@ React includes an [exhaustive list](https://react.dev/reference/react-dom/compon
 
 #### Handler Composition Options
 
-React provides a great deal of flexibility when it comes to composing handler props and handler/callback functions in our applications. Creating a custom callback in the parent or the child are equally acceptable. To help with readability, it is common to prefix a custom function's name with "handle", as in `handleClick`, `handleUpdatePassword`, or `handleAddItemToCart`. This approach lets us know that data related to an event is being handled. The example below transforms a email address to all lowercase letters before it is passed to `setEmail`. It also prevents the default form behavior which is to trigger a page refresh.
+React provides a great deal of flexibility when it comes to composing handler props and handler/callback functions in our applications. Creating a custom callback in the parent or the child are equally acceptable. To help with readability, it is common to prefix a custom function's name with "handle", as in `handleClick`, `handleUpdatePassword`, or `handleAddItemToCart`. This approach lets us know that data related to an event is being handled. The example below transforms an email address to all lowercase letters before it is passed to `setEmail`. It also prevents the default form behavior which is to trigger a page refresh.
 
 ```jsx
 //setEmail is a state update function provided as a callback by the parent component
@@ -493,7 +493,7 @@ We need to make a minor change to the inventory. Currently, we're not using the 
 const [inventory, setInventory] = useState([]);
 useEffect(() => {
   setInventory([...inventoryData.inventory]);
-}, []); //<--- don't forget the dependency array or you can end up with an infinite loop!!
+}, []); //<--- add the dependency array or you can end up with an infinite loop!
 //...component code
 ```
 
@@ -523,7 +523,9 @@ function removeItemFromCart(id) {
 
 There's a problem with this implementation… what if a user adds the same item to their cart twice? That would mean there is more than one item in the cart with the same `id`. As it's implemented, the `id` that's used would filter out all the inventory items with a matching `id`. That's not a desired behavior so we need to come up with a unique cart item identifier.
 
-We might employ `Math.random()` to generate a random number but this is not a great idea. [`Math.random`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) only generates pseudo-random numbers and we may end up with the identical id every once in a while. A better option would be the `Date.now()` method. This returns a number, in milliseconds from January 1, 1970, UTC. In production, we would probably use a UUID library but this works for our purposes. As we add an item into the cart, we'll assign it a `cartItemId` with the timestamp so we are better able to manage the cart.
+We might employ `Math.random()` to generate a random number but this is not a great idea. [`Math.random`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) only generates pseudo-random numbers and we may end up with the identical id every once in a while. A better option would be the `Date.now()` method. This returns a number, in milliseconds from January 1, 1970, UTC. (UTC is ["Coordinated Universal Time"](https://www.timeanddate.com/worldclock/timezone/utc); it's common in tech because it serves as a universal reference point and does not observe daylight savings time). 
+
+In production, we would probably use a UUID (Universally Unique Identifie) library, but this works for our purposes. As we add an item into the cart, we'll assign it a `cartItemId` with the timestamp so we are better able to manage the cart.
 
 ```jsx
 //App.jsx
@@ -547,7 +549,7 @@ function handleAddItemToCart(id) {
 //...component code
 ```
 
-Now that we have a handler function to update the cart state, we need to wire `handleAddItemToCart` to the UI so a user can add items to the cart. We will do so by adding buttons to each of the cards so that its product can added to the cart. This will not account for different t-shirt sizes or products that have color variations but we will address those cases after we get the basics of the cart in place.
+Now that we have a handler function to update the cart state, we need to wire `handleAddItemToCart` to the UI so a user can add items to the cart. We will do so by adding buttons to each of the cards so that its product can be added to the cart. This will not account for different t-shirt sizes or products that have color variations but we will address those cases after we get the basics of the cart in place.
 
 1. Add the props `handleAddItemToCart={handleAddItemToCart}` to `ProductList`, then from `ProductList` pass down to `ProductCard` using `handleAddItemToCart={handleAddItemToCart}`
 2. Create a button in `ProductCard`
@@ -555,7 +557,7 @@ Now that we have a handler function to update the cart state, we need to wire `h
 
 - `<button onClick={() => handleAddItemToCart(id)}>Add to Cart</button>`
 
-With that done, we can now look at the state in `App` using our [React Dev Tools](https://react.dev/learn/react-developer-tools) (it's highly recommended that you have them installed!). The second State entry grows every time one of the buttons is clicked. When the entries are expanded, they contain all the details of the product but there is also a unique `cartItemId`.
+With that done, we can now look at the state in `App` using our [React Dev Tools](https://react.dev/learn/react-developer-tools) (See the React Dev Tools section in Lesson 2 if you don't have them installed). The second State entry grows every time one of the buttons is clicked. When the entries are expanded, they contain all the details of the product but there is also a unique `cartItemId`.
 
 ![adding items to cart updates state](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-04-hooks-events-handlers/assets/add-product-state.gif)
 
