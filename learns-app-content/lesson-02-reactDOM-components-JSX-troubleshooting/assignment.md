@@ -13,7 +13,7 @@ After completing this week's assignment, your app should:
 ### Instructions Part 1: Pre-Work Setup
 
 > [!note]
-> Make sure your lesson-01 assignment has been reviewed and approved before proceeding.
+> Confirm that your lesson-01 assignment has been reviewed and approved before proceeding.
 
 #### Version Control Preparation
 
