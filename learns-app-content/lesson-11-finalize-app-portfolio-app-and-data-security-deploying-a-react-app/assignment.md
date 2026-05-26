@@ -22,7 +22,7 @@ Transform your React application from a functional prototype into a portfolio-wo
 
 Select one of the following styling approaches based on your preferences and project needs:
 
-1. **Option A: CSS Modules (Recommended for Beginners)**
+1. **Option A: CSS Modules**
 
 - Already configured in Vite projects
 - Scoped CSS prevents naming conflicts
@@ -115,7 +115,7 @@ const sanitizeInput = (input) => {
 **Implementation Tasks:**
 
 - [ ] Install and configure DOMPurify for input sanitization
-- [ ] Ensure input validation happens before sanitizing them using DOMPurify
+- [ ] Ensure input validation runs before you sanitize the input with DOMPurify.
 - [ ] Add client-side validation to all form inputs
 - [ ] Implement proper error messaging without exposing system details
 - [ ] Add maximum length limits to text inputs
@@ -334,7 +334,7 @@ Your assignment will be evaluated on:
 
 **Environment Variable Issues:**
 
-- Remember that client-side environment variables must start with `VITE_`
+- Note: client-side environment variables must start with `VITE_`
 - Check that sensitive data is not exposed in the client bundle
 
 ### Next Steps
