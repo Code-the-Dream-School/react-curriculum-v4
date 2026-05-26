@@ -322,7 +322,7 @@ Next lesson, we'll explore **Advanced State Management** with `useReducer` and `
 
 **Console Errors**: If you see dependency warnings, ensure all `useCallback` and `useMemo` hooks include the correct dependencies in their arrays.
 
-**API Issues**: Make sure that you are logged in and your query parameters are correctly named
+**API Issues**: Confirm that you are logged in and your query parameters are correctly named
 
 **Performance**: Use React DevTools Profiler to verify your optimizations are working - you should see fewer re-renders with proper `useCallback` usage.
 
