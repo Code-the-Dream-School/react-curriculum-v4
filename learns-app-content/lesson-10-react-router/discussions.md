@@ -4,7 +4,7 @@
 
 #### Navigating SPAs vs Traditional Websites
 
-React SPAs differ from traditional websites in terms of routing and navigation. Each page of a traditional website has its own HTML file and associated URL. Navigating between pages involves making a request to the server to fetch a new HTML document. This process is managed by the browser, which updates the URL and maintains a [history stack](https://developer.mozilla.org/en-US/docs/Web/API/History_API) that allows users to use the back and forward buttons to navigate through their browsing history.
+React SPAs differ from traditional websites in terms of routing and navigation. Each page of a traditional website has its own HTML file and associated URL. Navigating between pages involves making a request to the server to fetch a new HTML document. The browser manages this process, updating the URL and maintaining a [history stack](https://developer.mozilla.org/en-US/docs/Web/API/History_API). This allows users to use the back and forward buttons to navigate through their browsing history.
 
 In contrast, a React SPA loads a single HTML file and uses a script to dynamically update the content on the page. This means that navigation in the app does not involve fetching new HTML documents from the server. Instead, React components are rendered or hidden based on the application's state. This approach can lead to faster and fluid UI but it also means that the URL does not change when navigating around the app and the browser's history remains unchanged.
 
@@ -21,7 +21,7 @@ To address these issues, developers often use routing libraries like React Route
 > [!note]
 > There are two ways to use React Router. We will implement it as a library, not a full framework.
 
-[React Router](https://reactrouter.com/home) is a popular library that emulates page navigation inside of React apps. After putting into place users will be able to take advantage of browser history to navigate the app and even share urls to specific products with other people. Before proceeding any further, we have to go over some of the components and hooks that the makes up the library.
+[React Router](https://reactrouter.com/home) is a popular library that emulates page navigation inside of React apps. After putting React Router into place, users will be able to take advantage of browser history to navigate the app and even share urls to specific products with other people. Before proceeding any further, we have to go over some of the components and hooks that the makes up the library.
 
 ##### Components
 
@@ -90,7 +90,7 @@ Multi-page sites tend to have one or more repeating element that appears on ever
 
 ![header and footer highlighted](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-10-react-router/assets/header-footer-highlight.png)
 
-The elements in the App component is already laid out in a way that will allow us to share the header and footer across pages. The App returns the the following element structure, minus all the props:
+The elements in the App component are already laid out in a way that will allow us to share the header and footer across pages. The App returns the the following element structure, minus all the props:
 
 ```jsx
 {
@@ -371,7 +371,7 @@ Now that we have an understanding of dynamic segments, we can begin developing t
 
 We will also continue with the Page and Cards pattern so that we can neatly display all the product variants for each product. This time around, we'll focus only on the ProductDetails component since its card behaves the same as the other cards.
 
-Our first step is to add a dynamic segment to the original `"/products"` route so it looks like `"/products/:id"`. We then import the `useParams` hook into ProductDetails. Calling `useParams` gives us an object containing all the parsed parsed values of dynamic segments found in the URL. For example, this URL:
+Our first step is to add a dynamic segment to the original `"/products"` route so it looks like `"/products/:id"`. We then import the `useParams` hook into ProductDetails. Calling `useParams` gives us an object containing all the parsed values of dynamic segments found in the URL. For example, this URL:
 
 ```text
 https://ctd-swag.com/admins/233/manage/stock/items/43989/
@@ -398,7 +398,7 @@ const paramsObj = {
 };
 ```
 
-Don't forget to coerce the text into numbers if they are meant to be used in any calculations. JavaScript does this for us but it's a convenience that is falling out of favor because of TypeScript's growing popularity and a few bizarre coercion rules that can cause bugs.
+Coerce the text into numbers if they are meant to be used in any calculations. JavaScript does this for us but it's a convenience that is falling out of favor because of TypeScript's growing popularity and a few bizarre coercion rules that can cause bugs.
 
 Returning to CTD-Swag's products route, we can see that if a browser's URL bar contains the following: `http://localhost:5173/products/3e41a7cb-63d3-4e4f-a576-a27cc9953e3a`. Our Route's path props takes `"/products/:id"` . We can tell that when using `useParams` will result in an object that looks something like:
 
@@ -519,7 +519,7 @@ export default NotFound;
 }
 ```
 
-This improves the interface so the the user understands that something went wrong.
+This improves the interface so the user understands that something went wrong.
 
 ![404 message displayed](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-10-react-router/assets/404.png)
 
@@ -557,7 +557,7 @@ function Cart({
 
 Alternatively, we can `useNavigate` with a delta value which is a number that represents how far forward or back in the history stack to navigate. For example: `useNavigate(-1)` would be the equivalent of hitting the browser's back button. Negative numbers, especially -1 are the most common values seen but positive values would work if the back only if the current page is several layers below the top of the history stack.
 
-Routing is a powerful tool that enhances the user experience by providing intuitive and efficient navigation within your applications. We've only touched on the highlights of the library and it contains other hooks, components, and methods. Even with just with what has been discussed this week, you have a robust and flexible set of tools that simplifies the implementation of routing in React.
+Routing is a powerful tool that enhances the user experience by providing intuitive and efficient navigation within your applications. We've only touched on the highlights of the library and it contains other hooks, components, and methods, but you now have a robust and flexible set of tools that simplifies the implementation of routing in React.
 
 ### Check Your Understanding with AI
 

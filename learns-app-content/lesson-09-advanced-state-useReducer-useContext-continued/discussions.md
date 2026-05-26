@@ -212,15 +212,15 @@ For simple boolean toggles or single values, `useReducer` might be unnecessarily
 
 ### Implementing useReducer in Practice
 
-Now let's see how to implement this pattern in a real React application. The `useReducer` hook adapts the reducer pattern for use in React applications. Just like other hooks, it must be called at the top level of the component. React attempts to batch state changes so that if several happen in succession, they are all processed during the same render cycle. React also compares the reducer's output to its previous state - if nothing changes, it does not initiate a re-render.
+Now let's see how to implement this pattern in a real React application. The `useReducer` hook adapts the reducer pattern for use in React applications. Just like other hooks, it must be called at the top level of the component. React attempts to batch state changes so that if several happen in succession, React processes them all during the same render cycle. React also compares the reducer's output to its previous state - if nothing changes, it does not initiate a re-render.
 
-`useReducer` takes a reducer function and an initial state value when called. It outputs a state value and a dispatch function which are assigned similar to `useEffect`.
+`useReducer` takes a reducer function and an initial state value when called. It outputs a state value and a dispatch function which are assigned similarly to `useEffect`.
 
 ```js
 const [state, dispatch] = useReducer(reducer, initialState);
 ```
 
-Reducer functions and the initial state values tend to be more complex than the arguments than a `useState` hook. The reducer function also works independently from any component: it reads no values from inside the component directly. Because of these factors we will place these in a separate file to keep the component's size to a minimum.
+Reducer functions and the initial state values tend to be more complex arguments than a `useState` hook. The reducer function also works independently from any component: it reads no values from inside the component directly. Because of these factors we will place these in a separate file to keep the component's size to a minimum.
 
 For this discussion, we will implement the reducer pattern on cart's state. We create a file `cart.reducer.js` and place it into a `/reducers` folder created under `/src`. It's helpful to drop the "x" from the filename's extension since it will not contain any React-specific code or JSX. This will tell us, at a glance that it is not component code without having to open the file up. After creating the new file, we then need to identify the relevant `useState`s:
 
@@ -589,7 +589,7 @@ Almost done! Now we have to back to the App component and change all `cart` refe
 }
 ```
 
-After these changes, our cart behaves as it did previously, but all of its state is now managed by the reducer. Because the reducer, dispatch function and the action are so tightly coupled, the reducer function is probably one of the most complex things we have covered so far. While it is harder to employ, it is far easier to manage complex state this way than relying on numerous `useState`s and we also end up with a much more compact function.
+After these changes, our cart behaves as it did previously, but the reducer now manages all of its state. Because the reducer, dispatch function, and the action are so tightly coupled, the reducer function is probably one of the most complex things we have covered so far. While it takes more setup, it is better to manage complex state this way than relying on numerous `useState`s, and we also end up with a much more compact function.
 
 ### Sharing State Across Components with useContext
 

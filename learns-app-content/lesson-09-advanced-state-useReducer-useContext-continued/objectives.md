@@ -18,7 +18,7 @@ By the end of this lesson, we will:
 
 #### Objective 2: useContext
 
-- Explain the problems that that can be introduced by "prop drilling" and lifting state too high
+- Explain the problems that can be introduced by "prop drilling" and lifting state too high
 - Describe how useContext can be implemented in deeply nested components to avoid prop drilling
 - Explain the pros and cons of using useContext
 - Outline scenarios best suited for context

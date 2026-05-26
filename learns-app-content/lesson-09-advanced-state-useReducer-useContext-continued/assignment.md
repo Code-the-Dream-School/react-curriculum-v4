@@ -1,12 +1,17 @@
 <!-- h1, h2 already used by CTD Learns -->
 
-> **📚 Important Note About This Assignment**
+> **Important Note About This Assignment**
 >
-> This week's discussion introduced some of the most powerful React concepts you'll learn in this course! You're tackling **useReducer** and **useContext** - two advanced patterns that professional React developers use daily.
+> This week, we are diving into useReducer and useContext — two useful tools for managing complex application logic. Learning these state management patterns is a major milestone in your development journey!
 >
-> This is also the **longest assignment in our curriculum**, involving significant refactoring of your existing code. Plan to dedicate **6-8 hours** spread across the week, working in focused sessions. Take breaks between sections - these concepts build on each other, so understanding each part thoroughly will make the next part easier.
+>Because we are updating and organizing your existing code, this week’s project requires a bit more time and focus than previous assignments.
 >
-> Remember: Every React developer has felt challenged by these patterns initially. Take your time, test frequently, commit to version control as you refactor, and don't hesitate to ask questions. You've got this! 🚀
+>**Tips for Success:**
+> 1. **Spread it out:** Plan for about 6–8 hours total, broken down into short, focused sessions across the week.
+> 2. **Take it step-by-step:** The concepts build on each other, so give yourself time to absorb each part before moving to the next.
+> 3. **Commit often**: Save your progress frequently in version control so you can experiment with confidence.
+>
+>These patterns take time and practice to fully click, and that is completely normal. Attend a mentor session, ask questions in Slack, and take it one step at a time. You've got this! 🚀
 
 ### Expected App Capabilities
 
@@ -292,7 +297,7 @@ onSortByChange={(newSortBy) =>
 
 **Apply This Pattern Throughout Your Component**:
 
-Remember: Every place you directly call a `setXxx` function should be replaced with a `dispatch` call that uses the appropriate action type and payload structure.
+Every place you directly call a `setXxx` function should be replaced with a `dispatch` call that uses the appropriate action type and payload structure.
 
 #### 🎯 Part 2 Checkpoint: Validate Your useReducer Implementation
 
@@ -660,7 +665,7 @@ Choose 1–2 prompts below. Explain in your own words first, then ask AI for fee
 
 ### Looking Ahead
 
- This week's assignment was a doozy! Pat yourself on the back for a job well done! Next week, we'll explore React Router to add navigation and multiple pages to your application, building on the solid state management foundation you've established this week.
+Pat yourself on the back for a job well done! Next week, we'll explore React Router to add navigation and multiple pages to your application, building on the solid state management foundation you've established this week.
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.

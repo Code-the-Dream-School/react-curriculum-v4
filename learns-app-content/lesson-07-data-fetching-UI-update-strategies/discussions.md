@@ -13,7 +13,7 @@ Most of these data fetching tasks can be categorized into one of four basic task
   - PATCH only changes some parts of a record. Eg - a user updates their username then that field only is updated in the record
 - **Delete** - "DELETE"
 
-Every network request is a very slow process from the perspective of a browser. During a data request, we want to avoid making JavaScript to wait for the request to resolve before it continues running. Since JavaScript shares the main thread with other browser tasks, processing a network request synchronously causes the browser to become unresponsive. To allow the main thread to continue executing while the request is not yet fulfilled, we turn to _[Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)_. This article, [States and Fates](https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates.md) helps explain the terminology promises use. There are two approaches to promises and asynchronous JavaScript code: using a promise's `then/finally/catch`methods or asynchronous functions with `await`.
+Every network request is a very slow process from the perspective of a browser. During a data request, we want to avoid making JavaScript wait for the request to resolve before it continues running. Since JavaScript shares the main thread with other browser tasks, processing a network request synchronously causes the browser to become unresponsive. To allow the main thread to continue executing while the request is not yet fulfilled, we turn to _[Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise)_. This article, [States and Fates](https://github.com/domenic/promises-unwrapping/blob/master/docs/states-and-fates.md) helps explain the terminology promises use. There are two approaches to promises and asynchronous JavaScript code: using a promise's `then/finally/catch`methods or asynchronous functions with `await`.
 
 > [!note]
 > From here on, we will shorten **asynchronous** to **async** since that term is more frequently used than the full word.
@@ -52,7 +52,7 @@ function placeImage(url) {
 
 #### Async/Await
 
-Async/await, which also uses promises, is another JavaScript feature that allows us to write async code - but in a synchronous[^synchronous] style. In an async function we use the `await` keyword to pause the function's execution until a promise is resolved. The main thread can continue on with other JavaScript code or browser tasks during this time. Once the promise fulfills or is rejected, execution of the async function resumes with the resolved value. A try/catch block is used to handle errors in async fetch operations when using async/await. The below is the async/await equivalent of the code from the previous example. We end up with code that slightly easier to read so we will continue using this approach.
+Async/await, which also uses promises, is another JavaScript feature that allows us to write async code - but in a synchronous[^synchronous] style. In an async function we use the `await` keyword to pause the function's execution until a promise is resolved. The main thread can continue on with other JavaScript code or browser tasks during this time. Once the promise fulfills or is rejected, execution of the async function resumes with the resolved value. A try/catch block is used to handle errors in async fetch operations when using async/await. The below is the async/await equivalent of the code from the previous example. We end up with code that more readable, so we will continue using this approach.
 
 ```javascript
 const fetchDog = async () => {
@@ -83,7 +83,7 @@ fetchDog();
 
 #### GET with useEffect
 
-There are libraries that help us integrate network requests but the simplest way to get started is with `useEffect` and a `GET` request. Remember that this hook is used to [synchronize data with external systems](https://react.dev/learn/synchronizing-with-effects). Whenever a component first mounts the useEffect runs regardless its list of dependencies. We can take advantage of this to initiate a fetch request when `App` or some other component first mounts.
+There are libraries that help us integrate network requests but the simplest way to get started is with `useEffect` and a `GET` request. Remember that this hook is used to [synchronize data with external systems](https://react.dev/learn/synchronizing-with-effects). Whenever a component first mounts, the useEffect runs regardless of its list of dependencies. We can take advantage of this to initiate a fetch request when `App` or some other component first mounts.
 
 We place the fetch request into the parent component that maintains relevant state. The `useEffect` function is synchronous and expects there to be either 1.) no return value or 2.) a cleanup function. Fetch always returns a promise which will cause problems with the `useEffect`. Also, the `await` keyword is only available inside async functions. To get around these limitations, we declare and execute an async function containing the fetch inside the `useEffect` as seen in the example below. We're sticking with dogs for now, so this component includes the same fetch but adapted to work in a component and is [immediately invoked](https://developer.mozilla.org/en-US/docs/Glossary/IIFE) after it is defined.
 
@@ -310,17 +310,17 @@ useEffect(() => {
 
 ### UI Update Strategies
 
-Before we plan any more changes, we need to consider how to manage UI state as the application interacts with an API. Network operations, even on a fast connection, they are not instantaneous. They take milliseconds to seconds to resolve. While that does not sound like much, it's enough time to frustrate users depending on what they are doing and what feedback they expect the app. We need to address the state of the application between the time when a user commits a change and when it is actually processed by a back end.
+Before we plan any more changes, we need to consider how to manage UI state as the application interacts with an API. Network operations, even on a fast connection, are not instantaneous. They take milliseconds to seconds to resolve. While that does not sound like much, it's enough time to frustrate users depending on what they are doing and what feedback they expect the app. We need to address the state of the application between the time when a user commits a change and when the back end processes that change.
 
 This _intermediate_ state affects both the perceived performance and the users ability to rely on highly reliable representation of state. When do we want to ensure that the information displayed is accurate and when do we prefer the UI to be fast? In other words: do we want to make sure that the data is saved first before updating the UI, or should we update the UI immediately based on a user event and then save changes to the API's backend afterwards? The first approach is known as a "pessimistic" UI update strategy while the second is "optimistic". Setting the emotional tone of each word aside, they describe how we prioritize data and state synchronization. Each has its advantages and disadvantages.
 
 #### Pessimistic
 
-A pessimistic strategy is based on the assumption that there is a possibility of operation failure and places an emphasis on making sure a system update is successful before updating the UI. This approach requires that the state of the UI accurately reflects the data as it is stored on the back end. Rather than speculating about the success of a transaction, we wait for the API to send a success or failure response and then use that response's payload to update application state.
+A pessimistic strategy is based on the assumption that there is a possibility of operation failure ensures a system update is successful before updating the UI. This approach requires that the state of the UI accurately reflects the data as it is stored on the back end. Rather than speculating about the success of a transaction, we wait for the API to send a success or failure response and then use that response's payload to update application state.
 
-For example from life is transferring money between two accounts using a banking app. When a user submits the transfer request, the interface doesn't automatically update account balances. Instead, it waits for the bank's server to process the request and send a response back. Usually during this time, the UI may show a spinning wheel or loading bar that lets the user know that the transaction is still pending. When a response is received it will contain updated account balance information that the application then uses to update state.
+Consider this use case: a user is transferring money between two accounts using a banking app. When a user submits the transfer request, the interface doesn't automatically update account balances. Instead, it waits for the bank's server to process the request and send a response back. Usually during this time, the UI may show a spinning wheel or loading bar that lets the user know that the transaction is still pending. When a response is received, it will contain updated account balance information that the application then uses to update state.
 
-This strategy is much easier of the two to implement. The implementation details are usually formulaic and result in compact, easy to read code. A typical breakdown of state change operations using the pessimistic strategy:
+This strategy is much easier of the two to implement. The implementation details are usually formulaic and result in compact, readable code. A typical breakdown of state change operations using the pessimistic strategy:
 
 1. A user triggers an event that requires an API response
 2. Relevant data is gathered and inserted into a fetch request
@@ -388,9 +388,9 @@ With the the ability to save data to a server, it's important to remember that s
 ##### Identify Development Tasks
 
 > [!note]
-> Most of the time this sort of information is brainstormed as a team so you'll rarely have to do this on your own as a junior developer.
+> Teams typically brainstorm these tasks, so you'll rarely have to do this on your own as a junior developer.
 
-After learning about asynchronous operations and how to synchronize application state with an API, we're ready to make some expansions to CTD-Swag. As we build out each new feature, we have to determine which strategy we to use. To do so we start by listing the tasks a user should be able accomplish in the UI after the new feature is implemented. Then need to consider what role state plays while a user interacts with the application. To help with the thought process we take an educated guess about what key tasks that we can anticipate while developing the feature. From there we'll determine if it needs optimistic or pessimistic UI features.
+After learning about asynchronous operations and how to synchronize application state with an API, we're ready to make some expansions to CTD-Swag. As we build out each new feature, we have to determine which strategy we want to use. To do so we start by listing the tasks a user should be able accomplish in the UI after the new feature is implemented. Then need to consider what role state plays while a user interacts with the application. To help with the thought process we take an educated guess about what key tasks that we can anticipate while developing the feature. From there we'll determine if it needs optimistic or pessimistic UI features.
 
 - **An existing user needs to be able to sign in**
   - an authentication form needs to be displayed by hitting a login button
@@ -400,7 +400,7 @@ After learning about asynchronous operations and how to synchronize application 
     - response data will include user info:
       - account info, excluding password
       - user id - needed to create a fetch request to GET cart
-      - JWT authentication token needs be saved as an HttpOnly cookie
+      - JWT authentication token needs to be saved as an HttpOnly cookie
 - **A new user needs to be able to sign up for an account.**
   - a user details form needs to be displayed by a hitting a sign up button
   - a POST request needs to be sent to `/users` on submit
@@ -433,7 +433,7 @@ After learning about asynchronous operations and how to synchronize application 
 - **A new user needs to be able to sign up for an account.**
 - **User cart edits should update the user's saved cart when the user confirms the updates.**
 
-All the data changes from the above tasks can be considered major operations. A user record is needed to save user info to the server so it must exist before they are able to log in. For a user to log in or resume a previous session, their user information and cart contents must be loaded on the front end before populating UI elements. The cart edits also need to be confirmed before updating the interface. Since this is done through a form, the user already expects a save confirmation from the back end before changes are finalized. For these features to behave in a desired manner where we are emphasizing data accuracy, we will take a pessimistic approach.
+All the data changes from the above tasks can be considered major operations. A user record is needed to save user info to the server, so it must exist before they are able to log in. For a user to log in or resume a previous session, their user information and cart contents must be loaded on the front end before populating UI elements. The cart edits also need to be confirmed before updating the interface. Since this is done through a form, the user already expects a save confirmation from the back end before changes are finalized. For these features to behave in a desired manner where we are emphasizing data accuracy, we will take a pessimistic approach.
 
 ###### Optimistic
 

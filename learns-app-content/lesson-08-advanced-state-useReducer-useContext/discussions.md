@@ -274,7 +274,7 @@ const sortedUsers = useMemo(() => {
 }, [users]);
 ```
 
-This is quick and simple — but if `users` is a list of 10,000 records, sorting it locally on every re-render will slow your app down.
+This is a fast process — but if `users` is a list of 10,000 records, sorting it locally on every re-render will slow your app down.
 
 **Advantages of Local Manipulation:**
 
@@ -337,7 +337,7 @@ To work efficiently within these constraints, we'll implement two essential tech
 
 ##### Caching Search Results Using Memoization
 
-Caching is a technique used to store data fetched from the server in a temporary storage location, such as the browser's memory or local storage. This stored data can be quickly accessed when needed without making repeated network requests. In our case, if a user searches for "chicken" several times, the app uses API quotas fetching data that we've already had access to. Even without the 150 request per day limitation, we can still employ caching to save the user's bandwidth and speed up repeated searches.
+Caching stores data the app has already retrieved from the server. This stored data can be quickly accessed when needed without making repeated network requests. In our case, if a user searches for "chicken" several times, the app wastes API quota by fetching data we've already retrieved. Even without the 150 request per day limitation, we can still employ caching to save the user's bandwidth and speed up repeated searches.
 
 One approach to this is to store the query and its search results in a lookup object. A lookup object is just a normal JavaScript object that uses the search query as a key to hold the search results. The example object below contains 2 searches, one for chicken and one for spaghetti. If a user searches for "spaghetti, tomato" again, we can access the previous search's results in the object with `searchCache["spaghetti, tomato"]`.
 
@@ -524,7 +524,7 @@ function UserList() {
 
 **This setup:**
 
-- Uses `useCallback` to memoize the `fetchUsers` function - without it there is an infinite loop created between `useEffect` and `fetchUsers`!
+- Uses `useCallback` to memoize the `fetchUsers` function - without it, there is an infinite loop created between `useEffect` and `fetchUsers`!
 - Uses `useEffect` to trigger the fetch whenever `page` changes. This approach makes `useEffect` depend on page indirectly through the memoized function, keeping the fetch logic separate and reusable.
 - The “Previous” and “Next” buttons update the page, triggering a new API request.
 - Prevents unnecessary re-fetching when unrelated state updates occur

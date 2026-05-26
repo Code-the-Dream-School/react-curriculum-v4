@@ -10,7 +10,7 @@ By the end of this lesson, we will:
 
 #### Objective 1: Hooks Continued
 
-- Understand the purpose of commonly `useEffect`
+- Understand the purpose of `useEffect`
 - Understand the purpose of `useRef`
 - Utilize `useEffect` and `useRef`
 - Explain how StrictMode helps identify bugs in development
