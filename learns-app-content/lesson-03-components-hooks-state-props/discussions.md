@@ -4,7 +4,7 @@
 
 All of the information on a simple web page is composed of data of one type or another - text, images, structure, styling, etc. When going from a static web page to an SPA, we have to determine what data should load dynamically and what should remain static. To one extreme, we may limit it to a username in a page header. Towards the other extreme, everything on the page all the way down to the text inside of a button can be loaded dynamically. Most of the time, it's somewhere in the middle.
 
-We have plenty of options when working with state. The simplest place to start is by defining a variable used inside our component. We can do this outside of the component or inside, before the return statement. We reference that variable in our JSX surrounded by `{}`. When the component is rendered, React will insert the value in its place in the virtual DOM then go through reconciliation and rendering. One detail to keep in the back of your mind is that every time a component is re-rendered, any variables defined inside the component will be re-instantiated. Most of this time this is not a problem but this will come up later in the course when we focus on optimizing our code for more advanced scenarios.
+We have plenty of options when working with state. The best place to start is by defining a variable used inside our component. We can do this outside of the component or inside, before the return statement. We reference that variable in our JSX surrounded by `{}`. When the component is rendered, React will insert the value in its place in the virtual DOM then go through reconciliation and rendering. Every time a component is re-rendered, any variables defined inside the component will be re-instantiated. Most of this time this is not a problem, but this will come up later in the course when we focus on optimizing our code for more advanced scenarios.
 
 ```jsx
 import ctdLogo from './assets/mono-blue-logo.svg';
@@ -166,7 +166,7 @@ Use functional updating when:
  - You have async fetches and  optimistic updates
  - React batching (or quick clickers)
 
-This pattern will also prevent stale closure bugs, where old state gets stuck in a function that runs later in your code (timers, listeners, etc.). It's best to use a direct set when you're just resetting state, you know like clearing a list or errors. But we will talk more about this in later lessons.
+This pattern will also prevent stale closure bugs, where old state gets stuck in a function that runs later in your code (timers, listeners, etc.). It's best to use a direct set when you're just resetting state, like clearing a list or errors. We will cover  this in later lessons.
 
 #### Intro to Hooks
 
@@ -205,7 +205,7 @@ Now let's explore the most fundamental hook: `useState`.
 
 `const [state, setState] = useState(initialState)`
 
-`useState` is a React hook that allows us to set and update a piece of data that we can then use in our SPA. We invoke `useState` with an initial state value as an argument. That initial state value can be of any type. If given a function, it would be called an "initializer function" in that context. React will run it and use the returned value to set the initial state value. Initializer functions must be pure functions and cannot take any arguments. When called, `useState` returns an array containing a state variable (a reference to the current state) and an updater function. We follow array [destructuring assignment](https://javascript.info/destructuring-assignment) convention `const [noun, setNoun] = useState(initialState)` to make use of this hook.
+`useState` is a React hook that allows us to set and update a piece of data that we can then use in our SPA. We invoke `useState` with an initial state value as an argument. That initial state value can be of any type. If given a function, React calls it an "initializer function" in that context. React will run it and use the returned value to set the initial state value. Initializer functions must be pure functions and cannot take any arguments. When called, `useState` returns an array containing a state variable (a reference to the current state) and an updater function. We follow array [destructuring assignment](https://javascript.info/destructuring-assignment) convention `const [noun, setNoun] = useState(initialState)` to make use of this hook.
 
 With `useState` explained, we can now start setting up CTD Swag's storefront. Let's get some inventory on the page! We first need to put together some sample inventory data for our app to start with. We want to be able to offer differing colors or versions for some products but without each having their own product card. We will eventually make use of `base-` and `variant-` prefixes to combine related products to a single product card in when we discuss conditional rendering in lesson 5. Each item should include `baseName`, `variantName`, `id` `price`, `baseDescription`, `variantDescription`, `image`, and `inStock` keys. Here's an example of several inventory items:
 
@@ -305,7 +305,7 @@ export default App;
 
 ![highlighting eslint error to ignore](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-03-components-hooks-state-props/assets/ignore-error.png)
 
-The `key` in `<li key={item.id}>` helps React keep track of elements that are rendered from an array. It may initially seem like a good idea to use the item's array index since each item has one and it is unique. The downside is that an item and its index value are not guaranteed to keep matching. An item may be removed from the inventory, changing the array, when it goes out of stock. `inventory` can eventually have a sort or filter feature added to it which would also have an impact on item order. In either case, using array indices as keys could introduce unexpected behavior or degrade React's rendering cycle. We've included an `id` on the item so this will not happen.
+The `key` in `<li key={item.id}>` helps React keep track of elements that it renders from an array. It may initially seem like a good idea to use the item's array index since each item has one and it is unique. The downside is that an item and its index value are not guaranteed to keep matching. An item may be removed from the inventory, changing the array, when it goes out of stock. `inventory` can eventually have a sort or filter feature added to it which would also have an impact on item order. In either case, using array indices as keys could introduce unexpected behavior or degrade React's rendering cycle. We've included an `id` on the item so this will not happen.
 
 ### Props
 
@@ -313,7 +313,7 @@ The `key` in `<li key={item.id}>` helps React keep track of elements that are re
 
 At this point we are almost ready to do some refactoring. App component is small but will continue to grow as we set up our storefront. Remember that with "separation of concerns" it is good to limit each component to a single job. The title and the logo can be separated out as a storefront header. The inventory list and inventory cards area also good candidates for refactoring into components. Before we proceed, we need to know how to communicate data down to child components, otherwise we will have no way to pass on the `title` or `description`.
 
-Enter React **`props`**. Short for "properties", they are used to pass data from a component down to its children. They can can accept any type, including functions, but their values are immutable and managed by the parent component. The components receiving props use the data to configure themselves. In order to take props in a component, a value representing props has to be added to the component's function parameters- `function SomeComponent(props){…`. Since props are just objects, it's common to use [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to immediately get specific values from props in the component's arguments. This allows us to immediately see what sort of values we need from the parent component. An additional benefit is that we can set a default value for any of the props.
+Enter React **`props`**. Short for "properties", they pass data from a component down to its children. They can accept any type, including functions, but their values are immutable and managed by the parent component. The components receiving props use the data to configure themselves. To take props in a component, a value representing props is added to the component's function parameters- `function SomeComponent(props){…`. Since props are just objects, developers use [destructuring assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) to immediately get specific values from props in the component's arguments. This allows us to immediately see what sort of values we need from the parent component. An additional benefit is that we can set a default value for any of the props.
 
 ```jsx
 //without destructuring
@@ -514,7 +514,7 @@ function App() {
     return (
       <ProductCard
         baseName="Limited Edition Tee!"
-        baseDescription="Special limited edition neon green shirt with a metallic Code the Dream Logo shinier than the latest front-end framework! Signed by the legendary Frank!"
+        baseDescription="Special limited edition neon green shirt with a metallic Code the Dream Logo shinier than the latest front-end framework! Signed by the legendary CTD staff memmber Frank!"
       />
     );
   }
