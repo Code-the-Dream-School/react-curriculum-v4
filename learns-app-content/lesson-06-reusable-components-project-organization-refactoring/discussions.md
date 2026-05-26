@@ -6,11 +6,16 @@ As your React applications grow in complexity, maintaining clean, organized, and
 
 This week, we'll focus on transforming your growing codebase into a well-organized, maintainable application. You'll learn how to identify opportunities for creating reusable components, organize your project files effectively, and refactor existing code to improve readability and maintainability. These practices are essential for building scalable React applications and working effectively in team environments.
 
-By the end of this week, you'll understand how to break down complex components into smaller, focused pieces, organize your project structure for long-term success, and apply refactoring techniques that make your code more professional and easier to work with. These skills will serve as the foundation for building more sophisticated applications in the coming weeks.
+By the end of this week, you'll understand how to:
+* Break down complex components into smaller, focused pieces
+* Organize your project structure for long-term success
+* Apply refactoring techniques that make your code more production-ready.
+
+These skills will serve as the foundation for building more sophisticated applications in the coming weeks.
 
 ### Reusable Components
 
-Components are one of the fundamental building blocks of any React application. One of their main strengths is reusability. By writing components once and instantiating them as needed, we can streamline development and improve code maintainability. Certain elements in a UI tend to repeat themselves. These repeated elements might look same but contain different content. Conversely, they may have slightly different appearances but are structurally similar. These include:
+Components are one of the fundamental building blocks of any React application. One of their main strengths is reusability. By writing components once and instantiating them as needed, we can streamline development and improve code maintainability. Certain elements in a UI tend to repeat themselves. These repeated elements might look the same but contain different content. Conversely, they may have slightly different appearances but are structurally similar. These include:
 
 - article excerpts on a blog's home page
 - product cards
@@ -444,7 +449,7 @@ This separation makes code more maintainable, testable, and reusable!
 
 ### Organizing Files in a React Project
 
-We inevitably add more components and refactor out non-React code into separate files as a project grows. If we maintain a flat file structure as the file count increases, it become challenging to navigate codebase or to see how files relate. In this section, we will discuss some considerations that go into determining the directory structure and organizing files for CTD Swag so we can continue to add functionality.
+We inevitably add more components and refactor out non-React code into separate files as a project grows. If we maintain a flat file structure as the file count increases, it becomes challenging to navigate codebase or to see how files relate. In this section, we will discuss some considerations that go into determining the directory structure and organizing files for CTD Swag so we can continue to add functionality.
 
 > [!note]
 > The internet hosts many discussions and even more opinions about how to structure software projects. What we provide is a sensible approach that works well with small to medium React projects. Some larger projects require structures tailored to the problems that they solve. Other React projects using frameworks such as Next.js, Astro, Remix must adhere to rules prescribed by the framework since they tend to use specific directories for features such as page routing or asset management.
@@ -522,7 +527,7 @@ The outline below provides a few more notes on the directories.
 
 #### Create Directories and Organize Existing Files
 
-To start the refactor, we create the new directories and move existing files into their updated location. As each file is moved, it's important to make sure that import statements are updated - both inside the file as well as wherever it is being imported. Running the dev server provides in-browser errors that is handy for letting us know where file imports are incorrect.
+To start the refactor, we create the new directories and move existing files into their updated location. As each file is moved, we'll update import statements - both inside the file as well as wherever it is being imported. Running the dev server provides in-browser errors that are handy for letting us know where file imports are incorrect.
 
 ![vite fails to resolve import](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/error-hint-fail-import.png)
 
@@ -639,7 +644,7 @@ Our next task is to extract the cart's product item into `CartItem`. We create a
 {/* ...component code */}
 ```
 
-We have a lot more code to work with than with the Footer component so we need to take an inventory if the details we need to account for during the conversion. Using a decision tree is an invaluable analytic technique that helps you recall everything that needs to be considered while extracting components. We start with the multi-step decision tree below as we look over each passage in the code. The end of each branch of the following decision tree includes a conclusion we can make about that portion of code.
+We have a lot more code to work with than with the Footer component, so we need to outline our conversion steps. A decision tree is an invaluable analytic technique that helps you recall everything that needs to be considered while extracting components. We start with the multi-step decision tree below as we look over each passage in the code. The end of each branch of the following decision tree includes a conclusion we can make about that portion of code.
 
 >[!note]
 >The flowchart below may have a sideways scroll bar, depending on your screen size.
@@ -735,7 +740,7 @@ function CartItem({ item, onHandleItemUpdate }) {
 export default CartItem;
 ```
 
-Over in the `Cart` component we import `CartItem` then replace the list item with and instance of `CartItem`. We next pass in `item` to the `item` props, `item.id` to the key props, and `handleUpdateField` to `onHandleItemUpdate`.
+Over in the `Cart` component we import `CartItem` then replace the list item with an instance of `CartItem`. We next pass in `item` to the `item` props, `item.id` to the key props, and `handleUpdateField` to `onHandleItemUpdate`.
 
 ```jsx
 //extract from Cart.jsx
