@@ -9,11 +9,12 @@
 
 By the end of this lesson, we will:
 
-#### Objective 1: Polishing an App for Your Portfolio
+#### Objective 1: Polishing an App for Your Portfolio and Creating a Demo Video
 
 - Explain the purpose of maintaining a portfolio
 - Choose which kind of personal projects to include
 - Identify what to include in a project repo
+- Create a short 3-5 minute video demonstrating your final project work
 
 #### Objective 2: App and Data Security
 
