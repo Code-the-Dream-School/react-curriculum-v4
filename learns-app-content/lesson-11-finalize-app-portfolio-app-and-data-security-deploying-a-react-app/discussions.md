@@ -1467,6 +1467,9 @@ app.use(cors(corsOptions));
 
 [Static site deployment guide →](https://render.com/docs/static-sites)
 
+### Video Demonstrating your work
+It is a valuable skill to be able to speak comfortably about the work you have completed.  The more you practice talking about the tech you have worked with and built, the more confident you will feel and sound about your accomplishments.  This communication skill will help you in job interviews.  For this reason, you should practice speaking about your work while you are still in classes learning.  In the bottom of your Coding Assignment section, you will see clear details about how to make a demo video of your final project and important talking points you should be sure to include. 
+
 ### Review and Summary
 
 #### Key Takeaways from This Lesson
