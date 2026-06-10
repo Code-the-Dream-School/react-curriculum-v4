@@ -1,11 +1,17 @@
 <!-- h1, h2 already used by CTD Learns -->
 
 > [!important]
-> This assignment is **optional**. We understand that not everyone will want to deploy their application online or use this specific hosting service. You can focus on the styling and portfolio preparation aspects without deploying, or choose an alternative deployment platform that better suits your needs. If you choose another service, your mentors may not be able to assist with troubleshooting.
+> This is a **2-part assignment**:
+> 1. **Submitting a short video demonstration of your app** — required  
+> 2. **Deploying your todo app online** — optional
 >
-> **NOT OPTIONAL is a short demonstration video of your application.**  This can be run locally to demonstrate - you do not need to deploy your app for the video.  **_At the bottom of this Assignment section please find details on the Video Demo that you should submit this week._**
-
-### Expected App Capabilities
+> The video demonstration is **not optional**. You may record your app running locally on your computer, so you do **not** need to deploy it in order to complete this part. See the **Video Demonstration Details** section at the bottom of this assignment for full instructions.
+>
+> Deploying your todo app online is optional. If you choose not to deploy it, that is completely okay. Before recording your video, you can still complete the rest of the assignment by focusing on styling your app and preparing it for your portfolio.
+>
+> You may also use a different deployment platform if you prefer, but mentors may not be able to help troubleshoot services outside the one used in this curriculum.
+ 
+ ### Expected App Capabilities
 
 After completing this week's assignment, your app should:
 
