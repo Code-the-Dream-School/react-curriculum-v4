@@ -1,9 +1,17 @@
 <!-- h1, h2 already used by CTD Learns -->
 
 > [!important]
-> This assignment is **optional**. We understand that not everyone will want to deploy their application online or use this specific hosting service. You can focus on the styling and portfolio preparation aspects without deploying, or choose an alternative deployment platform that better suits your needs. If you choose another service, your mentors may not be able to assist with troubleshooting.
-
-### Expected App Capabilities
+> This is a **2-part assignment**:
+> 1. **Submitting a short video demonstration of your app** — required  
+> 2. **Deploying your todo app online** — optional
+>
+> The video demonstration is **not optional**. You may record your app running locally on your computer, so you do **not** need to deploy it in order to complete this part. See the **Video Demonstration Details** section at the bottom of this assignment for full instructions.
+>
+> Deploying your todo app online is optional. If you choose not to deploy it, that is completely okay. Before recording your video, you can still complete the rest of the assignment by focusing on styling your app and preparing it for your portfolio.
+>
+> You may also use a different deployment platform if you prefer, but mentors may not be able to help troubleshoot services outside the one used in this curriculum.
+ 
+ ### Expected App Capabilities
 
 After completing this week's assignment, your app should:
 
@@ -349,3 +357,73 @@ After completing this assignment, consider these enhancements for your portfolio
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+## VIDEO DEMONSTRATION Details
+
+Talking about your projects is an important skill for job interviews. Record a 3–5 minute demo of your final projects that covers the following:
+
+ - [ ] Show the user functionality of your site including any login or authentication features
+ - [ ] Demonstrate how the user would make use of your application
+   - [ ] include navigation around your site and any user interactivity
+   - [ ] include any creating, reading, updating, or deleting functionality
+ - [ ] Scroll the length of any/all of your pages to showcase your styling and layout work
+ - [ ] Share what the most challenging part of the project or class was for you and what you enjoyed working on the most
+
+### Record your presentation
+
+You can record your presentation in any of these three ways: 
+ 1. Logging into your personal Zoom account and record your personal meeting where only you are in attendance and you are screensharing your work ([this is a link to a video on how to do this](https://www.youtube.com/watch?v=njwbjFYCbGU))
+ 2. Use a screen recording program already on your machine
+    * [Mac users can use this link to watch a how-to video](https://www.youtube.com/watch?v=w9Byefp51tY)
+    * [Windows users can use this link to watch a how-to video](https://www.youtube.com/watch?v=PJB7pM5bvNI)
+ 3. Use an online option such as loom ([link to a how to video on loom here](https://www.youtube.com/watch?v=oAdLPbfXcQo)).
+
+### Upload your video
+
+<details>
+<summary>Click here to expand detailed instructions on how to upload your recording</summary>
+<br>
+<h4>1. Make sure you're logged in to youtube.</h4>
+ <p>If you don't have a youtube account, <a href="https://support.google.com/youtube/answer/161805?hl=en&co=GENIE.Platform%3DDesktop">create one by following these instructions</a>.</p>
+ <p>You will know you're logged in if you have an initial/icon/other in the top right corner (where the M in the brown circle is on this screenshot):</p>
+ 
+ ![User logged in to youtube account](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.01.20%E2%80%AFPM.png?raw=true)
+
+ <h4>2. Click `+ Create` in the top right and select `Upload video`</h4>
+ 
+ ![Create menu expanded](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.01.27%E2%80%AFPM.png?raw=true)
+
+ <h4>3. In the Upload videos window that appears, click the black `Select files` button</h4>
+ <p>You'll need to select the file of your recording you have saved on your computer.</p>
+ 
+ ![Upload videos modal](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.01.35%E2%80%AFPM.png?raw=true)
+
+<h4>4. The file title will be the default video title.  You can change this to include your name and "React Final Project Presentation"</h4>
+
+![Edit Video Details title](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.02.17%E2%80%AFPM.png?raw=true)
+
+<h4>5. Scroll down under the title; select "No, it's not made for kids" and click on the `Show more` gray button to make further setting changes</h4>
+
+![Adjust video settings](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.02.30%E2%80%AFPM.png?raw=true)
+
+<h4>6. You'll want to be sure the following options for some of the sections that appear after clicking `Show more` are set to the following:</h4>
+
+ - [ ] Altered content: select "No" since you have not used AI to alter reality in your video
+ 
+ - [ ] Recording date and location: please select the date you made your final project recording
+      
+ - [ ] Shorts remixing: select "Don't allow remixing"
+       
+ - [ ] Comments and ratings: if you would like classmates to leave comments, leave comments "On", otherwise you can turn them off by selecting "Off".  _NOTE: we do not and cannot monitor comments.  Please report anything concerning to Code the Dream but have screenshots if needed._  You can also uncheck 'Show how many viewers like this video' if you prefer.
+       
+ - [ ] Click the black `Next` button in the bottom right to proceed from the Details section of the upload through the Video elements and Checks portion.
+       
+ - [ ] Once you are on the Visibility section of the upload, select "Unlisted" as seen here
+
+![Select Unlisted](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.04.52%E2%80%AFPM.png?raw=true)
+
+ - [ ] Lastly, click `Save` and copy your video link as seen here
+
+![Save and copy](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.05.09%E2%80%AFPM.png?raw=true)
+ 
+</details>
