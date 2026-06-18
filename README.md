@@ -11,6 +11,13 @@ Key directories:
 - **`/learns-app-content`** - Lesson materials formatted for CTD Learns, Code the Dream's custom Learning Management System (LMS)
 - **`/mentor-content`** - Resources and guides specifically designed for group instructors and reviewers
 
+## Supporting Repositories
+
+- [Code-the-Dream-School/ctd-swag](https://github.com/Code-the-Dream-School/ctd-swag) - Frontend code-along app used throughout React lessons.
+- [Code-the-Dream-School/ctd-swag-backend](https://github.com/Code-the-Dream-School/ctd-swag-backend) - Backend API used for CTD Swag data-fetching lessons.
+- [Code-the-Dream-School/multicalc](https://github.com/Code-the-Dream-School/multicalc) - MultiCalc exercise project referenced in lesson resources.
+- [Code-the-Dream-School/react-curriculum-v4-exercises](https://github.com/Code-the-Dream-School/react-curriculum-v4-exercises) - Weekly exercises repository for React curriculum practice.
+
 ## Demo Apps
 
 - [Code-the-Dream-School/react-curriculum-v3: Intro to React v3](https://github.com/Code-the-Dream-School/react-curriculum-v3)
