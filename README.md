@@ -20,7 +20,7 @@ Key directories:
 
 ## Demo Apps
 
-- [Code-the-Dream-School/react-curriculum-v3: Intro to React v3](https://github.com/Code-the-Dream-School/react-curriculum-v3)
+- [Todo List Demo]([https://github.com/Code-the-Dream-School/react-curriculum-v3](https://react-todo-list-v4-snowy.vercel.app/)(_also used to register your username for lesson 7's assignment_)
 
 ## Credits
 
