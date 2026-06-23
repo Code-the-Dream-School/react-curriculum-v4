@@ -219,9 +219,10 @@ At this point, you should be able to log into your app. With conditional renderi
 - Create an async function `fetchTodos` inside a `useEffect` hook that:
   - uses `try/catch/finally` blocks
   - Sets `isTodoListLoading` to true
-  - Makes a GET request to `/api/tasks` with:
+  - Makes a GET request to `/api/tasks?page=0&limit=99` with:
     - `X-CSRF-TOKEN` header set to the token prop
     - `credentials: 'include'`
+    - *note: pagination is implemented on the backend so we add `page=0&limit=99` to make sure we get all our todos back (unless your list is large!).
   - Handles different response scenarios:
     - Success: parse response and update todoList state
       - *note 1: the response will be a JSON object that contains an array named `tasks` and another object, `pagination` that will be used in future lessons*.
