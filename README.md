@@ -4,12 +4,23 @@ React curriculum for FY 2026+
 
 ## About
 
-This repository contains the React curriculum materials for Code the Dream's Intro to React course. The curriculum is structured as an 11-week course covering React fundamentals through advanced topics like hooks, state management, routing, and deployment.
+This repository contains the React curriculum materials for Code the Dream's Intro to React course. The curriculum is structured as an 11-week course covering React fundamentals through advanced topics.
 
 Key directories:
 
 - **`/learns-app-content`** - Lesson materials formatted for CTD Learns, Code the Dream's custom Learning Management System (LMS)
 - **`/mentor-content`** - Resources and guides specifically designed for group instructors and reviewers
+
+### File guide for learns-app-content lesson folders
+
+Each lesson folder in `learns-app-content/` uses the same basic file set:
+
+- **`assets/`** - Images and other files used in the lesson materials
+- **`assignment.md`** - Weekly assignment instructions
+- **`discussions.md`** - Lesson content and discussion notes
+- **`exercises.md`** - Weekly exercise instructions
+- **`objectives.md`** - Topics covered and learning objectives
+- **`references.md`** - Optional further reading and resources
 
 ## Supporting Repositories
 
