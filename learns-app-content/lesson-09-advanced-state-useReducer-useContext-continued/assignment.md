@@ -96,7 +96,7 @@ const [todoList, setTodoList] = useState([]);
 const [error, setError] = useState('');
 const [filterError, setFilterError] = useState('');
 const [isTodoListLoading, setIsTodoListLoading] = useState(true);
-const [sortBy, setSortBy] = useState('createdDate');
+const [sortBy, setSortBy] = useState('createdAt');
 const [sortDirection, setSortDirection] = useState('asc');
 const [filterTerm, setFilterTerm] = useState('');
 const [dataVersion, setDataVersion] = useState(0);
@@ -110,7 +110,7 @@ export const initialTodoState = {
   error: '',
   filterError: '',
   isTodoListLoading: true,
-  sortBy: 'createdDate',
+  sortBy: 'createdAt',
   sortDirection: 'asc',
   filterTerm: '',
   dataVersion: 0,
@@ -203,7 +203,7 @@ const [todoList, setTodoList] = useState([]);
 const [error, setError] = useState('');
 const [filterError, setFilterError] = useState('');
 const [isTodoListLoading, setIsTodoListLoading] = useState(true);
-const [sortBy, setSortBy] = useState('createdDate');
+const [sortBy, setSortBy] = useState('createdAt');
 const [sortDirection, setSortDirection] = useState('asc');
 const [filterTerm, setFilterTerm] = useState('');
 const [dataVersion, setDataVersion] = useState(0);
