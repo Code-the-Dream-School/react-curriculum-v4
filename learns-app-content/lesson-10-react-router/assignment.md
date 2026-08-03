@@ -358,7 +358,7 @@ Your application will use this routing structure:
     - Test logout from different pages - should always return to login
     - Notice how the active navigation link is highlighted
 
-### Instructions Part 5: Implement URL-Based Status Filtering
+### Instructions Part 5: Implement URL-Based Status Filtering and Pagination
 
 #### Create the StatusFilter Component
 
@@ -366,6 +366,7 @@ Your application will use this routing structure:
     - This component uses URL search parameters to manage todo status filters
     - Users can filter todos by **all**, **active**, or **completed** status
     - The filter state is stored in the URL, making it bookmarkable and shareable
+    - Preserve the pagination parameters when status changes, and reset `page` to `0`
 
     ```jsx
     import { useSearchParams } from 'react-router';
@@ -375,13 +376,22 @@ Your application will use this routing structure:
       const currentStatus = searchParams.get('status') || 'all';
 
       const handleStatusChange = (status) => {
+        const nextParams = new URLSearchParams(searchParams);
+
         if (status === 'all') {
           // Remove status param for 'all' to keep URL clean
-          searchParams.delete('status');
+          nextParams.delete('status');
         } else {
-          searchParams.set('status', status);
+          nextParams.set('status', status);
         }
-        setSearchParams(searchParams);
+
+        // Reset pagination when filter changes
+        nextParams.set('page', '0');
+        if (!nextParams.get('limit')) {
+          nextParams.set('limit', '99');
+        }
+
+        setSearchParams(nextParams);
       };
 
       return (
@@ -405,11 +415,13 @@ Your application will use this routing structure:
 
 #### Integrate URL Parameters in TodosPage
 
-18. **Update `src/pages/TodosPage.jsx`** to use URL-based filtering:
+18. **Update `src/pages/TodosPage.jsx`** to use URL-based filtering and pagination:
     - Import `useSearchParams` from 'react-router'
     - Import the new `StatusFilter` component  
-    - Read the status filter from URL parameters
+    - Read `status`, `page`, and `limit` from URL parameters
+    - Use `page` and `limit` in your fetch request query parameters
     - Pass the status filter to the TodoList component
+    - Create pagination handlers that update URL params through `setSearchParams`
 
     Add these changes to TodosPage.jsx:
 
@@ -420,13 +432,42 @@ Your application will use this routing structure:
 
     function TodosPage() {
       const { token } = useAuth();
-      const [searchParams] = useSearchParams();  // Add this line
+      const [searchParams, setSearchParams] = useSearchParams();  // Add this line
       const [state, dispatch] = useReducer(todoReducer, initialTodoState);
       
       // Get status filter from URL, default to 'all'
       const statusFilter = searchParams.get('status') || 'all';  // Add this line
+      const page = Number(searchParams.get('page') ?? 0);
+      const limit = Number(searchParams.get('limit') ?? 99);
 
-      // ... existing useEffect and functions
+      useEffect(() => {
+        async function fetchTodos() {
+          const params = new URLSearchParams({
+            page: String(page),
+            limit: String(limit),
+          });
+
+          const response = await fetch(`/api/tasks?${params.toString()}`, {
+            method: 'GET',
+            headers: { 'X-CSRF-TOKEN': token },
+            credentials: 'include',
+          });
+
+          // ... existing response handling and dispatch logic
+        }
+
+        if (token) {
+          fetchTodos();
+        }
+      }, [token, page, limit]);
+
+      const handlePageChange = (nextPage) => {
+        const safePage = Math.max(0, nextPage);
+        const nextParams = new URLSearchParams(searchParams);
+        nextParams.set('page', String(safePage));
+        nextParams.set('limit', String(limit));
+        setSearchParams(nextParams);
+      };
 
       return (
         <div>
@@ -442,6 +483,19 @@ Your application will use this routing structure:
             dataVersion={dataVersion}
             statusFilter={statusFilter}  /* Add this prop */
           />
+          <div>
+            <button
+              type='button'
+              onClick={() => handlePageChange(page - 1)}
+              disabled={page === 0}
+            >
+              Previous
+            </button>
+            <span>Page {page + 1}</span>
+            <button type='button' onClick={() => handlePageChange(page + 1)}>
+              Next
+            </button>
+          </div>
         </div>
       );
     }
@@ -519,19 +573,20 @@ Your application will use this routing structure:
     export default TodoList;
     ```
 
-#### Test URL-Based Filtering
+#### Test URL-Based Filtering and Pagination
 
 20. **Test the URL parameter functionality**:
     - Navigate to `/todos` and change the status filter dropdown  
-    - Watch how the browser URL updates to include `?status=completed` or `?status=active`
+    - Watch how the browser URL updates to include status values like `?status=completed`
+    - Use your pagination controls and confirm the URL includes `page` and `limit` (for example, `/todos?status=completed&page=0&limit=99`)
     - Use the browser's back/forward buttons to navigate through filter history
-    - Copy a filtered URL (like `/todos?status=completed`) - note that accessing it later will require re-authentication
+    - Copy a filtered URL (like `/todos?status=completed&page=0&limit=99`) - note that accessing it later will require re-authentication
     - For testing URL persistence without auth, navigate to `/about` and bookmark it - this will work reliably
 
 > [!NOTE]
 > **Why URL-Based State Matters**
 >
-> Storing filter state in the URL provides several benefits:
+> Storing filter and pagination state in the URL provides several benefits:
 >
 > - **Browser-friendly**: Back/forward buttons work intuitively
 > - **Persistent**: Filter state survives page refreshes (though protected routes require re-authentication)
@@ -627,7 +682,7 @@ Your application will use this routing structure:
     - **Multi-page navigation**: Test navigation between all pages (Home, About, Login, Todos, Profile)
     - **Protected routes**: Verify `/todos` and `/profile` redirect to login when not authenticated
     - **Authentication flow**: Test login redirects you to intended destination
-    - **URL filtering**: Test todo status filters update the URL (note: refreshing requires re-authentication)
+    - **URL filtering and pagination**: Test todo status filters and page controls update the URL (note: refreshing requires re-authentication)
     - **404 handling**: Test invalid URLs show the NotFound page
     - **Browser integration**: Test back/forward buttons and bookmark `/about` to verify URL persistence
 
@@ -655,7 +710,7 @@ Choose 1–2 prompts below. Explain in your own words first, then ask AI for fee
 > Do not ask AI to complete the assignment code for you.
 
 > - "I wrapped protected routes in a RequireAuth component that checks for a token and redirects to login if it's missing. Here's my explanation of why this pattern is better than putting the auth check inside each page component: [my explanation]. Is my reasoning correct?"
-> - "I used useSearchParams to store the todo status filter in the URL so the filter persists on page refresh. Here's how I understand the difference between managing filter state with useState versus useSearchParams, and why URL-based state matters for shareability: [my explanation]. What did I get right, and what should I refine?"
+> - "I used useSearchParams to store todo status and pagination (`page`, `limit`) in the URL so this state persists on page refresh. Here's how I understand the difference between managing this with useState versus useSearchParams, and why URL-based state matters for shareability and navigation history: [my explanation]. What did I get right, and what should I refine?"
 > - "I used NavLink instead of Link for my navigation menu because NavLink adds an 'active' class to the current route's link. Here's my explanation of when I'd choose NavLink over Link and how React Router determines which link is active: [my explanation]. Can you check my understanding and ask me one follow-up question?"
 > - "I added a catchall Route with path='*' so that unmatched URLs show a 404 page instead of a blank screen. Here's my explanation of why the order of Route components matters and what would happen if the catchall route were listed first: [my explanation]. What did I miss?"
 
@@ -663,12 +718,12 @@ Choose 1–2 prompts below. Explain in your own words first, then ask AI for fee
 
 ✅ **Multi-page application structure** with client-side routing  
 ✅ **Protected route implementation** with authentication guards  
-✅ **URL-based state management** for todo filtering  
+✅ **URL-based state management** for todo filtering and pagination  
 ✅ **Navigation component** with active state styling  
 ✅ **Programmatic navigation** with proper redirect handling  
 ✅ **404 error handling** with user-friendly recovery options  
 ✅ **Browser integration** with back/forward button support  
-✅ **Deep linking support** for bookmarkable filtered views
+✅ **Deep linking support** for bookmarkable filtered and paginated views
 
 ---
 
@@ -684,7 +739,7 @@ Next week, we'll focus on **polishing your application for portfolio presentatio
 
 **Authentication Flow**: If auth redirects aren't working, verify that `RequireAuth` is properly wrapping protected routes and that the `useAuth` hook is accessible in all components.
 
-**URL Parameters**: If filters don't persist in URLs, check that `useSearchParams` is being used correctly and that `setSearchParams` is called when filters change.
+**URL Parameters**: If status filters or pagination (`page`, `limit`) don't persist in URLs, check that `useSearchParams` is being used correctly and that `setSearchParams` is called when filters or page values change.
 
 **404 Handling**: If the 404 page doesn't appear for invalid routes, ensure the catch-all route (`*`) is the last route in your `Routes` component.
 
