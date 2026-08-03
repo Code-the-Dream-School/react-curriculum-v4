@@ -19,14 +19,16 @@ After completing this week's assignment, your app should:
 1. **Update TodosPage.jsx state**:
    - Add two new state variables after existing state: `sortBy` with initial value `'createdAt'` and `sortDirection` with initial value `'desc'`
 
-2. **Modify the fetchTodos function** to include sort parameters:
-   - Create a `URLSearchParams` object inside the function with `sortBy` and `sortDirection` properties
+2. **Modify the fetchTodos function** to include sort parameters and a default pagination limit:
+   - Create a `URLSearchParams` object inside the function with `sortBy`, `sortDirection`, and `limit` properties
+   - Set the default `limit` to `100` so the API returns up to 100 todos
    - Update the fetch URL to append the params to the base `/tasks` endpoint using template literals
 
    ```jsx
    const params = new URLSearchParams({
      sortBy,
      sortDirection,
+     limit: 100,
    });
    const resp = await fetch(`/api/tasks?${params}`, options);
    ```
@@ -40,13 +42,14 @@ After completing this week's assignment, your app should:
 > const params = new URLSearchParams({
 >   sortBy: 'createdAt',
 >   sortDirection: 'desc',
+>   limit: 100,
 > });
 > fetch(`/api/tasks?${params}`, options);
 > ```
 >
-> JavaScript automatically calls `params.toString()`, which converts the object to: `"sortBy=createdAt&sortDirection=desc"`
+> JavaScript automatically calls `params.toString()`, which converts the object to: `"sortBy=createdAt&sortDirection=desc&limit=100"`
 >
-> This creates the final URL: `http://localhost:3001/api/tasks?sortBy=createdAt&sortDirection=desc`
+> This creates the final URL: `http://localhost:3001/api/tasks?sortBy=createdAt&sortDirection=desc&limit=100`
 
 3. **Update useEffect dependencies** to re-fetch when sort options change:
    - Add `sortBy` and `sortDirection` to the dependency array alongside the existing `token`
