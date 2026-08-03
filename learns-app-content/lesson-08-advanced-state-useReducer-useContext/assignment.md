@@ -206,7 +206,7 @@ The cache invalidation pattern we're implementing uses a "data version" approach
     - Add `dataVersion` as a prop to the component function parameters
     - Create a memoized `filteredTodoList` using `useMemo`
     - Inside the useMemo function:
-      - Add a console.log message: `"Recalculating filtered todos (v${dataVersion})"`
+      - Add a console.log message: `` `"Recalculating filtered todos (v${dataVersion})"` ``
       - Return an object with `version` and `todos` properties
       - Set `version` to `dataVersion` and `todos` to the filtered todoList that excludes completed todos
     - Include both `todoList` and `dataVersion` in the dependency array
