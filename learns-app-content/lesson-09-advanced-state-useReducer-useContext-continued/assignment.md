@@ -7,6 +7,7 @@
 >Because we are updating and organizing your existing code, this week’s project requires a bit more time and focus than previous assignments.
 >
 >**Tips for Success:**
+>
 > 1. **Spread it out:** Plan for about 6–8 hours total, broken down into short, focused sessions across the week.
 > 2. **Take it step-by-step:** The concepts build on each other, so give yourself time to absorb each part before moving to the next.
 > 3. **Commit often**: Save your progress frequently in version control so you can experiment with confidence.
@@ -474,7 +475,7 @@ const login = async (userEmail, password) => {
 Create a logout function that clears authentication state and calls the logout API:
 
 - **Check if token exists**: If no token, just clear local state
-- **Call logout API**: Send POST request to `/user/logoff` with CSRF token
+- **Call logout API**: Send POST request to `/api/user/logoff` with CSRF token
 - **Clear state always**: Whether API succeeds or fails, clear local authentication
 - **Return result object**: Use same success/error pattern as login
 
