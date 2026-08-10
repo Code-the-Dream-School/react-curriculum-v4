@@ -245,7 +245,7 @@ At this point, you should be able to log into your app. With conditional renderi
     ```
 
 > [!note]
-> >
+> 
 > - The useEffect hook runs when the component mounts and whenever the token changes. This ensures we fetch fresh data when a user logs in.
 > - The response will be a JSON object that contains an array named `tasks` and another object, `pagination` that will be used in future lessons.
 > - See the bottom of the assignment for an example fetch response.
