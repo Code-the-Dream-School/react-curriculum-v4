@@ -767,8 +767,33 @@ const ProductDetail = ({ products, handleAddItemToCart }) => {
 Inside the component's return body, we can conditionally render the `product` if the lookup is successful:
 
 ```jsx
-{/*extract from */}
+{/*extract from ProductDetails*/}
 {/*...code*/}
+return (
+    <div>
+        {product ? (
+            <>
+                <h2>{product.baseName}</h2>
+                <p>{product.baseDescription}</p>
+
+                {product.variants.length > 1 && <h3>Variations...</h3>}
+                <div className={styles.variants}>
+                    {product.variants.map((variant) => {
+                        return (
+                            <ProductDetailsCard
+                                key={variant.id}
+                                product={variant}
+                                handleAddItemToCart={handleAddItemToCart}
+                            />
+                        );
+                    })}
+                </div>
+            </>
+        ) : (
+            <h2>Nothing Found</h2>
+        )}
+    </div>
+);
 {/*code continues...*/}
 ```
 
