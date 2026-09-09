@@ -9,6 +9,10 @@ After completing this week's assignment, your app should:
 - retain the `input`'s focus when a todo is submitted with the button or enter key
 - render entered todos in a list
 
+Note: The function names, prop names, and attribute values specified in this assignment (addTodo, onAddTodo, handleAddTodo, inputRef, todoTitle) should be used exactly as written — each component relies on these exact names to connect to the others correctly.
+
+Keep your existing code from previous lessons. This week's work builds on and modifies that code — it does not replace it.
+
 ### Instructions Part 1: Prepare State for Dynamic Todos
 
 #### Update Initial State
@@ -29,8 +33,8 @@ Now we'll create a function that can add new todos to our state.
 1. In `App.jsx`, create a new function called `addTodo` above the return statement that:
    - Takes a `todoTitle` parameter
    - Creates a new todo object with an `id` property set to `Date.now()` and a `title` property set to the `todoTitle` parameter
-   - Updating the todoList functionally ( because current state relies on previous state )
-   - Adding our `newTodo` while spreading the `previous` todoList. It should look something like: `setTodoList(previous => [newTodo, ...previous])`
+   - Updates the todoList functionally ( because current state relies on previous state )
+   - Adds our `newTodo` while spreading the `previous` todoList. It should look something like: `setTodoList(previous => [newTodo, ...previous])`
 
 > [!NOTE]
 > We use `Date.now()` to generate a unique ID for each todo. In a real application, you'd typically use a more robust ID generation method, but this works well for our purposes.
@@ -38,6 +42,8 @@ Now we'll create a function that can add new todos to our state.
 #### Pass the Handler to TodoForm
 
 1. Add an `onAddTodo` prop to the `TodoForm` component instance in your App's return statement:
+
+Use exactly as written — the prop name and function reference must match:
 
 ```jsx
 <TodoForm onAddTodo={addTodo} />
@@ -62,6 +68,8 @@ function TodoForm({ onAddTodo }) {
 ```
 
 1. Create a ref for the input field and a form submit handler inside the TodoForm component:
+
+Use exactly as written — the console.log statements are temporary so you can visualize parts of your code's behavior in the console. These will be removed later in this assignment. The rest of the handler logic is required:
 
 ```jsx
 function TodoForm({ onAddTodo }) {
@@ -93,6 +101,8 @@ function TodoForm({ onAddTodo }) {
 #### Update the Form JSX
 
 1. Update the correct elements in the return statement to use the handler and ref:
+
+Use exactly as written — the name="todoTitle" attribute, ref, and onSubmit handler must match the code above. The placeholder text ("Todo text") is an example; use your own if you prefer:
 
 ```jsx
 return (
@@ -130,7 +140,7 @@ return (
 Once you've verified everything works and explored the event object:
 
 1. Remove the three `console.log` statements from the `handleAddTodo` function
-2. Your final handler should look like this:
+2. Use exactly as written — your final handler should look like this:
 
 ```jsx
 const handleAddTodo = (event) => {
@@ -207,3 +217,27 @@ In upcoming weeks, you'll learn to:
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Update Initial State (Part 1)** — In App.jsx, the `useState` initial value is changed from the hardcoded array to an empty array `useState([])`. The previously hardcoded `todos` array is deleted.
+- **addTodo Function (Part 2)** — A function named `addTodo` in App.jsx, above the return statement, that takes a `todoTitle` parameter, creates a new todo object with `id` set to `Date.now()` and `title` set to the parameter, and uses a functional state update: `setTodoList(previous => [newTodo, ...previous])`. Use exactly as written: the function name `addTodo` is passed as a prop and must match. Example — adapt to your own layout: the local variable names inside the function (e.g., `newTodo`, `previous`) are flexible.
+- **Pass Handler to TodoForm (Part 2)** — The `addTodo` function is passed to `TodoForm` via an `onAddTodo` prop: `<TodoForm onAddTodo={addTodo} />`. Use exactly as written: the prop name `onAddTodo` must match the destructured parameter in TodoForm.
+- **useRef Import and Setup (Part 3)** — `useRef` imported from React in TodoForm.jsx. A ref created with `const inputRef = useRef()` inside the component.
+- **handleAddTodo Handler (Part 3)** — A form submit handler named `handleAddTodo` in TodoForm that: calls `event.preventDefault()`, reads the input value via `event.target.todoTitle.value`, trims whitespace and rejects empty input, calls `onAddTodo(todoTitle)`, resets the form with `event.target.reset()`, and refocuses the input with `inputRef.current.focus()`. Use exactly as written: the handler name `handleAddTodo` is referenced in the form's `onSubmit`.
+- **Updated Form JSX (Part 3)** — The form element uses `onSubmit={handleAddTodo}`. The input has `ref={inputRef}`, `name="todoTitle"`, `id="todoTitle"`, and `required`. The button changes from `disabled` to `type="submit"`. Use exactly as written: `name="todoTitle"` is required — the handler accesses the value through this name via `event.target.todoTitle.value`. Example — adapt to your own layout: the `placeholder` text is the student's choice.
+- **Console.log Cleanup (Part 4)** — The three temporary `console.log` statements are removed from the final `handleAddTodo` function. The redundant `&& todoTitle !== ""` check is simplified to just `if (todoTitle)`.
+- **Functional Verification (Part 5)** — The app loads with an empty todo list, todos can be added via the form, they appear immediately, the input retains focus after submission, empty/whitespace submissions are rejected, and both the button and Enter key work. Note: AirHub cannot run the dev server to verify runtime behavior; it is confirmed by human reviewers.
+- **Checkpoint: Check Your Understanding with AI (Part 6)** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission (Part 6)** — Changes committed to the working branch, pushed to GitHub, and a PR created comparing the working branch to `main`.
+
+### Optional Deliverables/Tasks
+
+**None.** All tasks in this assignment are required.
+
+</details>
