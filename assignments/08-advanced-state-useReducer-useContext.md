@@ -10,6 +10,10 @@ After completing this week's assignment, your app should:
 - handle errors with specific recovery options for different error types
 - invalidate cache to ensure data consistency after mutations
 
+Note: The component names, hook names, prop names, state variable names, and function names specified in this assignment (sortBy, sortDirection, SortBy, onSortByChange, onSortDirectionChange, useDebounce, filterTerm, debouncedFilterTerm, FilterInput, onFilterChange, dataVersion, invalidateCache, filterError) should be used exactly as written — each component relies on these exact names to connect to the others correctly. The API query parameter names (sortBy, sortDirection, find, limit) are also exact — the backend API requires these specific values.
+
+Keep your existing code from previous lessons. This week's work builds on and modifies that code — it does not replace it.
+
 ---
 
 ### Instructions Part 1: Implement Server-Side Sorting
@@ -23,6 +27,8 @@ After completing this week's assignment, your app should:
    - Create a `URLSearchParams` object inside the function with `sortBy`, `sortDirection`, and `limit` properties
    - Set the default `limit` to `100` so the API returns up to 100 todos
    - Update the fetch URL to append the params to the base `/tasks` endpoint using template literals
+
+   Use exactly as written — the API parameter names and the limit value are required by the backend:
 
    ```jsx
    const params = new URLSearchParams({
@@ -87,7 +93,7 @@ Create a new file `src/utils/useDebounce.js` that exports a custom hook:
 10. **Dependencies**: Include `value` and `delay` in the useEffect dependency array
 11. **Return value**: Return the debounced value from the hook
 
-For reference, the finished function should look something like:
+Use exactly as written — the hook name useDebounce is imported by other files. The code inside the hook should follow the same steps shown below:
 
 ```jsx
 import { useState, useEffect } from 'react';
@@ -140,7 +146,7 @@ const debouncedFilterTerm = useDebounce(filterTerm, 300);
 
 14. **Create filter handler function**:
     - Create a function that accepts the new filter term and calls setFilterTerm
-    - Name the function something descriptive like `handleFilterChange`
+    - Name the function something descriptive like `handleFilterChange`. The name you choose for this function does not need to be exact since it is a local function that is not a prop name or import that is used in other places in the app.
     - No need for `useCallback` since this function is simple and only calls setState
     - Pattern: `const handleFilterChange = (newTerm) => { setFilterTerm(newTerm); };`
 
@@ -151,7 +157,7 @@ const debouncedFilterTerm = useDebounce(filterTerm, 300);
     - If it does, add the find property to the object: `if (debouncedFilterTerm) { paramsObject.find = debouncedFilterTerm; }`
     - Then create the URLSearchParams with this object
 
-    The updated code should resemble:
+    Use exactly as written — the find property is an API parameter name required by the backend:
 
     ```jsx
     const paramsObject = {
@@ -229,6 +235,8 @@ The cache invalidation pattern we're implementing uses a "data version" approach
     - Use `useState` to create the state and setter function
 
 24. **Update error handling in fetchTodos** to distinguish error types:
+
+    Use exactly as written — this pattern distinguishes filter/sort errors from general fetch errors:
 
     ```jsx
     } catch (error) {
@@ -333,3 +341,29 @@ Next lesson, we'll explore **Advanced State Management** with `useReducer` and `
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Sort State and API Integration (Part 1)** — TodosPage has `sortBy` (initial `'createdAt'`) and `sortDirection` (initial `'desc'`) state variables. The `fetchTodos` function builds a `URLSearchParams` object with `sortBy`, `sortDirection`, and `limit: 100` properties, appended to the `/api/tasks` endpoint. Use exactly as written: the API parameter names are required by the backend. The `useEffect` dependency array includes `sortBy` and `sortDirection`.
+- **SortBy Component (Part 1)** — A file `src/shared/SortBy.jsx` with a component accepting `sortBy`, `sortDirection`, `onSortByChange`, and `onSortDirectionChange` props. Two select dropdowns with proper labels: "Sort by" (options: `'createdAt'`/"Created At" and `'title'`/"Title") and "Order" (options: `'desc'`/"Descending" and `'asc'`/"Ascending"). Controlled component pattern with value and onChange. Placed above TodoForm in TodosPage. Use exactly as written: the component name, prop names, and option values must match.
+- **useDebounce Hook (Part 2)** — A file `src/utils/useDebounce.js` exporting a custom hook `useDebounce` that accepts `value` and `delay` parameters. Uses `useState` to track debounced value, `useEffect` with `setTimeout` to delay updates, cleanup function to clear timeout, and returns the debounced value. Use exactly as written: the hook name is imported by other files.
+- **FilterInput Component (Part 2)** — A file `src/shared/FilterInput.jsx` accepting `filterTerm` and `onFilterChange` props. Contains a labeled text input (`id='filterInput'`, `htmlFor='filterInput'`, `placeholder='Search by title...'`) with controlled value and onChange that calls `onFilterChange(e.target.value)`. Placed between SortBy and TodoForm in TodosPage. Use exactly as written: the prop names must match.
+- **Filter Integration (Part 2)** — TodosPage has `filterTerm` state (empty string) and `debouncedFilterTerm` from `useDebounce(filterTerm, 300)`. A handler function updates `filterTerm`. The `fetchTodos` function conditionally includes `find` parameter in URLSearchParams when `debouncedFilterTerm` has a value. Use exactly as written: `find` is an API parameter name required by the backend. `debouncedFilterTerm` added to useEffect dependencies.
+- **Cache Invalidation with useCallback (Part 3)** — TodosPage has a `dataVersion` state (initial `0`). An `invalidateCache` function wrapped in `useCallback` that increments `dataVersion`. Called after each successful API mutation in `addTodo`, `completeTodo`, and `updateTodo`.
+- **useMemo Optimization (Part 3)** — In TodoList.jsx, `dataVersion` accepted as a prop. A memoized `filteredTodoList` created with `useMemo` returning an object with `version` and `todos` properties (filtered to exclude completed). Dependency array includes `todoList` and `dataVersion`. JSX uses `filteredTodoList.todos`. `dataVersion` passed from TodosPage to TodoList.
+- **Enhanced Error Handling (Part 4)** — TodosPage has a `filterError` state (empty string). The `fetchTodos` catch block distinguishes filter/sort errors from general fetch errors using the condition: `debouncedFilterTerm || sortBy !== 'createdAt' || sortDirection !== 'desc'`. Filter errors cleared on successful fetch. UI includes filter error display with "Clear Filter Error" button and "Reset Filters" button (resets `filterTerm`, `sortBy`, `sortDirection`, and `filterError`).
+- **Console.log Cleanup (Part 5)** — All console.log statements (including those added in steps 19 and 21 for educational observation) must be removed before submission.
+- **Functional Verification (Part 5)** — Sorting works with API calls including correct parameters, debounced search filters after 300ms delay, cache invalidation triggers recalculation after mutations, different error messages for CRUD vs filter operations, Reset Filters restores defaults. Note: AirHub cannot run the dev server to verify runtime behavior; it is confirmed by human reviewers.
+- **Checkpoint: Check Your Understanding with AI** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission** — Changes committed to the working branch, pushed to GitHub, and a PR created comparing the working branch to `main`.
+
+### Optional Deliverables/Tasks
+
+**None.** All tasks in this assignment are required.
+
+</details>
