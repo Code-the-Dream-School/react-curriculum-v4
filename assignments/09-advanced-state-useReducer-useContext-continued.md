@@ -24,6 +24,10 @@ After completing this week's assignment, your app should:
 - allow components to access shared state without prop passing
 - implement optimistic updates with proper error rollback handling
 
+Note: The export names, hook names, and component names specified in this assignment (todoReducer, initialTodoState, TODO_ACTIONS, useAuth, AuthProvider) should be used exactly as written — each component relies on these exact names to connect to the others correctly.
+
+Keep your existing code from previous lessons. This week's work builds on and modifies that code — it does not replace it.
+
 ### Instructions Part 1: Understanding the Problem
 
 #### Current State Management Issues
@@ -67,7 +71,7 @@ Create a new file `src/reducers/todoReducer.js`:
 - Similar patterns for `COMPLETE_TODO_*` and `UPDATE_TODO_*`
 - UI operations: `SET_SORT`, `SET_FILTER`, `CLEAR_ERROR`, `RESET_FILTERS`
 
-Create an exported object with all your action types:
+Create an exported object with all your action types. Use the export name `TODO_ACTIONS` exactly as written since it is imported by other files. The individual action type names are examples; yours may differ slightly:
 
 ```js
 export const TODO_ACTIONS = {
@@ -102,7 +106,7 @@ const [filterTerm, setFilterTerm] = useState('');
 const [dataVersion, setDataVersion] = useState(0);
 ```
 
-Transform these into a single initial state object in todoReducer.js:
+Transform these into a single initial state object in todoReducer.js. Use the export name `initialTodoState` exactly as written — it is imported by other files. The property names and default values should match your existing state variables:
 
 ```js
 export const initialTodoState = {
@@ -132,7 +136,7 @@ export const initialTodoState = {
 
 **Step-by-step Reducer Implementation:**
 
-1. **Create the reducer function structure**:
+1. **Create the reducer function structure**. Use the function name `todoReducer` exactly as written — it is imported by other files:
 
    ```js
    export function todoReducer(state, action) {
@@ -392,7 +396,7 @@ The `useAuth` hook is a custom hook that provides a clean interface for componen
 
 ##### AuthProvider Component Structure Setup
 
-Create the AuthProvider component in the same file that will wrap your application and manage authentication state:
+Create the AuthProvider component in the same file. Use the component name `AuthProvider` exactly as written — it is referenced in main.jsx to wrap your application and manage authentication state:
 
 ```js
 export function AuthProvider({ children }) {
@@ -475,7 +479,7 @@ const login = async (userEmail, password) => {
 Create a logout function that clears authentication state and calls the logout API:
 
 - **Check if token exists**: If no token, just clear local state
-- **Call logout API**: Send POST request to `/api/user/logoff` with CSRF token
+- **Call logout API**: Send POST request to `/api/users/logoff` with CSRF token
 - **Clear state always**: Whether API succeeds or fails, clear local authentication
 - **Return result object**: Use same success/error pattern as login
 
@@ -568,7 +572,7 @@ export function useAuth() {
 
 > **⚠️ Commit Your Progress**: Once useContext is working, commit your changes: `git add . && git commit -m "Implement useContext for authentication state"`
 
-## Instructions Part 4: Final Testing and Verification
+### Instructions Part 4: Final Testing and Verification
 
 #### Test Your Application
 
@@ -670,3 +674,29 @@ Pat yourself on the back for a job well done! Next week, we'll explore React Rou
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Todo Reducer File (Part 2)** — A new file (suggested location: `src/reducers/todoReducer.js`) containing three exports: `TODO_ACTIONS` (an object mapping action type names to string constants), `initialTodoState` (an object consolidating all TodosPage state variables into a single state object), and `todoReducer` (a reducer function using a switch statement on `action.type`). Use exactly as written: the export names `TODO_ACTIONS`, `initialTodoState`, and `todoReducer` must match — they are imported by TodosPage. Example — adapt to your own layout: the individual action type names (FETCH_START, ADD_TODO_START, etc.) and state property names follow the assignment's pattern but may differ based on the student's existing code. The file path is a suggested convention; do not fail for a different location as long as imports resolve.
+- **Action Types Coverage (Part 2)** — The `TODO_ACTIONS` object includes action types covering: fetch operations (start, success, error), add todo operations (start, success, error), complete todo operations (start, success, error), update todo operations (start, success, error), and UI operations (set sort, set filter, clear error). The specific action type names are flexible as long as they cover these operation categories.
+- **Reducer Function Implementation (Part 2)** — The `todoReducer` function handles each action type with: optimistic updates (START actions apply changes immediately), proper error rollback (ERROR actions restore previous state), and immutable state updates (always returns new objects using the spread operator). The default case throws an error for unknown action types.
+- **Refactor TodosPage to useReducer (Part 2)** — In TodosPage.jsx: import `useReducer` from React and import `todoReducer`, `initialTodoState`, and `TODO_ACTIONS` from the reducer file. Replace multiple `useState` calls with a single `useReducer(todoReducer, initialTodoState)`. Destructure individual state values from the reducer state. Replace all direct `setXxx` state calls with appropriate `dispatch({ type: TODO_ACTIONS.XXX, payload: {...} })` calls throughout the component (in useEffect, addTodo, completeTodo, updateTodo, event handlers, and error clearing).
+- **AuthContext File (Part 3)** — A new file (suggested location: `src/contexts/AuthContext.jsx`) containing: a context created with `createContext()`, a custom `useAuth` hook with error checking (throws if used outside AuthProvider), and an `AuthProvider` component. Use exactly as written: the hook name `useAuth` and the component name `AuthProvider` must match — they are used by multiple components throughout the app. The file path is a suggested convention; do not fail for a different location as long as imports resolve.
+- **AuthProvider Implementation (Part 3)** — The `AuthProvider` component manages `email` and `token` state, provides a `login` function (makes POST to `/api/users/logon`, updates state on success, returns a success/error object), a `logout` function (calls the logout API endpoint, clears state, returns a success/error object), and exposes a context value containing `email`, `token`, `isAuthenticated` (computed as `!!token`), `login`, and `logout`. Use exactly as written: the context value property names (`email`, `token`, `isAuthenticated`, `login`, `logout`) should match — they are destructured by consuming components.
+- **Provider Setup (Part 3)** — In `main.jsx`, the `<App />` component is wrapped with `<AuthProvider>` to provide authentication context to all descendant components.
+- **Remove Prop Drilling (Part 3)** — Authentication-related props are removed from component interfaces: App.jsx removes auth `useState` calls and passes no auth props to children, using `useAuth()` for `isAuthenticated`; Header.jsx removes auth props and uses `useAuth()`; Logon.jsx removes props and uses `useAuth()` for `login()`; Logoff.jsx removes props and uses `useAuth()` for `logout()`; TodosPage.jsx removes the `token` prop and uses `useAuth()` for `token`.
+- **Functional Verification (Parts 2, 3, 4)** — All todo operations work after the useReducer refactor (add, complete, sort, filter, error handling) and all authentication flows work after the useContext refactor (login, logout, UI updates, todo access). The app behaves identically to before the refactor. Note: AirHub cannot run the dev server to verify runtime behavior; it is confirmed by human reviewers.
+- **Debug Console.log Cleanup (Parts 2, 3)** — The temporary `console.log` statements added during the Part 2 and Part 3 checkpoints (in the reducer function and in the useAuth hook) are removed before final submission.
+- **Checkpoint: Check Your Understanding with AI** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission** — Changes committed to the working branch (the assignment recommends committing after Part 2 and again after Part 3), pushed to GitHub, and a PR created comparing the working branch to `main`.
+
+### Optional Deliverables/Tasks
+
+**None.** All tasks in this assignment are required.
+
+</details>
