@@ -17,6 +17,7 @@ CTD Learns content is split across root-level lesson and assignment paths:
 
 - **`lessons/*.md`** - Weekly discussion files named with the `xx-short-slug` pattern
 - **`assignments/*.md`** - Weekly assignment files that match the lesson file names
+- **`lessons/lesson-xx-short-slug/`** - Supporting lesson directories that share the same lesson number/slug as the discussion file
 - **`lessons/lesson-*/assets/`** - Images and other files used in the lesson materials
 - **`lessons/lesson-*/exercises.md`** - Weekly exercise instructions
 - **`lessons/lesson-*/objectives.md`** - Topics covered and learning objectives
