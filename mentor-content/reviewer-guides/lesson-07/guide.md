@@ -106,4 +106,4 @@ A user should be able to:
 - CTD React Curriculum Exercises Repo
   `Code-the-Dream-School/react-curriculum-v4-exercises`
 - Lesson-07 Assignment
-  `react-curriculum-v4/learns-app-content/lesson-07-data-fetching-UI-update-strategies/assignment.md`
+  `react-curriculum-v4/assignments/07-data-fetching-UI-update-strategies.md`

@@ -92,4 +92,4 @@ A user should be able to:
 - CTD React Curriculum Exercises Repo
   `Code-the-Dream-School/react-curriculum-v4-exercises`
 - Lesson-05 Assignment
-  `react-curriculum-v4/learns-app-content/lesson-05-local-state-controlled-components-forms/assignment.md`
+  `react-curriculum-v4/assignments/05-local-state-controlled-components-forms.md`

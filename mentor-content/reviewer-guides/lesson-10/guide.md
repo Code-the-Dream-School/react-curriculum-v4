@@ -129,4 +129,4 @@ A user should be able to:
 - CTD React Curriculum Exercises Repo
   `Code-the-Dream-School/react-curriculum-v4-exercises`
 - Lesson-10 Assignment
-  `react-curriculum-v4/learns-app-content/lesson-10-react-router/assignment.md`
+  `react-curriculum-v4/assignments/10-react-router.md`

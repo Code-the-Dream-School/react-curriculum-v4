@@ -70,4 +70,4 @@ No keys are required for the list items.
 - CTD React Curriculum Exercises Repo  
   `Code-the-Dream-School/react-curriculum-v4-exercises`  
 - Lesson-01 Assignment  
-  `react-curriculum-v4/learns-app-content/lesson-01/assignment.md`
+  `react-curriculum-v4/assignments/01-intro-to-react-app-installation-vite.md`

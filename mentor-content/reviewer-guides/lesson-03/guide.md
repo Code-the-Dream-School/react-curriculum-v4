@@ -118,4 +118,4 @@ export default function StudentWork() {
 - CTD React Curriculum Exercises Repo  
   `Code-the-Dream-School/react-curriculum-v4-exercises`  
 - Lesson-03 Assignment  
-  `react-curriculum-v4/learns-app-content/lesson-03/assignment.md`
+  `react-curriculum-v4/assignments/03-components-hooks-state-props.md`

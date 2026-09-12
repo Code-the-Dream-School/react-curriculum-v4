@@ -11,16 +11,16 @@ Key directories:
 - **`/learns-app-content`** - Lesson materials formatted for CTD Learns, Code the Dream's custom Learning Management System (LMS)
 - **`/mentor-content`** - Resources and guides specifically designed for group instructors and reviewers
 
-### File guide for learns-app-content lesson folders
+### File guide for CTD Learns lesson content
 
-Each lesson folder in `learns-app-content/` uses the same basic file set:
+CTD Learns content is split across root-level lesson and assignment paths:
 
-- **`assets/`** - Images and other files used in the lesson materials
-- **`assignment.md`** - Weekly assignment instructions
-- **`discussions.md`** - Lesson content and discussion notes
-- **`exercises.md`** - Weekly exercise instructions
-- **`objectives.md`** - Topics covered and learning objectives
-- **`references.md`** - Optional further reading and resources
+- **`lessons/*.md`** - Weekly discussion files named with the `xx-short-slug` pattern
+- **`assignments/*.md`** - Weekly assignment files that match the lesson file names
+- **`lessons/lesson-*/assets/`** - Images and other files used in the lesson materials
+- **`lessons/lesson-*/exercises.md`** - Weekly exercise instructions
+- **`lessons/lesson-*/objectives.md`** - Topics covered and learning objectives
+- **`lessons/lesson-*/references.md`** - Optional further reading and resources
 
 ## Supporting Repositories
 
