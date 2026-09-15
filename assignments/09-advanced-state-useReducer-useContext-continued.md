@@ -446,9 +446,9 @@ const login = async (userEmail, password) => {
     const res = await fetch('/api/users/logon', options);
     const data = await res.json();
     
-    if (res.status === 200 && data.name && data.csrfToken) {
+    if (res.status === 200 && data.email && data.csrfToken) {
       // Success: Update state
-      setEmail(data.name);
+      setEmail(data.email);
       setToken(data.csrfToken);
       return { success: true };
     } else {

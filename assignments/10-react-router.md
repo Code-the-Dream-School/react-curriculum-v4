@@ -471,7 +471,7 @@ Your application will use this routing structure:
       onCompleteTodo,
       onUpdateTodo,
       dataVersion,
-      statusFilter = 'active',  // Add this prop with default
+      statusFilter,  // Add this prop
     }) {
       const filteredTodoList = useMemo(() => {
         console.log(`Recalculating filtered todos (v${dataVersion}) - Status: ${statusFilter}`);

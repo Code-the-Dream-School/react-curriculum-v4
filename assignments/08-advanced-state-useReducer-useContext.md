@@ -305,7 +305,6 @@ Choose 1–2 prompts below. Explain in your own words first, then ask AI for fee
 > [!NOTE]
 > Do not ask AI to complete the assignment code for you.
 
-> - "I wrapped my `fetchTodos` function in `useCallback` with a dependency array. Here's my explanation of why wrapping it prevents an infinite loop when `useEffect` depends on it, and what would happen without `useCallback`: [my explanation]. Is my reasoning correct?"
 > - "I used `useMemo` with a version counter to cache my filtered todo list. Here's how I understand why incrementing the version number causes the memoized value to recalculate, and what problem this solves compared to always recalculating on every render: [my explanation]. What did I miss?"
 > - "I used `URLSearchParams` to add sort and search parameters to my API request URL. Here's my explanation of why building the query string this way is better than string concatenation, and how the parameters map to what the API expects: [my explanation]. What should I refine?"
 
