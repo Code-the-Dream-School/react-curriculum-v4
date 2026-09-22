@@ -106,9 +106,7 @@ A user should be able to:
 
 ## References
 
-- CTD React Curriculum Exercises Repo
-  `Code-the-Dream-School/react-curriculum-v4-exercises`
-- Lesson-08 Assignment
-  `react-curriculum-v4/learns-app-content/lesson-08-advanced-state-useReducer-useContext/assignment.md`
+- [CTD React Curriculum Exercises Repo](https://github.com/Code-the-Dream-School/react-curriculum-v4-exercises)
+- [Lesson-08 Assignment](https://github.com/Code-the-Dream-School/react-curriculum-v4/assignments/08-advanced-state-useReducer-useContext.md)
 
 > Note: Despite the folder name, lesson-08's assignment covers performance optimization (useCallback, useMemo, debounce). The useReducer/useContext content is in lesson-09.

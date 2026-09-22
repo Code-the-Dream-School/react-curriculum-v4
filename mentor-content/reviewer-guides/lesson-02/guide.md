@@ -102,7 +102,5 @@ Students should create **four components**, each in its own file:
 
 ## References
 
-- CTD React Curriculum Exercises Repo  
-  `Code-the-Dream-School/react-curriculum-v4-exercises`  
-- Lesson-02 Assignment  
-  `react-curriculum-v4/learns-app-content/lesson-02/assignment.md`
+- [CTD React Curriculum Exercises Repo](https://github.com/Code-the-Dream-School/react-curriculum-v4-exercises)
+- [Lesson-02 Assignment](https://github.com/Code-the-Dream-School/react-curriculum-v4/assignments/02-reactDOM-components-JSX-troubleshooting.md)
