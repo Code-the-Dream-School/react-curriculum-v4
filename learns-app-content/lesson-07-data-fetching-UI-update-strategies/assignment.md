@@ -225,16 +225,30 @@ At this point, you should be able to log into your app. With conditional renderi
     - *note: pagination is implemented on the backend so we add `page=0&limit=99` to make sure we get all our todos back (unless your list is large!).*
   - Handles different response scenarios:
     - Success: parse response and update todoList state
-      - *note 1: the response will be a JSON object that contains an array named `tasks` and another object, `pagination` that will be used in future lessons*.
-      - *note 2: see the bottom of the assignment for an example fetch response.*
     - Status 401: throw 'unauthorized' error
     - Other non-ok responses: throw generic error
   - Catches errors and sets error state
   - Always sets loading to false in finally block
 - Make the useEffect depend on the `token` and only call `fetchTodos` when `token` exists
+  - Example request pattern:
+
+    ```jsx
+    const params = new URLSearchParams({
+      limit: 100,
+    });
+    const response = await fetch(`/api/tasks?${params}`, {
+      headers: {
+        'X-CSRF-TOKEN': token,
+      },
+      credentials: 'include',
+    });
+    ```
 
 > [!note]
-> The useEffect hook runs when the component mounts and whenever the token changes. This ensures we fetch fresh data when a user logs in.
+> 
+> - The useEffect hook runs when the component mounts and whenever the token changes. This ensures we fetch fresh data when a user logs in.
+> - The response will be a JSON object that contains an array named `tasks` and another object, `pagination` that will be used in future lessons.
+> - See the bottom of the assignment for an example fetch response.
 
 #### Implement Optimistic Updates for Adding Todos
 

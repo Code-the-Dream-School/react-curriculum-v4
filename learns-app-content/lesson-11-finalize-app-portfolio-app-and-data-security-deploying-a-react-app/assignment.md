@@ -2,6 +2,7 @@
 
 > [!important]
 > This is a **2-part assignment**:
+>
 > 1. **Submitting a short video demonstration of your app** — required  
 > 2. **Deploying your todo app online** — optional
 >
@@ -10,15 +11,16 @@
 > Deploying your todo app online is optional. If you choose not to deploy it, that is completely okay. Before recording your video, you can still complete the rest of the assignment by focusing on styling your app and preparing it for your portfolio.
 >
 > You may also use a different deployment platform if you prefer, but mentors may not be able to help troubleshoot services outside the one used in this curriculum.
- 
- ### Expected App Capabilities
+
+### Expected App Capabilities
 
 After completing this week's assignment, your app should:
 
 - be professionally styled and ready to be incorporated into your portfolio
-- be hosted live using [Vercel](https://vercel.com/) static site hosting
+- (optional) be hosted live using [Vercel](https://vercel.com/) static site hosting
 - maintain all existing CRUD and routing functionality
-- include a comprehensive README with live demo link
+- include a comprehensive README
+  - add the live demo link if app is deployed
 - demonstrate security best practices and input validation
 - be responsive and accessible across different devices
 
@@ -65,20 +67,20 @@ Apply the following styling improvements to enhance your application's visual ap
 
 **Component-Specific Styling:**
 
-- [ ] **App Layout**: Clean, centered layout with proper spacing and visual hierarchy
-- [ ] **Todo List**: Organized display of todo items with clear visual separation
-- [ ] **Todo Items**: Consistent layout with checkbox, text, and action buttons aligned
-- [ ] **Add Todo Form**: Clear input field with accessible labels and submit button
-- [ ] **Navigation**: Clean routing between different views (All Todos, Active, Completed)
-- [ ] **Input Components**: Professional styling for text inputs with proper focus states
-- [ ] **Buttons**: Consistent styling across add, edit, delete, and filter actions
-- [ ] **Checkboxes**: Custom styled checkboxes that clearly indicate completed vs. active states
+- [ ] **App Layout**: clean, centered layout with proper spacing and visual hierarchy
+- [ ] **Todo List**: organized display of todo items with clear visual separation
+- [ ] **Todo Items**: consistent layout with checkbox, text, and action buttons aligned
+- [ ] **Add Todo Form**: clear input field with accessible labels and submit button
+- [ ] **Navigation**: clean routing between different views (All Todos, Active, Completed)
+- [ ] **Input Components**: professional styling for text inputs with proper focus states
+- [ ] **Buttons**: consistent styling across add, edit, delete, and filter actions
+- [ ] **Checkboxes**: custom styled checkboxes that clearly indicate completed vs. active states
 
 **Interactive Elements:**
 
-- [ ] Smooth hover transitions on clickable elements
-- [ ] Focus indicators for keyboard navigation
-- [ ] Disabled states for unavailable actions
+- [ ] smooth hover transitions on clickable elements
+- [ ] focus indicators for keyboard navigation
+- [ ] disabled states for unavailable actions
 
 #### 1.3 Responsive Design Implementation
 
@@ -93,40 +95,12 @@ Ensure your application works seamlessly across all device sizes:
 
 ### Part 2: Implement Security Best Practices
 
-Apply security measures to protect your application and user data:
+Focus on validating and sanitizing any text users submit before it is saved or displayed:
 
-#### 2.1 Input Validation and Sanitization
-
-**Install Security Dependencies:**
-
-First, install DOMPurify for proper input sanitization:
-
-```bash
-npm install dompurify
-npm install --save-dev @types/dompurify
-```
-
-**Example Form Sanitization:**
-
-```jsx
-import DOMPurify from 'dompurify';
-
-// Example: Sanitize user input using DOMPurify
-const sanitizeInput = (input) => {
-  return DOMPurify.sanitize(input.trim(), {
-    ALLOWED_TAGS: [], // Remove all HTML tags
-    ALLOWED_ATTR: []  // Remove all attributes
-  });
-};
-```
-
-**Implementation Tasks:**
-
-- [ ] Install and configure DOMPurify for input sanitization
-- [ ] Ensure input validation runs before you sanitize the input with DOMPurify.
-- [ ] Add client-side validation to all form inputs
-- [ ] Implement proper error messaging without exposing system details
-- [ ] Add maximum length limits to text inputs
+- [ ] Add client-side validation to inputs that accept user text or required values.
+- [ ] Validate required fields before submitting data.
+- [ ] Implement proper error messaging without exposing system details.
+- [ ] Add maximum length limits to text inputs.
 
 ### Part 3: Optimize for Portfolio Presentation
 
@@ -218,6 +192,9 @@ After creating `vercel.json`, commit and push it before deploying.
 
 #### 4.2 Deploy to Vercel
 
+> [!NOTE] NOTE
+> Deployment is optional - see beginning of assignment for details
+
 ##### Step 1: Create Vercel Account and Connect GitHub
 
 1. Go to [vercel.com](https://vercel.com/)
@@ -266,23 +243,23 @@ After creating `vercel.json`, commit and push it before deploying.
 
 Test your deployed application on:
 
-- [ ] Desktop browsers (Chrome, Firefox, Safari)
-- [ ] Mobile devices (iOS and Android)
-- [ ] Tablet devices
-- [ ] Different screen orientations
+- [ ] desktop browsers (Chrome, Firefox, Safari)
+- [ ] mobile devices (iOS and Android)
+- [ ] tablet devices
+- [ ] different screen orientations
 
 #### 5.2 Functionality Verification
 
 Ensure all features work correctly in the production environment:
 
-- [ ] Todo creation (add new todos)
-- [ ] Todo completion (check/uncheck todos)
-- [ ] Todo editing (modify existing todo text)
-- [ ] Todo deletion (remove todos)
-- [ ] Todo filtering (All, Active, Completed views)
-- [ ] Form validations (prevent empty todo submission)
-- [ ] Navigation between different todo views
-- [ ] Error handling and user feedback
+- [ ] todo creation (add new todos)
+- [ ] todo completion (check/uncheck todos)
+- [ ] todo editing (modify existing todo text)
+- [ ] todo deletion (remove todos)
+- [ ] todo filtering (All, Active, Completed views)
+- [ ] form validations (prevent empty todo submission)
+- [ ] navigation between different todo views
+- [ ] error handling and user feedback
 
 ### Test Your Application
 
@@ -290,7 +267,7 @@ Before submitting, verify that your app:
 
 - Builds successfully with `npm run build` and runs without errors using `npm run preview`
 - Applies consistent professional styling across all components and views
-- Sanitizes and validates all user inputs before processing
+- Validates and handles all user inputs safely
 - Has no exposed secrets or API keys in the client bundle
 - Passes cross-device testing on desktop and mobile viewports
 
@@ -362,20 +339,21 @@ After completing this assignment, consider these enhancements for your portfolio
 
 Talking about your projects is an important skill for job interviews. Record a 3–5 minute demo of your final projects that covers the following:
 
- - [ ] Show the user functionality of your site including any login or authentication features
- - [ ] Demonstrate how the user would make use of your application
-   - [ ] include navigation around your site and any user interactivity
-   - [ ] include any creating, reading, updating, or deleting functionality
- - [ ] Scroll the length of any/all of your pages to showcase your styling and layout work
- - [ ] Share what the most challenging part of the project or class was for you and what you enjoyed working on the most
+- [ ] Show the user functionality of your site including any login or authentication features
+- [ ] Demonstrate how the user would make use of your application
+  - [ ] include navigation around your site and any user interactivity
+  - [ ] include any creating, reading, updating, or deleting functionality
+- [ ] Scroll the length of any/all of your pages to showcase your styling and layout work
+- [ ] Share what the most challenging part of the project or class was for you and what you enjoyed working on the most
 
 ### Record your presentation
 
-You can record your presentation in any of these three ways: 
+You can record your presentation in any of these three ways:
+
  1. Logging into your personal Zoom account and record your personal meeting where only you are in attendance and you are screensharing your work ([this is a link to a video on how to do this](https://www.youtube.com/watch?v=njwbjFYCbGU))
  2. Use a screen recording program already on your machine
-    * [Mac users can use this link to watch a how-to video](https://www.youtube.com/watch?v=w9Byefp51tY)
-    * [Windows users can use this link to watch a how-to video](https://www.youtube.com/watch?v=PJB7pM5bvNI)
+    - [Mac users can use this link to watch a how-to video](https://www.youtube.com/watch?v=w9Byefp51tY)
+    - [Windows users can use this link to watch a how-to video](https://www.youtube.com/watch?v=PJB7pM5bvNI)
  3. Use an online option such as loom ([link to a how to video on loom here](https://www.youtube.com/watch?v=oAdLPbfXcQo)).
 
 ### Upload your video
@@ -386,16 +364,16 @@ You can record your presentation in any of these three ways:
 <h4>1. Make sure you're logged in to youtube.</h4>
  <p>If you don't have a youtube account, <a href="https://support.google.com/youtube/answer/161805?hl=en&co=GENIE.Platform%3DDesktop">create one by following these instructions</a>.</p>
  <p>You will know you're logged in if you have an initial/icon/other in the top right corner (where the M in the brown circle is on this screenshot):</p>
- 
+
  ![User logged in to youtube account](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.01.20%E2%80%AFPM.png?raw=true)
 
  <h4>2. Click `+ Create` in the top right and select `Upload video`</h4>
- 
+
  ![Create menu expanded](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.01.27%E2%80%AFPM.png?raw=true)
 
  <h4>3. In the Upload videos window that appears, click the black `Select files` button</h4>
  <p>You'll need to select the file of your recording you have saved on your computer.</p>
- 
+
  ![Upload videos modal](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.01.35%E2%80%AFPM.png?raw=true)
 
 <h4>4. The file title will be the default video title.  You can change this to include your name and "React Final Project Presentation"</h4>
@@ -408,22 +386,22 @@ You can record your presentation in any of these three ways:
 
 <h4>6. You'll want to be sure the following options for some of the sections that appear after clicking `Show more` are set to the following:</h4>
 
- - [ ] Altered content: select "No" since you have not used AI to alter reality in your video
- 
- - [ ] Recording date and location: please select the date you made your final project recording
-      
- - [ ] Shorts remixing: select "Don't allow remixing"
-       
- - [ ] Comments and ratings: if you would like classmates to leave comments, leave comments "On", otherwise you can turn them off by selecting "Off".  _NOTE: we do not and cannot monitor comments.  Please report anything concerning to Code the Dream but have screenshots if needed._  You can also uncheck 'Show how many viewers like this video' if you prefer.
-       
- - [ ] Click the black `Next` button in the bottom right to proceed from the Details section of the upload through the Video elements and Checks portion.
-       
- - [ ] Once you are on the Visibility section of the upload, select "Unlisted" as seen here
+- [ ] altered content: select "No" since you have not used AI to alter reality in your video
+
+- [ ] recording date and location: please select the date you made your final project recording
+
+- [ ] shorts remixing: select "Don't allow remixing"
+
+- [ ] comments and ratings: if you would like classmates to leave comments, leave comments "On", otherwise you can turn them off by selecting "Off".  *NOTE: we do not and cannot monitor comments.  Please report anything concerning to Code the Dream but have screenshots if needed.*  You can also uncheck 'Show how many viewers like this video' if you prefer.
+
+- [ ] Click the black `Next` button in the bottom right to proceed from the Details section of the upload through the Video elements and Checks portion.
+
+- [ ] Once you are on the Visibility section of the upload, select "Unlisted" as seen here
 
 ![Select Unlisted](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.04.52%E2%80%AFPM.png?raw=true)
 
- - [ ] Lastly, click `Save` and copy your video link as seen here
+- [ ] Lastly, click `Save` and copy your video link as seen here
 
 ![Save and copy](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.05.09%E2%80%AFPM.png?raw=true)
- 
+
 </details>

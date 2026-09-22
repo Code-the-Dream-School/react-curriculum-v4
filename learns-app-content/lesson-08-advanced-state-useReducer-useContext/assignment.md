@@ -17,16 +17,18 @@ After completing this week's assignment, your app should:
 #### Add Sort State and API Integration
 
 1. **Update TodosPage.jsx state**:
-   - Add two new state variables after existing state: `sortBy` with initial value `'creationDate'` and `sortDirection` with initial value `'desc'`
+   - Add two new state variables after existing state: `sortBy` with initial value `'createdAt'` and `sortDirection` with initial value `'desc'`
 
-2. **Modify the fetchTodos function** to include sort parameters:
-   - Create a `URLSearchParams` object inside the function with `sortBy` and `sortDirection` properties
+2. **Modify the fetchTodos function** to include sort parameters and a default pagination limit:
+   - Create a `URLSearchParams` object inside the function with `sortBy`, `sortDirection`, and `limit` properties
+   - Set the default `limit` to `100` so the API returns up to 100 todos
    - Update the fetch URL to append the params to the base `/tasks` endpoint using template literals
 
    ```jsx
    const params = new URLSearchParams({
      sortBy,
      sortDirection,
+     limit: 100,
    });
    const resp = await fetch(`/api/tasks?${params}`, options);
    ```
@@ -38,15 +40,16 @@ After completing this week's assignment, your app should:
 >
 > ```jsx
 > const params = new URLSearchParams({
->   sortBy: 'creationDate',
+>   sortBy: 'createdAt',
 >   sortDirection: 'desc',
+>   limit: 100,
 > });
 > fetch(`/api/tasks?${params}`, options);
 > ```
 >
-> JavaScript automatically calls `params.toString()`, which converts the object to: `"sortBy=creationDate&sortDirection=desc"`
+> JavaScript automatically calls `params.toString()`, which converts the object to: `"sortBy=createdAt&sortDirection=desc&limit=100"`
 >
-> This creates the final URL: `http://localhost:3001/api/tasks?sortBy=creationDate&sortDirection=desc`
+> This creates the final URL: `http://localhost:3001/api/tasks?sortBy=createdAt&sortDirection=desc&limit=100`
 
 3. **Update useEffect dependencies** to re-fetch when sort options change:
    - Add `sortBy` and `sortDirection` to the dependency array alongside the existing `token`
@@ -56,7 +59,7 @@ After completing this week's assignment, your app should:
 4. **Create `src/shared/SortBy.jsx`**:
    - Create a functional component that accepts props: `sortBy`, `sortDirection`, `onSortByChange`, `onSortDirectionChange`
    - Create two select dropdowns with proper labels and htmlFor attributes
-     - First dropdown: "Sort by" with options for 'creationDate' ("Creation Date") and 'title' ("Title")
+     - First dropdown: "Sort by" with options for 'createdAt' ("Created At") and 'title' ("Title")
      - Second dropdown: "Order" with options for 'desc' ("Descending") and 'asc' ("Ascending")
    - Use controlled component pattern with value and onChange handlers that call the respective prop functions
 
@@ -206,7 +209,7 @@ The cache invalidation pattern we're implementing uses a "data version" approach
     - Add `dataVersion` as a prop to the component function parameters
     - Create a memoized `filteredTodoList` using `useMemo`
     - Inside the useMemo function:
-      - Add a console.log message: `"Recalculating filtered todos (v${dataVersion})"`
+      - Add a console.log message: `` `"Recalculating filtered todos (v${dataVersion})"` ``
       - Return an object with `version` and `todos` properties
       - Set `version` to `dataVersion` and `todos` to the filtered todoList that excludes completed todos
     - Include both `todoList` and `dataVersion` in the dependency array
@@ -229,7 +232,7 @@ The cache invalidation pattern we're implementing uses a "data version" approach
 
     ```jsx
     } catch (error) {
-      if (debouncedFilterTerm || sortBy !== 'creationDate' || sortDirection !== 'desc') {
+      if (debouncedFilterTerm || sortBy !== 'createdAt' || sortDirection !== 'desc') {
         setFilterError(`Error filtering/sorting todos: ${error.message}`);
       } else {
         setError(`Error fetching todos: ${error.message}`);
@@ -250,7 +253,7 @@ The cache invalidation pattern we're implementing uses a "data version" approach
       - A "Clear Filter Error" button that calls `setFilterError('')` when clicked
       - A "Reset Filters" button that when clicked:
         - Clears the filter term: `setFilterTerm('')`
-        - Resets sort by: `setSortBy('creationDate')`
+        - Resets sort by: `setSortBy('createdAt')`
         - Resets sort direction: `setSortDirection('desc')`
         - Clears the filter error: `setFilterError('')`
 
