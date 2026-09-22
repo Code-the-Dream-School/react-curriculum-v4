@@ -99,7 +99,5 @@ A user should be able to:
 
 ## References
 
-- CTD React Curriculum Exercises Repo
-  `Code-the-Dream-School/react-curriculum-v4-exercises`
-- Lesson-06 Assignment
-  `react-curriculum-v4/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assignment.md`
+- [CTD React Curriculum Exercises Repo](https://github.com/Code-the-Dream-School/react-curriculum-v4-exercises)
+- [Lesson-06 Assignment](https://github.com/Code-the-Dream-School/react-curriculum-v4/assignments/06-reusable-components-project-organization-refactoring.md)

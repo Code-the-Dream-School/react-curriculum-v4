@@ -98,7 +98,5 @@ A user should experience no change in visible behavior -- this assignment is a s
 
 ## References
 
-- CTD React Curriculum Exercises Repo
-  `Code-the-Dream-School/react-curriculum-v4-exercises`
-- Lesson-09 Assignment
-  `react-curriculum-v4/learns-app-content/lesson-09-advanced-state-useReducer-useContext-continued/assignment.md`
+- [CTD React Curriculum Exercises Repo](https://github.com/Code-the-Dream-School/react-curriculum-v4-exercises)
+- [Lesson-09 Assignment](https://github.com/Code-the-Dream-School/react-curriculum-v4/assignments/09-advanced-state-useReducer-useContext-continued.md)
