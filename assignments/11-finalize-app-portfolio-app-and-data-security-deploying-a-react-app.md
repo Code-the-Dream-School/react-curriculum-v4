@@ -24,6 +24,8 @@ After completing this week's assignment, your app should:
 - demonstrate security best practices and input validation
 - be responsive and accessible across different devices
 
+Keep your existing code from previous lessons. This week's work builds on and modifies that code — it does not replace it.
+
 ### Part 1: Style Your Application
 
 Transform your React application from a functional prototype into a portfolio-worthy project that showcases your development skills. Professional styling demonstrates attention to detail and user experience considerations that employers value.
@@ -133,11 +135,11 @@ Create a professional README.md that includes all of the following sections:
 - [ ] **License Information**: MIT license or other appropriate license
 - [ ] **Contact Information**: Your GitHub profile or portfolio link
 
-### Part 4: Deploy to Vercel
+### Part 4 (Optional): Deploy to Vercel
 
 Deploy your application to Vercel's static site hosting for free public access:
 
-#### 4.1 Prepare for Deployment
+#### 4.1 (Optional) Prepare for Deployment
 
 **Pre-deployment Checklist:**
 
@@ -190,7 +192,7 @@ Create `vercel.json` in your project root (same directory as `package.json`) wit
 
 After creating `vercel.json`, commit and push it before deploying.
 
-#### 4.2 Deploy to Vercel
+#### 4.2 (Optional) Deploy to Vercel
 
 > [!NOTE] NOTE
 > Deployment is optional - see beginning of assignment for details
@@ -241,7 +243,7 @@ After creating `vercel.json`, commit and push it before deploying.
 
 #### 5.1 Cross-Device Testing
 
-Test your deployed application on:
+Test your application on:
 
 - [ ] desktop browsers (Chrome, Firefox, Safari)
 - [ ] mobile devices (iOS and Android)
@@ -250,7 +252,7 @@ Test your deployed application on:
 
 #### 5.2 Functionality Verification
 
-Ensure all features work correctly in the production environment:
+Ensure all features work correctly in your application:
 
 - [ ] todo creation (add new todos)
 - [ ] todo completion (check/uncheck todos)
@@ -295,8 +297,7 @@ Submit the following:
 
 - **Live Application URL** (if you deployed): Link to your deployed application
 - **GitHub Repository**: Link to your completed and styled project repository
-- **Updated README**: Including comprehensive documentation
-- **Style Documentation**: Brief explanation of your styling approach and design decisions
+- **Video Demonstration**: Link to your recorded presentation of your finished project
 
 ### Evaluation Criteria
 
@@ -304,7 +305,7 @@ Your assignment will be evaluated on:
 
 - **Visual Design**: Professional appearance, consistent styling, responsive design
 - **Code Quality**: Clean, organized code with proper comments and structure
-- **Functionality**: All features work correctly in the deployed environment
+- **Functionality**: All features work correctly in the environment
 - **Documentation**: Comprehensive README with clear setup instructions
 - **Security**: Proper input validation and secure coding practices
 - **Accessibility**: Keyboard navigation and screen reader compatibility
@@ -335,7 +336,7 @@ After completing this assignment, consider these enhancements for your portfolio
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
 
-## VIDEO DEMONSTRATION Details
+### VIDEO DEMONSTRATION Details
 
 Talking about your projects is an important skill for job interviews. Record a 3–5 minute demo of your final projects that covers the following:
 
@@ -403,5 +404,34 @@ You can record your presentation in any of these three ways:
 - [ ] Lastly, click `Save` and copy your video link as seen here
 
 ![Save and copy](https://github.com/Code-the-Dream-School/intro-to-programming-2025/blob/d2f9b35d7206eeb0af24f85a8e8e5d97d43cbfad/images/Screenshot%202025-01-27%20at%204.05.09%E2%80%AFPM.png?raw=true)
+
+</details>
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Styling Approach Selection (Part 1, Section 1.1)** — The student has chosen and applied one styling approach: CSS Modules, CSS-in-JS with Styled-Components, Tailwind CSS, or another consistent approach. Example — adapt to your own layout: the specific styling approach, color scheme, typography, and layout choices are the student's own design decisions.
+- **Professional Styling Implementation (Part 1, Section 1.2)** — The application has a consistent color scheme, typography hierarchy, responsive layouts, styled loading/error/empty states, and sufficient color contrast. Components (app layout, todo list, todo items, form, navigation, inputs, buttons, checkboxes) are consistently styled. Interactive elements have hover transitions, focus indicators, and disabled states. Example — adapt to your own layout: all styling choices are the student's own; do not fail for specific color, font, or layout choices as long as the app appears professionally styled.
+- **Responsive Design (Part 1, Section 1.3)** — The application works across device sizes with touch-friendly button sizes, readable text without zooming, and no horizontal scrolling. Note: AirHub cannot test responsive behavior; it is confirmed by human reviewers.
+- **Security Best Practices (Part 2)** — Client-side validation is added to user text inputs, required fields are validated before submission, error messaging does not expose system details, and text inputs have maximum length limits.
+- **Code Quality Review (Part 3, Section 3.1)** — Commented-out code and console.log statements are removed, formatting is consistent, unused imports/dependencies/variables are removed, and reusable components are extracted where appropriate.
+- **Comprehensive README (Part 3, Section 3.2)** — A README.md includes: project title and description, features list, technologies used, screenshots (desktop and mobile), getting started section with prerequisites and installation, available scripts, design decisions explanation, future improvements, license information, and contact information. If the app is deployed, a live demo link is included. Example — adapt to your own layout: the specific content and formatting of each section is the student's choice.
+- **Functional Verification (Part 5)** — All existing features work correctly: todo creation, completion, editing, deletion, filtering, form validation, navigation, and error handling. The application builds successfully with `npm run build` and runs without errors using `npm run preview`. Note: AirHub cannot run the dev server to verify runtime behavior; it is confirmed by human reviewers.
+- **Video Demonstration** — A 3–5 minute recorded demo showing: user functionality including login/authentication, application usage with navigation and interactivity, CRUD functionality, scrolling through pages to showcase styling and layout, and a verbal reflection on the most challenging part and what the student enjoyed most. Note: AirHub cannot view or assess the video; it is confirmed by human reviewers.
+- **Checkpoint: Check Your Understanding with AI** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission** — Final changes committed and pushed to GitHub. For this assignment, the student submits a GitHub repository link (not a PR link) along with their video link.
+
+### Optional Deliverables/Tasks
+
+**Do not fail a student for omitting any of the following.** Part 4 (Deploy to Vercel) is explicitly marked as optional in the assignment.
+
+- **Deployment Preparation (Part 4, Section 4.1)** — If attempted: the application builds successfully, the production build is tested locally, environment variables are configured, and changes are committed and pushed.
+- **vercel.json Configuration (Part 4, Section 4.1)** — If attempted: a `vercel.json` file is created in the project root with rewrite rules routing `/api/:path*` to the CTD backend. Use exactly as written: the rewrite configuration and backend URL must match for API routing to work in production.
+- **Vercel Deployment (Part 4, Section 4.2)** — If attempted: the app is deployed to Vercel with a working live URL (`.vercel.app`), API routing works in production, and the live URL is included in the README and submission.
+- **Live Demo Link in README** — If the app is deployed, the README includes a direct link to the deployed application.
 
 </details>

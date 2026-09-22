@@ -8,6 +8,10 @@ After completing this week's assignment, your app should:
 - allow users to complete a todo by checking a checkbox
 - utilize a controlled form component
 
+Note: The variable names, prop names, and property names specified in this assignment (isCompleted, completeTodo, onCompleteTodo, filteredTodoList, workingTodoTitle) should be used exactly as written — each component relies on these exact names to connect to the others correctly.
+
+Keep your existing code from previous lessons. This week's work builds on and modifies that code — it does not replace it.
+
 ### Instructions Part 1: Conditional Rendering for Empty List
 
 > [!NOTE]
@@ -58,7 +62,7 @@ Now we'll add the ability for users to mark todos as complete using checkboxes.
    - `checked` prop set to `todo.isCompleted`
    - `onChange` event handler that calls `onCompleteTodo` with the todo's id
 
-Your TodoListItem structure should look like:
+Use exactly as written — your TodoListItem structure should look like this. The checkbox attributes and handler connect to the completeTodo logic above:
 
 ```jsx
 return (
@@ -168,3 +172,28 @@ In upcoming weeks, you'll learn to:
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Conditional Rendering for Empty List (Part 1)** — In TodoList.jsx, the return statement uses a ternary operator to check if the list is empty. When empty, a paragraph element renders with the text "Add todo above to get started." When not empty, the existing unordered list with mapped todos renders. Use exactly as written: the message text "Add todo above to get started" is specified by the assignment. Note: after Part 2, this check uses `filteredTodoList` (not `todoList`) per the instruction to replace all JSX references.
+- **Update Todo Data Structure (Part 2)** — The `addTodo` function in App.jsx creates todo objects with three properties: `id`, `title`, and `isCompleted` (set to `false` for new todos). Use exactly as written: the property name `isCompleted` must match — it is used in the checkbox, filter, and completeTodo logic.
+- **completeTodo Function (Part 2)** — A function named `completeTodo` in App.jsx that takes an `id` parameter, maps through the `todoList` array, and for the matching todo returns a new object with `isCompleted` set to `true` (using the spread operator), leaving non-matching todos unchanged. Updates state with the resulting array. Use exactly as written: the function name `completeTodo` is passed as a prop and must match.
+- **Pass Handler Through Components (Part 2)** — `completeTodo` is passed from App.jsx to TodoList as `onCompleteTodo` prop, then from TodoList to each TodoListItem instance as `onCompleteTodo`. Use exactly as written: the prop name `onCompleteTodo` must match across all three components.
+- **TodoListItem Checkbox (Part 2)** — TodoListItem renders a checkbox input with `type="checkbox"`, `checked={todo.isCompleted}`, and `onChange={() => onCompleteTodo(todo.id)}`, placed alongside `{todo.title}` inside the `<li>`. Use exactly as written: the checkbox attributes and handler connect to the completeTodo logic.
+- **Filter Completed Todos (Part 2)** — In TodoList.jsx, a `filteredTodoList` constant filters out todos where `isCompleted` is `true`. All JSX references to `todoList` in TodoList.jsx are replaced with `filteredTodoList` (including the conditional rendering check from Part 1). Use exactly as written: the variable name `filteredTodoList` is specified by the assignment.
+- **Controlled Component Conversion (Part 3)** — In TodoForm.jsx, `useState` is imported and a state variable `workingTodoTitle` (initialized to an empty string) is created. The input's `value` prop is set to `workingTodoTitle`. An `onChange` handler updates state with `event.target.value`. The `handleAddTodo` function is updated to pass `workingTodoTitle` to `onAddTodo` and reset state to an empty string (replacing the previous `event.target.todoTitle.value` and `event.target.reset()` approach). Use exactly as written: the state variable name `workingTodoTitle` is specified by the assignment.
+- **Disable Button for Empty Input (Part 4)** — The submit button's `disabled` prop is set to prevent submission when `workingTodoTitle` is empty or whitespace-only. The suggested implementation is `disabled={!workingTodoTitle.trim()}` but any expression achieving the same behavior is acceptable.
+- **Functional Verification (Part 5)** — Empty state message displays when list is empty, todos can be added, button is disabled when input is empty, checkboxes appear on each todo, checking a todo removes it from the list, input updates as the user types (controlled), and the form clears after submission. Note: AirHub cannot run the dev server to verify runtime behavior; it is confirmed by human reviewers.
+- **Checkpoint: Check Your Understanding with AI** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission** — Changes committed to the working branch, pushed to GitHub, and a PR created comparing the working branch to `main`.
+
+### Optional Deliverables/Tasks
+
+**None.** All tasks in this assignment are required.
+
+</details>
