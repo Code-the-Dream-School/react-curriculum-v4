@@ -437,8 +437,10 @@ Your application will use this routing structure:
       
       // Get status filter from URL, default to 'all'
       const statusFilter = searchParams.get('status') || 'all';  // Add this line
-      const page = Number(searchParams.get('page') ?? 0);
-      const limit = Number(searchParams.get('limit') ?? 99);
+      const pageParam = parseInt(searchParams.get('page') ?? '0', 10);
+      const limitParam = parseInt(searchParams.get('limit') ?? '99', 10);
+      const page = Number.isFinite(pageParam) && pageParam >= 0 ? pageParam : 0;
+      const limit = Number.isFinite(limitParam) && limitParam > 0 ? limitParam : 99;
 
       useEffect(() => {
         async function fetchTodos() {
