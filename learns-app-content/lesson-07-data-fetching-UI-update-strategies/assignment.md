@@ -219,10 +219,10 @@ At this point, you should be able to log into your app. With conditional renderi
 - Create an async function `fetchTodos` inside a `useEffect` hook that:
   - uses `try/catch/finally` blocks
   - Sets `isTodoListLoading` to true
-  - Makes a GET request to `/api/tasks` with:
-    - a query parameter of `limit=100` by default so the API returns up to 100 todos. *This step is optional but be aware that the API returns only 10 todos at a time by default. This could show some confusing behaviors if you sort or filter a larger todo list.*
+  - Makes a GET request to `/api/tasks?page=0&limit=99` with:
     - `X-CSRF-TOKEN` header set to the token prop
     - `credentials: 'include'`
+    - *note: pagination is implemented on the backend so we add `page=0&limit=99` to make sure we get all our todos back (unless your list is large!).*
   - Handles different response scenarios:
     - Success: parse response and update todoList state
     - Status 401: throw 'unauthorized' error
