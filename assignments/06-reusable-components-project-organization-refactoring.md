@@ -7,6 +7,10 @@ After completing this week's assignment, your app should:
 - use the same label and input on new todo form and edit todo
 - allow the user to edit their todo's title
 
+Note: The component names, prop names, and function names specified in this assignment (TextInputWithLabel, elementId, labelText, isEditing, workingTitle, handleCancel, handleEdit, handleUpdate, updateTodo, onUpdateTodo, isValidTodoTitle) should be used exactly as written — each component relies on these exact names to connect to the others correctly.
+
+Keep your existing code from previous lessons. This week's work builds on and modifies that code — it does not replace it.
+
 ### Re-organize Project
 
 *While running the Vite development server, these changes will throw errors about non-existent files until all of the import statements are corrected.*
@@ -49,7 +53,7 @@ for the input:
 We can reduce this list of props by combining `htmlFor` and `id` since they used together to associate a label with its input. We will call the new props `elementId`. We also do not need to pass in `type` since the component will only be for text inputs. This leaves us with `elementId`, `ref`, `onChange`. We will also want to dynamically update our label's text (call it `labelText`) and include the todo's title(call it `value`). With this list of five props identified, we can update the `TextInputWithLabel` component.
 
 - Destructure the props `elementId`, `labelText`, `onChange`, `ref`, and `value` from the props argument in `TextInputWithLabel`'s function definition.
-- Assign props to the matching label and input props. You will end up with a component that looks like:
+- Assign props to the matching label and input props. Use exactly as written — you will end up with a component that looks like this. The prop names are used across multiple components:
 
 ```jsx
 {/*excerpt from TextInputWithLabel.jsx*/}
@@ -104,7 +108,7 @@ In the `TodoListItem` component:
 - Surround the `{todo.title}` with a span element.
 - Add an `onClick` handler to the `span` that toggles the `isEditing` state value to `true`.
 
-Your list item should resemble:
+Your list item should match the structure exactly as written since the structure, form wrapper, and onClick handler are all required:
 
 ```jsx
 {/*excerpt from TodoListItem.jsx*/}
@@ -137,7 +141,7 @@ At this point, when you click on the todo in the list, it will toggle between be
 
 #### Extract Form Validation to Helper Function
 
-Before we continue building the edit functionality, let's refactor the validation logic in `TodoForm` into a reusable helper function. Currently, the form validation is embedded directly in the JSX as `disabled={workingTodo === ''}`. As our application grows, we may need this same validation logic in other places, so extracting it into a helper function will make it easier to maintain and reuse.
+Before we continue building the edit functionality, let's refactor the validation logic in `TodoForm` into a reusable helper function. Currently, the form validation is embedded directly in the JSX as `disabled={!workingTodoTitle.trim()}`. As our application grows, we may need this same validation logic in other places, so extracting it into a helper function will make it easier to maintain and reuse.
 
 - Create a new directory `src/utils` if it doesn't already exist
 - Inside `src/utils`, create a new file called `todoValidation.js`
@@ -145,6 +149,8 @@ Before we continue building the edit functionality, let's refactor the validatio
   - takes a `title` parameter
   - returns `true` if the title is not empty after trimming whitespace
   - returns `false` if the title is empty or only contains whitespace
+
+Use exactly as written — the function name is imported and used in multiple components:
 
 ```javascript
 // src/utils/todoValidation.js
@@ -224,9 +230,9 @@ You should now be able to make changes to the todo in the input. We cannot save 
 
 ![adding and completing multiple todos](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/add-todos.gif)
 
-### Stretch Goal (Optional): Create Custom Hook
+### Optional: Create Custom Hook
 
-*Note: Custom hooks are an advanced React pattern! This stretch goal demonstrates how stateful logic can be extracted and reused. Even if you don't implement it, you're encouraged to read and understand this section.*
+*Note: Custom hooks are an advanced React pattern! This optional section demonstrates how stateful logic can be extracted and reused. Even if you don't implement it, you're encouraged to read and understand this section.*
 
 If you're feeling adventurous, you can extract the editing state management from `TodoListItem` into a reusable custom hook. This will allow us to share stateful logic between components as our application grows in complexity.
 
@@ -336,3 +342,31 @@ At this point, we've created a solid MVP (minimum viable product). Next week, we
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Re-organize Project** — Two new directories created in `src`: `features` and `shared`. A `TodoList` directory created inside `features`. `TodoForm.jsx` moved to `src/features/`. `TodoList.jsx` and `TodoListItem.jsx` moved to `src/features/TodoList/`. Import statements in `App.jsx` updated to reflect the new paths. The reviewer can verify the directory structure through the import paths in the code.
+- **TextInputWithLabel Component** — A new file `TextInputWithLabel.jsx` in `src/shared/` containing a reusable component that accepts destructured props: `elementId`, `labelText`, `onChange`, `ref`, and `value`. Renders a label (with `htmlFor={elementId}` and dynamic text from `labelText`) and a text input (with `id={elementId}`, `ref`, `value`, and `onChange`), wrapped in a React fragment. Use exactly as written: the file name, component name, and prop names are used across multiple components and must match.
+- **Refactor TodoForm to Use TextInputWithLabel** — `TextInputWithLabel` imported into `TodoForm.jsx` and replaces the existing label and input elements. Props `elementId`, `labelText`, `ref`, `value`, and `onChange` passed from TodoForm to the component instance.
+- **Extract Form Validation Helper** — A file `src/utils/todoValidation.js` containing an exported function `isValidTodoTitle` that takes a `title` parameter and returns `true` if the title is not empty after trimming, `false` otherwise. Use exactly as written: the function name is imported and used in multiple components. Imported in `TodoForm.jsx` and used for the Add Todo button's `disabled` prop.
+- **Toggle Between Display and Edit (TodoListItem)** — A state variable `isEditing` (initialized to `false`) added to TodoListItem. A ternary in the return statement shows `TextInputWithLabel` when editing and the checkbox + title when not. The todo title is wrapped in a `<span>` with an `onClick` that sets `isEditing` to `true`. The entire ternary is wrapped in a `<form>` element.
+- **Edit Functionality — Local State and Handlers (TodoListItem)** — A state variable `workingTitle` (initialized to `todo.title`). A `handleCancel` function that resets `workingTitle` to `todo.title` and sets `isEditing` to `false`. A `handleEdit` function that updates `workingTitle` from `event.target.value`. `TextInputWithLabel` updated with `value={workingTitle}` and `onChange={handleEdit}`. A "Cancel" button with `type="button"` and `onClick={handleCancel}`.
+- **updateTodo Function (App)** — A function named `updateTodo` in App.jsx that takes an `editedTodo` argument, maps through `todoList` comparing ids, returns a new object spreading `editedTodo` for matches, and updates state with the result. Passed as `onUpdateTodo` prop through TodoList to TodoListItem. Use exactly as written: the function name `updateTodo` and prop name `onUpdateTodo` must match across components.
+- **handleUpdate and Update Button (TodoListItem)** — `onUpdateTodo` destructured from props. A `handleUpdate` function that: returns early if not editing, calls `event.preventDefault()`, calls `onUpdateTodo` with a new object spreading `todo` and setting `title` to `workingTitle`, and sets `isEditing` to `false`. An "Update" button with `type="button"`, click handler calling `handleUpdate`, and disabled state using `isValidTodoTitle`. The form's `onSubmit` also uses `handleUpdate`.
+- **Functional Verification** — `TextInputWithLabel` is reused in both add and edit flows. Clicking a title enters edit mode. Editing updates as the user types (controlled). Cancel resets to original. Update saves and exits edit mode. Validation prevents empty/whitespace titles. Note: AirHub cannot run the dev server to verify runtime behavior; it is confirmed by human reviewers.
+- **Periodic Commits** — The assignment instructs students to commit after the reorganization (line 21) and after the validation extraction (line 170). These intermediate commits are part of the workflow.
+- **Checkpoint: Check Your Understanding with AI** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission** — Changes committed to the working branch, pushed to GitHub, and a PR created comparing the working branch to `main`.
+
+### Optional Deliverables/Tasks
+
+**Do not fail a student for omitting these.**
+
+- **Optional: Create Custom Hook** — A file `src/hooks/useEditableTitle.js` containing a custom hook `useEditableTitle` that encapsulates the `isEditing` and `workingTitle` state along with `startEditing`, `cancelEdit`, `updateTitle`, and `finishEdit` functions. If attempted, TodoListItem should import the hook and replace its manual `useState` calls and handler logic with the hook's API. The code blocks in this section show the implementation; if the student attempts it, the structure should match.
+
+</details>

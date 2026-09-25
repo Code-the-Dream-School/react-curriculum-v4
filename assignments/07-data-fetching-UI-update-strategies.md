@@ -13,6 +13,10 @@ After completing this week's assignment, your app should:
 - display error messages when API operations fail
 - use optimistic updates for better user experience
 
+Note: The component names, prop names, state variable names, and function names specified in this assignment (TodosPage, Header, Logon, onSetEmail, onSetToken, fetchTodos, isTodoListLoading, authError, isLoggingOn) should be used exactly as written — each component relies on these exact names to connect to the others correctly. The API endpoints, headers, and response fields are also exact — the backend API requires these specific values.
+
+Keep your existing code from previous lessons. This week's work builds on and modifies that code — it does not replace it.
+
 ### Instructions Part 1: Environment Setup
 
 #### Register with CTD's Todo List API
@@ -32,7 +36,7 @@ Copy and paste the `vite.config.js` configuration from the reference file:
 
 - [Reference `vite.config.js` (react-todo-list-v4)](https://github.com/Code-the-Dream-School/react-todo-list-v4/blob/main/vite.config.js)
 
-Your file should look similar to this:
+Use exactly as written — your file should look like this. The proxy configuration is required for API requests to work:
 
 ```js
 import { defineConfig, loadEnv } from 'vite';
@@ -109,9 +113,9 @@ VITE_TARGET=https://ctd-learns-node-l42tx.ondigitalocean.app
 
 #### Create the Header Component
 
-- Create a new directory: `src/shared/`
+- Use the existing `src/shared/` directory you created in the last lesson
 - Create `src/shared/Header.jsx` with a simple header that displays:
-  - An `<h1>` with "Todo List" text
+  - An `<h1>` with your app's title (we have used "Todo List" throughout our examples, but use whatever title you chose in lesson 01)
 - Export Header as the default export
 
 #### Update App Component
@@ -152,7 +156,7 @@ VITE_TARGET=https://ctd-learns-node-l42tx.ondigitalocean.app
   - Finally sets loading state back to false
 
 ```jsx
-// example fetch request structure
+// The API endpoint, method, headers, and response fields below are required as shown — the backend API depends on these exact values
 try{ 
   const response = await fetch('/api/users/logon', {
     method: 'POST',
@@ -161,8 +165,8 @@ try{
     body: JSON.stringify({ email, password })
   });
   const data = await response.json();
-  if (response.status === 200 && data.name && data.csrfToken) {
-    onSetEmail(data.name);
+  if (response.status === 200 && data.email && data.csrfToken) {
+    onSetEmail(data.email);
     onSetToken(data.csrfToken);
   } else {
     setAuthError(`Authentication failed: ${data?.message}`);
@@ -230,7 +234,7 @@ At this point, you should be able to log into your app. With conditional renderi
   - Catches errors and sets error state
   - Always sets loading to false in finally block
 - Make the useEffect depend on the `token` and only call `fetchTodos` when `token` exists
-  - Example request pattern:
+  - The API endpoint, headers, and credentials are required as shown — the backend API depends on these exact values:
 
     ```jsx
     const params = new URLSearchParams({
@@ -245,7 +249,7 @@ At this point, you should be able to log into your app. With conditional renderi
     ```
 
 > [!note]
-> 
+>
 > - The useEffect hook runs when the component mounts and whenever the token changes. This ensures we fetch fresh data when a user logs in.
 > - The response will be a JSON object that contains an array named `tasks` and another object, `pagination` that will be used in future lessons.
 > - See the bottom of the assignment for an example fetch response.
@@ -467,3 +471,31 @@ In upcoming weeks, you'll learn about:
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Environment Setup (Part 1)** — Student has registered with the CTD Todo List API. The `vite.config.js` is updated with the proxy configuration: port 3001, `/api` proxy path with `changeOrigin: true` and cookie-rewriting logic. Use exactly as written: the proxy configuration is required for API requests to work. A `.env` file contains `VITE_TARGET` pointing to the CTD backend URL. The `.env` file must be in `.gitignore`.
+- **TodosPage Component (Part 2)** — A new file `src/features/Todos/TodosPage.jsx` containing all todo-related state and functions extracted from App.jsx: `todoList`/`setTodoList` state, `addTodo`, `completeTodo`, and `updateTodo` functions, and the TodoForm and TodoList JSX. Accepts a `token` prop (added in Part 4). Exported as default.
+- **Header Component (Part 2)** — A new file `src/shared/Header.jsx` rendering an `<h1>` with the app's title. Example — adapt to your own layout: the assignment uses "Todo List" as an example but the student may have chosen a different app name in earlier lessons; do not fail for a different title.
+- **App Component Update (Part 2/4)** — App.jsx simplified to render Header and conditionally render either TodosPage (when `token` exists) or Logon (when no `token`). Contains `email` and `token` state variables. Passes `token` to TodosPage, and `onSetEmail`/`onSetToken` to both Logon and Header.
+- **Logon Component (Part 3)** — A file `src/features/Logon.jsx` that accepts `onSetEmail` and `onSetToken` props (no placeholder defaults in the final version — those must be removed per Part 4). Contains controlled form state for `email`, `password`, `authError`, and `isLoggingOn`. An async `handleSubmit` that POSTs to `/api/users/logon` with JSON body, checks for status 200 with `data.email` and `data.csrfToken`, calls the prop handlers on success, sets error on failure, and manages loading state with try/catch/finally. Form renders email and password inputs (both required), properly associated labels, a submit button with loading state text, and error display. Use exactly as written: the API endpoint `/api/users/logon`, method, headers (`Content-Type: application/json`), and `credentials: 'include'` are required by the backend.
+- **Data Fetching with useEffect (Part 5)** — TodosPage imports and uses `useEffect`. Contains `error` and `isTodoListLoading` state. An async `fetchTodos` function inside a `useEffect` hook that GETs `/api/tasks` with `limit=100` query parameter, `X-CSRF-TOKEN` header set to the token prop, and `credentials: 'include'`. Handles success (updates todoList), 401 (unauthorized error), and other failures. Uses try/catch/finally with loading state. useEffect depends on `token` and only calls `fetchTodos` when token exists. Use exactly as written: the API endpoint, headers, and credentials are required by the backend.
+- **Optimistic Add Todo (Part 5)** — The `addTodo` function is async. Adds the new todo to state immediately (optimistic update), then POSTs to `/api/tasks` with title and isCompleted in JSON body, `Content-Type` and `X-CSRF-TOKEN` headers, and `credentials: 'include'`. On success: replaces the temporary todo with the server response. On failure: removes the failed todo and sets error.
+- **Optimistic Complete Todo (Part 5)** — The `completeTodo` function is async. Stores the original todo for rollback, optimistically updates state, PATCHes `/api/tasks/${id}` with `isCompleted: true`. On failure: rolls back to the original todo and sets error.
+- **Optimistic Update Todo (Part 5)** — The `updateTodo` function is async. Stores the original todo for rollback, optimistically applies the edit, PATCHes `/api/tasks/${editedTodo.id}` with title and isCompleted. On failure: rolls back and sets error.
+- **Error and Loading UI (Part 5)** — The TodosPage return includes an error display section (shown when `error` exists) with a "Clear Error" button, and a loading indicator (shown when `isTodoListLoading` is true), both above the form.
+- **Console.log Cleanup (Part 6)** — Any console.log statements added for learning are removed. Only user-facing error handling remains.
+- **Functional Verification (Part 7)** — Login form shows when not authenticated, loading states display during operations, error messages appear on failure, UI updates optimistically, network failures trigger rollback. Note: AirHub cannot run the dev server or make API calls to verify runtime behavior; it is confirmed by human reviewers.
+- **Checkpoint: Check Your Understanding with AI** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission** — Changes committed to the working branch, pushed to GitHub, and a PR created comparing the working branch to `main`.
+
+### Optional Deliverables/Tasks
+
+**None.** All tasks in this assignment are required.
+
+</details>

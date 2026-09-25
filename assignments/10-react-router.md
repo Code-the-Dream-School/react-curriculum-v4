@@ -12,6 +12,10 @@ After completing this week's assignment, your app should:
 - handle 404 errors for unknown routes
 - preserve intended destinations after login
 
+Note: The route paths specified in this assignment (/, /about, /login, /todos, /profile) and the status filter values (all, active, completed) should be used exactly as written — they are referenced across multiple components and must match for navigation and filtering to work correctly. Component names (HomePage, LoginPage, AboutPage, TodosPage, ProfilePage, NotFoundPage, RequireAuth, StatusFilter, Navigation) should also be exact since they are imported by other files.
+
+Keep your existing code from previous lessons. This week's work builds on and modifies that code — it does not replace it.
+
 ---
 
 ### Instructions Part 1: Install React Router and Setup Basic Routing
@@ -43,7 +47,7 @@ After completing this week's assignment, your app should:
    - Wrap the existing `<AuthProvider>` with `<BrowserRouter>`
    - The wrapper order should be: `StrictMode` → `BrowserRouter` → `AuthProvider` → `App`
 
-   Your `main.jsx` should look like this:
+   Use exactly as written — the wrapper nesting order (StrictMode → BrowserRouter → AuthProvider → App) is required for routing and context to work correctly. The import path for AuthProvider depends on your file structure:
 
    ```jsx
    import { StrictMode } from 'react';
@@ -71,7 +75,7 @@ After completing this week's assignment, your app should:
    - Import `Routes` and `Route` from 'react-router'
    - Replace the conditional JSX (`{isAuthenticated ? <TodosPage /> : <Logon />}`) with a `<Routes>` structure
 
-   Your new App.jsx structure should look like this:
+   Example — this is the starting structure before routes are added. The complete version with all routes is shown in step 11:
 
    ```jsx
    import './App.css';
@@ -231,7 +235,7 @@ Your application will use this routing structure:
     - Import the `RequireAuth` component
     - Add all route definitions inside the `<Routes>` component
 
-    Your complete App.jsx should look like this:
+    Use exactly as written — the route paths, RequireAuth wrapping, and component names must match. Import paths depend on your file structure:
 
     ```jsx
     import './App.css';
@@ -366,7 +370,8 @@ Your application will use this routing structure:
     - This component uses URL search parameters to manage todo status filters
     - Users can filter todos by **all**, **active**, or **completed** status
     - The filter state is stored in the URL, making it bookmarkable and shareable
-    - Preserve the pagination parameters when status changes, and reset `page` to `0`
+
+    Use exactly as written — the status values ('all', 'active', 'completed') must match between this component and TodoList for filtering to work correctly:
 
     ```jsx
     import { useSearchParams } from 'react-router';
@@ -510,6 +515,8 @@ Your application will use this routing structure:
     - Update the `useMemo` logic to filter todos based on the status parameter
     - Update the empty state message to be context-aware
 
+    Use exactly as written — the `statusFilter` prop name and status values ('completed', 'active', 'all') must match the StatusFilter component. The empty state messages are examples; use your own wording if you prefer:
+
     ```jsx
     import { useMemo } from 'react';
     import TodoListItem from './TodoListItem.jsx';
@@ -519,10 +526,11 @@ Your application will use this routing structure:
       onCompleteTodo,
       onUpdateTodo,
       dataVersion,
-      statusFilter = 'active',  // Add this prop with default
+      statusFilter,  // Add this prop
     }) {
       const filteredTodoList = useMemo(() => {
         console.log(`Recalculating filtered todos (v${dataVersion}) - Status: ${statusFilter}`);
+        // Remember to remove this console.log before submission once you have completed this assignment.
 
         let filteredTodos;
         switch (statusFilter) {
@@ -747,3 +755,37 @@ Next week, we'll focus on **polishing your application for portfolio presentatio
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Install React Router (Part 1, Step 1)** — React Router v7 is installed as a dependency (`react-router` package). Imports throughout the app use `'react-router'` (not `'react-router-dom'`).
+- **BrowserRouter Setup (Part 1, Step 2)** — In `main.jsx`, the app is wrapped with `<BrowserRouter>` from `'react-router'`. Use exactly as written: the wrapper nesting order must be StrictMode → BrowserRouter → AuthProvider → App. The import path for AuthProvider depends on the student's file structure; do not fail for a different path as long as the import resolves.
+- **App.jsx Route Configuration (Parts 1 & 3, Steps 3 & 11)** — App.jsx imports `Routes` and `Route` from `'react-router'`, removes the previous conditional rendering (`isAuthenticated ? <TodosPage /> : <Logon />`), and defines routes for all pages. Use exactly as written: the route paths must be `'/'` (HomePage), `'/about'` (AboutPage), `'/login'` (LoginPage), `'/todos'` (TodosPage, wrapped in RequireAuth), `'/profile'` (ProfilePage, wrapped in RequireAuth), and `'*'` (NotFoundPage). Import paths depend on the student's file structure; do not fail for different directory layouts as long as imports resolve.
+- **HomePage Component (Part 2, Step 4)** — A page component (suggested location: `src/pages/HomePage.jsx`) that handles the root route. Uses `useAuth` and `useNavigate` to redirect authenticated users to `'/todos'` and unauthenticated users to `'/login'`, with `{ replace: true }`. Use exactly as written: the redirect paths must match the route configuration. The file path is a suggested convention; do not fail for a different location.
+- **LoginPage Component (Part 2, Step 5)** — A page component (suggested location: `src/pages/LoginPage.jsx`) that incorporates the login functionality previously in `Logon.jsx`. Uses `useNavigate` and `useLocation` from React Router. Preserves the intended destination from protected route redirects using `location.state?.from?.pathname` (defaulting to `'/todos'`). Redirects already-authenticated users via `useEffect`. Example — adapt to your own layout: the student's existing login form and error handling are incorporated into this component; the specific form layout may vary.
+- **AboutPage Component (Part 2, Step 6)** — A page component (suggested location: `src/pages/AboutPage.jsx`) with informational content about the app. Example — adapt to your own layout: the specific content, sections, and styling are the student's choice.
+- **Move TodosPage (Part 2, Step 7)** — TodosPage is relocated to the pages directory (suggested: `src/pages/TodosPage.jsx`) with import paths updated accordingly. The file path is a suggested convention; do not fail for a different location as long as imports resolve.
+- **ProfilePage Component (Parts 2 & 6, Steps 8 & 21)** — A page component (suggested location: `src/pages/ProfilePage.jsx`) that displays user information and todo statistics. Uses `useAuth` for user data and token. Fetches todos from the API in a `useEffect` and calculates total, completed, and active counts with a completion percentage. Handles loading and error states. Example — adapt to your own layout: the specific layout and styling are the student's choice, but data fetching, statistics calculation, and loading/error states must be present.
+- **NotFoundPage Component (Part 2, Step 9)** — A page component (suggested location: `src/pages/NotFoundPage.jsx`) for unmatched routes. Includes navigation links using React Router's `Link` component. Example — adapt to your own layout: the specific content and links are the student's choice.
+- **RequireAuth Component (Part 3, Step 10)** — A wrapper component (suggested location: `src/components/RequireAuth.jsx`) that protects routes requiring authentication. Accepts `children` as props. Uses `useAuth` for authentication status, `useLocation` to capture the current location, and `useNavigate` to redirect unauthenticated users to `'/login'` with the current location passed in state for destination preservation. Returns children when authenticated.
+- **Navigation Component (Part 4, Step 13)** — A component (suggested location: `src/shared/Navigation.jsx`) using `NavLink` from React Router with a style function that accepts `{ isActive }` for active state styling (bold, underline). Conditionally renders links based on authentication: always shows "About" (`'/about'`); authenticated users see "Todos" (`'/todos'`) and "Profile" (`'/profile'`); unauthenticated users see "Login" (`'/login'`). Use exactly as written: the link paths must match the route configuration.
+- **Header Update (Part 4, Step 14)** — Header.jsx includes the Navigation component between the title and the logout button.
+- **Logoff Navigation Update (Part 4, Step 15)** — Logoff.jsx imports `useNavigate` from `'react-router'` and navigates to `'/login'` after successful logout.
+- **StatusFilter Component (Part 5, Step 17)** — A component (suggested location: `src/shared/StatusFilter.jsx`) using `useSearchParams` from React Router for URL-based status filtering. Provides a select dropdown with three options. Use exactly as written: the status values `'all'`, `'active'`, and `'completed'` must match — they are used by TodoList's filtering logic. When `'all'` is selected, the status parameter is removed from the URL.
+- **TodosPage URL Filtering Integration (Part 5, Step 18)** — TodosPage imports `useSearchParams` and the StatusFilter component. Reads the status filter from URL parameters (`searchParams.get('status') || 'all'`). Passes `statusFilter` as a prop to TodoList. StatusFilter is rendered in the JSX.
+- **TodoList Status Filtering (Part 5, Step 19)** — TodoList accepts a `statusFilter` prop and filters todos using a switch statement: `'completed'` shows only completed, `'active'` shows only active, `'all'` shows all. The `useMemo` dependency array includes `statusFilter`. Empty state messages vary by filter status. Use exactly as written: the `statusFilter` prop name and status values must match the StatusFilter component. Example — adapt to your own layout: the empty state message text may vary.
+- **Functional Verification (Parts 7 & 8, Steps 22–25)** — Multi-page navigation works between all pages; protected routes redirect to login when not authenticated; login redirects to the intended destination; URL filtering updates the browser URL; the 404 page shows for invalid URLs; browser back/forward buttons work; logout redirects to login from any page. Note: AirHub cannot run the dev server to verify runtime behavior; it is confirmed by human reviewers.
+- **Console.log Cleanup (Part 8, Step 26)** — Any `console.log` statements added during development are removed before final submission.
+- **Checkpoint: Check Your Understanding with AI** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission** — Changes committed to the working branch, pushed to GitHub, and a PR created comparing the working branch to `main`.
+
+### Optional Deliverables/Tasks
+
+**None.** All tasks in this assignment are required.
+
+</details>

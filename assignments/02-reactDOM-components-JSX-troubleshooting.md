@@ -50,10 +50,10 @@ After completing this week's assignment, your app should:
 - Create a new file named `TodoList.jsx` in the `src` directory
 - Set up a basic React component structure with:
   - A function named `TodoList`
-  - An return statement with an empty Fragment component (we'll replace this soon)
+  - A return statement with an empty Fragment component (we'll replace this soon)
   - An export statement at the bottom
 
-Your new `TodoList.jsx` file should look like this:
+Use exactly as written — your new `TodoList.jsx` file should look like this. The file name and function name are used in imports later:
 
 ```jsx
 function TodoList() {
@@ -74,6 +74,8 @@ import TodoList from './TodoList.jsx';
 ```
 
 - In the App component's return statement, add a `<TodoList />` component below the heading:
+
+Example — the app title ("Todo List") is carried over from lesson 01; yours may differ. The `<TodoList />` component placement is required:
 
 ```jsx
 return (
@@ -123,6 +125,8 @@ export default TodoForm;
 
 Add a form with input elements inside the TodoForm component's return statement. Don't forget to disable the button since it's not wired to do anything yet.
 
+Use exactly as written — the form structure, attributes, and the htmlFor/id pairing are required:
+
 ```jsx
 function TodoForm() {
   return (
@@ -149,7 +153,7 @@ export default TodoForm;
 
 Your app should now display:
 
-1. The "Todo List" heading
+1. Your app's name from the <h1> tags in lesson 01. The example we shared was "Todo List" but yours may differ
 2. A form with a text input and "Add Todo" button
 3. The list of three todos from last week
 
@@ -207,3 +211,26 @@ Congratulations! You've successfully:
 
 > [!NOTE]
 > The AI review tool (known as AirHub) can check code and structure, but it does not run your code in a server environment to verify that aspect runs properly. We will have human reviewers checking this aspect, so you may receive a passing assignment from AirHub that could still need revisions after a human has checked that your work runs properly in the correct environment. If your AI and human reviewer feedbacks don't match, trust the human review.
+
+---
+
+<details>
+<summary>Rubric (for AirHub reviewer and mentors)</summary>
+
+### Required Deliverables/Tasks
+
+- **Pre-Work Setup (Part 1)** — Lesson-01 PR merged into `main`, local environment updated (`git pull`), and a new working branch named `lesson-02-components` created and published to GitHub. Use exactly as written: the branch name `lesson-02-components` is specified by the assignment.
+- **TodoList Component (Part 2)** — A file named `TodoList.jsx` in the `src` directory containing a function named `TodoList` with an export statement. Use exactly as written (later imports depend on these names): the file name `TodoList.jsx` and function name `TodoList` must match.
+- **TodoList Integration (Part 2)** — `TodoList` imported in `App.jsx` and rendered below the heading. The `todoList` array and the `<ul>` rendering logic (from lesson 01) moved from `App.jsx` into the `TodoList` component.
+- **TodoForm Component (Part 3)** — A file named `TodoForm.jsx` in the `src` directory containing a function named `TodoForm` with a form element that includes: a `<label>` with `htmlFor` attribute, a text `<input>` with matching `id`, and a `<button>` with `type="submit"` and `disabled` attribute. Use exactly as written: the form structure, attributes, and the `htmlFor`/`id` pairing are required.
+- **TodoForm Integration (Part 3)** — `TodoForm` imported in `App.jsx` and rendered between the heading and `<TodoList />`.
+- **Visual Result (Part 3)** — The app displays the student's heading, the todo form (input + disabled button), and the list of three todos from lesson 01. Example — adapt to your own layout: the heading text and todo titles are the student's own from lesson 01; do not fail for values that differ from examples in this assignment.
+- **Checkpoint: Check Your Understanding with AI (Part 4)** — This is an ungraded learning activity. The prompts are reflective exercises that produce no code artifact. Do not assess these; they cannot be verified from submitted code.
+- **Version Control and Submission (Part 4)** — Changes committed to the working branch, pushed to GitHub, and a PR created comparing the working branch to `main`.
+- **No Console Errors** — The assignment states the app should load without console errors. Note: AirHub cannot run the dev server to verify this; it is confirmed by human reviewers.
+
+### Optional Deliverables/Tasks
+
+**None.** All tasks in this assignment are required.
+
+</details>
