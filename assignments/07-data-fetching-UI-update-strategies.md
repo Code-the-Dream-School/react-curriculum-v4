@@ -151,7 +151,7 @@ VITE_TARGET=https://ctd-learns-node-l42tx.ondigitalocean.app
   - Sets loading state to true
   - Makes a POST request to `/api/users/logon` with email and password in the request body
   - Includes headers for `Content-Type: application/json` and `credentials: 'include'`
-  - On successful response (status 200 with name and csrfToken), calls `onSetEmail` and `onSetToken` props: This will be made when we update App.jsx.
+  - On successful response (status 200 with email and csrfToken), calls `onSetEmail` and `onSetToken` props: This will be made when we update App.jsx.
   - On failure, sets appropriate error message
   - Finally sets loading state back to false
 
