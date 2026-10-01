@@ -5,7 +5,8 @@
 After completing this week's assignment, your app should:
 
 - be in a version controlled directory linked to a GitHub repo
-- use Vite's React template using JavaScript (no TS or SWC)
+- use Vite's React template using JavaScript (not TypeScript)
+- use ESLint as the project's linter
 - start with no console errors or warnings
 - render a title and an unordered list of todos
 
@@ -14,8 +15,11 @@ After completing this week's assignment, your app should:
 #### Create new public repo on GitHub
 
 - give it the name "todo-list" or something similar and description
-- do not add a .gitignore or a license
+- do not initialize the repo with a README, .gitignore, or license
 - clone the repo to your local environment
+
+> [!NOTE]
+> The scaffold command creates files in the current directory. If the repo already contains files such as a README, .gitignore, or license, Vite will treat it as non-empty and ask how to proceed. Review the choices carefully. Do not remove the `.git` directory; it contains your repository history. The `--overwrite` option removes existing files other than `.git`, so use it only if you intend to replace those files.
 
 ### Instructions Part 2: Installation
 
@@ -24,8 +28,12 @@ After completing this week's assignment, your app should:
 >[!note]
 >remain on `main` branch
 
-- Bootstrap a new project: `npx create-vite@latest --template react .`
-- After any prompts, install the project dependencies using NPM: `npm install`
+- Bootstrap a new project: `npm create vite@latest . -- --template react`
+- When prompted, choose ESLint. If asked whether to install dependencies and start the server immediately, choose No.
+- Install the project dependencies using npm: `npm install`
+- Check that ESLint is available by running `npm run lint`.
+
+The generated project structure may change as Vite is updated. With ESLint selected, look for `eslint.config.js` and a `"lint": "eslint ."` script in `package.json`.
 
 You will end up with a project structure that looks similar to the following:
 
@@ -187,7 +195,7 @@ Your app should render a list of 3 todos under the app's title:
 ### Required Deliverables/Tasks
 
 - **Repo Setup (Part 1)** — A public GitHub repo (named "todo-list" or similar) with the project cloned locally. Example — adapt to your own layout: the repo name and description are the student's choice; do not fail for a different name.
-- **Vite Scaffold (Part 2)** — Project bootstrapped with `npx create-vite@latest --template react .` and dependencies installed. Use exactly as written: the `--template react` flag (no TypeScript or SWC) is required.
+- **Vite Scaffold (Part 2)** — Project bootstrapped with `npm create vite@latest . -- --template react`, ESLint selected, and dependencies installed. Use the `react` template for JavaScript (not TypeScript); `package.json` should include the `"lint": "eslint ."` script, and `npm run lint` should run successfully.
 - **Version Control Tasks (Part 3)** — Initial commit on `main`, then a working branch named `lesson-01-setup` published to GitHub. Use exactly as written: the branch name `lesson-01-setup` is specified by the assignment.
 - **Template Cleanup (Part 3)** — App.css and index.css emptied (files kept). App.jsx cleaned up: `useState` import and `count` state removed; all imports removed except App.css; return statement replaced with a div containing an h1 with the student's app title. Example — adapt to your own layout: the app title (e.g., "Todo List") is the student's choice; do not fail for a different title.
 - **todoList Array (Part 3)** — An array named `todoList` containing 3 objects, each with `id` and `title` keys, defined inside the App component above the return statement. Use exactly as written (later tasks depend on these names): the variable name `todoList` and the keys `id` and `title` must match. Example — adapt to your own layout: the actual todo title strings and id values are the student's choice.
