@@ -20,5 +20,8 @@
       "gutterIcon": true,
       "type": "text-and-comment"
     }
+  },
+  "chat.tools.terminal.autoApprove": {
+    "git remote": true
   }
 }
