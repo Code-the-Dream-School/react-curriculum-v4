@@ -30,12 +30,12 @@
 ### Improving the Development Environment
 
 - [ESLint Core Concepts (ESLint docs)](https://eslint.org/docs/latest/use/core-concepts/)
-- [VS CODE ESLint Extension (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [VS Code ESLint Extension (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 - [Prettier (Prettier docs)](https://prettier.io/docs/en/)
 - [Prettier Formatter for Visual Studio Code (VS Marketplace)](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Using ESLint and Prettier in Visual Studio Code (Microsoft Learn)](https://learn.microsoft.com/en-us/shows/visual-studio-toolbox/using-eslint-and-prettier-in-visual-studio-code)
 - [Aliasing - (Wikipedia)](https://en.wikipedia.org/wiki/Aliasing_%28computing%29)
-- [eslint-plugin-react/docs/rules/jsx-key (Github repo)](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md)
+- [eslint-plugin-react/docs/rules/jsx-key (GitHub repo)](https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-key.md)
 - [Prettier](https://prettier.io/)
 
 #### Sub-tools
@@ -44,8 +44,8 @@
 - [Configuring Vite (Vite docs)](https://vitejs.dev/config/)
 - [Official Vite plugins (Vite docs)](https://vitejs.dev/plugins/)
 - [Curated list of Vite community plugins (Github repo)](https://github.com/vitejs/awesome-vite#plugins)
-- [esbuild - An extremely fast bundler for the web](https://esbuild.github.io/)
-- [Rollup module bundler](https://rollupjs.org/introduction/)
+- [Rolldown bundler](https://rolldown.rs/)
+- [Oxc JavaScript tooling](https://oxc.rs/docs/guide/usage/transformer.html)
 - [PostCSS - Transforming styles with JS plugins (Github repo)](https://github.com/postcss/postcss)
 - [CSS Modules](https://github.com/css-modules/css-modules)
 - [Typescript Transpiler Explained (Daily Dev)](https://daily.dev/blog/typescript-transpiler-explained)

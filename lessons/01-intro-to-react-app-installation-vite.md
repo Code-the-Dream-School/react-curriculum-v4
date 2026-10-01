@@ -42,27 +42,27 @@ With React 18, updates are also handled through **concurrent rendering**. This a
 
 To work with a React project, we must choose a build tool and server. One of the best ways to get started is using [Vite](https://vitejs.dev/guide/why.html) with a [React template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react). Vite is a modern build tool for frontend development that focuses on speed and simplicity. It is designed to provide a fast development experience and has a strong plugin ecosystem that has made it a popular tool in the JavaScript community. We'll look closer into Vite later after installing our app.
 
-Create a new repo in GitHub and give it a name. All of the other options can remain the default. Any files such as the license, readme, or .gitignore will just get in the way of the installation process and be re-created anyways. The .git directory (a normally invisible directory used to manage version control) is unaffected so does not have to be worried about.
+Create a new repo in GitHub and give it a name. Do not add a README, license, or .gitignore. If any of these files are already present, Vite may ask how to handle existing files or the files may conflict with the scaffold. Do not remove the `.git` directory; it contains the repository's version history.
 
 ![github create new repository](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01-intro-to-react-app-installation-vite/assets/new-repo.png)
 
-Clone the repo locally. With a terminal opened to the local repo's directory, issue the command below to scaffold out a Vite project using the React template.
+Clone the repo locally. With a terminal opened to the local repo's directory, issue the command below to scaffold a Vite project using the React template.
 
 ```bash
- npx create-vite@latest --template react .
+npm create vite@latest . -- --template react
 ```
 
 Let's break that command down to see what it's doing:
 
-1. `npx …`: npx is a cli tool that makes it easy to install and manage dependencies hosted in the npm registry. It is pre-bundled with npm since version 5.2.0.
-2. `… create-vite@latest …`: this argument tells npx to scaffold the project using Vite's newest package.
-3. `… --template react …` tells vite's package to scaffold the project using its React template.
-4. `… .` lets npx know to use the current directory. You can instead write your app name `… my-app` so that the project is created in the `my-app` directory. We use the `… .` style for now.
+1. `npm create`: runs a project initializer published to the npm registry.
+2. `vite@latest`: selects the latest `create-vite` initializer.
+3. `.` tells the initializer to scaffold in the current directory. You can instead provide a directory name, such as `my-app`, to create the project in a new directory.
+4. `-- --template react`: the first `--` tells npm to pass the remaining options to the initializer. `--template react` selects Vite's JavaScript React template.
 
 > [!info]
-> If we run the command without any options (`npm create vite@latest`) this will start an interactive prompt in the terminal to help scaffold the Vite project. It will ask for a project name, a template to use, and then finally a template variant. Be careful to choose `JavaScript`, not `JavaScript SWC`. [SWC (Speedy Web Compiler)](https://swc.rs/) is a faster bundler that can be used instead of the default one used by Vite but doesn't have the right options for our project. We will not be using TypeScript in this course so don't choose that either.
+> If we run the command without options (`npm create vite@latest`), an interactive prompt will help scaffold the project. Choose React, then the plain JavaScript option, not TypeScript, and choose ESLint when asked which linter to use. If asked whether to install dependencies and start the server immediately, choose No; we will do that in the next step.
 
-The scaffolded project includes a starter SPA and a few supporting files. None of the dependencies are installed until we run another command, `npm install`. This installs all the packages listed in the package.json dependencies and can take up to a few minutes to complete. Once it done, we can take a look at the project structure.
+The scaffolded project includes a starter SPA and a few supporting files. Run `npm install` to install the packages listed in `package.json`. This can take a few minutes. Once it is done, we can take a look at the project structure.
 
 ```terminal
 .
@@ -89,7 +89,7 @@ The scaffolded project includes a starter SPA and a few supporting files. None o
 1. **.git/**: is an invisible directory created by Git to maintain version control. You may not see it if your operating system hides directories and files that start with a ".". VS Code also will hide this directory by default.
 2. **.gitignore**: this file lists all those files and directories that should _not_ be tracked with version control.
 3. **README.md**: this file contains pertinent information about the project. We keep this up to date with details such as a project description and steps that others need to take to run or work with the project.
-4. **eslint.config.js**: is used to configure [ESLint](https://eslint.org/), a tool used to identify syntax problems or common [anti-patterns](https://en.wikipedia.org/wiki/Anti-pattern).
+4. **eslint.config.js**: configures [ESLint](https://eslint.org/), a tool used to identify syntax problems or common [anti-patterns](https://en.wikipedia.org/wiki/Anti-pattern).
 5. **index.html**: this file is the [entry point](https://vitejs.dev/guide/#index-html-and-project-root) for the application.
 6. **package.json**: this file contains details about the project, some scripts aliases, and a list of all the packages that the project is dependent upon.
 7. **public**: this is a [directory](https://vitejs.dev/guide/assets.html#the-public-directory) is used to hold static assets like images and fonts that we want to remain unchanged.
@@ -107,7 +107,7 @@ To work with the project, we have to start Vite's server. To find the right comm
 }
 ```
 
-Since the packages in the repo are installed locally, the command line will not recognize them. Instead of trying to call them directly (e.g. typing `vite build` into our terminal), we use npm to call the scripts for us by using the command `npm run <<scriptKey>>` in the terminal at the project's root directory. Remember in JSON, a `key` is a property name - the word on the left side of a colon. In our case, we're going to use the command **`npm run dev`**. This will create a development pipeline to create a version of our code that is understandable by the browser.
+Since the packages in the repo are installed locally, the command line will not recognize them. Instead of trying to call them directly (e.g. typing `vite build` into our terminal), we use npm to call the scripts for us by using the command `npm run <<scriptKey>>` in the terminal at the project's root directory. Remember in JSON, a `key` is a property name - the word on the left side of a colon. In our case, we're going to use the command **`npm run dev`**. This starts Vite's development server so we can view the app in a browser. To run ESLint from the terminal, use **`npm run lint`**; an editor extension is optional.
 
 ![vite running in terminal](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-01-intro-to-react-app-installation-vite/assets/terminal-serve.png)
 
@@ -134,8 +134,8 @@ Without looking back at the file descriptions above, try this:
 
 #### Sub-tools
 
-- **[esbuild](https://esbuild.github.io/)** - Vite uses esbuild for pre-bundling during development. It converts all of our code and dependencies into native ESM (ECMAScript Module) understood by browsers. It also combines project dependencies into a single cached module to improve page loading/refreshing while we code. In other words, rather than having to re-bundle everything every time we save a file while Vite is running, it bundles all of our dependencies and saves the output. It then only has to rebuild the module(s) containing our code.
-- **[Rollup](https://rollupjs.org/introduction/)** - this is another module bundler for JavaScript. Vite uses this to output highly optimized files for production.
+- **[Rolldown](https://rolldown.rs/)** - Vite uses Rolldown for dependency optimization during development and to bundle optimized files for production.
+- **[Oxc](https://oxc.rs/)** - Vite uses Oxc tools to transform JavaScript, including JSX, so browsers can run the application code.
 - **[PostCSS](https://github.com/postcss/postcss)** - PostCSS is a JS tool that transforms CSS through an ecosystem of plugins. We will not be working with this directly.
 - **[CSS Modules](https://github.com/css-modules/css-modules)** - this tool scopes class selectors in module files to the respective component file. This simplifies style management directly by preventing selectors from inadvertently applying styles to undesired areas of the rendered page. We'll talk more about this in Lesson 10.
 
