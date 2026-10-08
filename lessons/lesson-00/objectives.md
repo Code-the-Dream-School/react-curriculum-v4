@@ -16,7 +16,8 @@ By the end of this lesson, we will:
 - Explain the required weekly assignments
 - List where you can find further resources for the week's lesson
 
-#### Objective 2: Local Environment Setup
+#### Objective 2: Course Requirements
 
 - Outline minimum computer requirements to develop a Vite project
 - Identify VS Code and browser extensions useful for React development
+- Identify prior knowledge needed to complete this course
