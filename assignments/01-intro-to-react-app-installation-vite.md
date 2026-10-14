@@ -1,8 +1,8 @@
-Each week you'll work on an exercise and an assignment.  Both have you building code, but they happen in two different repositories to give you more practice working with GitHub and repositories and file structures.  
+Each week you'll work on an exercise and an assignment.  Both have you building code, but they happen in two different repositories to give you more practice working with GitHub, repositories, and file structures.  
 
-Use this link to access your Exercise instructions for this lesson: [Lesson 1 Exercise](lessons/lesson-01-intro-to-react-app-installation-vite/exercises.md)
+Use this link to access your Exercise instructions for this lesson: [Lesson 1 Exercise](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/27_1/lessons/lesson-01-intro-to-react-app-installation-vite/exercises.md)
 
-Use this link to access your Assignment instructions for this lesson: [Lesson 1 Assignment](learns-app-content/lesson-01-intro-to-react-app-installation-vite/01-intro-to-react-app-installation-vite.md)
+Use this link to access your Assignment instructions for this lesson: [Lesson 1 Assignment](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/27_1/learns-app-content/lesson-01-intro-to-react-app-installation-vite/01-intro-to-react-app-installation-vite.md)
 
 Be sure to follow the Assignment Submission form instructions closely so your two links are submitted in the proper order.
 
