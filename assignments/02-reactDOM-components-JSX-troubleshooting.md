@@ -1,6 +1,6 @@
 As a reminder, each week you'll work on an exercise and an assignment.  Both have you building code, but they happen in two different repositories.  
 
-Use this link to access your Exercise instructions for this lesson: [Lesson 2 Exercise](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/27_1/lessons/lesson-02-reactDOM-components-JSX-troubleshooting/exercises.md)
+Use this link to access your Exercise instructions for this lesson: [Lesson 2 Exercise](https://github.com/Code-the-Dream-School/react-curriculum-v4-exercises/blob/main/src/exercises/lesson-02/instructions.md)
 
 Use this link to access your Assignment instructions for this lesson: [Lesson 2 Assignment](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/27_1/learns-app-content/lesson-02-reactDOM-components-JSX-troubleshooting/02-reactDOM-components-JSX-troubleshooting.md)
 
