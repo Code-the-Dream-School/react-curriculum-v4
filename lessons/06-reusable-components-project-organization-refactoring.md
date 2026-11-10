@@ -168,7 +168,7 @@ function App() {
 export default App;
 ```
 
-![toggle through dialog types](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/toggle-dialogs.gif)
+![toggle through dialog types](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/63451f3b19934552a4bceb481bc0e9af2e0ba390/lessons/lesson-06-reusable-components-project-organization-refactoring/assets/toggle-dialogs.gif)
 
 The dialog has a default `kind` when first rendered and when changed, it displays a different color and a helpful icon in its heading. Suppose that we have messages that come from an API response that we wanted to include them instead of the static paragraph we currently had. We have two options with this approach - we can add a `message` props or we can place the message into the instance using `children` props. Using the `children` approach has the added advantage that we can further format the message or include other jsx.
 
