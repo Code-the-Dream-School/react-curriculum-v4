@@ -137,7 +137,7 @@ Your list item should match the structure exactly as written since the structure
 
 At this point, when you click on the todo in the list, it will toggle between being displayed as text and showing in a form input:
 
-![editing a todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/edit-todo.gif)
+![editing a todo](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/14d8166f75cd493970f73e43e4736b41bf44900a/lessons/lesson-06-reusable-components-project-organization-refactoring/assets/edit-todo.gif)
 
 #### Extract Form Validation to Helper Function
 
@@ -200,7 +200,7 @@ Now let's continue with the todo editing functionality.
 
 You should now be able to make changes to the todo in the input. We cannot save quite yet though!
 
-![including a cancel button on edit-able todo](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/edit-todo-cancel-button.gif)
+![including a cancel button on edit-able todo](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/14d8166f75cd493970f73e43e4736b41bf44900a/lessons/lesson-06-reusable-components-project-organization-refactoring/assets/edit-todo-cancel-button.gif)
 
 #### Update Todo State from Local State
 
@@ -228,7 +228,7 @@ You should now be able to make changes to the todo in the input. We cannot save 
   - reuse the validation helper we extracted from the Add Todo button earlier
 - Add an `onSubmit` handler to the form element and pass it `handleUpdate`
 
-![adding and completing multiple todos](https://raw.githubusercontent.com/Code-the-Dream-School/react-curriculum-v4/refs/heads/main/learns-app-content/lesson-06-reusable-components-project-organization-refactoring/assets/add-todos.gif)
+![adding and completing multiple todos](https://github.com/Code-the-Dream-School/react-curriculum-v4/blob/14d8166f75cd493970f73e43e4736b41bf44900a/lessons/lesson-06-reusable-components-project-organization-refactoring/assets/add-todos.gif)
 
 ### Optional: Create Custom Hook
 
